@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+    <properties/>
+    <struct>
+        <and abstract="true" mandatory="true" name="Hybrid">
+            <alt abstract="true" mandatory="true" name="Game">
+                <feature name="Dice"/>
+                <feature name="Snake"/>
+            </alt>
+            <alt abstract="true" mandatory="true" name="Theme">
+                <feature name="SnakeTheme"/>
+                <feature name="DiceTheme"/>
+            </alt>
+        </and>
+    </struct>
+    <constraints/>
+    <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+    <comments/>
+    <featureOrder userDefined="false"/>
+</featureModel>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="Hybrid"/>
+    <feature automatic="selected" name="Game"/>
+    <feature manual="selected" name="Dice"/>
+    <feature automatic="unselected" name="Snake"/>
+    <feature automatic="selected" name="Theme"/>
+    <feature manual="selected" name="SnakeTheme"/>
+    <feature automatic="unselected" name="DiceTheme"/>
+</configuration>
