@@ -1,0 +1,15 @@
+Folder,Files,LOC,SLOC-P,SLOC-L,MVG,BLOC,C&SLOC,CLOC,CWORD,HCLOC,HCWORD
+Total,21,3975,2965,2254,470,602,0,408,1819,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake,21,3975,2965,2254,470,602,0,408,1819,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\gen,2,30,19,13,0,4,0,7,40,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\gen\net,2,30,19,13,0,4,0,7,40,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\gen\net\apogames,2,30,19,13,0,4,0,7,40,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\gen\net\apogames\aposnake,2,30,19,13,0,4,0,7,40,7,40
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src,19,3945,2946,2241,470,598,0,401,1779,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net,19,3945,2946,2241,470,598,0,401,1779,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames,19,3945,2946,2241,470,598,0,401,1779,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames\aposnake,19,3945,2946,2241,470,598,0,401,1779,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames\aposnake\editor,2,363,303,247,51,60,0,0,0,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames\aposnake\entity,5,848,410,302,67,125,0,313,1392,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames\aposnake\game,6,2151,1835,1427,320,282,0,34,160,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoSnake\src\net\apogames\aposnake\level,1,170,95,15,7,38,0,37,142,0,0

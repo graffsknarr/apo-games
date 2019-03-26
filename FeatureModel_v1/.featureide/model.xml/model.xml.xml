@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<layout chosenLayoutAlgorithm="1" horizontalLayout="true">
+    <struct>
+        <feature collapsed="true" name="Game"/>
+        <feature collapsed="true" name="Options"/>
+        <feature collapsed="true" name="Theme"/>
+    </struct>
+    <constraints/>
+</layout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+    <properties/>
+    <struct>
+        <and abstract="true" mandatory="true" name="ApoGames">
+            <and abstract="true" mandatory="true" name="Theme">
+                <alt abstract="true" mandatory="true" name="LevelChooserTheme">
+                    <feature name="ClockLevelChooserTheme"/>
+                    <feature name="DiceLevelChooserTheme"/>
+                    <feature name="SnakeLevelChooserTheme"/>
+                    <feature name="MonoLevelChooserTheme"/>
+                    <feature name="TreasureLevelChooserTheme"/>
+                </alt>
+                <alt abstract="true" mandatory="true" name="MenuTheme">
+                    <feature name="SnakeMenuTheme"/>
+                    <feature name="MonoMenuTheme"/>
+                    <feature name="DiceMenuTheme"/>
+                    <feature name="ClockMenuTheme"/>
+                    <feature name="TreasureMenuTheme"/>
+                </alt>
+            </and>
+            <alt abstract="true" mandatory="true" name="Game">
+                <and name="SnakeGame">
+                    <feature name="SnakeEditor"/>
+                    <and name="SnakePuzzle">
+                        <feature name="SnakeWall"/>
+                        <feature name="SnakeColor"/>
+                        <feature name="SnakeControls"/>
+                        <feature name="SnakeFood"/>
+                    </and>
+                </and>
+                <and name="DiceGame">
+                    <feature name="DiceEditor"/>
+                    <and name="DicePuzzle">
+                        <feature name="DiceDice"/>
+                        <feature name="DiceControls"/>
+                        <feature name="DiceGoal"/>
+                    </and>
+                </and>
+                <and name="MonoGame">
+                    <feature name="MonoEditor"/>
+                    <and name="MonoPuzzle">
+                        <feature name="MonoControls"/>
+                        <feature name="MonoGoal"/>
+                        <feature name="MonoBlock"/>
+                        <feature name="MonoMoveableBlock"/>
+                        <feature name="MonoFolding"/>
+                        <feature name="MonoSpikes"/>
+                        <feature name="MonoTeleport"/>
+                        <feature name="MonoPlayer"/>
+                    </and>
+                </and>
+                <and name="ClockGame">
+                    <feature name="ClockEditor"/>
+                    <and name="ClockGameMode">
+                        <feature name="ClockPuzzle"/>
+                        <feature name="ArcadeMode"/>
+                    </and>
+                    <and name="ClockGameFeatures">
+                        <feature name="ClockSpeed"/>
+                        <feature name="ClockControls"/>
+                        <feature name="ClockDirection"/>
+                    </and>
+                </and>
+                <and name="TreasureGame">
+                    <and name="TreasureEditor">
+                        <feature name="TreasureSolver"/>
+                    </and>
+                    <and name="TreasurePuzzle">
+                        <feature name="TreasureControls"/>
+                        <feature name="TreasureGoal"/>
+                        <feature name="TreasureObstacle"/>
+                    </and>
+                </and>
+            </alt>
+            <and abstract="true" name="Options">
+                <and name="ClockOptions">
+                    <feature name="ClockChangeName"/>
+                </and>
+                <and name="TreasureOptions">
+                    <feature name="TreasureMusic"/>
+                    <feature name="TreasureSound"/>
+                </and>
+                <and name="MonoOptions">
+                    <feature name="MonoSound"/>
+                    <feature name="MonoMusic"/>
+                    <alt mandatory="true" name="MonoColorScheme">
+                        <feature name="MonoWhite"/>
+                        <feature name="MonoGreen"/>
+                    </alt>
+                    <alt mandatory="true" name="MonoLanguage">
+                        <feature name="MonoGerman"/>
+                        <feature name="MonoEnglish"/>
+                    </alt>
+                </and>
+            </and>
+        </and>
+    </struct>
+    <constraints/>
+    <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+    <comments/>
+    <featureOrder userDefined="false"/>
+</featureModel>

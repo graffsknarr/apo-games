@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="Theme"/>
+    <feature automatic="selected" name="LevelChooserTheme"/>
+    <feature manual="selected" name="ClockLevelChooserTheme"/>
+    <feature automatic="unselected" name="DiceLevelChooserTheme"/>
+    <feature automatic="unselected" name="SnakeLevelChooserTheme"/>
+    <feature automatic="unselected" name="MonoLevelChooserTheme"/>
+    <feature automatic="unselected" name="TreasureLevelChooserTheme"/>
+    <feature automatic="selected" name="MenuTheme"/>
+    <feature automatic="unselected" name="SnakeMenuTheme"/>
+    <feature manual="selected" name="MonoMenuTheme"/>
+    <feature automatic="unselected" name="DiceMenuTheme"/>
+    <feature automatic="unselected" name="ClockMenuTheme"/>
+    <feature automatic="unselected" name="TreasureMenuTheme"/>
+    <feature automatic="selected" name="Game"/>
+</configuration>

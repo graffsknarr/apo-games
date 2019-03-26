@@ -1,0 +1,15 @@
+Folder,Files,LOC,SLOC-P,SLOC-L,MVG,BLOC,C&SLOC,CLOC,CWORD,HCLOC,HCWORD
+Total,22,3479,2526,1808,373,562,0,391,1838,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice,22,3479,2526,1808,373,562,0,391,1838,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\gen,3,39,22,15,0,7,0,10,74,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\gen\net,3,39,22,15,0,7,0,10,74,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\gen\net\apogames,3,39,22,15,0,7,0,10,74,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\gen\net\apogames\apodice,3,39,22,15,0,7,0,10,74,8,34
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src,19,3440,2504,1793,373,555,0,381,1764,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net,19,3440,2504,1793,373,555,0,381,1764,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames,19,3440,2504,1793,373,555,0,381,1764,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames\apodice,19,3440,2504,1793,373,555,0,381,1764,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames\apodice\editor,2,362,302,246,51,60,0,0,0,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames\apodice\entity,5,874,433,321,71,128,0,313,1392,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames\apodice\game,6,1584,1315,982,223,236,0,33,158,0,0
+C:\Users\enokaje\eclipse-workspace\apo-games\Android\ApoDice\src\net\apogames\apodice\level,1,224,170,15,7,36,0,18,129,0,0
