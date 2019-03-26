@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="ApoGames"/>
+    <feature automatic="selected" name="World"/>
+    <feature automatic="selected" name="Component"/>
+    <feature automatic="selected" name="Dynamic"/>
+    <feature automatic="selected" name="Avatar"/>
+    <feature manual="selected" name="Snake"/>
+</configuration>

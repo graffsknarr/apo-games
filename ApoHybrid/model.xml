@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+    <properties/>
+    <struct>
+        <and abstract="true" mandatory="true" name="ApoGames">
+            <alt name="Menu">
+                <feature name="SnakeMenu"/>
+                <feature name="DiceMenu"/>
+                <feature name="TreasureMenu"/>
+                <feature name="MonoMenu"/>
+                <feature name="ClockMenu"/>
+            </alt>
+            <and name="World">
+                <and name="Component">
+                    <and name="Dynamic">
+                        <feature name="Dice"/>
+                        <and name="Clock">
+                            <feature name="Speed"/>
+                            <feature name="Size"/>
+                            <feature name="Rotation"/>
+                        </and>
+                        <and name="Avatar">
+                            <feature name="MonoAvatar"/>
+                            <and name="Snake">
+                                <feature name="SnakeLength"/>
+                                <feature name="SnakeColor"/>
+                            </and>
+                            <feature name="TreasureAvatar"/>
+                        </and>
+                        <feature name="TreasureBox"/>
+                        <feature name="TreasureBlocks"/>
+                    </and>
+                    <and name="Static">
+                        <feature name="MonoObjects"/>
+                        <feature name="Square"/>
+                        <feature name="Circle"/>
+                        <feature name="TreasureKey"/>
+                    </and>
+                </and>
+                <and name="Canvas">
+                    <feature name="Grey"/>
+                    <feature name="TreasureCanvas"/>
+                    <feature name="MonoCanvas"/>
+                </and>
+            </and>
+            <feature name="Editor"/>
+            <and name="Controls">
+                <feature name="Press"/>
+                <feature name="Drag"/>
+                <feature name="MoveButtons"/>
+            </and>
+            <or name="Score">
+                <feature name="Moves"/>
+                <feature name="Counter"/>
+            </or>
+            <and name="LevelChooser">
+                <feature name="LevelGrid"/>
+                <feature name="NextLevel"/>
+            </and>
+            <and name="Options">
+                <and name="Sound">
+                    <alt name="Effects">
+                        <feature name="TreasureEffect"/>
+                        <feature name="MonoEffect"/>
+                    </alt>
+                    <alt name="Music">
+                        <feature name="TreasureMusic"/>
+                        <feature name="MonoMusic"/>
+                    </alt>
+                </and>
+                <or name="Language">
+                    <feature name="German"/>
+                    <feature name="English"/>
+                </or>
+                <or name="Color">
+                    <feature name="White"/>
+                    <feature name="Green"/>
+                </or>
+            </and>
+        </and>
+    </struct>
+    <constraints/>
+    <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+    <comments/>
+    <featureOrder userDefined="false"/>
+</featureModel>
