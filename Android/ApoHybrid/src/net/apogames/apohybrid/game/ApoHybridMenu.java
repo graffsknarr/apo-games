@@ -125,46 +125,46 @@ public class ApoHybridMenu extends ApoHybridModel {
 						x += hybrid * width;
 						
 						//#if DiceTheme
-//@						g.setColor(255, 255, 255, 255);
-//@						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
-//@
-//@						g.setLineSize(3.0f);
-//@						g.setColor(48, 48, 48);
-//@						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
-//@						
-//@						g.setLineSize(1.0f);
-//@						
-//@						if ((number == 1) || (number == 3) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
-//@						}
-//@						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
-//@						}
-//@						if ((number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
-//@						}
-//@
-						//#elif SnakeTheme
-						g.setColor(255, 0, 0, 255);
-						if (number == 2) {
-							g.setColor(0, 255, 0);
-						} else if (number == 3) {
-							g.setColor(0, 90, 200);
-						} else if (number == 4) {
-							g.setColor(255, 255, 0);
-						}
-						g.drawFilledCircle(x, y + height/2, height/2, height/2);
+						g.setColor(255, 255, 255, 255);
+						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
 
 						g.setLineSize(3.0f);
 						g.setColor(48, 48, 48);
-						g.drawCircle(x, y + height/2, height/2, height/2);
-						
-						g.drawFilledRect(x - 5, y + 5, 4, 15);
-						g.drawFilledRect(x + 1, y + 5, 4, 15);
+						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
 						
 						g.setLineSize(1.0f);
+						
+						if ((number == 1) || (number == 3) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
+						}
+						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
+							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
+						}
+						if ((number == 4) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
+							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
+						}
+
+						//#elif SnakeTheme
+//@						g.setColor(255, 0, 0, 255);
+//@						if (number == 2) {
+//@							g.setColor(0, 255, 0);
+//@						} else if (number == 3) {
+//@							g.setColor(0, 90, 200);
+//@						} else if (number == 4) {
+//@							g.setColor(255, 255, 0);
+//@						}
+//@						g.drawFilledCircle(x, y + height/2, height/2, height/2);
+//@
+//@						g.setLineSize(3.0f);
+//@						g.setColor(48, 48, 48);
+//@						g.drawCircle(x, y + height/2, height/2, height/2);
+//@						
+//@						g.drawFilledRect(x - 5, y + 5, 4, 15);
+//@						g.drawFilledRect(x + 1, y + 5, 4, 15);
+//@						
+//@						g.setLineSize(1.0f);
 						//#endif
 					}
 					number += 1;

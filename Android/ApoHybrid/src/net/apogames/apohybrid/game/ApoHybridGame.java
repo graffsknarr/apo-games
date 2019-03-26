@@ -75,7 +75,7 @@ public class ApoHybridGame extends ApoHybridModel {
 		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
 		s = "Touch to start the next level";
 		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = "Please try again";
+		s = "Please try again";x
 		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
 		s = "restart";
 		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
