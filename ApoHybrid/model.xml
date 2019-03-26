@@ -77,6 +77,10 @@
                     <feature name="Green"/>
                 </or>
             </and>
+            <and name="GameLogic">
+                <feature name="SnakeGameLogic"/>
+                <feature name="DiceGameLogic"/>
+            </and>
         </and>
     </struct>
     <constraints/>
