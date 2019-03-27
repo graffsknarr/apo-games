@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bitsengine">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Android/ApoDice/libs/bitsengine.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -54,7 +54,7 @@
                 <feature name="Counter"/>
             </or>
             <and name="LevelChooser">
-                <feature name="LevelGrid"/>
+                <feature mandatory="true" name="LevelGrid"/>
                 <feature name="NextLevel"/>
             </and>
             <and name="Options">

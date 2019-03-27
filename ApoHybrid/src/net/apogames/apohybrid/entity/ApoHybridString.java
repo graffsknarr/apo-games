@@ -20,10 +20,10 @@ public class ApoHybridString extends ApoHybridEntity {
 	private boolean bFade;
 	
 	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {
-		//#if Dice		
-//@		super(x, y, width, 0, 0);
-		//#elif Snake
-		super((int)x, (int)y, (int)width, 0);
+		//#if DiceGameLogic		
+		super(x, y, width, 0, 0);
+		//#elif SnakeGameLogic
+//@		super((int)x, (int)y, (int)width, 0);
 		//#endif
 		
 		this.bWithBackground = bWithBackground;
@@ -57,14 +57,14 @@ public class ApoHybridString extends ApoHybridEntity {
 			String s = this.drawString;
 			int w = (int)(ApoHybridMenu.font.getLength(s) + 10);
 			int h = ApoHybridMenu.font.mCharCellHeight;
-			//#if Dice
-//@			int x = (int)(this.getX() + this.getRadius()/2 - w/2) - changeX;
-//@			int change = 10;
-//@			int y = (int)(this.getY() + this.getRadius()/2 + h/2) - changeY;
-			//#elif Snake
-			int x = (int)(this.getX() + this.getDirection()/2 - w/2) - changeX;
+			//#if DiceGameLogic
+			int x = (int)(this.getX() + this.getRadius()/2 - w/2) - changeX;
 			int change = 10;
-			int y = (int)(this.getY() + this.getDirection()/2 + h/2) - changeY;
+			int y = (int)(this.getY() + this.getRadius()/2 + h/2) - changeY;
+			//#elif SnakeGameLogic
+//@			int x = (int)(this.getX() + this.getDirection()/2 - w/2) - changeX;
+//@			int change = 10;
+//@			int y = (int)(this.getY() + this.getDirection()/2 + h/2) - changeY;
 			//#endif
 			
 			

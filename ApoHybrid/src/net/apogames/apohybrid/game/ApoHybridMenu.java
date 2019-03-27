@@ -73,10 +73,10 @@ public class ApoHybridMenu extends ApoHybridModel {
 		} else if (function.equals(ApoHybridMenu.EDITOR)) {
 			this.getGame().setEditor(false);
 		} else if (function.equals(ApoHybridMenu.USERLEVELS)) {
-			//#if Dice
-//@			this.getGame().setPuzzleGame(0, "", true);
-			//#elif Snake
-			this.getGame().setPuzzleGame(-1, "", true);
+			//#if DiceGameLogic
+			this.getGame().setPuzzleGame(0, "", true);
+			//#elif SnakeGameLogic
+//@			this.getGame().setPuzzleGame(-1, "", true);
 			//#endif
 		}
 	}
@@ -109,6 +109,10 @@ public class ApoHybridMenu extends ApoHybridModel {
 		if (this.getGame().getButtons() != null) {
 			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 				if (this.getGame().getButtons()[i].isBVisible()) {
+					//#ifndef LevelGrid
+//@					if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
+					//#endif
+
 					int x = (int)(this.getGame().getButtons()[i].getX());
 					int y = (int)(this.getGame().getButtons()[i].getY());
 					int width = (int)(this.getGame().getButtons()[i].getWidth());
@@ -124,29 +128,29 @@ public class ApoHybridMenu extends ApoHybridModel {
 					for (int hybrid = 0; hybrid < 2; hybrid++) {
 						x += hybrid * width;
 						
-						//#if DiceTheme
-//@						g.setColor(255, 255, 255, 255);
-//@						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
-//@
-//@						g.setLineSize(3.0f);
-//@						g.setColor(48, 48, 48);
-//@						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
-//@						
-//@						g.setLineSize(1.0f);
-//@						
-//@						if ((number == 1) || (number == 3) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
-//@						}
-//@						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
-//@						}
-//@						if ((number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
-//@						}
-//@
-						//#elif SnakeTheme
+						//#if DiceMenu
+						g.setColor(255, 255, 255, 255);
+						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
+
+						g.setLineSize(3.0f);
+						g.setColor(48, 48, 48);
+						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
+						
+						g.setLineSize(1.0f);
+						
+						if ((number == 1) || (number == 3) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
+						}
+						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
+							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
+						}
+						if ((number == 4) || (number == 5)) {
+							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
+							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
+						}
+
+						//#elif SnakeMenu
 //@						g.setColor(255, 0, 0, 255);
 //@						if (number == 2) {
 //@							g.setColor(0, 255, 0);

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
     <feature automatic="selected" name="ApoGames"/>
-    <feature automatic="selected" name="World"/>
-    <feature automatic="selected" name="Component"/>
-    <feature automatic="selected" name="Dynamic"/>
-    <feature automatic="selected" name="Avatar"/>
-    <feature manual="selected" name="Snake"/>
+    <feature automatic="selected" name="Menu"/>
+    <feature automatic="unselected" name="SnakeMenu"/>
+    <feature manual="selected" name="DiceMenu"/>
+    <feature automatic="unselected" name="TreasureMenu"/>
+    <feature automatic="unselected" name="MonoMenu"/>
+    <feature automatic="unselected" name="ClockMenu"/>
+    <feature manual="selected" name="LevelChooser"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="DiceGameLogic"/>
 </configuration>

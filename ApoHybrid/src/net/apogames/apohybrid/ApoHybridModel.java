@@ -36,12 +36,12 @@ public abstract class ApoHybridModel {
 	
 	public abstract void touchedButton(String function);
 	
-	//#if Dice
-//@	public void onKeyDown(final int key) {
-//@	}
-//@
-//@	public void onKeyUp(final int key) {
-//@	}
+	//#if DiceGameLogic
+	public void onKeyDown(final int key) {
+	}
+
+	public void onKeyUp(final int key) {
+	}
 	//#endif
 	
 	public void onBackButtonPressed() {	

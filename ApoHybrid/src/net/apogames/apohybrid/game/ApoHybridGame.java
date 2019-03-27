@@ -106,47 +106,50 @@ public class ApoHybridGame extends ApoHybridModel {
 
 	@Override
 	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-		p[4] = x;
-		p[5] = y;
-		
-		bBreak = false;
-		if (p[6] < 0) {
-			return;
-		}
-		p[10] = p[11] = p[12] = 0;
-		if (Math.abs(p[4] - (p[6] * 60 + p[8])) > Math.abs(p[5] - changeY - (p[7]  *60 + p[9]))) {
-			if (p[4] - (p[6] * 60 + p[8]) < 0) {
-				p[10] = -1;
-			} else {
-				p[10] = 1;
-			}
-		} else if (p[5] - changeY - (p[7] * 60 + p[9]) != 0) {
-			if (p[5] - changeY - (p[7] * 60 + p[9]) < 0) {
-				p[11] = -1;
-			} else {
-				p[11] = 1;
-			}
-		}
-		p[12] = p[10];
-		if (p[10] != 0) {
-			while ((p[6] + p[12] >= 0) && (p[6] + p[12] < 8) && (level[p[7] + 8][p[6] + p[12]] > 0)) {
-				p[12] += p[10];
-			}
-			if ((p[6] + p[12] < 0) || (p[6] + p[12] > 7)) {
-				bBreak = true;
-			}
-		}
-		if (p[11] != 0) {
-			p[12] = p[11];
-			while ((p[7] + p[12] >= 0) && (p[7] + p[12] < 8) && (level[p[7] + p[12] + 8][p[6]] > 0)) {
-				p[12] += p[11];
-			}
-			if ((p[7] + p[12] < 0) || (p[7] + p[12] > 7)) {
-				bBreak = true;
-			}
-		}
-	}
-
+		//#if Drag
+//@		p[4] = x;
+//@		p[5] = y;
+//@		
+//@		bBreak = false;
+//@		if (p[6] < 0) {
+//@			return;
+//@		}
+//@		p[10] = p[11] = p[12] = 0;
+//@		if (Math.abs(p[4] - (p[6] * 60 + p[8])) > Math.abs(p[5] - changeY - (p[7]  *60 + p[9]))) {
+//@			if (p[4] - (p[6] * 60 + p[8]) < 0) {
+//@				p[10] = -1;
+//@			} else {
+//@				p[10] = 1;
+//@			}
+//@		} else if (p[5] - changeY - (p[7] * 60 + p[9]) != 0) {
+//@			if (p[5] - changeY - (p[7] * 60 + p[9]) < 0) {
+//@				p[11] = -1;
+//@			} else {
+//@				p[11] = 1;
+//@			}
+//@		}
+//@		p[12] = p[10];
+//@		if (p[10] != 0) {
+//@			while ((p[6] + p[12] >= 0) && (p[6] + p[12] < 8) && (level[p[7] + 8][p[6] + p[12]] > 0)) {
+//@				p[12] += p[10];
+//@			}
+//@			if ((p[6] + p[12] < 0) || (p[6] + p[12] > 7)) {
+//@				bBreak = true;
+//@			}
+//@		}
+//@		if (p[11] != 0) {
+//@			p[12] = p[11];
+//@			while ((p[7] + p[12] >= 0) && (p[7] + p[12] < 8) && (level[p[7] + p[12] + 8][p[6]] > 0)) {
+//@				p[12] += p[11];
+//@			}
+//@			if ((p[7] + p[12] < 0) || (p[7] + p[12] > 7)) {
+//@				bBreak = true;
+//@			}
+//@		}
+//@	
+		//#endif
+}
+	
 	@Override
 	public void touchedButton(String function) {
 		if (function.equals(ApoHybridGame.BACK)) {

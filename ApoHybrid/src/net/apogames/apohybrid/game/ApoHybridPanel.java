@@ -185,8 +185,8 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		
 		this.think += delta * 1000;
 
-		//#if Snake
-		this.checkTouchInput();
+		//#if SnakeGameLogic
+//@		this.checkTouchInput();
 		//#endif
 
 		// Update / think
