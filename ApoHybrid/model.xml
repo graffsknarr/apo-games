@@ -3,7 +3,7 @@
     <properties/>
     <struct>
         <and abstract="true" mandatory="true" name="ApoGames">
-            <alt name="Menu">
+            <alt abstract="true" name="Menu">
                 <feature name="SnakeMenu"/>
                 <feature name="DiceMenu"/>
                 <feature name="TreasureMenu"/>
@@ -11,45 +11,38 @@
                 <feature name="ClockMenu"/>
             </alt>
             <and name="World">
-                <and name="Component">
-                    <and name="Dynamic">
+                <and abstract="true" name="Component">
+                    <and abstract="true" name="Dynamic">
                         <feature name="Dice"/>
-                        <and name="Clock">
-                            <feature name="Speed"/>
-                            <feature name="Size"/>
-                            <feature name="Rotation"/>
-                        </and>
-                        <and name="Avatar">
+                        <feature name="Clock"/>
+                        <and abstract="true" name="Avatar">
                             <feature name="MonoAvatar"/>
-                            <and name="Snake">
-                                <feature name="SnakeLength"/>
-                                <feature name="SnakeColor"/>
-                            </and>
+                            <feature name="Snake"/>
                             <feature name="TreasureAvatar"/>
                         </and>
                         <feature name="TreasureBox"/>
                         <feature name="TreasureBlocks"/>
                     </and>
-                    <and name="Static">
+                    <and abstract="true" name="Static">
                         <feature name="MonoObjects"/>
                         <feature name="Square"/>
                         <feature name="Circle"/>
                         <feature name="TreasureKey"/>
                     </and>
                 </and>
-                <and name="Canvas">
+                <and abstract="true" name="Canvas">
                     <feature name="Grey"/>
                     <feature name="TreasureCanvas"/>
                     <feature name="MonoCanvas"/>
                 </and>
             </and>
             <feature name="Editor"/>
-            <and name="Controls">
+            <and abstract="true" name="Controls">
                 <feature name="Press"/>
                 <feature name="Drag"/>
                 <feature name="MoveButtons"/>
             </and>
-            <or name="Score">
+            <or abstract="true" name="Score">
                 <feature name="Moves"/>
                 <feature name="Counter"/>
             </or>
@@ -57,27 +50,27 @@
                 <feature mandatory="true" name="LevelGrid"/>
                 <feature name="NextLevel"/>
             </and>
-            <and name="Options">
-                <and name="Sound">
-                    <alt name="Effects">
+            <and abstract="true" name="Options">
+                <and abstract="true" name="Sound">
+                    <alt abstract="true" name="Effects">
                         <feature name="TreasureEffect"/>
                         <feature name="MonoEffect"/>
                     </alt>
-                    <alt name="Music">
+                    <alt abstract="true" name="Music">
                         <feature name="TreasureMusic"/>
                         <feature name="MonoMusic"/>
                     </alt>
                 </and>
-                <or name="Language">
+                <or abstract="true" name="Language">
                     <feature name="German"/>
                     <feature name="English"/>
                 </or>
-                <or name="Color">
+                <or abstract="true" name="Color">
                     <feature name="White"/>
                     <feature name="Green"/>
                 </or>
             </and>
-            <and name="GameLogic">
+            <and abstract="true" name="GameLogic">
                 <feature name="SnakeGameLogic"/>
                 <feature name="DiceGameLogic"/>
             </and>
