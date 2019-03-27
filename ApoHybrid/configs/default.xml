@@ -6,4 +6,6 @@
     <feature automatic="selected" name="Dynamic"/>
     <feature automatic="selected" name="Avatar"/>
     <feature manual="selected" name="Snake"/>
+    <feature automatic="selected" name="GameLogic"/>
+    <feature manual="selected" name="DiceGameLogic"/>
 </configuration>
