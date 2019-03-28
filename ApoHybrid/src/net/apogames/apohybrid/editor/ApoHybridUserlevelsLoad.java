@@ -129,7 +129,7 @@ public class ApoHybridUserlevelsLoad {
 
 				printout = new DataOutputStream(urlConn.getOutputStream());
 				
-				String content = "net.apogames.apohybrid.level=" + URLEncoder.encode(String.valueOf(level), "UTF-8");
+				String content = "level=" + URLEncoder.encode(String.valueOf(level), "UTF-8");
 				printout.writeBytes(content);
 				printout.flush();
 				printout.close();

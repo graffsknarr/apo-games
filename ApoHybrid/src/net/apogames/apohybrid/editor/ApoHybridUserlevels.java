@@ -55,6 +55,27 @@ public class ApoHybridUserlevels {
 		return levels;
 	}
 	
+	//#ifdef ClockGameLogic
+//@	private void sortByUpload() {
+//@		this.sortByUpload.clear();
+//@		this.sortByUpload.add(0);
+//@		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
+//@			float time = this.userlevels.getTimes().get(i);
+//@			boolean bAdd = false;
+//@			for (int k = 0; k < this.sortByUpload.size(); k++) {
+//@				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
+//@				if (time > sortTime) {
+//@					this.sortByUpload.add(k, i);
+//@					bAdd = true;
+//@					break;
+//@				}
+//@			}
+//@			if (!bAdd) {
+//@				this.sortByUpload.add(i);
+//@			}
+//@		}
+//@	}
+	//#else
 	private void sortByUpload() {
 		this.sortByUpload.clear();
 		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
@@ -75,6 +96,8 @@ public class ApoHybridUserlevels {
 			}
 		}
 	}
+	//#endif
+
 
 	public ArrayList<Integer> getSortByUpload() {
 		return this.sortByUpload;

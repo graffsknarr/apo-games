@@ -1,5 +1,11 @@
 package net.apogames.apohybrid.entity;
 
+
+//#ifdef ClockGameLogic
+
+//#else
+
+//#endif
 import net.gliblybits.bitsengine.core.BitsImage;
 import net.gliblybits.bitsengine.render.BitsGraphics;
 
@@ -18,8 +24,13 @@ public class ApoButton extends ApoEntity {
 	private boolean			bWait, bFirstWait;
 	private String			function;
 	private boolean 		bOver, bPressed;
-	
+
+	//#ifdef ClockGameLogic
+	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
+	//#else
 	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
+	//#endif
+
 		super( iBackground, x, y, width, height );
 		
 		this.function	= function;
@@ -134,7 +145,12 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, falls Maus dr�ber, sonst FALSE
 	 */
 	public boolean getMove( int x, int y ) {
+		//#ifdef ClockGameLogic
+		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isVisible())) {
+		//#else
 		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isBVisible())) {
+		//#endif
+
 			this.setBOver( true );
 			return true;
 		} else if ((this.isBOver()) && (!this.intersects(x, y))) {
@@ -166,7 +182,12 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, falls �ber Button Maus gedr�ckt, sonst FALSE
 	 */
 	public boolean getPressed( int x, int y ) {
+		//#ifdef ClockGameLogic
+		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isVisible() ) ) {
+		//#else
 		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isBVisible() ) ) {
+		//#endif
+
 			this.setBPressed( true );
 			return true;
 		}
@@ -180,7 +201,11 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, wenn die Maustaste losgelassen wurde und der Spieler auch diesen Button gedr�ckt hatte, sonst FALSE
 	 */
 	public boolean getReleased( int x, int y ) {
+		//#ifdef ClockGameLogic
+		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isVisible())) {
+		//#else
 		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isBVisible())) {
+		//#endif
 			this.setBPressed(false);
 			this.setBOver(true);
 			this.wait 		= 0;
@@ -231,8 +256,13 @@ public class ApoButton extends ApoEntity {
 	 * @param changeX: Verschiebung in x-Richtung
 	 * @param changeY: Verschiebung in y-Richtung
 	 */
+	//#ifdef ClockGameLogic
+	public void render(BitsGLGraphics g, int changeX, int changeY ) {
+		if ( this.isVisible() ) {
+	//#else
 	public void render(BitsGraphics g, int changeX, int changeY ) {
 		if ( this.isBVisible() ) {
+	//#endif
 			super.render(g, changeX, changeY);
 		}
 	}

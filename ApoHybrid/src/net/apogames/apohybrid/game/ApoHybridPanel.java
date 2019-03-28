@@ -7,10 +7,18 @@ import net.apogames.apohybrid.ApoHybridButtons;
 import net.apogames.apohybrid.ApoHybridComponent;
 import net.apogames.apohybrid.ApoHybridConstants;
 import net.apogames.apohybrid.editor.ApoHybridUserlevels;
+import net.apogames.apohybrid.entity.ApoTextfield;
+import net.apogames.apohybrid.highscore.ApoHybridHighscore;
+import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
 
 import net.gliblybits.bitsengine.core.BitsFont;
 import net.gliblybits.bitsengine.core.BitsGame;
 import net.gliblybits.bitsengine.render.BitsGraphics;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLFactory;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLFont;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.input.BitsInput;
+import net.gliblybits.bitsengine.input.BitsKeyEvent;
 
 public class ApoHybridPanel extends ApoHybridComponent {
 	
@@ -25,6 +33,24 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	private int think;
 	
 	private ApoHybridUserlevels userlevels;
+	// Clockmenu stuff
+	private ApoHybridPuzzleGame game;
+
+	private ApoHybridArcarde arcarde;
+
+	private ApoHybridArcardeGame arcardeGame;
+	
+	private ApoHybridPuzzle puzzleFirst;
+
+	private ApoHybridOptions options;
+
+	private ApoHybridHighscoreLocal local;
+	
+	private ApoTextfield textfield;
+	
+	public static BitsGLFont font;
+	public static BitsGLFont game_font;
+	public static BitsGLFont title_font;
 	
 	public ApoHybridPanel(int id) {
 		super(id);

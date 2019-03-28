@@ -1,8 +1,15 @@
 package net.apogames.apohybrid.entity;
 
+//#ifdef ClockGameLogic
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+import net.gliblybits.bitsengine.utils.BitsRect;
+//#else
 import android.graphics.Rect;
 import net.gliblybits.bitsengine.core.BitsImage;
 import net.gliblybits.bitsengine.render.BitsGraphics;
+//#endif
+
 
 /**
  * Klasse von der Button und Player erben und einige grundlegene Sachen zur
@@ -16,11 +23,20 @@ public class ApoEntity {
 
 	private float width, height;
 
+	//#ifdef ClockGameLogic
+	private BitsGLImage iBackground;
+
+	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
+	
+	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
+	//#else
 	private BitsImage iBackground;
 
 	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
 	
 	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
+	//#endif
+
 		this.iBackground = iBackground;
 		this.startX = x;
 		this.startY = y;
@@ -100,7 +116,12 @@ public class ApoEntity {
 	 * 
 	 * @return gibt zur�ck, ob die Entity angezeigt werden soll oder nicht
 	 */
+	//#ifdef ClockGameLogic
+	public boolean isVisible() {
+	//#else
 	public boolean isBVisible() {
+	//#endif
+
 		return this.bVisible;
 	}
 
@@ -118,7 +139,13 @@ public class ApoEntity {
 	 * 
 	 * @return TRUE falls ausgew�hlt sonst FALSE
 	 */
+
+	//#ifdef ClockGameLogic
+	public boolean isSelect() {
+	//#else
 	public boolean isBSelect() {
+	//#endif
+
 		return this.bSelect;
 	}
 
@@ -127,7 +154,13 @@ public class ApoEntity {
 	 * 
 	 * @param bSelect
 	 */
+
+	//#ifdef ClockGameLogic
+	public void setSelect(boolean bSelect) {
+	//#else
 	public void setBSelect(boolean bSelect) {
+	//#endif
+
 		this.bSelect = bSelect;
 	}
 
@@ -210,7 +243,13 @@ public class ApoEntity {
 	 * 
 	 * @return Bild
 	 */
+
+	//#ifdef ClockGameLogic
+	public BitsGLImage getIBackground() {
+	//#else
 	public BitsImage getIBackground() {
+	//#endif
+
 		return this.iBackground;
 	}
 
@@ -219,7 +258,13 @@ public class ApoEntity {
 	 * 
 	 * @param background
 	 */
+
+	//#ifdef ClockGameLogic
+	public void setIBackground(BitsGLImage background) {
+	//#else
 	public void setIBackground(BitsImage background) {
+	//#endif
+
 		iBackground = background;
 	}
 
@@ -326,7 +371,12 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(float x, float y, float width, float height) {
+		//#ifdef ClockGameLogic
+		if (this.getRec().intersects((int)x, (int)y, (int)(width), (int)(height))) {
+		//#else
 		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
+		//#endif
+
 			return true;
 		}
 		return false;
@@ -339,7 +389,12 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(ApoEntity entity) {
+		//#ifdef ClockGameLogic
+		if (this.getRec().intersects(entity.getRec())) {
+		//#else
 		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
+		//#endif
+
 			return true;
 		}
 		return false;
@@ -378,9 +433,17 @@ public class ApoEntity {
 	 * gibt das aktuelle Rechteck der Entity zur�ck
 	 * @return gibt das aktuelle Rechteck der Entity zur�ck
 	 */
+
+	//#ifdef ClockGameLogic
+	public BitsRect getRec() {
+		return new BitsRect((int)this.getX(), (int)this.getY(), (int)(this.getWidth()), (int)(this.getHeight()));
+	}
+	//#else
 	public Rect getRec() {
 		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
 	}
+	//#endif
+
 
 	/**
 	 * �berpr�ft ob der �bergebene rgb Wert durchsichtig ist oder nicht
@@ -414,6 +477,26 @@ public class ApoEntity {
 	 * malt das Objekt
 	 * @param g
 	 */
+	//#ifdef ClockGameLogic
+	public void render(BitsGLGraphics g, int x, int y) {
+		if ((this.getIBackground() != null) && (this.isVisible())) {
+			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
+			if (this.isSelect()) {
+				g.setColor(255, 0, 0);
+				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
+			}
+		}
+	}
+
+	/**
+	 * malt das Objekt
+	 * @param g = Graphics2D Objekt
+	 */
+	public void render(BitsGLGraphics g) {
+		this.render(g, 0, 0);
+	}
+
+	//#else
 	public void render(BitsGraphics g, int x, int y) {
 		if ((this.getIBackground() != null) && (this.isBVisible())) {
 			g.drawImage(this.iBackground, (int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getX() + x + this.getWidth()), (int) (this.getY() + y + this.getHeight()));
@@ -433,3 +516,5 @@ public class ApoEntity {
 	}
 
 }
+	//#endif
+
