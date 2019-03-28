@@ -778,18 +778,18 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@
 //@import java.util.ArrayList;
 //@
-//@import net.apogames.apoclock.ApoClock;
-//@import net.apogames.apoclock.ApoClockConstants;
-//@import net.apogames.apoclock.ApoClockModel;
-//@import net.apogames.apoclock.editor.ApoClockEditorClockStats;
-//@import net.apogames.apoclock.entity.ApoClockEntityBall;
-//@import net.apogames.apoclock.entity.ApoClockEntityClock;
-//@import net.apogames.apoclock.entity.ApoClockString;
+//@import net.apogames.apoybrid.ApoHybrid;
+//@import net.apogames.apoybrid.ApoHybridConstants;
+//@import net.apogames.apoybrid.ApoHybridModel;
+//@import net.apogames.apoybrid.editor.ApoHybridEditorClockStats;
+//@import net.apogames.apoybrid.entity.ApoHybridEntityBall;
+//@import net.apogames.apoybrid.entity.ApoHybridEntityClock;
+//@import net.apogames.apoybrid.entity.ApoHybridString;
 //@
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.utils.BitsLog;
 //@
-//@public class ApoClockEditor extends ApoClockModel {
+//@public class ApoHybridEditor extends ApoHybridModel {
 //@
 //@	public static final String BACK = "back";
 //@	public static final String ADD = "add";
@@ -798,41 +798,41 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@	public static final String UPLOAD = "upload";
 //@	public static final String TEST = "test";
 //@	
-//@	private ArrayList<ApoClockEntityClock> clocks;
+//@	private ArrayList<ApoHybridEntityClock> clocks;
 //@	
-//@	private ApoClockEditorClockStats clockStats;
+//@	private ApoHybridEditorClockStats clockStats;
 //@	
-//@	private ApoClockString uploadString;
+//@	private ApoHybridString uploadString;
 //@	
-//@	private final ApoClockEntityBall ball = new ApoClockEntityBall(5, 260, 5, 90, 0.2f);
+//@	private final ApoHybridEntityBall ball = new ApoHybridEntityBall(5, 260, 5, 90, 0.2f);
 //@	
 //@	private boolean bCanDragged;
 //@	
-//@	public ApoClockEditor(ApoClockPanel game) {
+//@	public ApoHybridEditor(ApoHybridPanel game) {
 //@		super(game);
 //@	}
 //@
 //@	@Override
 //@	public void init() {
 //@		if (this.clocks == null) {
-//@			this.clocks = new ArrayList<ApoClockEntityClock>();
+//@			this.clocks = new ArrayList<ApoHybridEntityClock>();
 //@		}
 //@		
-//@		this.getStringWidth().put(ApoClockEditor.BACK, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.BACK)));
-//@		this.getStringWidth().put(ApoClockEditor.ADD, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.ADD)));
-//@		this.getStringWidth().put(ApoClockEditor.REMOVE, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.REMOVE)));
-//@		this.getStringWidth().put(ApoClockEditor.NEW, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.NEW)));
-//@		this.getStringWidth().put(ApoClockEditor.UPLOAD, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.UPLOAD)));
-//@		this.getStringWidth().put(ApoClockEditor.TEST, (int)(ApoClockPanel.game_font.getLength(ApoClockEditor.TEST)));
+//@		this.getStringWidth().put(ApoHybridEditor.BACK, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.BACK)));
+//@		this.getStringWidth().put(ApoHybridEditor.ADD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.ADD)));
+//@		this.getStringWidth().put(ApoHybridEditor.REMOVE, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.REMOVE)));
+//@		this.getStringWidth().put(ApoHybridEditor.NEW, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.NEW)));
+//@		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.UPLOAD)));
+//@		this.getStringWidth().put(ApoHybridEditor.TEST, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.TEST)));
 //@		
-//@		String s = "ApoClock - Editor";
-//@		this.getStringWidth().put(s, (int) ApoClockPanel.game_font.getLength(s));
+//@		String s = "ApoHybrid - Editor";
+//@		this.getStringWidth().put(s, (int) ApoHybridPanel.game_font.getLength(s));
 //@		
 //@		this.checkTestLevel();
 //@	}
 //@	
 //@	public void setLevelSolved(boolean bSolved) {
-//@		if ((!bSolved) || (!ApoClock.isOnline())) {
+//@		if ((!bSolved) || (!ApoHybrid.isOnline())) {
 //@			this.getGame().getButtons()[13].setVisible(false);
 //@		}
 //@	}
@@ -863,7 +863,7 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@					this.clockStats.getClock().setSelected(false);
 //@				}
 //@				this.bCanDragged = true;
-//@				this.clockStats = new ApoClockEditorClockStats(this.clocks.get(i));
+//@				this.clockStats = new ApoHybridEditorClockStats(this.clocks.get(i));
 //@				bBreak = true;
 //@				break;
 //@			}
@@ -889,8 +889,8 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@			int newX = (int)(this.clockStats.getClock().getX() + changeX);
 //@			if (newX - this.clockStats.getClock().getRadius() < 0) {
 //@				newX = (int)(this.clockStats.getClock().getRadius());
-//@			} else if (newX + this.clockStats.getClock().getRadius() >= ApoClockConstants.GAME_WIDTH) {
-//@				newX = ApoClockConstants.GAME_WIDTH - (int)(this.clockStats.getClock().getRadius());
+//@			} else if (newX + this.clockStats.getClock().getRadius() >= ApoHybridConstants.GAME_WIDTH) {
+//@				newX = ApoHybridConstants.GAME_WIDTH - (int)(this.clockStats.getClock().getRadius());
 //@			}
 //@			
 //@			int newY = (int)(this.clockStats.getClock().getY() + changeY);
@@ -906,47 +906,47 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@	
 //@	@Override
 //@	public void touchedButton(String function) {
-//@		if (function.equals(ApoClockEditor.ADD)) {
+//@		if (function.equals(ApoHybridEditor.ADD)) {
 //@			if (this.clockStats != null) {
 //@				this.clockStats.getClock().setSelected(false);
 //@			}
 //@			this.setLevelSolved(false);
 //@			this.clockStats = null;
-//@			ApoClockEntityClock clock = new ApoClockEntityClock(240, 260, 40, (int)(Math.random() * 360), (int)(Math.random() * 10 + 4));
+//@			ApoHybridEntityClock clock = new ApoHybridEntityClock(240, 260, 40, (int)(Math.random() * 360), (int)(Math.random() * 10 + 4));
 //@			if (Math.random() * 100 > 50) {
 //@				clock.setRotateClockwise(false);
 //@			}
 //@			this.clocks.add(clock);
 //@			this.checkTestLevel();
-//@		} else if (function.equals(ApoClockEditor.BACK)) {
+//@		} else if (function.equals(ApoHybridEditor.BACK)) {
 //@			this.onBackButtonPressed();
-//@		} else if (function.equals(ApoClockEditor.NEW)) {
-//@			if (this.clockStats != null) {
+//@		} else if (function.equals(ApoHybridEditor.NEW)) {
+//@			if (this.HybridStats != null) {
 //@				this.clockStats.getClock().setSelected(false);
 //@			}
 //@			this.setLevelSolved(false);
 //@			this.clockStats = null;
 //@			this.clocks.clear();
 //@			this.checkTestLevel();
-//@		} else if (function.equals(ApoClockEditor.REMOVE)) {
+//@		} else if (function.equals(ApoHybridEditor.REMOVE)) {
 //@			if (this.clockStats != null) {
 //@				this.clocks.remove(this.clockStats.getClock());
 //@				this.clockStats = null;
 //@			}
 //@			this.setLevelSolved(false);
 //@			this.checkTestLevel();
-//@		} else if (function.equals(ApoClockEditor.TEST)) {
+//@		} else if (function.equals(ApoHybridEditor.TEST)) {
 //@			String levelString = this.getLevelString();
 //@			BitsLog.d("levelString", levelString);
 //@			this.getGame().setPuzzleGame(-1, levelString, false);
-//@		} else if (function.equals(ApoClockEditor.UPLOAD)) {
+//@		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
 //@			this.setLevelSolved(false);
-//@			this.uploadString = new ApoClockString(240, 550, 20, "Uploading ...", true, 200, true);
+//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading ...", true, 200, true);
 //@			
 //@			Thread t = new Thread(new Runnable() {
 //@				@Override
 //@				public void run() {
-//@					ApoClockEditor.this.uploadString();
+//@					ApoHybridEditor.this.uploadString();
 //@				}
 //@	 		});
 //@	 		t.start();
@@ -955,10 +955,10 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@	
 //@	private void uploadString() {
 //@		if (this.getGame().getUserlevels().addLevel(this.getLevelString())) {
-//@			this.uploadString = new ApoClockString(240, 550, 20, "Uploading successfully", true, 20, true);
+//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading successfully", true, 20, true);
 //@			this.getGame().loadUserlevels();
 //@		} else {
-//@			this.uploadString = new ApoClockString(240, 550, 20, "Uploading failed", true, 20, true);
+//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading failed", true, 20, true);
 //@		}
 //@	}
 //@	
@@ -1001,15 +1001,15 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@		g.drawRect(0,0,480,25);
 //@		g.drawRect(0,590,480,50);
 //@		
-//@		String s = "ApoClock - Editor";
-//@		this.getGame().drawString(g, s, 240, -4, ApoClockPanel.game_font);
+//@		String s = "ApoHybrid - Editor";
+//@		this.getGame().drawString(g, s, 240, -4, ApoHybridPanel.game_font);
 //@		
 //@		for (int i = 0; i < this.clocks.size(); i++) {
 //@			this.clocks.get(i).render(g);
 //@		}
 //@		this.ball.render(g);
 //@		
-//@		this.getGame().renderButtons(g, ApoClockPanel.game_font);
+//@		this.getGame().renderButtons(g, ApoHybridPanel.game_font);
 //@		
 //@		if (this.clockStats != null) {
 //@			this.clockStats.render(g);
