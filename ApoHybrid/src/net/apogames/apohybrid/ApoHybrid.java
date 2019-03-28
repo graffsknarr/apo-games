@@ -18,10 +18,29 @@ public class ApoHybrid extends BitsApp {
 	public static NetworkInfo ni;
 	
 	@Override
-	protected void onCreate( ) 
+	//#ifdef ClockGameLogic
+	protected void onCreateApp( ) 
+	//#else
+	protected void onCreate( )
+	//#endif 
 	{
 		BitsLog.setLogType(BitsLog.TYPE_NONE);
 		
+		//#ifdef ClockGameLogic
+		BitsApp.sWantFullscreen = true;
+		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+		BitsApp.sGameWidth = 480;
+		BitsApp.sGameHeight = 640;
+		BitsApp.sWantTitleBar = false;
+		BitsApp.sMaxCirclePoints = 180;
+//		BitsApp.sMaxFPS = 60;
+		BitsApp.sMaxUpdate = 100;
+		BitsApp.sMaxTouchPointer = 3;
+//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
+
+		BitsGame.getInstance().addScreen(new ApoClockPanel(1));	
+		
+		//#else
 		BitsGame.sWantFullscreen = true;
 		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
 		BitsGame.sGameWidth = 480;
@@ -36,13 +55,17 @@ public class ApoHybrid extends BitsApp {
 		BitsGame.sWantMusic = false;
 		BitsGame.sWantSound = false;
 		BitsGame.sMaxFontCount = 3;
+
+		BitsGame.getIt().addScreen(new ApoHybridPanel(1));
+		//#endif
+
 		
 		ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
 		ApoHybrid.ni = cm.getActiveNetworkInfo();
 		
 		ApoHybrid.settings = this.getSharedPreferences(ApoHybridConstants.PREFS_NAME, 0);
 		
-		BitsGame.getIt().addScreen(new ApoHybridPanel(1));
+
 	}
 	
 	public static boolean isOnline() {
@@ -52,7 +75,50 @@ public class ApoHybrid extends BitsApp {
 		return ApoHybrid.ni.isConnected();
 	}
 
+	//#ifdef ClockGameLogic
+	@Override
+	protected void onStopApp( ) {
+	}
+
+	@Override
+	protected void onAddView() {
+		
+	}
+
+	@Override
+	public void onAudioFocusChange(int focusChange) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onInitApp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onPauseApp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onResumeApp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void onDestroyApp() {
+		// TODO Auto-generated method stub
+		
+	}
+	//#else
 	@Override
 	protected void onFinish( ) {
 	}
+	//#endif
+
+	
 }

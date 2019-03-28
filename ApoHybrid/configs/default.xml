@@ -7,7 +7,10 @@
     <feature automatic="unselected" name="TreasureMenu"/>
     <feature automatic="unselected" name="MonoMenu"/>
     <feature automatic="unselected" name="ClockMenu"/>
-    <feature manual="selected" name="LevelChooser"/>
+    <feature automatic="selected" name="Controls"/>
+    <feature manual="selected" name="Drag"/>
+    <feature automatic="selected" name="LevelChooser"/>
+    <feature manual="selected" name="LevelGrid"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="DiceGameLogic"/>
 </configuration>

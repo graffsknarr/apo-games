@@ -110,9 +110,13 @@ public class ApoHybridMenu extends ApoHybridModel {
 			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 				if (this.getGame().getButtons()[i].isBVisible()) {
 					//#ifndef LevelGrid
-//@					if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PUZZLE)) i++;
 					//#endif
 
+					//#ifndef Editor
+					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR)) i++;
+					//#endif
+					
 					int x = (int)(this.getGame().getButtons()[i].getX());
 					int y = (int)(this.getGame().getButtons()[i].getY());
 					int width = (int)(this.getGame().getButtons()[i].getWidth());
