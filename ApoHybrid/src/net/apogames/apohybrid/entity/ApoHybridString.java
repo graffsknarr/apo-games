@@ -3,9 +3,9 @@ package net.apogames.apohybrid.entity;
 import net.apogames.apohybrid.game.ApoHybridMenu;
 import net.apogames.apoclock.game.ApoHybridPanel;
 //#ifdef ClockGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-
-public class ApoClockString {
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@
+//@public class ApoClockString {
 //#else
 import net.gliblybits.bitsengine.render.BitsGraphics;
 
@@ -15,9 +15,9 @@ public class ApoHybridString extends ApoHybridEntity {
 
 	public static final int TIME_DECREASE = 10;
 	//#ifdef ClockGameLogic
-	private final String drawString;
-	private final float direction;
-	private final float x, y;
+//@	private final String drawString;
+//@	private final float direction;
+//@	private final float x, y;
 	//#else
 	private String drawString;
 	//#endif
@@ -31,22 +31,22 @@ public class ApoHybridString extends ApoHybridEntity {
 	
 	private int timeDecrease;
 	//#ifdef ClockGameLogic
-	private boolean bFade, bVisible;
-	
-	public ApoClockString(final float x, final float y, final float direction, String s, final boolean bWithBackground, final int timeDecrease, final boolean bFade) {
-		this.x = x;
-		this.y = y;
-		this.direction = direction;
-		this.bVisible = true;
-
+//@	private boolean bFade, bVisible;
+//@	
+//@	public ApoClockString(final float x, final float y, final float direction, String s, final boolean bWithBackground, final int timeDecrease, final boolean bFade) {
+//@		this.x = x;
+//@		this.y = y;
+//@		this.direction = direction;
+//@		this.bVisible = true;
+//@
 	//#elif DiceGameLogic
 	private boolean bFade;
 	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
 		super(x, y, width, 0, 0);
 
 	//#elif SnakeGameLogic
-	private boolean bFade;
-	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
+//@	private boolean bFade;
+//@	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
 //@		super((int)x, (int)y, (int)width, 0);
 	//#endif	
 
@@ -62,13 +62,13 @@ public class ApoHybridString extends ApoHybridEntity {
 	}
 	
 	//#ifdef ClockGameLogic
-		public boolean isVisible() {
-		return bVisible;
-	}
-
-	public void setVisible(boolean bVisible) {
-		this.bVisible = bVisible;
-	}
+//@		public boolean isVisible() {
+//@		return bVisible;
+//@	}
+//@
+//@	public void setVisible(boolean bVisible) {
+//@		this.bVisible = bVisible;
+//@	}
 	//#endif
 
 	public void think(int delta) {
@@ -80,7 +80,7 @@ public class ApoHybridString extends ApoHybridEntity {
 				if (this.invisible <= 50) {
 					this.invisible = 0;
 					//#ifdef ClockGameLogic
-					this.bVisible = false;
+//@					this.bVisible = false;
 					//#else
 					super.setVisible(false);
 					//#endif
@@ -88,7 +88,7 @@ public class ApoHybridString extends ApoHybridEntity {
 				}
 			} else {
 				//#ifdef ClockGameLogic
-				this.bVisible = false;
+//@				this.bVisible = false;
 				//#else
 				super.setVisible(false);
 				//#endif
@@ -97,7 +97,7 @@ public class ApoHybridString extends ApoHybridEntity {
 		}
 	}
 	//#ifdef ClockGameLogic
-	public void render(final BitsGLGraphics g, int changeX, int changeY) {
+//@	public void render(final BitsGLGraphics g, int changeX, int changeY) {
 	//#else
 	public void render(final BitsGraphics g, int changeX, int changeY) {
 	//#endif	
@@ -121,7 +121,7 @@ public class ApoHybridString extends ApoHybridEntity {
 			if (this.bWithBackground) {
 				g.setColor(255, 255, 255, this.invisible);
 				//#ifdef ClockGameLogic
-				g.fillRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
+//@				g.fillRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				//#else
 				g.drawFilledRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				//#endif
@@ -133,7 +133,7 @@ public class ApoHybridString extends ApoHybridEntity {
 			}
 			g.setColor(0, 0, 0, this.invisible);
 			//#ifdef ClockGameLogic
-			g.setFont(ApoClockPanel.game_font);
+//@			g.setFont(ApoClockPanel.game_font);
 			//#else
 			g.drawText(s, ApoHybridMenu.font, x, y - h);
 			//#endif

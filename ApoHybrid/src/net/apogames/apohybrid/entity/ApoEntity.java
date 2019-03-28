@@ -1,9 +1,9 @@
 package net.apogames.apohybrid.entity;
 
 //#ifdef ClockGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
-import net.gliblybits.bitsengine.utils.BitsRect;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//@import net.gliblybits.bitsengine.utils.BitsRect;
 //#else
 import android.graphics.Rect;
 import net.gliblybits.bitsengine.core.BitsImage;
@@ -13,7 +13,7 @@ import net.gliblybits.bitsengine.render.BitsGraphics;
 
 /**
  * Klasse von der Button und Player erben und einige grundlegene Sachen zur
- * Verf�gung stellt
+ * Verf?gung stellt
  * 
  * @author Dirk Aporius
  * 
@@ -24,11 +24,11 @@ public class ApoEntity {
 	private float width, height;
 
 	//#ifdef ClockGameLogic
-	private BitsGLImage iBackground;
-
-	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
-	
-	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
+//@	private BitsGLImage iBackground;
+//@
+//@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
+//@	
+//@	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
 	//#else
 	private BitsImage iBackground;
 
@@ -47,7 +47,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt die Werte auf ihre urspr�nglichen Values
+	 * setzt die Werte auf ihre urspr?nglichen Values
 	 */
 	public void init() {
 		this.x = this.startX;
@@ -60,9 +60,9 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt den Start X-Wert der Entity zur�ck, der immer gesetzt wird
+	 * gibt den Start X-Wert der Entity zur?ck, der immer gesetzt wird
 	 * wenn init aufgerufen wird
-	 * @return gibt den Start X-Wert der Entity zur�ck, der immer gesetzt wird
+	 * @return gibt den Start X-Wert der Entity zur?ck, der immer gesetzt wird
 	 * wenn init aufgerufen wird
 	 */
 	public float getStartX() {
@@ -70,7 +70,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den Start X-Wert auf den �bergebenen
+	 * setzt den Start X-Wert auf den ?bergebenen
 	 * @param startX : neuer X-Startwert
 	 */
 	public void setStartX(float startX) {
@@ -78,9 +78,9 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt den Start Y-Wert der Entity zur�ck, der immer gesetzt wird
+	 * gibt den Start Y-Wert der Entity zur?ck, der immer gesetzt wird
 	 * wenn init aufgerufen wird
-	 * @return gibt den Start Y-Wert der Entity zur�ck, der immer gesetzt wird
+	 * @return gibt den Start Y-Wert der Entity zur?ck, der immer gesetzt wird
 	 * wenn init aufgerufen wird
 	 */
 	public float getStartY() {
@@ -88,7 +88,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den Start Y-Wert auf den �bergebenen
+	 * setzt den Start Y-Wert auf den ?bergebenen
 	 * @param startX : neuer Y-Startwert
 	 */
 	public void setStartY(float startY) {
@@ -96,7 +96,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�fung, ob Pixelgenau gepr�ft werden soll
+	 * ?berpr?fung, ob Pixelgenau gepr?ft werden soll
 	 * @return TRUE, pixelgenau, FALSE nicht
 	 */
 	public boolean isBOpaque() {
@@ -104,7 +104,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den boolean Wert, ob bei der �berpr�fung von 2 Entitys durchsichtige Sachen betrachtet werden, auf true oder false
+	 * setzt den boolean Wert, ob bei der ?berpr?fung von 2 Entitys durchsichtige Sachen betrachtet werden, auf true oder false
 	 * @param bOpaque
 	 */
 	public void setBOpaque(boolean bOpaque) {
@@ -112,12 +112,12 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt zur�ck, ob die Entity angezeigt werden soll oder nicht
+	 * gibt zur?ck, ob die Entity angezeigt werden soll oder nicht
 	 * 
-	 * @return gibt zur�ck, ob die Entity angezeigt werden soll oder nicht
+	 * @return gibt zur?ck, ob die Entity angezeigt werden soll oder nicht
 	 */
 	//#ifdef ClockGameLogic
-	public boolean isVisible() {
+//@	public boolean isVisible() {
 	//#else
 	public boolean isBVisible() {
 	//#endif
@@ -126,7 +126,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt die Sichtbarkeit der Entity auf den �bergebenen Wert
+	 * setzt die Sichtbarkeit der Entity auf den ?bergebenen Wert
 	 * 
 	 * @param bVisible
 	 */
@@ -135,13 +135,13 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt an ob die Entity ausgew�hlt wurde oder nicht
+	 * gibt an ob die Entity ausgew?hlt wurde oder nicht
 	 * 
-	 * @return TRUE falls ausgew�hlt sonst FALSE
+	 * @return TRUE falls ausgew?hlt sonst FALSE
 	 */
 
 	//#ifdef ClockGameLogic
-	public boolean isSelect() {
+//@	public boolean isSelect() {
 	//#else
 	public boolean isBSelect() {
 	//#endif
@@ -150,13 +150,13 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den boolean Wert ob ausgew�hlt oder nicht auf den �bergebenen
+	 * setzt den boolean Wert ob ausgew?hlt oder nicht auf den ?bergebenen
 	 * 
 	 * @param bSelect
 	 */
 
 	//#ifdef ClockGameLogic
-	public void setSelect(boolean bSelect) {
+//@	public void setSelect(boolean bSelect) {
 	//#else
 	public void setBSelect(boolean bSelect) {
 	//#endif
@@ -165,9 +165,9 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt zur�ck, ob die JumpEntity fest ist oder vom Spieler gesetzt wurde
+	 * gibt zur?ck, ob die JumpEntity fest ist oder vom Spieler gesetzt wurde
 	 * 
-	 * @return gibt zur�ck, ob die JumpEntity fest ist oder vom Spieler gesetzt
+	 * @return gibt zur?ck, ob die JumpEntity fest ist oder vom Spieler gesetzt
 	 *         wurde
 	 */
 	public boolean isBClose() {
@@ -175,7 +175,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt die JumpEntity ob sie fest ist oder nicht auf den �bergebenen Wert
+	 * setzt die JumpEntity ob sie fest ist oder nicht auf den ?bergebenen Wert
 	 * 
 	 * @param close
 	 */
@@ -193,8 +193,8 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den Wert f�r die Entity, ob sie benutzt wurde oder nicht auf den
-	 * �bergebenen Wert
+	 * setzt den Wert f?r die Entity, ob sie benutzt wurde oder nicht auf den
+	 * ?bergebenen Wert
 	 * 
 	 * @param use
 	 */
@@ -203,16 +203,16 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt die Geschwindigkeit in y-Richtung zur�ck
+	 * gibt die Geschwindigkeit in y-Richtung zur?ck
 	 * 
-	 * @return gibt die Geschwindigkeit in y-Richtung zur�ck
+	 * @return gibt die Geschwindigkeit in y-Richtung zur?ck
 	 */
 	public float getVecY() {
 		return this.vecY;
 	}
 
 	/**
-	 * setzt die Geschwindkeit in y-Richtung zur�ck
+	 * setzt die Geschwindkeit in y-Richtung zur?ck
 	 * 
 	 * @param vecX
 	 */
@@ -221,16 +221,16 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt die Geschwindigkeit in x-Richtung zur�ck
+	 * gibt die Geschwindigkeit in x-Richtung zur?ck
 	 * 
-	 * @return gibt die Geschwindigkeit in x-Richtung zur�ck
+	 * @return gibt die Geschwindigkeit in x-Richtung zur?ck
 	 */
 	public float getVecX() {
 		return this.vecX;
 	}
 
 	/**
-	 * setzt die Geschwindkeit in x-Richtung zur�ck
+	 * setzt die Geschwindkeit in x-Richtung zur?ck
 	 * 
 	 * @param vecX
 	 */
@@ -239,13 +239,13 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt das Bild zur�ck
+	 * gibt das Bild zur?ck
 	 * 
 	 * @return Bild
 	 */
 
 	//#ifdef ClockGameLogic
-	public BitsGLImage getIBackground() {
+//@	public BitsGLImage getIBackground() {
 	//#else
 	public BitsImage getIBackground() {
 	//#endif
@@ -254,13 +254,13 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt das Bild auf den �bergebenen Wert
+	 * setzt das Bild auf den ?bergebenen Wert
 	 * 
 	 * @param background
 	 */
 
 	//#ifdef ClockGameLogic
-	public void setIBackground(BitsGLImage background) {
+//@	public void setIBackground(BitsGLImage background) {
 	//#else
 	public void setIBackground(BitsImage background) {
 	//#endif
@@ -269,7 +269,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt die Weite des Objektes zur�ck
+	 * gibt die Weite des Objektes zur?ck
 	 * 
 	 * @return Weite des Objektes
 	 */
@@ -278,7 +278,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt die Weite des Objektes auf den �bergebenen Wert
+	 * setzt die Weite des Objektes auf den ?bergebenen Wert
 	 * 
 	 * @param width
 	 */
@@ -287,16 +287,16 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt die H�he des Objektes zur�ck
+	 * gibt die H?he des Objektes zur?ck
 	 * 
-	 * @return H�he des Objektes
+	 * @return H?he des Objektes
 	 */
 	public float getHeight() {
 		return this.height;
 	}
 
 	/**
-	 * setzt die H�he des Objektes auf den �bergebenen Wert
+	 * setzt die H?he des Objektes auf den ?bergebenen Wert
 	 * 
 	 * @param height
 	 */
@@ -305,7 +305,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt den x-Wert des Objektes zur�ck (also den linken Rand des Bildes
+	 * gibt den x-Wert des Objektes zur?ck (also den linken Rand des Bildes
 	 * 
 	 * @return x-Wert des Objektes
 	 */
@@ -323,7 +323,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den X-Wert auf den �bergebenen Wert
+	 * setzt den X-Wert auf den ?bergebenen Wert
 	 * 
 	 * @param x
 	 */
@@ -332,7 +332,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt den y-Wert des Objektes zur�ck (also den h�chsten Punkt am Kopf)
+	 * gibt den y-Wert des Objektes zur?ck (also den h?chsten Punkt am Kopf)
 	 * 
 	 * @return y-Wert des Objektes
 	 */
@@ -341,7 +341,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * setzt den y-Wert des Objektes auf den �bergebenen
+	 * setzt den y-Wert des Objektes auf den ?bergebenen
 	 * 
 	 * @param y
 	 */
@@ -350,7 +350,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�ft, ob die �bergebenen Werte in der Entity liegen
+	 * ?berpr?ft, ob die ?bergebenen Werte in der Entity liegen
 	 * 
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
@@ -361,18 +361,18 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�ft, ob die �bergebenen Werte (die ein Rechteck ergeben) die Entity
+	 * ?berpr?ft, ob die ?bergebenen Werte (die ein Rechteck ergeben) die Entity
 	 * schneiden
 	 * 
 	 * @param x: X-Wert (links oben vom Rechteck)
 	 * @param y: Y-Wert (links oben vom Rechteck)
 	 * @param width: Breiten-Wert (wie breit ist das Rechteck)
-	 * @param height: H�hen-Wert (wie hoch ist das Rechteck)
+	 * @param height: H?hen-Wert (wie hoch ist das Rechteck)
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(float x, float y, float width, float height) {
 		//#ifdef ClockGameLogic
-		if (this.getRec().intersects((int)x, (int)y, (int)(width), (int)(height))) {
+//@		if (this.getRec().intersects((int)x, (int)y, (int)(width), (int)(height))) {
 		//#else
 		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
 		//#endif
@@ -383,14 +383,14 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�ft, ob die �bergebene Entity die Entity schneidet
+	 * ?berpr?ft, ob die ?bergebene Entity die Entity schneidet
 	 * 
-	 * @param entity : zu �berpr�fende Entity
+	 * @param entity : zu ?berpr?fende Entity
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(ApoEntity entity) {
 		//#ifdef ClockGameLogic
-		if (this.getRec().intersects(entity.getRec())) {
+//@		if (this.getRec().intersects(entity.getRec())) {
 		//#else
 		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
 		//#endif
@@ -401,7 +401,7 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�ft, ob die �bergebenen Werte (die ein Reckteck ergeben) komplett
+	 * ?berpr?ft, ob die ?bergebenen Werte (die ein Reckteck ergeben) komplett
 	 * in der Entity liegen
 	 * 
 	 * @param x:
@@ -411,7 +411,7 @@ public class ApoEntity {
 	 * @param width:
 	 *            Breiten-Wert (wie breit ist das Rechteck)
 	 * @param height:
-	 *            H�hen-Wert (wie hoch ist das Rechteck)
+	 *            H?hen-Wert (wie hoch ist das Rechteck)
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean contains(float x, float y, float width, float height) {
@@ -419,10 +419,10 @@ public class ApoEntity {
 	}
 
 	/**
-	 * �berpr�ft, ob die �bergebene Entity komplett in der Entity liegen
+	 * ?berpr?ft, ob die ?bergebene Entity komplett in der Entity liegen
 	 * 
 	 * @param entity:
-	 *            zu �berpr�fende Entity
+	 *            zu ?berpr?fende Entity
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean contains(ApoEntity entity) {
@@ -430,14 +430,14 @@ public class ApoEntity {
 	}
 
 	/**
-	 * gibt das aktuelle Rechteck der Entity zur�ck
-	 * @return gibt das aktuelle Rechteck der Entity zur�ck
+	 * gibt das aktuelle Rechteck der Entity zur?ck
+	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 	 */
 
 	//#ifdef ClockGameLogic
-	public BitsRect getRec() {
-		return new BitsRect((int)this.getX(), (int)this.getY(), (int)(this.getWidth()), (int)(this.getHeight()));
-	}
+//@	public BitsRect getRec() {
+//@		return new BitsRect((int)this.getX(), (int)this.getY(), (int)(this.getWidth()), (int)(this.getHeight()));
+//@	}
 	//#else
 	public Rect getRec() {
 		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
@@ -446,8 +446,8 @@ public class ApoEntity {
 
 
 	/**
-	 * �berpr�ft ob der �bergebene rgb Wert durchsichtig ist oder nicht
-	 * @param rgb = zu �berpr�fender RGB Wert
+	 * ?berpr?ft ob der ?bergebene rgb Wert durchsichtig ist oder nicht
+	 * @param rgb = zu ?berpr?fender RGB Wert
 	 * @return TRUE falls durchsichtig sonst FALSE
 	 */
 	public boolean isOpaque(int rgb) {
@@ -478,24 +478,24 @@ public class ApoEntity {
 	 * @param g
 	 */
 	//#ifdef ClockGameLogic
-	public void render(BitsGLGraphics g, int x, int y) {
-		if ((this.getIBackground() != null) && (this.isVisible())) {
-			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
-			if (this.isSelect()) {
-				g.setColor(255, 0, 0);
-				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
-			}
-		}
-	}
-
-	/**
-	 * malt das Objekt
-	 * @param g = Graphics2D Objekt
-	 */
-	public void render(BitsGLGraphics g) {
-		this.render(g, 0, 0);
-	}
-
+//@	public void render(BitsGLGraphics g, int x, int y) {
+//@		if ((this.getIBackground() != null) && (this.isVisible())) {
+//@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
+//@			if (this.isSelect()) {
+//@				g.setColor(255, 0, 0);
+//@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
+//@			}
+//@		}
+//@	}
+//@
+//@	/**
+//@	 * malt das Objekt
+//@	 * @param g = Graphics2D Objekt
+//@	 */
+//@	public void render(BitsGLGraphics g) {
+//@		this.render(g, 0, 0);
+//@	}
+//@
 	//#else
 	public void render(BitsGraphics g, int x, int y) {
 		if ((this.getIBackground() != null) && (this.isBVisible())) {
@@ -517,4 +517,3 @@ public class ApoEntity {
 
 }
 	//#endif
-
