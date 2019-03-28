@@ -7,6 +7,9 @@ import net.apogames.apohybrid.ApoHybridButtons;
 import net.apogames.apohybrid.ApoHybridComponent;
 import net.apogames.apohybrid.ApoHybridConstants;
 import net.apogames.apohybrid.editor.ApoHybridUserlevels;
+import net.apogames.apohybrid.entity.ApoTextfield;
+import net.apogames.apohybrid.highscore.ApoHybridHighscore;
+import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
 
 //#ifdef ClockGameLogic
 import net.apogames.apoclock.editor.ApoClockUserlevels;
@@ -25,6 +28,7 @@ import net.gliblybits.bitsengine.core.BitsGame;
 import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
+
 public class ApoHybridPanel extends ApoHybridComponent {
 	
 	private ApoHybridMenu menu;
@@ -40,6 +44,8 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	//#ifdef ClockGameLogic	
 	private ApoHybridUserlevels userlevels;
 
+	private ApoHybridPuzzleGame game;
+
 	private ApoHybridArcarde arcarde;
 
 	private ApoHybridArcardeGame arcardeGame;
@@ -47,7 +53,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	private ApoHybridPuzzle puzzleFirst;
 
 	private ApoHybridOptions options;
-	
+
 	private ApoHybridHighscoreLocal local;
 	
 	private ApoTextfield textfield;

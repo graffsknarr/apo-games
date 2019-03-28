@@ -1,4 +1,4 @@
-package net.apogames.apohybrid.editor;
+package net.apogames.apohybrid.highscore;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,108 +9,68 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import android.util.Log;
+
 import net.apogames.apohybrid.ApoHybrid;
 import net.apogames.apohybrid.ApoHybridConstants;
 
-public class ApoHybridUserlevelsLoad {
+public class ApoHybridHighscoreLoad {
 	
-	private ArrayList<String> levels;
 	private ArrayList<String> names;
-	private ArrayList<Integer> count;
-	private ArrayList<Integer> all;
+	private ArrayList<Integer> points;
+	private ArrayList<Integer> clocks;
 	private ArrayList<Integer> id;
-	private ArrayList<Integer> fun;
-	private ArrayList<Integer> creative;
-	private ArrayList<Integer> easy;
-	private ArrayList<Integer> hard;
 	private ArrayList<Float> times;
-	private ArrayList<Float> curTimes;
 
-	private static ApoHybridUserlevelsLoad singleInstance = new ApoHybridUserlevelsLoad();
+	private static ApoHybridHighscoreLoad singleInstance = new ApoHybridHighscoreLoad();
 
-	public static ApoHybridUserlevelsLoad getInstance() {
+	public static ApoHybridHighscoreLoad getInstance() {
 		if (null == singleInstance) {
-			singleInstance = new ApoHybridUserlevelsLoad();
+			singleInstance = new ApoHybridHighscoreLoad();
 		}
 		return singleInstance;
 	}
 
-	private ApoHybridUserlevelsLoad() {
-		this.levels = new ArrayList<String>();
+	private ApoHybridHighscoreLoad() {
 		this.names = new ArrayList<String>();
-		this.count = new ArrayList<Integer>();
-		this.all = new ArrayList<Integer>();
+		this.points = new ArrayList<Integer>();
+		this.clocks = new ArrayList<Integer>();
 		this.id = new ArrayList<Integer>();
-		this.easy = new ArrayList<Integer>();
-		this.hard = new ArrayList<Integer>();
-		this.fun = new ArrayList<Integer>();
-		this.creative = new ArrayList<Integer>();
 		this.times = new ArrayList<Float>();
-		this.curTimes = new ArrayList<Float>();
 		clear();
 	}
 
-	public ArrayList<Float> getTimes() {
-		return this.times;
-	}
-
-	public ArrayList<Float> getCurTimes() {
-		return this.curTimes;
-	}
-
-	public ArrayList<String> getLevels() {
-		return this.levels;
-	}
-	
 	public ArrayList<String> getNames() {
-		return this.names;
+		return names;
 	}
 
-	public ArrayList<Integer> getCount() {
-		return this.count;
+	public ArrayList<Integer> getPoints() {
+		return points;
 	}
 
-	public ArrayList<Integer> getAll() {
-		return this.all;
+	public ArrayList<Integer> getClocks() {
+		return clocks;
 	}
 
 	public ArrayList<Integer> getId() {
-		return this.id;
+		return id;
 	}
 
-	public ArrayList<Integer> getFun() {
-		return this.fun;
-	}
-
-	public ArrayList<Integer> getCreative() {
-		return this.creative;
-	}
-
-	public ArrayList<Integer> getEasy() {
-		return this.easy;
-	}
-
-	public ArrayList<Integer> getHard() {
-		return this.hard;
+	public ArrayList<Float> getTimes() {
+		return times;
 	}
 
 	private void clear() {
-		this.all.clear();
-		this.levels.clear();
+		this.points.clear();
+		this.clocks.clear();
 		this.id.clear();
 		this.names.clear();
 
-		this.fun.clear();
-		this.easy.clear();
-		this.hard.clear();
-		this.creative.clear();
-		
-		this.count.clear();
 		this.times.clear();
-		this.curTimes.clear();
 	}
 
-	public boolean save(String level) {
+	public boolean save(final String name, final int points, final int clocks) {
+		Log.d("Highscore", ""+points+" "+clocks);
 		if (ApoHybrid.isOnline()) {
 			try {
 				URL url;
@@ -118,7 +78,7 @@ public class ApoHybridUserlevelsLoad {
 				DataOutputStream printout;
 				DataInputStream input;
 
-				url = new URL(ApoHybridConstants.USERLEVELS_SAVEPHP);
+				url = new URL(ApoHybridConstants.HIGHSCORE_SAVEPHP);
 				urlConn = url.openConnection();
 
 				urlConn.setDoInput(true);
@@ -129,7 +89,10 @@ public class ApoHybridUserlevelsLoad {
 
 				printout = new DataOutputStream(urlConn.getOutputStream());
 				
-				String content = "level=" + URLEncoder.encode(String.valueOf(level), "UTF-8");
+				String content = "points=" + URLEncoder.encode(String.valueOf(points), "UTF-8")
+						+ "&clocks=" + URLEncoder.encode(String.valueOf(clocks), "UTF-8")
+						+ "&name=" + URLEncoder.encode(name, "UTF-8");
+				Log.d("Highscore", content);
 				printout.writeBytes(content);
 				printout.flush();
 				printout.close();
@@ -159,7 +122,7 @@ public class ApoHybridUserlevelsLoad {
 				DataOutputStream printout;
 				DataInputStream input;
 
-				url = new URL(ApoHybridConstants.USERLEVELS_GETPHP);
+				url = new URL(ApoHybridConstants.HIGHSCORE_GETPHP);
 				urlConn = url.openConnection();
 
 				urlConn.setDoInput(true);
@@ -180,28 +143,16 @@ public class ApoHybridUserlevelsLoad {
 				String str;
 				int i = 0;
 				while (null != ((str = input.readLine()))) {
-					if (i % 11 == 0) {
-						this.levels.add(str);
-					} else if (i % 11 == 1) {
-						this.times.add(Float.valueOf(str));
-					} else if (i % 11 == 2) {
-						this.count.add(Integer.valueOf(str));
-					} else if (i % 11 == 3) {
-						this.all.add(Integer.valueOf(str));
-					} else if (i % 11 == 4) {
+					if (i % 5 == 0) {
 						this.names.add(str);
-					} else if (i % 11 == 5) {
-						this.fun.add(Integer.valueOf(str));
-					} else if (i % 11 == 6) {
-						this.easy.add(Integer.valueOf(str));
-					} else if (i % 11 == 7) {
-						this.hard.add(Integer.valueOf(str));
-					} else if (i % 11 == 8) {
-						this.creative.add(Integer.valueOf(str));
-					} else if (i % 11 == 9) {
+					} else if (i % 5 == 1) {
+						this.times.add(Float.valueOf(str));
+					} else if (i % 5 == 2) {
+						this.points.add(Integer.valueOf(str));
+					} else if (i % 5 == 3) {
+						this.clocks.add(Integer.valueOf(str));
+					} else if (i % 5 == 4) {
 						this.id.add(Integer.valueOf(str));
-					} else if (i % 11 == 10) {
-						this.curTimes.add(Float.valueOf(str));
 					}
 					i = i + 1;
 				}

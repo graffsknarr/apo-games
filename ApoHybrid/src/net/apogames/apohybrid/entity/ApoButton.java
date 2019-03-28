@@ -1,12 +1,18 @@
 package net.apogames.apohybrid.entity;
 
+
+//#ifdef ClockGameLogic
+//@
+//#else
+
+//#endif
 import net.gliblybits.bitsengine.core.BitsImage;
 import net.gliblybits.bitsengine.render.BitsGraphics;
 
 /**
- * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth�lt
- * das erste wird angezeigt, wenn die Maus nicht dadr�ber ist
- * das zweite wird angezeigt, wenn die Maus �ber der Entity ist
+ * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth?lt
+ * das erste wird angezeigt, wenn die Maus nicht dadr?ber ist
+ * das zweite wird angezeigt, wenn die Maus ?ber der Entity ist
  * das dritte wird angezeigt, wenn die Maus auf das Entity geklickt hat
  * @author Dirk Aporius
  *
@@ -18,8 +24,13 @@ public class ApoButton extends ApoEntity {
 	private boolean			bWait, bFirstWait;
 	private String			function;
 	private boolean 		bOver, bPressed;
-	
+
+	//#ifdef ClockGameLogic
+//@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
+	//#else
 	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
+	//#endif
+
 		super( iBackground, x, y, width, height );
 		
 		this.function	= function;
@@ -34,18 +45,18 @@ public class ApoButton extends ApoEntity {
 	}
 	
 //	/**
-//	 * gibt das aktuelle Rechteck der Entity zur�ck
-//	 * @return gibt das aktuelle Rechteck der Entity zur�ck
+//	 * gibt das aktuelle Rechteck der Entity zur?ck
+//	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 //	 */
 //	public final Rect getRec() {
 //		return this.rec;
 //	}
 	
 	/**
-	 * gibt zur�ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
-	 * gecheckt werden soll, ob sich was ver�ndern soll
-	 * @return gibt zur�ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
-	 * gecheckt werden soll, ob sich was ver�ndern soll
+	 * gibt zur?ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
+	 * gecheckt werden soll, ob sich was ver?ndern soll
+	 * @return gibt zur?ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
+	 * gecheckt werden soll, ob sich was ver?ndern soll
 	 */
 	public boolean isBWait() {
 		return this.bWait;
@@ -53,7 +64,7 @@ public class ApoButton extends ApoEntity {
 
 	/**
 	 * setzt den boolean Wert ob wenn die Maustaste gehalten wird, alle paar Millisekunden
-	 * gecheckt werden soll, ob sich was ver�nder soll, auf den �bergebenen Wert
+	 * gecheckt werden soll, ob sich was ver?nder soll, auf den ?bergebenen Wert
 	 * @param bWait
 	 */
 	public void setBWait(boolean bWait) {
@@ -62,9 +73,9 @@ public class ApoButton extends ApoEntity {
 	
 	/**
 	 * gibt die Wartezeit zwischen 2 Funktionsaufrufen, wenn die Maus
-	 * gedr�ckt gehalten wird, zur�ck
+	 * gedr?ckt gehalten wird, zur?ck
 	 * @return gibt die Wartezeit zwischen 2 Funktionsaufrufen, wenn die Maus
-	 * gedr�ckt gehalten wird, zur�ck
+	 * gedr?ckt gehalten wird, zur?ck
 	 */
 	public int getWAIT_DELAY() {
 		return this.WAIT_DELAY;
@@ -72,7 +83,7 @@ public class ApoButton extends ApoEntity {
 
 	/**
 	 * setzt die Wartezeit zwischen 2 Funktionsaufrufen auf den
-	 * �bergebenen Wert
+	 * ?bergebenen Wert
 	 * @param wait_delay = neue Wartezeit in Millisekunden
 	 */
 	public void setWAIT_DELAY(int wait_delay) {
@@ -80,15 +91,15 @@ public class ApoButton extends ApoEntity {
 	}
 
 	/**
-	 * gibt zur�ck, ob die Maus �ber dem Button ist oder nicht
-	 * @return TRUE, falls Maus dr�ber, sonst FALSE
+	 * gibt zur?ck, ob die Maus ?ber dem Button ist oder nicht
+	 * @return TRUE, falls Maus dr?ber, sonst FALSE
 	 */
 	public boolean isBOver() {
 		return this.bOver;
 	}
 
 	/**
-	 * setzt den boolean-Wert f�r bOver auf den �bergebenen Wert
+	 * setzt den boolean-Wert f?r bOver auf den ?bergebenen Wert
 	 * @param bOver
 	 */
 	public void setBOver(boolean bOver) {
@@ -96,15 +107,15 @@ public class ApoButton extends ApoEntity {
 	}
 
 	/**
-	 * gibt zur�ck, ob eine Maustaste �ber dem Button gedr�ckt ist oder nicht
-	 * @return TRUE, falls Maustaste gedr�ckt, sonst FALSE
+	 * gibt zur?ck, ob eine Maustaste ?ber dem Button gedr?ckt ist oder nicht
+	 * @return TRUE, falls Maustaste gedr?ckt, sonst FALSE
 	 */
 	public boolean isBPressed()	{
 		return this.bPressed;
 	}
 
 	/**
-	 * setzt den boolean-Wert f�r bPressed auf den �bergebenen Wert 
+	 * setzt den boolean-Wert f?r bPressed auf den ?bergebenen Wert 
 	 * @param bPressed
 	 */
 	public void setBPressed(boolean bPressed) {
@@ -112,7 +123,7 @@ public class ApoButton extends ApoEntity {
 	}
 
 	/**
-	 * gibt die Funktion des Buttons zur�ck
+	 * gibt die Funktion des Buttons zur?ck
 	 * @return function
 	 */
 	public String getFunction()	{
@@ -120,7 +131,7 @@ public class ApoButton extends ApoEntity {
 	}
 
 	/**
-	 * sezt die Funktion des Buttons auf den �bergebenen Wert
+	 * sezt die Funktion des Buttons auf den ?bergebenen Wert
 	 * @param function
 	 */
 	public void setFunction(String function) {
@@ -131,10 +142,15 @@ public class ApoButton extends ApoEntity {
 	 * was passiert, wenn die Maus im Spielfeld bewegt wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
-	 * @return TRUE, falls Maus dr�ber, sonst FALSE
+	 * @return TRUE, falls Maus dr?ber, sonst FALSE
 	 */
 	public boolean getMove( int x, int y ) {
+		//#ifdef ClockGameLogic
+//@		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isVisible())) {
+		//#else
 		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isBVisible())) {
+		//#endif
+
 			this.setBOver( true );
 			return true;
 		} else if ((this.isBOver()) && (!this.intersects(x, y))) {
@@ -160,13 +176,18 @@ public class ApoButton extends ApoEntity {
 	}
 	
 	/**
-	 * was passiert, wenn eine Maustaste im Spielfeld gedr�ckt wurde wurde
+	 * was passiert, wenn eine Maustaste im Spielfeld gedr?ckt wurde wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
-	 * @return TRUE, falls �ber Button Maus gedr�ckt, sonst FALSE
+	 * @return TRUE, falls ?ber Button Maus gedr?ckt, sonst FALSE
 	 */
 	public boolean getPressed( int x, int y ) {
+		//#ifdef ClockGameLogic
+//@		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isVisible() ) ) {
+		//#else
 		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isBVisible() ) ) {
+		//#endif
+
 			this.setBPressed( true );
 			return true;
 		}
@@ -177,10 +198,14 @@ public class ApoButton extends ApoEntity {
 	 * was passiert, wenn eine Maustaste im Spielfeld losgelassen wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
-	 * @return TRUE, wenn die Maustaste losgelassen wurde und der Spieler auch diesen Button gedr�ckt hatte, sonst FALSE
+	 * @return TRUE, wenn die Maustaste losgelassen wurde und der Spieler auch diesen Button gedr?ckt hatte, sonst FALSE
 	 */
 	public boolean getReleased( int x, int y ) {
+		//#ifdef ClockGameLogic
+//@		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isVisible())) {
+		//#else
 		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isBVisible())) {
+		//#endif
 			this.setBPressed(false);
 			this.setBOver(true);
 			this.wait 		= 0;
@@ -196,7 +221,7 @@ public class ApoButton extends ApoEntity {
 	}
 
 	/**
-	 * was passiert, wenn eine Maustaste gedr�ckt wurde und gehalten wird
+	 * was passiert, wenn eine Maustaste gedr?ckt wurde und gehalten wird
 	 * @param delay
 	 */
 	public void think( int delay ) {
@@ -231,11 +256,15 @@ public class ApoButton extends ApoEntity {
 	 * @param changeX: Verschiebung in x-Richtung
 	 * @param changeY: Verschiebung in y-Richtung
 	 */
+	//#ifdef ClockGameLogic
+//@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
+//@		if ( this.isVisible() ) {
+	//#else
 	public void render(BitsGraphics g, int changeX, int changeY ) {
 		if ( this.isBVisible() ) {
+	//#endif
 			super.render(g, changeX, changeY);
 		}
 	}
 
 }
-
