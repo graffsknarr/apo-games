@@ -17,7 +17,7 @@
                         <feature name="Clock"/>
                         <and abstract="true" name="Avatar">
                             <feature name="MonoAvatar"/>
-                            <feature name="Snake"/>
+                            <feature name="SnakeAvatar"/>
                             <feature name="TreasureAvatar"/>
                         </and>
                         <feature name="TreasureBox"/>
@@ -25,8 +25,6 @@
                     </and>
                     <and abstract="true" name="Static">
                         <feature name="MonoObjects"/>
-                        <feature name="Square"/>
-                        <feature name="Circle"/>
                         <feature name="TreasureKey"/>
                     </and>
                 </and>
