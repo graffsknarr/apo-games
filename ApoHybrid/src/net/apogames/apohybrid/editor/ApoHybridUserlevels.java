@@ -55,7 +55,7 @@ public class ApoHybridUserlevels {
 		return levels;
 	}
 	
-	//#ifdef ClockGameLogic
+	//#if ClockGameLogic
 //@	private void sortByUpload() {
 //@		this.sortByUpload.clear();
 //@		this.sortByUpload.add(0);

@@ -1,14 +1,14 @@
 package net.apogames.apohybrid.entity;
 
 
-//#ifdef ClockGameLogic
-//@
+//#if ClockGameLogic
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
-
-//#endif
 import net.gliblybits.bitsengine.core.BitsImage;
 import net.gliblybits.bitsengine.render.BitsGraphics;
 
+//#endif
 /**
  * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth?lt
  * das erste wird angezeigt, wenn die Maus nicht dadr?ber ist
@@ -25,7 +25,7 @@ public class ApoButton extends ApoEntity {
 	private String			function;
 	private boolean 		bOver, bPressed;
 
-	//#ifdef ClockGameLogic
+	//#if ClockGameLogic
 //@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
 	//#else
 	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
@@ -145,7 +145,7 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, falls Maus dr?ber, sonst FALSE
 	 */
 	public boolean getMove( int x, int y ) {
-		//#ifdef ClockGameLogic
+		//#if ClockGameLogic
 //@		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isVisible())) {
 		//#else
 		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isBVisible())) {
@@ -182,7 +182,7 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, falls ?ber Button Maus gedr?ckt, sonst FALSE
 	 */
 	public boolean getPressed( int x, int y ) {
-		//#ifdef ClockGameLogic
+		//#if ClockGameLogic
 //@		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isVisible() ) ) {
 		//#else
 		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isBVisible() ) ) {
@@ -201,7 +201,7 @@ public class ApoButton extends ApoEntity {
 	 * @return TRUE, wenn die Maustaste losgelassen wurde und der Spieler auch diesen Button gedr?ckt hatte, sonst FALSE
 	 */
 	public boolean getReleased( int x, int y ) {
-		//#ifdef ClockGameLogic
+		//#if ClockGameLogic
 //@		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isVisible())) {
 		//#else
 		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isBVisible())) {
@@ -256,7 +256,7 @@ public class ApoButton extends ApoEntity {
 	 * @param changeX: Verschiebung in x-Richtung
 	 * @param changeY: Verschiebung in y-Richtung
 	 */
-	//#ifdef ClockGameLogic
+	//#if ClockGameLogic
 //@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 //@		if ( this.isVisible() ) {
 	//#else

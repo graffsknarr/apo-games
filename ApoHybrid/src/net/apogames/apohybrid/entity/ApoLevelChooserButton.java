@@ -1,6 +1,6 @@
 package net.apogames.apohybrid.entity;
 
-//#ifdef ClockMenu
+//#if ClockMenu
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
 import net.gliblybits.bitsengine.core.BitsImage;
@@ -9,7 +9,7 @@ import net.gliblybits.bitsengine.core.BitsImage;
 public class ApoLevelChooserButton extends ApoButton {
 
 	private boolean bSolved;
-	//#ifdef ClockMenu
+	//#if ClockMenu
 //@	public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
 	//#else
 	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {

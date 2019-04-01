@@ -69,10 +69,12 @@
                     <feature name="White"/>
                     <feature name="Green"/>
                 </or>
+                <feature name="Nickname"/>
             </and>
             <and abstract="true" name="GameLogic">
                 <feature name="SnakeGameLogic"/>
                 <feature name="DiceGameLogic"/>
+                <feature name="ClockGameLogic"/>
             </and>
         </and>
     </struct>

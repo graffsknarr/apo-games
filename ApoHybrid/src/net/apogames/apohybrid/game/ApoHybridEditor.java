@@ -778,13 +778,13 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@
 //@import java.util.ArrayList;
 //@
-//@import net.apogames.apoybrid.ApoHybrid;
-//@import net.apogames.apoybrid.ApoHybridConstants;
-//@import net.apogames.apoybrid.ApoHybridModel;
-//@import net.apogames.apoybrid.editor.ApoHybridEditorClockStats;
-//@import net.apogames.apoybrid.entity.ApoHybridEntityBall;
-//@import net.apogames.apoybrid.entity.ApoHybridEntityClock;
-//@import net.apogames.apoybrid.entity.ApoHybridString;
+//@import net.apogames.apohybrid.ApoHybrid;
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.editor.ApoHybridEditorClockStats;
+//@import net.apogames.apohybrid.entity.ApoHybridEntityBall;
+//@import net.apogames.apohybrid.entity.ApoHybridEntityClock;
+//@import net.apogames.apohybrid.entity.ApoHybridString;
 //@
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.utils.BitsLog;
@@ -921,7 +921,7 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@		} else if (function.equals(ApoHybridEditor.BACK)) {
 //@			this.onBackButtonPressed();
 //@		} else if (function.equals(ApoHybridEditor.NEW)) {
-//@			if (this.HybridStats != null) {
+//@			if (this.clockStats != null) {
 //@				this.clockStats.getClock().setSelected(false);
 //@			}
 //@			this.setLevelSolved(false);

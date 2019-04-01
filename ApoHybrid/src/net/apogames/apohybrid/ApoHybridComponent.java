@@ -31,7 +31,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //#elif SnakeGameLogic
 //@public abstract class ApoHybridComponent extends BitsScreen {
 //#elif ClockGameLogic
-//@public abstract class ApoClockComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
+//@public abstract class ApoHybridComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
 //#endif
 
 	/** Array der ganzen Buttons im Spiel */
@@ -51,7 +51,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 	}
 	
 	//#elif ClockGameLogic
-//@	public void setModel(final ApoClockModel model) {
+//@	public void setModel(final ApoHybridModel model) {
 //@		this.model = model;
 //@	}
 //@	

@@ -19,7 +19,7 @@ public class ApoHybrid extends BitsApp {
 	
 	@Override
 	//#ifdef ClockGameLogic
-	protected void onCreateApp( ) 
+//@	protected void onCreateApp( ) 
 	//#else
 	protected void onCreate( )
 	//#endif 
@@ -27,19 +27,19 @@ public class ApoHybrid extends BitsApp {
 		BitsLog.setLogType(BitsLog.TYPE_NONE);
 		
 		//#ifdef ClockGameLogic
-		BitsApp.sWantFullscreen = true;
-		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
-		BitsApp.sGameWidth = 480;
-		BitsApp.sGameHeight = 640;
-		BitsApp.sWantTitleBar = false;
-		BitsApp.sMaxCirclePoints = 180;
-//		BitsApp.sMaxFPS = 60;
-		BitsApp.sMaxUpdate = 100;
-		BitsApp.sMaxTouchPointer = 3;
-//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
-
-		BitsGame.getInstance().addScreen(new ApoClockPanel(1));	
-		
+//@		BitsApp.sWantFullscreen = true;
+//@		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+//@		BitsApp.sGameWidth = 480;
+//@		BitsApp.sGameHeight = 640;
+//@		BitsApp.sWantTitleBar = false;
+//@		BitsApp.sMaxCirclePoints = 180;
+//@//		BitsApp.sMaxFPS = 60;
+//@		BitsApp.sMaxUpdate = 100;
+//@		BitsApp.sMaxTouchPointer = 3;
+//@//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
+//@
+//@		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));	
+//@		
 		//#else
 		BitsGame.sWantFullscreen = true;
 		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
@@ -76,44 +76,44 @@ public class ApoHybrid extends BitsApp {
 	}
 
 	//#ifdef ClockGameLogic
-	@Override
-	protected void onStopApp( ) {
-	}
-
-	@Override
-	protected void onAddView() {
-		
-	}
-
-	@Override
-	public void onAudioFocusChange(int focusChange) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void onInitApp() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void onPauseApp() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void onResumeApp() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void onDestroyApp() {
-		// TODO Auto-generated method stub
-		
-	}
+//@	@Override
+//@	protected void onStopApp( ) {
+//@	}
+//@
+//@	@Override
+//@	protected void onAddView() {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void onAudioFocusChange(int focusChange) {
+//@		// TODO Auto-generated method stub
+//@		
+//@	}
+//@
+//@	@Override
+//@	protected void onInitApp() {
+//@		// TODO Auto-generated method stub
+//@		
+//@	}
+//@
+//@	@Override
+//@	protected void onPauseApp() {
+//@		// TODO Auto-generated method stub
+//@		
+//@	}
+//@
+//@	@Override
+//@	protected void onResumeApp() {
+//@		// TODO Auto-generated method stub
+//@		
+//@	}
+//@
+//@	@Override
+//@	protected void onDestroyApp() {
+//@		// TODO Auto-generated method stub
+//@		
+//@	}
 	//#else
 	@Override
 	protected void onFinish( ) {

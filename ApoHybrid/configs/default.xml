@@ -7,6 +7,11 @@
     <feature automatic="unselected" name="TreasureMenu"/>
     <feature automatic="unselected" name="MonoMenu"/>
     <feature automatic="unselected" name="ClockMenu"/>
+    <feature automatic="selected" manual="selected" name="World"/>
+    <feature automatic="selected" manual="selected" name="Component"/>
+    <feature automatic="selected" name="Dynamic"/>
+    <feature manual="selected" name="Dice"/>
+    <feature manual="selected" name="Editor"/>
     <feature automatic="selected" name="Controls"/>
     <feature manual="selected" name="Drag"/>
     <feature automatic="selected" name="LevelChooser"/>
