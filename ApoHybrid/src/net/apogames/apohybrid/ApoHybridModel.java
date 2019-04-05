@@ -6,10 +6,10 @@ import java.util.Map;
 import net.apogames.apohybrid.game.ApoHybridPanel;
 
 //#if ClockGameLogic
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//@import net.gliblybits.bitsengine.input.BitsKeyEvent;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //#else
-import net.gliblybits.bitsengine.render.BitsGraphics;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
 public abstract class ApoHybridModel {
@@ -43,17 +43,17 @@ public abstract class ApoHybridModel {
 	public abstract void touchedButton(String function);
 	
 	//#if DiceGameLogic
-	public void onKeyDown(final int key) {
-	}
-
-	public void onKeyUp(final int key) {
-	}
-	//#elif ClockGameLogic	
-//@	public void onKeyDown(final int key, final BitsKeyEvent event) {
+//@	public void onKeyDown(final int key) {
 //@	}
 //@
-//@	public void onKeyUp(final int key, final BitsKeyEvent event) {
+//@	public void onKeyUp(final int key) {
 //@	}
+	//#elif ClockGameLogic	
+	public void onKeyDown(final int key, final BitsKeyEvent event) {
+	}
+
+	public void onKeyUp(final int key, final BitsKeyEvent event) {
+	}
 	//#endif
 	
 	public void onBackButtonPressed() {	
@@ -68,16 +68,16 @@ public abstract class ApoHybridModel {
 	public abstract void think(int delta);
 
 	//#if ClockGameLogic
-//@	public abstract void render(BitsGLGraphics g);
-//@	
-//@	public void drawOverlay(BitsGLGraphics g) {
-//@	}
-//@	
-	//#else
-	public abstract void render(BitsGraphics g);
+	public abstract void render(BitsGLGraphics g);
 	
-	public void drawOverlay(BitsGraphics g) {
+	public void drawOverlay(BitsGLGraphics g) {
 	}
+	
+	//#else
+//@	public abstract void render(BitsGraphics g);
+//@	
+//@	public void drawOverlay(BitsGraphics g) {
+//@	}
 	//#endif
 	
 }
