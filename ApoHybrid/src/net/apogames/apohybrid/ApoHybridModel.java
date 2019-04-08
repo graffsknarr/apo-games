@@ -8,6 +8,8 @@ import net.apogames.apohybrid.game.ApoHybridPanel;
 //#if ClockGameLogic
 import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 import net.gliblybits.bitsengine.input.BitsKeyEvent;
+//#elif MonoGameLogic
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
 //@import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
@@ -42,7 +44,7 @@ public abstract class ApoHybridModel {
 	
 	public abstract void touchedButton(String function);
 	
-	//#if DiceGameLogic
+	//#if DiceGameLogic || MonoGameLogic
 //@	public void onKeyDown(final int key) {
 //@	}
 //@
@@ -67,7 +69,7 @@ public abstract class ApoHybridModel {
 	
 	public abstract void think(int delta);
 
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 	public abstract void render(BitsGLGraphics g);
 	
 	public void drawOverlay(BitsGLGraphics g) {
