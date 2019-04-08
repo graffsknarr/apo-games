@@ -56,28 +56,20 @@ public class ApoHybridUserlevels {
 	}
 	
 	//#if ClockGameLogic
-//@	private void sortByUpload() {
-//@		this.sortByUpload.clear();
-//@		this.sortByUpload.add(0);
-//@		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
-//@			float time = this.userlevels.getTimes().get(i);
-//@			boolean bAdd = false;
-//@			for (int k = 0; k < this.sortByUpload.size(); k++) {
-//@				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
-//@				if (time > sortTime) {
-//@					this.sortByUpload.add(k, i);
-//@					bAdd = true;
-//@					break;
-//@				}
-//@			}
-//@			if (!bAdd) {
-//@				this.sortByUpload.add(i);
-//@			}
-//@		}
-//@	}
-	//#else
 	private void sortByUpload() {
 		this.sortByUpload.clear();
+<<<<<<< HEAD
+		this.sortByUpload.add(0);
+		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
+			float time = this.userlevels.getTimes().get(i);
+			boolean bAdd = false;
+			for (int k = 0; k < this.sortByUpload.size(); k++) {
+				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
+				if (time > sortTime) {
+					this.sortByUpload.add(k, i);
+					bAdd = true;
+					break;
+=======
 		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
 			//#if MonoGameLogic
 			String s = this.userlevels.getLevels().get(i);
@@ -97,10 +89,35 @@ public class ApoHybridUserlevels {
 				}
 				if (!bAdd) {
 					this.sortByUpload.add(i);
+>>>>>>> a448652b78526fa78ea0d46f6a98886810047577
 				}
+			}
+			if (!bAdd) {
+				this.sortByUpload.add(i);
 			}
 		}
 	}
+	//#else
+//@	private void sortByUpload() {
+//@		this.sortByUpload.clear();
+//@		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
+//@			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
+//@				float time = this.userlevels.getTimes().get(i);
+//@				boolean bAdd = false;
+//@				for (int k = 0; k < this.sortByUpload.size(); k++) {
+//@					float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
+//@					if (time > sortTime) {
+//@						this.sortByUpload.add(k, i);
+//@						bAdd = true;
+//@						break;
+//@					}
+//@				}
+//@				if (!bAdd) {
+//@					this.sortByUpload.add(i);
+//@				}
+//@			}
+//@		}
+//@	}
 	//#endif
 
 

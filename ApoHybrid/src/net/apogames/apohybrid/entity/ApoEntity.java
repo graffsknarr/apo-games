@@ -1,13 +1,13 @@
 package net.apogames.apohybrid.entity;
 
 //#if ClockGameLogic
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
-//@import net.gliblybits.bitsengine.utils.BitsRect;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+import net.gliblybits.bitsengine.utils.BitsRect;
 //#else
-import android.graphics.Rect;
-import net.gliblybits.bitsengine.core.BitsImage;
-import net.gliblybits.bitsengine.render.BitsGraphics;
+//@import android.graphics.Rect;
+//@import net.gliblybits.bitsengine.core.BitsImage;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
 
@@ -253,7 +253,7 @@ public class ApoEntity {
 	//#if ClockGameLogic || MonoGameLogic
 //@	public BitsGLImage getIBackground() {
 		//#else
-	public BitsImage getIBackground() {
+//@	public BitsImage getIBackground() {
 		//#endif
 
 		return this.iBackground;
@@ -268,7 +268,7 @@ public class ApoEntity {
 	//#if ClockGameLogic || MonoGameLogic
 //@	public void setIBackground(BitsGLImage background) {
 		//#else
-	public void setIBackground(BitsImage background) {
+//@	public void setIBackground(BitsImage background) {
 		//#endif
 
 		iBackground = background;
@@ -378,9 +378,9 @@ public class ApoEntity {
 	 */
 	public boolean intersects(float x, float y, float width, float height) {
 		//#if ClockGameLogic
-//@		if (this.getRec().intersects((int) x, (int) y, (int) (width), (int) (height))) {
+		if (this.getRec().intersects((int) x, (int) y, (int) (width), (int) (height))) {
 			//#else
-		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
+//@		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
 			//#endif
 
 			return true;
@@ -398,7 +398,7 @@ public class ApoEntity {
 		//#if ClockGameLogic || MonoGameLogic
 //@		if (this.getRec().intersects(entity.getRec())) {
 			//#else
-		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
+//@		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
 			//#endif
 
 			return true;
@@ -444,6 +444,10 @@ public class ApoEntity {
 	public Rect getRec() {
 		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
 	}
+	//#else
+//@	public Rect getRec() {
+//@		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
+//@	}
 	//#endif
 
 
@@ -513,11 +517,31 @@ public class ApoEntity {
 
 	/**
 	 * malt das Objekt
+	 *
 	 * @param g = Graphics2D Objekt
 	 */
-	public void render(BitsGraphics g) {
+	public void render(BitsGLGraphics g) {
 		this.render(g, 0, 0);
 	}
 
+	//#else
+//@	public void render(BitsGraphics g, int x, int y) {
+//@		if ((this.getIBackground() != null) && (this.isBVisible())) {
+//@			g.drawImage(this.iBackground, (int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getX() + x + this.getWidth()), (int) (this.getY() + y + this.getHeight()));
+//@			if (this.isBSelect()) {
+//@				g.setColor(255, 0, 0);
+//@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
+//@			}
+//@		}
+//@	}
+//@
+//@	/**
+//@	 * malt das Objekt
+//@	 * @param g = Graphics2D Objekt
+//@	 */
+//@	public void render(BitsGraphics g) {
+//@		this.render(g, 0, 0);
+//@	}
+//@
 	//#endif
 }

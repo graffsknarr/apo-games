@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="android-midi-libv3 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Android/BitsEngineAndroid/libs/android-midi-libv3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../Android/BitsEngineAndroid/libs/android-midi-libv3.jar!/" />
+    </SOURCES>
+  </library>
+</component>

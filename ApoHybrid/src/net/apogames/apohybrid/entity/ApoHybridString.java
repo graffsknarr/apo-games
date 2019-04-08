@@ -10,7 +10,11 @@ import net.apogames.apohybrid.ApoHybridConstants;
 //#else
 import net.gliblybits.bitsengine.render.BitsGraphics;
 
-public class ApoHybridString extends ApoHybridEntity {
+public class ApoHybridString {
+//#else
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//@
+//@public class ApoHybridString extends ApoHybridEntity {
 //#endif
 
 
@@ -20,7 +24,7 @@ public class ApoHybridString extends ApoHybridEntity {
 //@	private final float direction;
 //@	private final float x, y;
 	//#else
-	private String drawString;
+//@	private String drawString;
 	//#endif
 	
 	
@@ -45,6 +49,11 @@ public class ApoHybridString extends ApoHybridEntity {
 	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
 		super(x, y, width, 0, 0);
 
+	//#elif DiceGameLogic
+//@	private boolean bFade;
+//@	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
+//@		super(x, y, width, 0, 0);
+//@
 	//#elif SnakeGameLogic
 //@	private boolean bFade;
 //@	public ApoHybridString(float x, float y, float width, String s, boolean bWithBackground, int timeDecrease, boolean bFade) {		
@@ -83,7 +92,7 @@ public class ApoHybridString extends ApoHybridEntity {
 					//#if ClockGameLogic || MonoGameLogic
 //@					this.bVisible = false;
 					//#else
-					super.setVisible(false);
+//@					super.setVisible(false);
 					//#endif
 
 				}
@@ -91,7 +100,7 @@ public class ApoHybridString extends ApoHybridEntity {
 				//#if ClockGameLogic || MonoGameLogic
 //@				this.bVisible = false;
 				//#else
-				super.setVisible(false);
+//@				super.setVisible(false);
 				//#endif
 
 			}
@@ -100,7 +109,7 @@ public class ApoHybridString extends ApoHybridEntity {
 	//#if ClockGameLogic || MonoGameLogic
 //@	public void render(final BitsGLGraphics g, int changeX, int changeY) {
 	//#else
-	public void render(final BitsGraphics g, int changeX, int changeY) {
+//@	public void render(final BitsGraphics g, int changeX, int changeY) {
 	//#endif	
 
 		if (this.isVisible()) {
@@ -114,14 +123,14 @@ public class ApoHybridString extends ApoHybridEntity {
 //@			int y = (int)(this.y + this.direction/2 + h/2) - changeY;
 //@
 			//#elif DiceGameLogic || SnakeGameLogic
-			int w = (int)(ApoHybridMenu.font.getLength(s) + 10);
-			int h = ApoHybridMenu.font.mCharCellHeight;
+//@			int w = (int)(ApoHybridMenu.font.getLength(s) + 10);
+//@			int h = ApoHybridMenu.font.mCharCellHeight;
 			//#endif
 
 			//#if DiceGameLogic
-			int x = (int)(this.getX() + this.getRadius()/2 - w/2) - changeX;
-			int change = 10;
-			int y = (int)(this.getY() + this.getRadius()/2 + h/2) - changeY;
+//@			int x = (int)(this.getX() + this.getRadius()/2 - w/2) - changeX;
+//@			int change = 10;
+//@			int y = (int)(this.getY() + this.getRadius()/2 + h/2) - changeY;
 			//#elif SnakeGameLogic
 //@			int x = (int)(this.getX() + this.getDirection()/2 - w/2) - changeX;
 //@			int change = 10;
@@ -138,7 +147,7 @@ public class ApoHybridString extends ApoHybridEntity {
 				//#if ClockGameLogic || MonoGameLogic
 //@				g.fillRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				//#else
-				g.drawFilledRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
+//@				g.drawFilledRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				//#endif
 
 				g.setColor(0, 0, 0, this.invisible);
@@ -155,7 +164,7 @@ public class ApoHybridString extends ApoHybridEntity {
 //@			g.setFont(ApoHybridPanel.game_font);
 //@			g.drawText(s, x, y - h);
 			//#else
-			g.drawText(s, ApoHybridMenu.font, x, y - h);
+//@			g.drawText(s, ApoHybridMenu.font, x, y - h);
 			//#endif
 
 		}

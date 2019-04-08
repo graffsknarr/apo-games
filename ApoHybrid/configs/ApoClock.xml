@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="ApoGames"/>
+    <feature automatic="selected" name="Menu"/>
+    <feature automatic="unselected" name="SnakeMenu"/>
+    <feature automatic="unselected" name="DiceMenu"/>
+    <feature automatic="unselected" name="TreasureMenu"/>
+    <feature automatic="unselected" name="MonoMenu"/>
+    <feature manual="selected" name="ClockMenu"/>
+    <feature automatic="selected" name="World"/>
+    <feature automatic="selected" name="Component"/>
+    <feature automatic="selected" name="Dynamic"/>
+    <feature manual="selected" name="Clock"/>
+    <feature manual="selected" name="Editor"/>
+    <feature automatic="selected" name="Controls"/>
+    <feature manual="selected" name="Press"/>
+    <feature automatic="selected" name="Score"/>
+    <feature manual="selected" name="Counter"/>
+    <feature automatic="selected" name="LevelChooser"/>
+    <feature manual="selected" name="LevelGrid"/>
+    <feature manual="selected" name="Options"/>
+    <feature automatic="selected" name="GameLogic"/>
+    <feature manual="selected" name="ClockGameLogic"/>
+</configuration>

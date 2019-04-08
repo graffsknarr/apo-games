@@ -8,7 +8,7 @@ import net.apogames.aphybrid.game.ApoHybridPanel;
 import net.apogames.aphybrid.game.ApoHybridPuzzleGame;
 import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
-import net.gliblybits.bitsengine.core.BitsImage;
+//@import net.gliblybits.bitsengine.core.BitsImage;
 //#endif
 
 public class ApoLevelChooserButton extends ApoButton {

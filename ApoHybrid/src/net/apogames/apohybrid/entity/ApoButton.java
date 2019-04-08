@@ -5,9 +5,9 @@ package net.apogames.apohybrid.entity;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
-import net.gliblybits.bitsengine.core.BitsImage;
-import net.gliblybits.bitsengine.render.BitsGraphics;
-
+//@import net.gliblybits.bitsengine.core.BitsImage;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//@
 //#endif
 /**
  * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth?lt
@@ -28,7 +28,7 @@ public class ApoButton extends ApoEntity {
 	//#if ClockGameLogic || MonoGameLogic
 //@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
 	//#else
-	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
+//@	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
 	//#endif
 
 		super( iBackground, x, y, width, height );
@@ -146,9 +146,9 @@ public class ApoButton extends ApoEntity {
 	 */
 	public boolean getMove( int x, int y ) {
 		//#if ClockGameLogic
-//@		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isVisible())) {
+		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isVisible())) {
 		//#else
-		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isBVisible())) {
+//@		if ((!this.isBOver()) && (this.intersects(x, y)) && (this.isBVisible())) {
 		//#endif
 
 			this.setBOver( true );
@@ -183,9 +183,9 @@ public class ApoButton extends ApoEntity {
 	 */
 	public boolean getPressed( int x, int y ) {
 		//#if ClockGameLogic
-//@		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isVisible() ) ) {
+		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isVisible() ) ) {
 		//#else
-		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isBVisible() ) ) {
+//@		if ( ( this.isBOver() ) && ( this.intersects( x, y ) ) && ( this.isBVisible() ) ) {
 		//#endif
 
 			this.setBPressed( true );
@@ -202,9 +202,9 @@ public class ApoButton extends ApoEntity {
 	 */
 	public boolean getReleased( int x, int y ) {
 		//#if ClockGameLogic
-//@		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isVisible())) {
+		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isVisible())) {
 		//#else
-		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isBVisible())) {
+//@		if ((this.isBPressed()) && (this.intersects(x, y)) && (this.isBVisible())) {
 		//#endif
 			this.setBPressed(false);
 			this.setBOver(true);
@@ -260,8 +260,8 @@ public class ApoButton extends ApoEntity {
 //@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 //@		if ( this.isVisible() ) {
 	//#else
-	public void render(BitsGraphics g, int changeX, int changeY ) {
-		if ( this.isBVisible() ) {
+//@	public void render(BitsGraphics g, int changeX, int changeY ) {
+//@		if ( this.isBVisible() ) {
 	//#endif
 			super.render(g, changeX, changeY);
 		}
