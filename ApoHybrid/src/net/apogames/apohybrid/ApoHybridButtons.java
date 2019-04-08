@@ -1,14 +1,14 @@
 package net.apogames.apohybrid;
 
 //#if ClockGameLogic
-import net.apogames.apohybrid.ApoHybridConstants;
-import net.apogames.apohybrid.game.ApoHybridArcarde;
-import net.apogames.apohybrid.game.ApoHybridOptions;
-import net.apogames.apohybrid.game.ApoHybridPuzzle;
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.game.ApoHybridArcarde;
+//@import net.apogames.apohybrid.game.ApoHybridOptions;
+//@import net.apogames.apohybrid.game.ApoHybridPuzzle;
 //#elif MonoGameLogic
-import net.apogames.apomono.entity.ApoLevelChooserButton;
-import net.apogames.apomono.game.ApoMonoCredits;
-import net.apogames.apomono.game.ApoMonoOptions;
+import net.apogames.apohybrid.entity.ApoLevelChooserButton;
+import net.apogames.apohybrid.game.ApoHybridCredits;
+import net.apogames.apohybrid.game.ApoHybridOptions;
 //#endif
 import net.apogames.apohybrid.entity.ApoButton;
 import net.apogames.apohybrid.game.ApoHybridEditor;
@@ -28,312 +28,312 @@ public class ApoHybridButtons {
 	public void init() {
 		if (this.game.getButtons() == null) {
 			//#if ClockGameLogic
-			this.game.setButtons(new ApoButton[20]);
-
-			String function = ApoHybridMenu.QUIT;
-			int width = 200;
-			int height = 70;
-			int x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			int y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[0] = new ApoButton(null, x, y, width, height, function);
-
-			function = ApoHybridMenu.PUZZLE;
-			width = 300;
-			height = 100;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 150;
-			this.game.getButtons()[1] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridMenu.ARCADE;
-			width = 300;
-			height = 100;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 150 + height * 1 + 20;
-			this.game.getButtons()[2] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridPuzzleChooser.BACK;
-			width = 70;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width - 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[3] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridGame.BACK;
-			width = 70;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width - 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[4] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridArcarde.BACK;
-			width = 70;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width - 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[5] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridArcarde.START;
-			width = 70;
-			height = 40;
-			x = 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[6] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridArcarde.BACK;
-			width = 70;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width - 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[7] = new ApoButton(null, x, y, width, height, function);
-
-			
-			function = ApoHybridPuzzle.BACK;
-			width = 200;
-			height = 70;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[8] = new ApoButton(null, x, y, width, height, function);
-
-			function = ApoHybridPuzzle.PUZZLE;
-			width = 300;
-			height = 70;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 100;
-			this.game.getButtons()[9] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridPuzzle.USERLEVELS;
-			width = 300;
-			height = 70;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 100 + height * 1 + 20;
-			this.game.getButtons()[10] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridPuzzle.EDITOR;
-			width = 300;
-			height = 70;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 100 + height * 2 + 20 * 2;
-			this.game.getButtons()[11] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.BACK;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width - 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[12] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.UPLOAD;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width * 2 - 5 * 2;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[13] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.TEST;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width * 3 - 5 * 3;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[14] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.REMOVE;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width * 4 - 5 * 4;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[15] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.ADD;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width * 5 - 5 * 5;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[16] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridEditor.NEW;
-			width = 75;
-			height = 40;
-			x = ApoHybridConstants.GAME_WIDTH - width * 6 - 5 * 6;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[17] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridOptions.BACK;
-			width = 200;
-			height = 70;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
-			this.game.getButtons()[18] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoHybridMenu.OPTIONS;
-			width = 300;
-			height = 100;
-			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-			y = 150 + height * 2 + 2 * 20;
-			this.game.getButtons()[19] = new ApoButton(null, x, y, width, height, function);
-			
+//@			this.game.setButtons(new ApoButton[20]);
+//@
+//@			String function = ApoHybridMenu.QUIT;
+//@			int width = 200;
+//@			int height = 70;
+//@			int x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			int y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[0] = new ApoButton(null, x, y, width, height, function);
+//@
+//@			function = ApoHybridMenu.PUZZLE;
+//@			width = 300;
+//@			height = 100;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 150;
+//@			this.game.getButtons()[1] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridMenu.ARCADE;
+//@			width = 300;
+//@			height = 100;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 150 + height * 1 + 20;
+//@			this.game.getButtons()[2] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridPuzzleChooser.BACK;
+//@			width = 70;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[3] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridGame.BACK;
+//@			width = 70;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[4] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridArcarde.BACK;
+//@			width = 70;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[5] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridArcarde.START;
+//@			width = 70;
+//@			height = 40;
+//@			x = 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[6] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridArcarde.BACK;
+//@			width = 70;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[7] = new ApoButton(null, x, y, width, height, function);
+//@
+//@			
+//@			function = ApoHybridPuzzle.BACK;
+//@			width = 200;
+//@			height = 70;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[8] = new ApoButton(null, x, y, width, height, function);
+//@
+//@			function = ApoHybridPuzzle.PUZZLE;
+//@			width = 300;
+//@			height = 70;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 100;
+//@			this.game.getButtons()[9] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridPuzzle.USERLEVELS;
+//@			width = 300;
+//@			height = 70;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 100 + height * 1 + 20;
+//@			this.game.getButtons()[10] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridPuzzle.EDITOR;
+//@			width = 300;
+//@			height = 70;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 100 + height * 2 + 20 * 2;
+//@			this.game.getButtons()[11] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.BACK;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[12] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.UPLOAD;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width * 2 - 5 * 2;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[13] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.TEST;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width * 3 - 5 * 3;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[14] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.REMOVE;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width * 4 - 5 * 4;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[15] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.ADD;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width * 5 - 5 * 5;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[16] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridEditor.NEW;
+//@			width = 75;
+//@			height = 40;
+//@			x = ApoHybridConstants.GAME_WIDTH - width * 6 - 5 * 6;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[17] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridOptions.BACK;
+//@			width = 200;
+//@			height = 70;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
+//@			this.game.getButtons()[18] = new ApoButton(null, x, y, width, height, function);
+//@			
+//@			function = ApoHybridMenu.OPTIONS;
+//@			width = 300;
+//@			height = 100;
+//@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@			y = 150 + height * 2 + 2 * 20;
+//@			this.game.getButtons()[19] = new ApoButton(null, x, y, width, height, function);
+//@			
 			//#elif MonoGameLogic
 			this.game.setButtons(new ApoButton[23]);
 
 			int addY = 0;
-			if (ApoMonoConstants.FREE_VERSION) {
+			if (ApoHybridConstants.FREE_VERSION) {
 				addY = 45;
 			}
 			
-			String function = ApoMonoMenu.QUIT;
+			String function = ApoHybridMenu.QUIT;
 			int width = 48;
 			int height = 48;
-			int x = ApoMonoConstants.GAME_WIDTH - width - 5;
-			int y = ApoMonoConstants.GAME_HEIGHT - 1 * height - 5;
+			int x = ApoHybridConstants.GAME_WIDTH - width - 5;
+			int y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
 			this.game.getButtons()[0] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoMenu.PLAY;
+			function = ApoHybridMenu.PLAY;
 			width = 320;
 			height = 64;
-			x = ApoMonoConstants.GAME_WIDTH/2 - width/2;
+			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
 			y = 100;
 			this.game.getButtons()[1] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoMenu.EDITOR;
+			function = ApoHybridMenu.EDITOR;
 			width = 320;
 			height = 64;
-			x = ApoMonoConstants.GAME_WIDTH/2 - width/2;
+			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
 			y = 100 + height * 1 + 6;
 			this.game.getButtons()[2] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoPuzzleGame.BACK;
+			function = ApoHybridGame.BACK;
 			width = 60;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
 			y = 1;
 			this.game.getButtons()[3] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoEditor.BACK;
+			function = ApoHybridEditor.BACK;
 			width = 60;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
 			y = 1;
 			this.game.getButtons()[4] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoEditor.TEST;
+			function = ApoHybridEditor.TEST;
 			width = 60;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - 3 * width - 3 * 5;
+			x = ApoHybridConstants.GAME_WIDTH - 3 * width - 3 * 5;
 			y = 1;
 			this.game.getButtons()[5] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoEditor.NEW;
+			function = ApoHybridEditor.NEW;
 			width = 60;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - 4 * width - 4 * 5;
+			x = ApoHybridConstants.GAME_WIDTH - 4 * width - 4 * 5;
 			y = 1;
 			this.game.getButtons()[6] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoEditor.UPLOAD;
+			function = ApoHybridEditor.UPLOAD;
 			width = 60;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - 2 * width - 2 * 5;
+			x = ApoHybridConstants.GAME_WIDTH - 2 * width - 2 * 5;
 			y = 1;
 			this.game.getButtons()[7] = new ApoButton(null, x, y, width, height, function);
 
-			function = ApoMonoMenu.USERLEVELS;
+			function = ApoHybridMenu.USERLEVELS;
 			width = 320;
 			height = 64;
-			x = ApoMonoConstants.GAME_WIDTH/2 - width/2;
+			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
 			y = 100 + height * 2 + 12;
 			this.game.getButtons()[8] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoMenu.CREDITS;
+			function = ApoHybridMenu.CREDITS;
 			width = 48;
 			height = 48;
 			x = 5;
-			y = ApoMonoConstants.GAME_HEIGHT - 1 * height - 5;
+			y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 5;
 			this.game.getButtons()[9] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoCredits.BACK;
+			function = ApoHybridCredits.BACK;
 			width = 80;
 			height = 40;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
-			y = ApoMonoConstants.GAME_HEIGHT- height - 5;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+			y = ApoHybridConstants.GAME_HEIGHT- height - 5;
 			this.game.getButtons()[10] = new ApoLevelChooserButton(x, y, width, height, function, function, true);
 			
-			function = ApoMonoOptions.BACK;
+			function = ApoHybridOptions.BACK;
 			width = 80;
 			height = 40;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
-			y = ApoMonoConstants.GAME_HEIGHT- height - 5;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+			y = ApoHybridConstants.GAME_HEIGHT- height - 5;
 			this.game.getButtons()[11] = new ApoLevelChooserButton(x, y, width, height, function, function, true);
 			
-			function = ApoMonoOptions.LANGUAGE_GERMAN;
+			function = ApoHybridOptions.LANGUAGE_GERMAN;
 			width = 48;
 			height = 48;
 			x = 120;
 			y = 60 + addY;
 			this.game.getButtons()[12] = new ApoLevelChooserButton(x, y, width, height, function, "x");
 			
-			function = ApoMonoOptions.LANGUAGE_ENGLISH;
+			function = ApoHybridOptions.LANGUAGE_ENGLISH;
 			width = 48;
 			height = 48;
 			x = 255;
 			y = 60 + addY;
 			this.game.getButtons()[13] = new ApoLevelChooserButton(x, y, width, height, function, "x", true);
 			
-			function = ApoMonoOptions.COLOR_WHITE;
+			function = ApoHybridOptions.COLOR_WHITE;
 			width = 48;
 			height = 48;
 			x = 120;
 			y = 120 + addY;
 			this.game.getButtons()[14] = new ApoLevelChooserButton(x, y, width, height, function, "x");
 			
-			function = ApoMonoOptions.COLOR_GREEN;
+			function = ApoHybridOptions.COLOR_GREEN;
 			width = 48;
 			height = 48;
 			x = 255;
 			y = 120 + addY;
 			this.game.getButtons()[15] = new ApoLevelChooserButton(x, y, width, height, function, "x", true);
 			
-			function = ApoMonoMenu.OPTIONS;
+			function = ApoHybridMenu.OPTIONS;
 			width = 48;
 			height = 48;
 			x = 5;
 			y = 100;
 			this.game.getButtons()[16] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoPuzzleGame.RETRY;
+			function = ApoHybridGame.RETRY;
 			width = 65;
 			height = 38;
-			x = ApoMonoConstants.GAME_WIDTH - 2 * width - 1 * 5;
+			x = ApoHybridConstants.GAME_WIDTH - 2 * width - 1 * 5;
 			y = 1;
 			this.game.getButtons()[17] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoLevelChooser.BACK;
+			function = ApoHybridPuzzleChooser.BACK;
 			width = 50;
 			height = 40;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
-			y = ApoMonoConstants.GAME_HEIGHT- height - 5;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+			y = ApoHybridConstants.GAME_HEIGHT- height - 5;
 			this.game.getButtons()[18] = new ApoButton(null, x, y, width, height, function);
 			
-			function = ApoMonoLevelChooser.LEFT;
+			function = ApoHybridLevelChooser.LEFT;
 			width = 40;
 			height = 40;
 			x = 5;
-			y = ApoMonoPuzzleGame.changeY + 135;
+			y = ApoHybridGame.changeY + 135;
 			this.game.getButtons()[19] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoMonoLevelChooser.RIGHT;
+
+			function = ApoHybridLevelChooser.RIGHT;
 			width = 40;
 			height = 40;
-			x = ApoMonoConstants.GAME_WIDTH - width - 5;
-			y = ApoMonoPuzzleGame.changeY + 135;
+			x = ApoHybridConstants.GAME_WIDTH - width - 5;
+			y = ApoHybridGame.changeY + 135;
 			this.game.getButtons()[20] = new ApoButton(null, x, y, width, height, function);
-			
-			function = ApoMonoOptions.SOUND;
+
+			function = ApoHybridOptions.SOUND;
 			width = 48;
 			height = 48;
 			x = 120;
 			y = 180 + addY;
 			this.game.getButtons()[21] = new ApoLevelChooserButton(x, y, width, height, function, "x");
-			
-			function = ApoMonoOptions.MUSIC;
+
+			function = ApoHybridOptions.MUSIC;
 			width = 48;
 			height = 48;
 			x = 255;
@@ -341,7 +341,7 @@ public class ApoHybridButtons {
 			this.game.getButtons()[22] = new ApoLevelChooserButton(x, y, width, height, function, "x");
 
 			//#else
-
+//@
 //@
 				//#if DiceGameLogic
 //@				this.game.setButtons(new ApoButton[11]);

@@ -55,28 +55,14 @@ public class ApoHybridUserlevels {
 		return levels;
 	}
 	
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 	private void sortByUpload() {
 		this.sortByUpload.clear();
-<<<<<<< HEAD
-		this.sortByUpload.add(0);
-		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
-			float time = this.userlevels.getTimes().get(i);
-			boolean bAdd = false;
-			for (int k = 0; k < this.sortByUpload.size(); k++) {
-				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
-				if (time > sortTime) {
-					this.sortByUpload.add(k, i);
-					bAdd = true;
-					break;
-=======
 		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
 			//#if MonoGameLogic
 			String s = this.userlevels.getLevels().get(i);
-			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
-			//#elif DiceGameLogic || SnakeGameLogic
-			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
 			//#endif
+			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
 				float time = this.userlevels.getTimes().get(i);
 				boolean bAdd = false;
 				for (int k = 0; k < this.sortByUpload.size(); k++) {
@@ -89,11 +75,7 @@ public class ApoHybridUserlevels {
 				}
 				if (!bAdd) {
 					this.sortByUpload.add(i);
->>>>>>> a448652b78526fa78ea0d46f6a98886810047577
 				}
-			}
-			if (!bAdd) {
-				this.sortByUpload.add(i);
 			}
 		}
 	}

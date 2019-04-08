@@ -1,13 +1,13 @@
 package net.apogames.apohybrid.entity;
 
 //#if ClockGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
-import net.gliblybits.bitsengine.utils.BitsRect;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//@import net.gliblybits.bitsengine.utils.BitsRect;
 //#else
-//@import android.graphics.Rect;
-//@import net.gliblybits.bitsengine.core.BitsImage;
-//@import net.gliblybits.bitsengine.render.BitsGraphics;
+import android.graphics.Rect;
+import net.gliblybits.bitsengine.core.BitsImage;
+import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
 
@@ -24,17 +24,17 @@ public class ApoEntity {
 	private float width, height;
 
 	//#if ClockGameLogic || MonoGameLogic
-//@	private BitsGLImage iBackground;
-//@
-//@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
-//@
-//@	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
-	//#else
-	private BitsImage iBackground;
+	private BitsGLImage iBackground;
 
 	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
-	
-	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
+
+	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
+	//#else
+//@	private BitsImage iBackground;
+//@
+//@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
+//@	
+//@	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
 	//#endif
 
 		this.iBackground = iBackground;
@@ -251,7 +251,7 @@ public class ApoEntity {
 	 */
 
 	//#if ClockGameLogic || MonoGameLogic
-//@	public BitsGLImage getIBackground() {
+	public BitsGLImage getIBackground() {
 		//#else
 //@	public BitsImage getIBackground() {
 		//#endif
@@ -266,7 +266,7 @@ public class ApoEntity {
 	 */
 
 	//#if ClockGameLogic || MonoGameLogic
-//@	public void setIBackground(BitsGLImage background) {
+	public void setIBackground(BitsGLImage background) {
 		//#else
 //@	public void setIBackground(BitsImage background) {
 		//#endif
@@ -378,9 +378,9 @@ public class ApoEntity {
 	 */
 	public boolean intersects(float x, float y, float width, float height) {
 		//#if ClockGameLogic
-		if (this.getRec().intersects((int) x, (int) y, (int) (width), (int) (height))) {
+//@		if (this.getRec().intersects((int) x, (int) y, (int) (width), (int) (height))) {
 			//#else
-//@		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
+		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
 			//#endif
 
 			return true;
@@ -396,7 +396,7 @@ public class ApoEntity {
 	 */
 	public boolean intersects(ApoEntity entity) {
 		//#if ClockGameLogic || MonoGameLogic
-//@		if (this.getRec().intersects(entity.getRec())) {
+		if (this.getRec().intersects(entity.getRec())) {
 			//#else
 //@		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
 			//#endif
@@ -437,13 +437,13 @@ public class ApoEntity {
 	 */
 
 	//#if ClockGameLogic || MonoGameLogic
-//@	public BitsRect getRec() {
-//@		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
-//@	}
-	//#else
-	public Rect getRec() {
-		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
+	public BitsRect getRec() {
+		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
 	}
+	//#else
+//@	public Rect getRec() {
+//@		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
+//@	}
 	//#else
 //@	public Rect getRec() {
 //@		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
@@ -485,30 +485,10 @@ public class ApoEntity {
 	 * @param g
 	 */
 	//#if ClockGameLogic || MonoGameLogic
-//@	public void render(BitsGLGraphics g, int x, int y) {
-//@		if ((this.getIBackground() != null) && (this.isVisible())) {
-//@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
-//@			if (this.isSelect()) {
-//@				g.setColor(255, 0, 0);
-//@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
-//@			}
-//@		}
-//@	}
-//@
-//@	/**
-//@	 * malt das Objekt
-//@	 *
-//@	 * @param g = Graphics2D Objekt
-//@	 */
-//@	public void render(BitsGLGraphics g) {
-//@		this.render(g, 0, 0);
-//@	}
-//@
-	//#else
-	public void render(BitsGraphics g, int x, int y) {
-		if ((this.getIBackground() != null) && (this.isBVisible())) {
-			g.drawImage(this.iBackground, (int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getX() + x + this.getWidth()), (int) (this.getY() + y + this.getHeight()));
-			if (this.isBSelect()) {
+	public void render(BitsGLGraphics g, int x, int y) {
+		if ((this.getIBackground() != null) && (this.isVisible())) {
+			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
+			if (this.isSelect()) {
 				g.setColor(255, 0, 0);
 				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
 			}
@@ -524,6 +504,26 @@ public class ApoEntity {
 		this.render(g, 0, 0);
 	}
 
+	//#else
+//@	public void render(BitsGraphics g, int x, int y) {
+//@		if ((this.getIBackground() != null) && (this.isBVisible())) {
+//@			g.drawImage(this.iBackground, (int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getX() + x + this.getWidth()), (int) (this.getY() + y + this.getHeight()));
+//@			if (this.isBSelect()) {
+//@				g.setColor(255, 0, 0);
+//@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
+//@			}
+//@		}
+//@	}
+//@
+//@	/**
+//@	 * malt das Objekt
+//@	 *
+//@	 * @param g = Graphics2D Objekt
+//@	 */
+//@	public void render(BitsGLGraphics g) {
+//@		this.render(g, 0, 0);
+//@	}
+//@
 	//#else
 //@	public void render(BitsGraphics g, int x, int y) {
 //@		if ((this.getIBackground() != null) && (this.isBVisible())) {

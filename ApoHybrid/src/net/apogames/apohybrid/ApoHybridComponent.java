@@ -56,16 +56,16 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@	
 	//#elif ClockGameLogic
-	public void setModel(final ApoHybridModel model) {
-		this.model = model;
-	}
-
+//@	public void setModel(final ApoHybridModel model) {
+//@		this.model = model;
+//@	}
+//@
 	//#elif MonoGameLogic
 	public void onButtonPressed(BitsButtonWidget button) {
 		
 	}
 
-	public void setModel(ApoMonoModel model) {
+	public void setModel(ApoHybridModel model) {
 		this.model = model;
 	}
 	//#endif
@@ -107,7 +107,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 				//#if MonoGameLogic
 				if ((this.getButtons()[b].isBVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 				//#else
-				if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {	
+//@				if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {	
 				//#endif
 					String function = this.getButtons()[b].getFunction();
 					this.setButtonFunction(function);
@@ -344,22 +344,22 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@
 	//#elif ClockGameLogic
-	public boolean onKeyDown(final int key, final BitsKeyEvent event) {
-		if (this.model != null) {
-			this.model.onKeyDown(key, event);
-		}
-		
-		return true;
-	}
-
-	public boolean onKeyUp(final int key, final BitsKeyEvent event) {
-		if (this.model != null) {
-			this.model.onKeyUp(key, event);
-		}
-		
-		return true;
-	}	
-	
+//@	public boolean onKeyDown(final int key, final BitsKeyEvent event) {
+//@		if (this.model != null) {
+//@			this.model.onKeyDown(key, event);
+//@		}
+//@		
+//@		return true;
+//@	}
+//@
+//@	public boolean onKeyUp(final int key, final BitsKeyEvent event) {
+//@		if (this.model != null) {
+//@			this.model.onKeyUp(key, event);
+//@		}
+//@		
+//@		return true;
+//@	}	
+//@	
 	//#elif MonoGameLogic
 	public boolean onKeyDown(final int key, final BitsKeyEvent event) {
 		if (this.model != null) {

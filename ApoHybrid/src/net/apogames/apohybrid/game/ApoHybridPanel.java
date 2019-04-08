@@ -9,12 +9,11 @@ import net.apogames.apohybrid.ApoHybridConstants;
 import net.apogames.apohybrid.editor.ApoHybridUserlevels;
 
 //#if MonoGameLogic
-import com.google.ads.AdView;
-import net.apogames.apomono.ApoMonoMusicPlayer;
-import net.apogames.apomono.ApoMonoSoundPlayer;
-import net.apogames.apomono.entity.ApoLevelChooserButton;
-import net.apogames.apomono.level.ApoMonoLevel;
-import net.apogames.apomono.userlevels.ApoMonoSave;
+import net.apogames.apohybrid.ApoHybridMusicPlayer;
+import net.apogames.apohybrid.ApoHybridSoundPlayer;
+import net.apogames.apohybrid.entity.ApoLevelChooserButton;
+import net.apogames.apohybrid.level.ApoHybridLevel;
+import net.apogames.apohybrid.userlevels.ApoHybridSave;
 import net.gliblybits.bitsengine.graphics.BitsFont;
 import net.gliblybits.bitsengine.graphics.opengl.BitsGLFactory;
 import net.gliblybits.bitsengine.graphics.opengl.BitsGLFont;
@@ -22,20 +21,20 @@ import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 import net.gliblybits.bitsengine.sound.BitsSound;
 
 
-//#if ClockGameLogic
-import net.apogames.apohybrid.entity.ApoTextfield;
-import net.apogames.apohybrid.highscore.ApoHybridHighscore;
-import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
-import net.apogames.apohybrid.editor.ApoHybridUserlevels;
-import net.apogames.apohybrid.entity.ApoTextfield;
-import net.apogames.apohybrid.highscore.ApoHybridHighscore;
-import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
-
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLFactory;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLFont;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.input.BitsInput;
-import net.gliblybits.bitsengine.input.BitsKeyEvent;
+//#elif ClockGameLogic
+//@import net.apogames.apohybrid.entity.ApoTextfield;
+//@import net.apogames.apohybrid.highscore.ApoHybridHighscore;
+//@import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
+//@import net.apogames.apohybrid.editor.ApoHybridUserlevels;
+//@import net.apogames.apohybrid.entity.ApoTextfield;
+//@import net.apogames.apohybrid.highscore.ApoHybridHighscore;
+//@import net.apogames.apohybrid.highscore.ApoHybridHighscoreLocal;
+//@
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLFactory;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLFont;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.input.BitsInput;
+//@import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //#elif SnakeGameLogic || DiceGameLogic
 //@import net.gliblybits.bitsengine.core.BitsFont;
 //@import net.gliblybits.bitsengine.core.BitsGame;
@@ -59,36 +58,38 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 
 	//#if ClockGameLogic	
-
-	private ApoHybridArcarde arcarde;
-
-	private ApoHybridArcardeGame arcardeGame;
-	
-	private ApoHybridPuzzle puzzleFirst;
-
-	private ApoHybridOptions options;
-
-	private ApoHybridHighscoreLocal local;
-	
-	private ApoTextfield textfield;
-	
-	public static BitsGLFont font;
-	public static BitsGLFont game_font;
-	public static BitsGLFont title_font;
-
+//@
+//@	private ApoHybridArcarde arcarde;
+//@
+//@	private ApoHybridArcardeGame arcardeGame;
+//@	
+//@	private ApoHybridPuzzle puzzleFirst;
+//@
+//@	private ApoHybridOptions options;
+//@
+//@	private ApoHybridHighscoreLocal local;
+//@	
+//@	private ApoTextfield textfield;
+//@	
+//@	public static BitsGLFont font;
+//@	public static BitsGLFont game_font;
+//@	public static BitsGLFont title_font;
+//@
 	//#elif MonoGameLogic
 	public static BitsGLFont font;
 	public static BitsGLFont game_font;
 	public static BitsGLFont title_font;
 
-	private ApoMonoCredits credits;
-	private ApoMonoOptions options;
+	private ApoHybridCredits credits;
+	private ApoHybridOptions options;
+	private ApoHybridSave solvedLevels;
+
 
 	private boolean bSound, bMusic;
 	
-	private ApoMonoMusicPlayer musicPlayer;
+	private ApoHybridMusicPlayer musicPlayer;
 	
-	private ApoMonoSoundPlayer soundPlayer;
+	private ApoHybridSoundPlayer soundPlayer;
 	//#endif
 
 	public ApoHybridPanel(int id) {
@@ -99,9 +100,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		super.init();
 		
 		//#if ClockGameLogic
-		BitsGLGraphics.setClearColor(192f/255f, 192f/255f, 192f/255f, 1f);
+//@		BitsGLGraphics.setClearColor(192f/255f, 192f/255f, 192f/255f, 1f);
 		//#elif MonoGameLogic
-		BitsGLGraphics.setClearColor(ApoMonoConstants.BRIGHT[0], ApoMonoConstants.BRIGHT[1], ApoMonoConstants.BRIGHT[2], 1f);
+		BitsGLGraphics.setClearColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 		//#elif SnakeGameLogic || DiceGameLogic
 //@		BitsGame.getIt().setClearColor(192f/255f, 192f/255f, 192f/255f, 1f);
 		//#endif
@@ -122,49 +123,49 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		}
 		if (this.editor == null) {
 			//#if Editor
-			this.editor = new ApoHybridEditor(this);
+//@			this.editor = new ApoHybridEditor(this);
 			//#endif
 		}
 		
 		//#if ClockGameLogic
-		if (this.arcarde == null) {
-			this.arcarde = new ApoHybridArcarde(this);
+//@		if (this.arcarde == null) {
+//@			this.arcarde = new ApoHybridArcarde(this);
+//@		}
+//@		if (this.arcardeGame == null) {
+//@			this.arcardeGame = new ApoHybridArcardeGame(this);
+//@		}
+//@		if (this.puzzleFirst == null) {
+//@			this.puzzleFirst = new ApoHybridPuzzle(this);
+//@		}
+//@		if (this.options == null) {
+//@			this.options = new ApoHybridOptions(this);
+//@		}
+//@		if (this.local == null) {
+//@			this.local = new ApoHybridHighscoreLocal(this);
+//@		}
+//@		if (this.textfield == null) {
+//@			this.textfield = new ApoTextfield(0, 0, 250, 40);
+//@		}
+//@
+//@		this.loadFonts();
+//@		
+		//#elif MonoGameLogic
+		if (this.credits == null) {
+			this.credits = new ApoHybridCredits(this);
 		}
-		if (this.arcardeGame == null) {
-			this.arcardeGame = new ApoHybridArcardeGame(this);
-		}
-		if (this.puzzleFirst == null) {
-			this.puzzleFirst = new ApoHybridPuzzle(this);
-		}
+
 		if (this.options == null) {
 			this.options = new ApoHybridOptions(this);
 		}
-		if (this.local == null) {
-			this.local = new ApoHybridHighscoreLocal(this);
-		}
-		if (this.textfield == null) {
-			this.textfield = new ApoTextfield(0, 0, 250, 40);
-		}
-
-		this.loadFonts();
-		
-		//#elif MonoGameLogic
-		if (this.credits == null) {
-			this.credits = new ApoMonoCredits(this);
-		}
-
-		if (this.options == null) {
-			this.options = new ApoMonoOptions(this);
-		}
 
 		if (this.solvedLevels == null) {
-			this.solvedLevels = new ApoMonoSave();
+			this.solvedLevels = new ApoHybridSave();
 		}
 		if (this.musicPlayer == null) {
-			this.musicPlayer = new ApoMonoMusicPlayer(this);
+			this.musicPlayer = new ApoHybridMusicPlayer(this);
 		}
 		if (this.soundPlayer == null) {
-			this.soundPlayer = new ApoMonoSoundPlayer();
+			this.soundPlayer = new ApoHybridSoundPlayer();
 		}
 		
 		this.loadFonts();
@@ -181,7 +182,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		}
 		this.setMenu();
 		//#if !MonoGameLogic
-		this.puzzle.init();
+//@		this.puzzle.init();
 		//#endif
 		
 		//#if ClockGameLogic || MonoGameLogic
@@ -193,60 +194,60 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	}
 	
 	//#if ClockGameLogic
-	private void loadFonts() {
-		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("reprise.ttf", 30, 4, true);
-		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.font);
-		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 38, 2, true);
-		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.title_font);	
-		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 26, 2, true);
-		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.game_font);
-		
-		BitsGLFactory.getInstance().loadAllMarked();
-	}
-	
-	protected final void loadPreferences() {
-		int solved = ApoHybrid.settings.getInt("solved", 0);
-		
-		String highscoreLocal = ApoHybrid.settings.getString("highscore", "");
-		this.local.setHighscoreFromString(highscoreLocal);
-		
-		String name = ApoHybrid.settings.getString("name", "you");
-		this.textfield.setCurString(name);
-		this.solvedLevel(solved);
-	}
-	
-	protected final void savePreferences() {
-		SharedPreferences.Editor editor = ApoHybrid.settings.edit();
-		editor.putInt("solved", this.getMaxCanChoosen());
-		
-		editor.putString("highscore", this.local.getString());
-		editor.putString("name", this.textfield.getCurString());
-		
-		editor.commit();
-	}
-
-	public void setUserlevelsVisible() {
-		if ((this.puzzleFirst != null) && (this.getModel().equals(this.puzzleFirst))) {
-			this.puzzleFirst.setUserlevelsVisible();
-		}
-	}
-
-	public final ApoHybridHighscoreLocal getLocal() {
-		return this.local;
-	}
-
+//@	private void loadFonts() {
+//@		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("reprise.ttf", 30, 4, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.font);
+//@		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 38, 2, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.title_font);	
+//@		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 26, 2, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.game_font);
+//@		
+//@		BitsGLFactory.getInstance().loadAllMarked();
+//@	}
+//@	
+//@	protected final void loadPreferences() {
+//@		int solved = ApoHybrid.settings.getInt("solved", 0);
+//@		
+//@		String highscoreLocal = ApoHybrid.settings.getString("highscore", "");
+//@		this.local.setHighscoreFromString(highscoreLocal);
+//@		
+//@		String name = ApoHybrid.settings.getString("name", "you");
+//@		this.textfield.setCurString(name);
+//@		this.solvedLevel(solved);
+//@	}
+//@	
+//@	protected final void savePreferences() {
+//@		SharedPreferences.Editor editor = ApoHybrid.settings.edit();
+//@		editor.putInt("solved", this.getMaxCanChoosen());
+//@		
+//@		editor.putString("highscore", this.local.getString());
+//@		editor.putString("name", this.textfield.getCurString());
+//@		
+//@		editor.commit();
+//@	}
+//@
+//@	public void setUserlevelsVisible() {
+//@		if ((this.puzzleFirst != null) && (this.getModel().equals(this.puzzleFirst))) {
+//@			this.puzzleFirst.setUserlevelsVisible();
+//@		}
+//@	}
+//@
+//@	public final ApoHybridHighscoreLocal getLocal() {
+//@		return this.local;
+//@	}
+//@
 	//#elif MonoGameLogic
 	private void loadFonts() {
-		ApoMonoPanel.font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 24, +4, BitsGLFont.FILTER_NEAREST, true);
-//		ApoMonoPanel.font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 24, +4, BitsGLFont.FILTER_NEAREST, true);
+//		ApoHybridPanel.font.mFilterMode = BitsGLFont.FILTER_NEAREST;
 //		BitsGLFactory.getInstance().markForLoading(font);
 		
-		ApoMonoPanel.title_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 36, +6, BitsGLFont.FILTER_NEAREST, true);
-//		ApoMonoPanel.title_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 36, +6, BitsGLFont.FILTER_NEAREST, true);
+//		ApoHybridPanel.title_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
 //		BitsGLFactory.getInstance().markForLoading(title_font);
 			
-		ApoMonoPanel.game_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 18, +3, BitsGLFont.FILTER_NEAREST, true);
-//		ApoMonoPanel.game_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 18, +3, BitsGLFont.FILTER_NEAREST, true);
+//		ApoHybridPanel.game_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
 //		BitsGLFactory.getInstance().markForLoading(game_font);
 		
 		BitsGLFactory.getInstance().loadAllMarked();
@@ -254,7 +255,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 	
 	protected final void loadPreferences() {
-		SharedPreferences settings = ApoMonoActivity.settings;
+		SharedPreferences settings = ApoHybrid.settings;
 		boolean english = settings.getBoolean("language", true);
 		boolean colorGreen = settings.getBoolean("color", true);
 		boolean bSound = settings.getBoolean("sound", true);
@@ -264,7 +265,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		String solvedLevels = settings.getString("solvedLevels", "");
 		this.solvedLevels.createArrayFromString(solvedLevels);
 
-//		ApoMonoConstants.FREE_VERSION = !settings.getBoolean("premium", false);
+//		ApoHybridConstants.FREE_VERSION = !settings.getBoolean("premium", false);
 	}
 	
 	private void loadOptions(boolean bEnglish, boolean bColorGreen, boolean bSound, boolean bMusic) {
@@ -274,15 +275,15 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		((ApoLevelChooserButton)(this.getButtons()[15])).setSelected(bColorGreen);
 		
 		if (bEnglish) {
-			ApoMonoConstants.changeLanguageToEnglish();
+			ApoHybridConstants.changeLanguageToEnglish();
 		} else {
-			ApoMonoConstants.changeLanguageToGerman();			
+			ApoHybridConstants.changeLanguageToGerman();			
 		}
 		
 		if (bColorGreen) {
-			ApoMonoConstants.changeToGreenColor();
+			ApoHybridConstants.changeToGreenColor();
 		} else {
-			ApoMonoConstants.changeToWhiteColor();			
+			ApoHybridConstants.changeToWhiteColor();			
 		}
 		
 
@@ -317,7 +318,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	}
 
 	protected final void savePreferences() {
-		SharedPreferences settings = ApoMonoActivity.settings;
+		SharedPreferences settings = ApoHybrid.settings;
 		SharedPreferences.Editor editor = settings.edit();
 		boolean bEnglish = true;
 		if (((ApoLevelChooserButton)(this.getButtons()[12])).isSelected()) {
@@ -344,7 +345,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		
 		editor.putString("solvedLevels", this.solvedLevels.getSaveString());
 
-		editor.putBoolean("premium", !ApoMonoConstants.FREE_VERSION);
+		editor.putBoolean("premium", !ApoHybridConstants.FREE_VERSION);
 		
 		editor.commit();
 	}
@@ -361,15 +362,10 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		
 		super.setModel(this.credits);
 		
-		this.setButtonVisible(ApoMonoConstants.BUTTON_CREDITS);
+		this.setButtonVisible(ApoHybridConstants.BUTTON_CREDITS);
 		
 		super.getModel().init();
-		
-		if (ApoMonoConstants.FREE_VERSION) {
-			this.changeAdViewVisibility(AdView.VISIBLE);
-		} else {
-			this.changeAdViewVisibility(AdView.INVISIBLE);			
-		}
+
 		this.musicPlayer.setMenu(true);
 	}	
 
@@ -380,34 +376,19 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		
 		super.setModel(this.options);
 		
-		this.setButtonVisible(ApoMonoConstants.BUTTON_OPTIONS);
+		this.setButtonVisible(ApoHybridConstants.BUTTON_OPTIONS);
 		
 		super.getModel().init();
-		
-		if (ApoMonoConstants.FREE_VERSION) {
-			this.changeAdViewVisibility(AdView.VISIBLE);
-		} else {
-			this.changeAdViewVisibility(AdView.INVISIBLE);			
-		}
+
 		this.musicPlayer.setMenu(true);
 	}
 
-	private void changeAdViewVisibility(final int visibility) {
-		if (ApoMonoActivity.adView != null) {
-			ApoMonoActivity.activity.runOnUiThread(new Runnable() {
-			    public void run(){ 
-			    	ApoMonoActivity.adView.setVisibility(visibility);
-			    }
-			});
-		}
-	}
-
-	public ApoMonoSave getSolvedLevels() {
+	public ApoHybridSave getSolvedLevels() {
 		return this.solvedLevels;
 	}
 
 	public void setUserlevelsVisible() {
-		if (this.getModel() instanceof ApoMonoMenu) {
+		if (this.getModel() instanceof ApoHybridMenu) {
 			this.getButtons()[8].setVisible(true);
 		}
 	}
@@ -481,20 +462,16 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		super.getModel().init();
 
 		//#if MonoGameLogic
-		if ((ApoMonoLevel.editorLevels != null) && (ApoMonoLevel.editorLevels.length > 0)) {
+		if ((ApoHybridLevel.editorLevels != null) && (ApoHybridLevel.editorLevels.length > 0)) {
 			this.getButtons()[8].setVisible(true);
 		}
-		if (ApoMonoConstants.FREE_VERSION) {
-			this.changeAdViewVisibility(AdView.VISIBLE);
-		} else {
-			this.changeAdViewVisibility(AdView.INVISIBLE);			
-		}
+
 		
 		this.musicPlayer.setMenu(true);
 	
 
 		//#elif ClockGameLogic
-		this.textfield.setVisible(false);
+//@		this.textfield.setVisible(false);
 		//#endif
 
 	}
@@ -502,7 +479,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	//#if MonoGameLogic
 	protected final void setEditor(boolean bUpload) {
 	//#else	
-	protected final void setEditor(boolean bSolvedLevel) {
+//@	protected final void setEditor(boolean bSolvedLevel) {
 	//#endif		
 		if (super.getModel() != null) {
 			super.getModel().close();
@@ -516,134 +493,133 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 		//#if MonoGameLogic
 		this.editor.setUploadVisible(bUpload);
-		this.changeAdViewVisibility(AdView.INVISIBLE);		
 		this.musicPlayer.setMenu(true);
 
 		//#else
-		this.editor.setLevelSolved(bSolvedLevel);
+//@		this.editor.setLevelSolved(bSolvedLevel);
 		//#endif
 		
 		//#if ClockGameLogic
-		this.textfield.setVisible(false);
+//@		this.textfield.setVisible(false);
 		//#endif
 	}
 	//#if ClockGameLogic
-	protected final void setPuzzle() {
-		if (super.getModel() != null) {
-			super.getModel().close();
-		}
-		
-		super.setModel(this.puzzleFirst);
-		
-		this.setButtonVisible(ApoHybridConstants.BUTTON_PUZZLE_FIRST);
-		
-		super.getModel().init();
-		
-		this.textfield.setVisible(false);
-	}
-	
-	protected final void setOptions() {
-		if (super.getModel() != null) {
-			super.getModel().close();
-		}
-		
-		super.setModel(this.options);
-		
-		this.setButtonVisible(ApoHybridConstants.BUTTON_OPTIONS);
-		
-		super.getModel().init();
-		
-		this.textfield.setVisible(true);
-	}
-
-	protected final void setAracardeHelp(final int points, final int clocks) {
-		if (super.getModel() != null) {
-			super.getModel().close();
-		}
-		
-		super.setModel(this.arcarde);
-		
-		this.setButtonVisible(ApoHybridConstants.BUTTON_ARCARDE);
-		
-		this.arcarde.setPoints(points, clocks);
-		super.getModel().init();
-		
-		this.textfield.setVisible(true);
-	}
-	
-	protected final void setAracardeGame() {
-		if (super.getModel() != null) {
-			super.getModel().close();
-		}
-		
-		super.setModel(this.arcardeGame);
-		
-		this.setButtonVisible(ApoHybridConstants.BUTTON_ARCARDE_GAME);
-		
-		super.getModel().init();
-		
-		this.textfield.setVisible(false);
-	}
-
-	public boolean onKeyDown(final int key, final BitsKeyEvent event) {
-		if (super.getModel() != null) {
-			super.getModel().onKeyDown(key, event);
-		}
-		
-		return true;
-	}
-
-	public boolean onKeyUp(final int key, final BitsKeyEvent event) {
-		if (super.getModel() != null) {
-			if ((this.textfield.isVisible()) && (this.textfield.isSelect())) {
-				if( event.isNumber() || event.isLetter() || key == BitsKeyEvent.KEY_SPACE ) {
-					this.textfield.addValue(String.valueOf(event.mUnicodeChar));
-				}
-				
-				if (key == BitsKeyEvent.KEY_DEL) {
-					this.textfield.deleteValue();
-				}
-				if(key == BitsKeyEvent.KEY_ENTER) {
-					if (this.textfield.isSelect()) {
-						BitsInput.getInstance().setVirtualKeyboardVisible(false);
-					}
-					this.textfield.setSelect(false);
-					this.savePreferences();
-				}
-			} else {
-				super.getModel().onKeyUp(key, event);
-			}
-		}
-		
-		return true;
-	}
-	
-	public ApoTextfield getTextfield() {
-		return this.textfield;
-	}
-
-	public ApoHybridHighscore getHighscore() {
-		return this.arcarde.getHighscore();
-	}
-
-	public void drawBackgroundCircle(final BitsGLGraphics g, final int x, final int y, final int height, final int clockRotate) {
-		g.setLineSize(3.0f);
-		g.setColor(48, 48, 48);
-		g.drawCircle(x, y + height/2, height/2, 120);
-		
-		g.setLineSize(5.0f);
-		for (int j = 0; j < 12; j++) {
-			g.drawLine(x + (int)((height/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + (int)((height/2) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2) * Math.cos(Math.toRadians(j * 30))));
-		}
-		
-		int angle = (int)(clockRotate + x) + y;
-		while (angle > 360) {
-			angle -= 360;
-		}
-		g.drawLine(x, y + height/2, x + (int)((height/2 - 5) * Math.sin(Math.toRadians(angle))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(angle))));
-
-		g.setLineSize(1.0f);
-	}
+//@	protected final void setPuzzle() {
+//@		if (super.getModel() != null) {
+//@			super.getModel().close();
+//@		}
+//@		
+//@		super.setModel(this.puzzleFirst);
+//@		
+//@		this.setButtonVisible(ApoHybridConstants.BUTTON_PUZZLE_FIRST);
+//@		
+//@		super.getModel().init();
+//@		
+//@		this.textfield.setVisible(false);
+//@	}
+//@	
+//@	protected final void setOptions() {
+//@		if (super.getModel() != null) {
+//@			super.getModel().close();
+//@		}
+//@		
+//@		super.setModel(this.options);
+//@		
+//@		this.setButtonVisible(ApoHybridConstants.BUTTON_OPTIONS);
+//@		
+//@		super.getModel().init();
+//@		
+//@		this.textfield.setVisible(true);
+//@	}
+//@
+//@	protected final void setAracardeHelp(final int points, final int clocks) {
+//@		if (super.getModel() != null) {
+//@			super.getModel().close();
+//@		}
+//@		
+//@		super.setModel(this.arcarde);
+//@		
+//@		this.setButtonVisible(ApoHybridConstants.BUTTON_ARCARDE);
+//@		
+//@		this.arcarde.setPoints(points, clocks);
+//@		super.getModel().init();
+//@		
+//@		this.textfield.setVisible(true);
+//@	}
+//@	
+//@	protected final void setAracardeGame() {
+//@		if (super.getModel() != null) {
+//@			super.getModel().close();
+//@		}
+//@		
+//@		super.setModel(this.arcardeGame);
+//@		
+//@		this.setButtonVisible(ApoHybridConstants.BUTTON_ARCARDE_GAME);
+//@		
+//@		super.getModel().init();
+//@		
+//@		this.textfield.setVisible(false);
+//@	}
+//@
+//@	public boolean onKeyDown(final int key, final BitsKeyEvent event) {
+//@		if (super.getModel() != null) {
+//@			super.getModel().onKeyDown(key, event);
+//@		}
+//@		
+//@		return true;
+//@	}
+//@
+//@	public boolean onKeyUp(final int key, final BitsKeyEvent event) {
+//@		if (super.getModel() != null) {
+//@			if ((this.textfield.isVisible()) && (this.textfield.isSelect())) {
+//@				if( event.isNumber() || event.isLetter() || key == BitsKeyEvent.KEY_SPACE ) {
+//@					this.textfield.addValue(String.valueOf(event.mUnicodeChar));
+//@				}
+//@				
+//@				if (key == BitsKeyEvent.KEY_DEL) {
+//@					this.textfield.deleteValue();
+//@				}
+//@				if(key == BitsKeyEvent.KEY_ENTER) {
+//@					if (this.textfield.isSelect()) {
+//@						BitsInput.getInstance().setVirtualKeyboardVisible(false);
+//@					}
+//@					this.textfield.setSelect(false);
+//@					this.savePreferences();
+//@				}
+//@			} else {
+//@				super.getModel().onKeyUp(key, event);
+//@			}
+//@		}
+//@		
+//@		return true;
+//@	}
+//@	
+//@	public ApoTextfield getTextfield() {
+//@		return this.textfield;
+//@	}
+//@
+//@	public ApoHybridHighscore getHighscore() {
+//@		return this.arcarde.getHighscore();
+//@	}
+//@
+//@	public void drawBackgroundCircle(final BitsGLGraphics g, final int x, final int y, final int height, final int clockRotate) {
+//@		g.setLineSize(3.0f);
+//@		g.setColor(48, 48, 48);
+//@		g.drawCircle(x, y + height/2, height/2, 120);
+//@		
+//@		g.setLineSize(5.0f);
+//@		for (int j = 0; j < 12; j++) {
+//@			g.drawLine(x + (int)((height/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + (int)((height/2) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2) * Math.cos(Math.toRadians(j * 30))));
+//@		}
+//@		
+//@		int angle = (int)(clockRotate + x) + y;
+//@		while (angle > 360) {
+//@			angle -= 360;
+//@		}
+//@		g.drawLine(x, y + height/2, x + (int)((height/2 - 5) * Math.sin(Math.toRadians(angle))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(angle))));
+//@
+//@		g.setLineSize(1.0f);
+//@	}
 	//#endif
 	protected final void setPuzzleChooser() {
 		if (super.getModel() != null) {
@@ -652,23 +628,19 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		
 		super.setModel(this.puzzle);
 		
-		this.setButtonVisible(ApoHybridConstants.BUTTON_PUZZLE);
+		this.setButtonVisible(ApoHybridConstants.BUTTON_LEVELCHOOSER);
 		
 		super.getModel().init();
 
 		//#if MonoGameLogic
-		if (ApoMonoConstants.FREE_VERSION) {
-			this.changeAdViewVisibility(AdView.VISIBLE);
-		} else {
-			this.changeAdViewVisibility(AdView.INVISIBLE);			
-		}
+
 		this.musicPlayer.setMenu(true);
 		//#elif ClockGameLogic
-		this.textfield.setVisible(false);
+//@		this.textfield.setVisible(false);
 		//#endif
 	}
 	
-	protected final void setPuzzleGame(final int level, final String levelString, final boolean bUserLevel) {
+	protected final void setPuzzleGame(final int level, final String levelString, final boolean bUserlevel) {
 		if (super.getModel() != null) {
 			super.getModel().close();
 		}
@@ -680,20 +652,18 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		super.getModel().init();
 		
 		//#if MonoGameLogic
-		this.changeAdViewVisibility(AdView.INVISIBLE);
-		
 		this.game.loadLevel(level, bUserlevel, levelString);
 		this.musicPlayer.setMenu(false);
 
 	
 		//#elif ClockGameLogic
-		if (levelString != null) {
-			this.game.loadLevelWithString(levelString, true);
-		} else {
-			this.game.loadLevel(level, bUserLevel);
-		}
-		
-		this.textfield.setVisible(false);
+//@		if (levelString != null) {
+//@			this.game.loadLevelWithString(levelString, true);
+//@		} else {
+//@			this.game.loadLevel(level, bUserLevel);
+//@		}
+//@		
+//@		this.textfield.setVisible(false);
 		//#elif SnakeGameLogic || DiceGameLogic
 //@		this.game.loadLevel(level, bUserLevel, levelString);
 		//#endif
@@ -741,12 +711,12 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	public int getMaxCanChoosen() {
 		//#if MonoGameLogic
 		int value = this.solvedLevels.solvedCout + 2;
-		if (value >= ApoMonoLevel.MAX_LEVELS) {
-			value = ApoMonoLevel.MAX_LEVELS -1;
+		if (value >= ApoHybridLevel.MAX_LEVELS) {
+			value = ApoHybridLevel.MAX_LEVELS -1;
 		}
 		return value;
 		//#else
-		return this.puzzle.getSolved();
+//@		return this.puzzle.getSolved();
 		//#endif	
 	}
 	
@@ -774,7 +744,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			if (super.getModel() != null) {
 				super.getModel().think((int)10);
 				//#if ClockGameLogic
-				this.textfield.think(10);
+//@				this.textfield.think(10);
 				//#endif
 
 			}	
@@ -795,10 +765,10 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			super.getModel().drawOverlay(g);
 		}
 		//#if MonoGameLogic
-		if (ApoMonoConstants.FPS) {
-			g.setColor(ApoMonoConstants.DARK[0], ApoMonoConstants.DARK[1], ApoMonoConstants.DARK[2], 1f);
-			g.setFont(ApoMonoPanel.game_font);
-			g.drawFPS(5, ApoMonoPuzzleGame.changeY);
+		if (ApoHybridConstants.FPS) {
+			g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
+			g.setFont(ApoHybridPanel.game_font);
+			g.drawFPS(5, ApoHybridGame.changeY);
 		}
 		//#endif
 	}
@@ -806,11 +776,11 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 	//#if MonoGameLogic
 	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font) {
-		this.drawString(g, s, x, y, font, ApoMonoConstants.DARK, false);
+		this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, false);
 	}
 	
 	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, boolean bShadow) {
-		this.drawString(g, s, x, y, font, ApoMonoConstants.DARK, bShadow);
+		this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, bShadow);
 	}
 
 	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorFront) {
@@ -831,74 +801,76 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		if (bShadow) {
 			g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
 			if (colorFront[0] > 0.5f) {
-				ApoMonoPuzzleGame.setDarkerColor(g);
-				ApoMonoPuzzleGame.setDarkerColor(g);
+				ApoHybridGame.setDarkerColor(g);
+				ApoHybridGame.setDarkerColor(g);
 			} else {
-				ApoMonoPuzzleGame.setBrighterColor(g);
+				ApoHybridGame.setBrighterColor(g);
 			}
 			g.drawText(s, x - w/2 + 1, y + 1);
 		}
 		g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
 		g.drawText(s, x - w/2 + 0, y + 0);
 	}
-	//#endif
-	
+	//#else
+//@	
 	//#if ClockGameLogic
-	public void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font) {
+//@	public void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font) {
 	//#elif SnakeGameLogic || DiceGameLogic
 //@	protected void drawString(BitsGraphics g, final String s, final int x, final int y, final BitsFont font) {		
 	//#endif
-		this.drawString(g, s, x, y, font, new float[] {0, 0, 0, 1}, new float[] {1, 1, 1, 1});
-	}
-	
+//@		this.drawString(g, s, x, y, font, new float[] {0, 0, 0, 1}, new float[] {1, 1, 1, 1});
+//@	}
+//@	
 	//#if ClockGameLogic
-	protected void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font, float[] colorBack, float[] colorFront) {
+//@	protected void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font, float[] colorBack, float[] colorFront) {
 	//#elif SnakeGameLogic || DiceGameLogic
 //@	protected void drawString(BitsGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorBack, float[] colorFront) {
 	//#endif
-		int w = 0;
-		if (super.getModel().getStringWidth().containsKey(s)) {
-			w = super.getModel().getStringWidth().get(s);
-		}
-		
-		g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
+//@		int w = 0;
+//@		if (super.getModel().getStringWidth().containsKey(s)) {
+//@			w = super.getModel().getStringWidth().get(s);
+//@		}
+//@		
+//@		g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
 		//#if ClockGameLogic
-		g.setFont(font);
-		g.drawText(s, x - w/2 + 1, y + 2 - font.mCharCellHeight/6);
-		g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
-		g.drawText(s, x - w/2 + 0, y + 0 - font.mCharCellHeight/6);
+//@		g.setFont(font);
+//@		g.drawText(s, x - w/2 + 1, y + 2 - font.mCharCellHeight/6);
+//@		g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
+//@		g.drawText(s, x - w/2 + 0, y + 0 - font.mCharCellHeight/6);
 		//#elif SnakeGameLogic || DiceGameLogic
 //@		g.drawText(s, font, x - w/2 + 1, y + 2);
 //@		g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
 //@		g.drawText(s, font, x - w/2 + 0, y + 0);
 		//#endif
-	}
+//@	}
+//@
+	//#endif
 	
 	//#if ClockGameLogic
-	public void renderButtons(final BitsGLGraphics g) {
-		this.renderButtons(g, ApoHybridPanel.font);
-	}
-
-	public void renderButtons(final BitsGLGraphics g, final BitsGLFont font) {
-		if (this.getButtons() != null) {
-			for (int i = 0; i < this.getButtons().length; i++) {
-				if (this.getButtons()[i].isVisible()) {
-					int x = (int)(this.getButtons()[i].getX());
-					int y = (int)(this.getButtons()[i].getY());
-					int width = (int)(this.getButtons()[i].getWidth());
-					int height = (int)(this.getButtons()[i].getHeight());
-					
-					g.setColor(160, 160, 160, 255);
-					g.fillRect(x, y, width, height);
-					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-					g.drawRect(x, y, width, height);
-					
-					this.drawString(g, this.getButtons()[i].getFunction(), x + width/2, y + height/2 - font.mCharCellHeight/2, font);
-				}
-			}
-		}
-	}
-
+//@	public void renderButtons(final BitsGLGraphics g) {
+//@		this.renderButtons(g, ApoHybridPanel.font);
+//@	}
+//@
+//@	public void renderButtons(final BitsGLGraphics g, final BitsGLFont font) {
+//@		if (this.getButtons() != null) {
+//@			for (int i = 0; i < this.getButtons().length; i++) {
+//@				if (this.getButtons()[i].isVisible()) {
+//@					int x = (int)(this.getButtons()[i].getX());
+//@					int y = (int)(this.getButtons()[i].getY());
+//@					int width = (int)(this.getButtons()[i].getWidth());
+//@					int height = (int)(this.getButtons()[i].getHeight());
+//@					
+//@					g.setColor(160, 160, 160, 255);
+//@					g.fillRect(x, y, width, height);
+//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+//@					g.drawRect(x, y, width, height);
+//@					
+//@					this.drawString(g, this.getButtons()[i].getFunction(), x + width/2, y + height/2 - font.mCharCellHeight/2, font);
+//@				}
+//@			}
+//@		}
+//@	}
+//@
 	//#elif MonoGameLogic
 	protected void drawButtons(final BitsGLGraphics g, final BitsGLFont font, final int valueDif) {
 		if (this.getButtons() != null) {
@@ -915,20 +887,20 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			int width = (int)(this.getButtons()[i].getWidth());
 			int height = (int)(this.getButtons()[i].getHeight());
 			
-			g.setColor(ApoMonoConstants.DARK[0], ApoMonoConstants.DARK[1], ApoMonoConstants.DARK[2], 1f);
+			g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 			g.fillRect(x + 2, y + 2, width - 4, height - 4);
-			ApoMonoPuzzleGame.setDarkerColor(g);
+			ApoHybridGame.setDarkerColor(g);
 			g.fillRect(x + 2, y, width - 4, 2);
 			g.fillRect(x + 2, y + height - 2, width - 4, 2);
 			g.fillRect(x, y + 2, 2, height - 4);
 			g.fillRect(x + width - 2, y + 2, 2, height - 4);
-			ApoMonoPuzzleGame.setBrighterColor(g);
+			ApoHybridGame.setBrighterColor(g);
 			g.fillRect(x + 4, y + height, width - 4, 2);
 			g.fillRect(x + width, y + 4, 2, height - 4);
 			g.fillRect(x + width - 2, y + height - 2, 2, 2);
 			
 			String s = this.getButtons()[i].getFunction();
-			this.drawString(g, s, (int)(x + width/2 - font.getLength(s)/2), y + height/2 - font.mCharCellHeight/2 - valueDif, font, ApoMonoConstants.BRIGHT);
+			this.drawString(g, s, (int)(x + width/2 - font.getLength(s)/2), y + height/2 - font.mCharCellHeight/2 - valueDif, font, ApoHybridConstants.BRIGHT);
 		}
 	}
 
