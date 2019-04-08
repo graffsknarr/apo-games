@@ -23,19 +23,19 @@ public class ApoEntity {
 
 	private float width, height;
 
-	//#if ClockGameLogic
-	private BitsGLImage iBackground;
-
-	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
-
-	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
-		//#else
-//@	private BitsImage iBackground;
+	//#if ClockGameLogic || MonoGameLogic
+//@	private BitsGLImage iBackground;
 //@
 //@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
-//@	
-//@	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
-		//#endif
+//@
+//@	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
+	//#else
+	private BitsImage iBackground;
+
+	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
+	
+	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
+	//#endif
 
 		this.iBackground = iBackground;
 		this.startX = x;
@@ -123,10 +123,10 @@ public class ApoEntity {
 	 * @return gibt zur?ck, ob die Entity angezeigt werden soll oder nicht
 	 */
 	//#if ClockGameLogic
-	public boolean isVisible() {
-		//#else
-//@	public boolean isBVisible() {
-		//#endif
+//@	public boolean isVisible() {
+	//#else
+	public boolean isBVisible() {
+	//#endif
 
 		return this.bVisible;
 	}
@@ -147,10 +147,10 @@ public class ApoEntity {
 	 */
 
 	//#if ClockGameLogic
-	public boolean isSelect() {
-		//#else
-//@	public boolean isBSelect() {
-		//#endif
+//@	public boolean isSelect() {
+	//#else
+	public boolean isBSelect() {
+	//#endif
 
 		return this.bSelect;
 	}
@@ -162,10 +162,10 @@ public class ApoEntity {
 	 */
 
 	//#if ClockGameLogic
-	public void setSelect(boolean bSelect) {
-		//#else
-//@	public void setBSelect(boolean bSelect) {
-		//#endif
+//@	public void setSelect(boolean bSelect) {
+	//#else
+	public void setBSelect(boolean bSelect) {
+	//#endif
 
 		this.bSelect = bSelect;
 	}
@@ -250,8 +250,8 @@ public class ApoEntity {
 	 * @return Bild
 	 */
 
-	//#if ClockGameLogic
-	public BitsGLImage getIBackground() {
+	//#if ClockGameLogic || MonoGameLogic
+//@	public BitsGLImage getIBackground() {
 		//#else
 //@	public BitsImage getIBackground() {
 		//#endif
@@ -265,8 +265,8 @@ public class ApoEntity {
 	 * @param background
 	 */
 
-	//#if ClockGameLogic
-	public void setIBackground(BitsGLImage background) {
+	//#if ClockGameLogic || MonoGameLogic
+//@	public void setIBackground(BitsGLImage background) {
 		//#else
 //@	public void setIBackground(BitsImage background) {
 		//#endif
@@ -395,8 +395,8 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(ApoEntity entity) {
-		//#if ClockGameLogic
-		if (this.getRec().intersects(entity.getRec())) {
+		//#if ClockGameLogic || MonoGameLogic
+//@		if (this.getRec().intersects(entity.getRec())) {
 			//#else
 //@		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
 			//#endif
@@ -436,9 +436,13 @@ public class ApoEntity {
 	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 	 */
 
-	//#if ClockGameLogic
-	public BitsRect getRec() {
-		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
+	//#if ClockGameLogic || MonoGameLogic
+//@	public BitsRect getRec() {
+//@		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
+//@	}
+	//#else
+	public Rect getRec() {
+		return new Rect((int)this.getX(), (int)this.getY(), (int)(this.getWidth() + this.getX()), (int)(this.getHeight() + this.getY()));
 	}
 	//#else
 //@	public Rect getRec() {
@@ -480,11 +484,31 @@ public class ApoEntity {
 	 *
 	 * @param g
 	 */
-	//#if ClockGameLogic
-	public void render(BitsGLGraphics g, int x, int y) {
-		if ((this.getIBackground() != null) && (this.isVisible())) {
-			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
-			if (this.isSelect()) {
+	//#if ClockGameLogic || MonoGameLogic
+//@	public void render(BitsGLGraphics g, int x, int y) {
+//@		if ((this.getIBackground() != null) && (this.isVisible())) {
+//@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
+//@			if (this.isSelect()) {
+//@				g.setColor(255, 0, 0);
+//@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
+//@			}
+//@		}
+//@	}
+//@
+//@	/**
+//@	 * malt das Objekt
+//@	 *
+//@	 * @param g = Graphics2D Objekt
+//@	 */
+//@	public void render(BitsGLGraphics g) {
+//@		this.render(g, 0, 0);
+//@	}
+//@
+	//#else
+	public void render(BitsGraphics g, int x, int y) {
+		if ((this.getIBackground() != null) && (this.isBVisible())) {
+			g.drawImage(this.iBackground, (int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getX() + x + this.getWidth()), (int) (this.getY() + y + this.getHeight()));
+			if (this.isBSelect()) {
 				g.setColor(255, 0, 0);
 				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
 			}

@@ -1,9 +1,9 @@
 package net.apogames.apohybrid.entity;
 
 
-//#if ClockGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//#if ClockGameLogic || MonoGameLogic
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
 //@import net.gliblybits.bitsengine.core.BitsImage;
 //@import net.gliblybits.bitsengine.render.BitsGraphics;
@@ -25,8 +25,8 @@ public class ApoButton extends ApoEntity {
 	private String			function;
 	private boolean 		bOver, bPressed;
 
-	//#if ClockGameLogic
-	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
+	//#if ClockGameLogic || MonoGameLogic
+//@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
 	//#else
 //@	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
 	//#endif
@@ -256,9 +256,9 @@ public class ApoButton extends ApoEntity {
 	 * @param changeX: Verschiebung in x-Richtung
 	 * @param changeY: Verschiebung in y-Richtung
 	 */
-	//#if ClockGameLogic
-	public void render(BitsGLGraphics g, int changeX, int changeY ) {
-		if ( this.isVisible() ) {
+	//#if ClockGameLogic || MonoGameLogic
+//@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
+//@		if ( this.isVisible() ) {
 	//#else
 //@	public void render(BitsGraphics g, int changeX, int changeY ) {
 //@		if ( this.isBVisible() ) {
