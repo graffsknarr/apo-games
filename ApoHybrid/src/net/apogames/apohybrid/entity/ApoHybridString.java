@@ -2,7 +2,8 @@ package net.apogames.apohybrid.entity;
 
 import net.apogames.apohybrid.game.ApoHybridMenu;
 import net.apogames.apohybrid.game.ApoHybridPanel;
-//#if ClockGameLogic
+import net.apogames.apohybrid.ApoHybridConstants;
+//#if ClockGameLogic || MonoGameLogic
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@
 //@public class ApoHybridString {
@@ -14,7 +15,7 @@ public class ApoHybridString extends ApoHybridEntity {
 
 
 	public static final int TIME_DECREASE = 10;
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	private final String drawString;
 //@	private final float direction;
 //@	private final float x, y;
@@ -30,7 +31,7 @@ public class ApoHybridString extends ApoHybridEntity {
 	private boolean bWithBackground;
 	
 	private int timeDecrease;
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	private boolean bFade, bVisible;
 //@	
 //@	public ApoHybridString(final float x, final float y, final float direction, String s, final boolean bWithBackground, final int timeDecrease, final boolean bFade) {
@@ -61,7 +62,7 @@ public class ApoHybridString extends ApoHybridEntity {
 		this.bFade = bFade;
 	}
 	
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@		public boolean isVisible() {
 //@		return bVisible;
 //@	}
@@ -79,7 +80,7 @@ public class ApoHybridString extends ApoHybridEntity {
 				this.invisible -= 1;
 				if (this.invisible <= 50) {
 					this.invisible = 0;
-					//#if ClockGameLogic
+					//#if ClockGameLogic || MonoGameLogic
 //@					this.bVisible = false;
 					//#else
 					super.setVisible(false);
@@ -87,7 +88,7 @@ public class ApoHybridString extends ApoHybridEntity {
 
 				}
 			} else {
-				//#if ClockGameLogic
+				//#if ClockGameLogic || MonoGameLogic
 //@				this.bVisible = false;
 				//#else
 				super.setVisible(false);
@@ -96,7 +97,7 @@ public class ApoHybridString extends ApoHybridEntity {
 			}
 		}
 	}
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	public void render(final BitsGLGraphics g, int changeX, int changeY) {
 	//#else
 	public void render(final BitsGraphics g, int changeX, int changeY) {
@@ -105,7 +106,7 @@ public class ApoHybridString extends ApoHybridEntity {
 		if (this.isVisible()) {
 			
 			String s = this.drawString;
-			//#if ClockGameLogic
+			//#if ClockGameLogic || MonoGameLogic
 //@			int w = (int)(ApoHybridPanel.font.getLength(s) + 10);
 //@			int h = ApoHybridPanel.font.mCharCellHeight;
 //@			int x = (int)(this.x + this.direction/2 - w/2) - changeX - 5;
@@ -129,8 +130,12 @@ public class ApoHybridString extends ApoHybridEntity {
 			
 			
 			if (this.bWithBackground) {
+				//#if MonoGameLogic
+				g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], this.invisible/255f);
+				//#else
 				g.setColor(255, 255, 255, this.invisible);
-				//#if ClockGameLogic
+				//#endif
+				//#if ClockGameLogic || MonoGameLogic
 //@				g.fillRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				//#else
 				g.drawFilledRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
@@ -141,8 +146,12 @@ public class ApoHybridString extends ApoHybridEntity {
 				g.drawRect((int)(x - change), (int)(y - h - change), (int)(w + 2 * change), (int)(h + 2 * change));
 				g.setLineSize(1);
 			}
+			//#if MonoGameLogic
+			g.setColor(ApoMonoConstants.DARK[0], ApoMonoConstants.DARK[1], ApoMonoConstants.DARK[2], this.invisible/255f);
+			//#else
 			g.setColor(0, 0, 0, this.invisible);
-			//#if ClockGameLogic
+			//#endif
+			//#if ClockGameLogic || MonoGameLogic
 //@			g.setFont(ApoHybridPanel.game_font);
 //@			g.drawText(s, x, y - h);
 			//#else

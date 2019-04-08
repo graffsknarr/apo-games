@@ -23,19 +23,19 @@ public class ApoEntity {
 
 	private float width, height;
 
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	private BitsGLImage iBackground;
 //@
 //@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
 //@
 //@	public ApoEntity(BitsGLImage iBackground, float x, float y, float width, float height) {
-		//#else
+	//#else
 	private BitsImage iBackground;
 
 	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
 	
 	public ApoEntity(BitsImage iBackground, float x, float y, float width, float height) {
-		//#endif
+	//#endif
 
 		this.iBackground = iBackground;
 		this.startX = x;
@@ -124,9 +124,9 @@ public class ApoEntity {
 	 */
 	//#if ClockGameLogic
 //@	public boolean isVisible() {
-		//#else
+	//#else
 	public boolean isBVisible() {
-		//#endif
+	//#endif
 
 		return this.bVisible;
 	}
@@ -148,9 +148,9 @@ public class ApoEntity {
 
 	//#if ClockGameLogic
 //@	public boolean isSelect() {
-		//#else
+	//#else
 	public boolean isBSelect() {
-		//#endif
+	//#endif
 
 		return this.bSelect;
 	}
@@ -163,9 +163,9 @@ public class ApoEntity {
 
 	//#if ClockGameLogic
 //@	public void setSelect(boolean bSelect) {
-		//#else
+	//#else
 	public void setBSelect(boolean bSelect) {
-		//#endif
+	//#endif
 
 		this.bSelect = bSelect;
 	}
@@ -250,7 +250,7 @@ public class ApoEntity {
 	 * @return Bild
 	 */
 
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	public BitsGLImage getIBackground() {
 		//#else
 	public BitsImage getIBackground() {
@@ -265,7 +265,7 @@ public class ApoEntity {
 	 * @param background
 	 */
 
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	public void setIBackground(BitsGLImage background) {
 		//#else
 	public void setIBackground(BitsImage background) {
@@ -395,7 +395,7 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(ApoEntity entity) {
-		//#if ClockGameLogic
+		//#if ClockGameLogic || MonoGameLogic
 //@		if (this.getRec().intersects(entity.getRec())) {
 			//#else
 		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
@@ -436,7 +436,7 @@ public class ApoEntity {
 	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 	 */
 
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	public BitsRect getRec() {
 //@		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
 //@	}
@@ -480,7 +480,7 @@ public class ApoEntity {
 	 *
 	 * @param g
 	 */
-	//#if ClockGameLogic
+	//#if ClockGameLogic || MonoGameLogic
 //@	public void render(BitsGLGraphics g, int x, int y) {
 //@		if ((this.getIBackground() != null) && (this.isVisible())) {
 //@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
