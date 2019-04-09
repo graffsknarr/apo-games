@@ -81,3 +81,6 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /.metadata/
+
+
+ApoHybrid/.idea/*
