@@ -1,10 +1,6 @@
 package net.apogames.apohybrid;
 
 //#if MonoGameLogic
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
-
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
@@ -12,10 +8,10 @@ import android.widget.RelativeLayout;
 import android.content.Context;
 import android.content.SharedPreferences;
 //#else
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+//@import android.content.Context;
+//@import android.content.SharedPreferences;
+//@import android.net.ConnectivityManager;
+//@import android.net.NetworkInfo;
 //#endif
 
 import net.apogames.apohybrid.game.ApoHybridPanel;
@@ -31,8 +27,6 @@ public class ApoHybrid extends BitsApp {
 	public static NetworkInfo ni;
 
 	//#if MonoGameLogic
-	public static AdView adView = null;
-
 	public static ApoHybrid activity;
 	//#endif
 
@@ -46,7 +40,7 @@ public class ApoHybrid extends BitsApp {
 		//#if MonoGameLogic
 		BitsLog.setLogType(BitsLog.TYPE_DEBUG);
 
-		ApoMonoActivity.activity = this;
+		ApoHybrid.activity = this;
 
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -54,18 +48,18 @@ public class ApoHybrid extends BitsApp {
 		int height = dm.heightPixels;
 		int width = dm.widthPixels;
 
-		BitsApp.sGameWidth = ApoMonoConstants.GAME_WIDTH;
-		BitsApp.sGameHeight = ApoMonoConstants.GAME_HEIGHT;
+		BitsApp.sGameWidth = ApoHybridConstants.GAME_WIDTH;
+		BitsApp.sGameHeight = ApoHybridConstants.GAME_HEIGHT;
 
 		float originalDisplay = (float)(width) / (float)(height);
-		float gameDisplay = (float)(ApoMonoConstants.GAME_WIDTH) / (float)(ApoMonoConstants.GAME_HEIGHT);
+		float gameDisplay = (float)(ApoHybridConstants.GAME_WIDTH) / (float)(ApoHybridConstants.GAME_HEIGHT);
 		if (originalDisplay >= gameDisplay) {
-			ApoMonoConstants.MAX = (float)(height) / (float)(ApoMonoConstants.GAME_HEIGHT);
+			ApoHybridConstants.MAX = (float)(height) / (float)(ApoHybridConstants.GAME_HEIGHT);
 		} else {
-			ApoMonoConstants.MAX = (float)(width) / (float)(ApoMonoConstants.GAME_WIDTH);
+			ApoHybridConstants.MAX = (float)(width) / (float)(ApoHybridConstants.GAME_WIDTH);
 		}
-		//BitsApp.sViewportWidth = (int)(ApoMonoConstants.GAME_WIDTH * ApoMonoConstants.MAX);//1280;//1920;//(int)(ApoMonoConstants.GAME_WIDTH * ApoMonoConstants.MAX);
-		//BitsApp.sViewportHeight = (int)(ApoMonoConstants.GAME_HEIGHT * ApoMonoConstants.MAX);//800;//1080;//(int)(ApoMonoConstants.GAME_HEIGHT * ApoMonoConstants.MAX);
+		//BitsApp.sViewportWidth = (int)(ApoHybridConstants.GAME_WIDTH * ApoHybridConstants.MAX);//1280;//1920;//(int)(ApoHybridConstants.GAME_WIDTH * ApoHybridConstants.MAX);
+		//BitsApp.sViewportHeight = (int)(ApoHybridConstants.GAME_HEIGHT * ApoHybridConstants.MAX);//800;//1080;//(int)(ApoHybridConstants.GAME_HEIGHT * ApoHybridConstants.MAX);
 //		BitsApp.sWantFullscreen = false;
 //		BitsApp.sMaxFPS = 60;
 		BitsApp.sMaxUpdate = 100;
@@ -75,25 +69,25 @@ public class ApoHybrid extends BitsApp {
 		BitsApp.sMaxTouchPointer = 3;
 //		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
 
-		BitsGame.getInstance().addScreen(new ApoMonoPanel(1));
-
-		//#else
-		BitsLog.setLogType(BitsLog.TYPE_NONE);
-
-		//#if ClockGameLogic
-		BitsApp.sWantFullscreen = true;
-		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
-		BitsApp.sGameWidth = 480;
-		BitsApp.sGameHeight = 640;
-		BitsApp.sWantTitleBar = false;
-		BitsApp.sMaxCirclePoints = 180;
-//		BitsApp.sMaxFPS = 60;
-		BitsApp.sMaxUpdate = 100;
-		BitsApp.sMaxTouchPointer = 3;
-//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
-
 		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
 
+		//#else
+//@		BitsLog.setLogType(BitsLog.TYPE_NONE);
+//@
+		//#if ClockGameLogic
+//@		BitsApp.sWantFullscreen = true;
+//@		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+//@		BitsApp.sGameWidth = 480;
+//@		BitsApp.sGameHeight = 640;
+//@		BitsApp.sWantTitleBar = false;
+//@		BitsApp.sMaxCirclePoints = 180;
+//@//		BitsApp.sMaxFPS = 60;
+//@		BitsApp.sMaxUpdate = 100;
+//@		BitsApp.sMaxTouchPointer = 3;
+//@//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
+//@
+//@		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
+//@
 		//#else
 //@		BitsGame.sWantFullscreen = true;
 //@		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
@@ -129,28 +123,14 @@ public class ApoHybrid extends BitsApp {
 		return ApoHybrid.ni.isConnected();
 	}
 
+	@Override
+	protected void onAddView() {
+
+	}
+
 	//#if ClockGameLogic || MonoGameLogic
 	@Override
 	protected void onStopApp( ) {
-	}
-
-	@Override
-	protected void onAddView() {
-		//#if MonoGameLogic
-		if (ApoMonoConstants.FREE_VERSION) {
-			// Create the adView
-			adView = new AdView(this, AdSize.BANNER, "a1510eb01a099dc");
-			AdRequest request = new AdRequest();
-			request.addTestDevice(AdRequest.TEST_EMULATOR);
-			adView.loadAd(request);
-
-			RelativeLayout.LayoutParams adParams =
-					new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-			adParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-			adParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-			this.addView(adView, adParams);
-		}
-		//#endif
 	}
 
 	@Override

@@ -46,7 +46,7 @@
 //@		}
 //@	}
 //@
-//@	/**
+//@	/*
 //@	 * setzt den boolean Wert ob ausgew?hlt oder nicht auf den ?bergebenen
 //@	 * 
 //@	 * @param bSelect
@@ -64,7 +64,7 @@
 //@		super.setSelect(bSelect);
 //@	}
 //@	
-//@	/**
+//@	/*
 //@	 * Methode, die immer waehrend der update Methode aufgerufen wird
 //@	 * 
 //@	 * @param delta: Zeit, die seit dem letzten Aufruf vergangen ist
@@ -79,7 +79,7 @@
 //@		}
 //@	}
 //@
-//@	/**
+//@	/*
 //@	 * malt das Objekt
 //@	 * @param g
 //@	 */

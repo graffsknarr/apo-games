@@ -1,5 +1,5 @@
 //#if MonoGameLogic
-package net.apogames.apohybrid.userlevels;
+package net.apogames.apohybrid.editor;
 
 public class ApoHybridSave {
 

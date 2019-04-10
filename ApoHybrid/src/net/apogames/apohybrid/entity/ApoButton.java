@@ -2,14 +2,14 @@ package net.apogames.apohybrid.entity;
 
 
 //#if ClockGameLogic || MonoGameLogic
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
-import net.gliblybits.bitsengine.core.BitsImage;
-import net.gliblybits.bitsengine.render.BitsGraphics;
-
+//@import net.gliblybits.bitsengine.core.BitsImage;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//@
 //#endif
-/**
+/*
  * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth?lt
  * das erste wird angezeigt, wenn die Maus nicht dadr?ber ist
  * das zweite wird angezeigt, wenn die Maus ?ber der Entity ist
@@ -26,11 +26,10 @@ public class ApoButton extends ApoEntity {
 	private boolean 		bOver, bPressed;
 
 	//#if ClockGameLogic || MonoGameLogic
-//@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
+	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
 	//#else
-	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
+//@	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
 	//#endif
-
 		super( iBackground, x, y, width, height );
 		
 		this.function	= function;
@@ -44,7 +43,7 @@ public class ApoButton extends ApoEntity {
 		this.bFirstWait	= true;
 	}
 	
-//	/**
+//	/*
 //	 * gibt das aktuelle Rechteck der Entity zur?ck
 //	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 //	 */
@@ -52,7 +51,7 @@ public class ApoButton extends ApoEntity {
 //		return this.rec;
 //	}
 	
-	/**
+	/*
 	 * gibt zur?ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
 	 * gecheckt werden soll, ob sich was ver?ndern soll
 	 * @return gibt zur?ck, ob wenn eine Maustaste gehalten wird, auch alle paar Millisekunden
@@ -62,7 +61,7 @@ public class ApoButton extends ApoEntity {
 		return this.bWait;
 	}
 
-	/**
+	/*
 	 * setzt den boolean Wert ob wenn die Maustaste gehalten wird, alle paar Millisekunden
 	 * gecheckt werden soll, ob sich was ver?nder soll, auf den ?bergebenen Wert
 	 * @param bWait
@@ -71,7 +70,7 @@ public class ApoButton extends ApoEntity {
 		this.bWait = bWait;
 	}
 	
-	/**
+	/*
 	 * gibt die Wartezeit zwischen 2 Funktionsaufrufen, wenn die Maus
 	 * gedr?ckt gehalten wird, zur?ck
 	 * @return gibt die Wartezeit zwischen 2 Funktionsaufrufen, wenn die Maus
@@ -81,7 +80,7 @@ public class ApoButton extends ApoEntity {
 		return this.WAIT_DELAY;
 	}
 
-	/**
+	/*
 	 * setzt die Wartezeit zwischen 2 Funktionsaufrufen auf den
 	 * ?bergebenen Wert
 	 * @param wait_delay = neue Wartezeit in Millisekunden
@@ -90,7 +89,7 @@ public class ApoButton extends ApoEntity {
 		this.WAIT_DELAY = wait_delay;
 	}
 
-	/**
+	/*
 	 * gibt zur?ck, ob die Maus ?ber dem Button ist oder nicht
 	 * @return TRUE, falls Maus dr?ber, sonst FALSE
 	 */
@@ -98,7 +97,7 @@ public class ApoButton extends ApoEntity {
 		return this.bOver;
 	}
 
-	/**
+	/*
 	 * setzt den boolean-Wert f?r bOver auf den ?bergebenen Wert
 	 * @param bOver
 	 */
@@ -106,7 +105,7 @@ public class ApoButton extends ApoEntity {
 		this.bOver = bOver;
 	}
 
-	/**
+	/*
 	 * gibt zur?ck, ob eine Maustaste ?ber dem Button gedr?ckt ist oder nicht
 	 * @return TRUE, falls Maustaste gedr?ckt, sonst FALSE
 	 */
@@ -114,7 +113,7 @@ public class ApoButton extends ApoEntity {
 		return this.bPressed;
 	}
 
-	/**
+	/*
 	 * setzt den boolean-Wert f?r bPressed auf den ?bergebenen Wert 
 	 * @param bPressed
 	 */
@@ -122,7 +121,7 @@ public class ApoButton extends ApoEntity {
 		this.bPressed = bPressed;
 	}
 
-	/**
+	/*
 	 * gibt die Funktion des Buttons zur?ck
 	 * @return function
 	 */
@@ -130,7 +129,7 @@ public class ApoButton extends ApoEntity {
 		return this.function;
 	}
 
-	/**
+	/*
 	 * sezt die Funktion des Buttons auf den ?bergebenen Wert
 	 * @param function
 	 */
@@ -138,7 +137,7 @@ public class ApoButton extends ApoEntity {
 		this.function = function;
 	}
 	
-	/**
+	/*
 	 * was passiert, wenn die Maus im Spielfeld bewegt wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
@@ -175,7 +174,7 @@ public class ApoButton extends ApoEntity {
 		this.bFirstWait	= true;
 	}
 	
-	/**
+	/*
 	 * was passiert, wenn eine Maustaste im Spielfeld gedr?ckt wurde wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
@@ -194,7 +193,7 @@ public class ApoButton extends ApoEntity {
 		return false;
 	}
 	
-	/**
+	/*
 	 * was passiert, wenn eine Maustaste im Spielfeld losgelassen wurde
 	 * @param x: x-Koordinate der Maus
 	 * @param y: y-Koordinate der Maus
@@ -220,7 +219,7 @@ public class ApoButton extends ApoEntity {
 		return this.wait;
 	}
 
-	/**
+	/*
 	 * was passiert, wenn eine Maustaste gedr?ckt wurde und gehalten wird
 	 * @param delay
 	 */
@@ -251,17 +250,20 @@ public class ApoButton extends ApoEntity {
 		}
 	}
 	
-	/**
+	/*
 	 * malt den Button an die Stelle getX() + changeX und getY() + changeY hin
 	 * @param changeX: Verschiebung in x-Richtung
 	 * @param changeY: Verschiebung in y-Richtung
 	 */
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic
 //@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 //@		if ( this.isVisible() ) {
-	//#else
-	public void render(BitsGraphics g, int changeX, int changeY ) {
+	//#elif MonoGameLogic
+	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 		if ( this.isBVisible() ) {
+	//#else
+//@	public void render(BitsGraphics g, int changeX, int changeY ) {
+//@		if ( this.isBVisible() ) {
 	//#endif
 			super.render(g, changeX, changeY);
 		}

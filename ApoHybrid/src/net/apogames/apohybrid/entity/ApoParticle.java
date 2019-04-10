@@ -66,7 +66,7 @@ public class ApoParticle {
             this.vecY += 0.0007f;
             this.vecX *= 0.9995f;
 
-            if ((this.x < 0) || (this.x > ApoHybridConstants.GAME_WIDTH) || (this.y > 240 + ApoHybridPuzzleGame.changeY)) {
+            if ((this.x < 0) || (this.x > ApoHybridConstants.GAME_WIDTH) || (this.y > 240 + ApoHybridGame.changeY)) {
                 this.bVisible = false;
             }
         }

@@ -6,8 +6,8 @@ import java.util.Map;
 import net.apogames.apohybrid.game.ApoHybridPanel;
 
 //#if ClockGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.input.BitsKeyEvent;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //#elif MonoGameLogic
 import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
@@ -45,17 +45,17 @@ public abstract class ApoHybridModel {
 	public abstract void touchedButton(String function);
 
 	//#if DiceGameLogic || MonoGameLogic
-//@	public void onKeyDown(final int key) {
-//@	}
-//@
-//@	public void onKeyUp(final int key) {
-//@	}
-	//#elif ClockGameLogic
-	public void onKeyDown(final int key, final BitsKeyEvent event) {
+	public void onKeyDown(final int key) {
 	}
 
-	public void onKeyUp(final int key, final BitsKeyEvent event) {
+	public void onKeyUp(final int key) {
 	}
+	//#elif ClockGameLogic
+//@	public void onKeyDown(final int key, final BitsKeyEvent event) {
+//@	}
+//@
+//@	public void onKeyUp(final int key, final BitsKeyEvent event) {
+//@	}
 	//#endif
 
 	public void onBackButtonPressed() {

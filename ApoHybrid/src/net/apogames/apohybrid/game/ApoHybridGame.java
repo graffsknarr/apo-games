@@ -8,8 +8,8 @@ import net.apogames.apohybrid.level.ApoHybridLevel;
 //@import net.apogames.apohybrid.entity.ApoHybridEntityClock;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#elif SnakeGameLogic || DiceGameLogic
-import net.gliblybits.bitsengine.render.BitsGraphics;
-//#elif
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//#elif MonoGameLogic
 import java.util.ArrayList;
 
 import net.apogames.apohybrid.ApoHybridConstants;
@@ -25,468 +25,468 @@ import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //#endif
 
 //#if SnakeGameLogic || DiceGameLogic
-public class ApoHybridGame extends ApoHybridModel {
-
-	public static final String BACK = "back";
-
-	private boolean bEditor = false;
-	private boolean bUserlevel = false;
-	
-	private String levelString = "";
-
-	public static final byte changeY = 25;
-
-	public void onBackButtonPressed() {
-		if (this.bEditor) {
-			this.getGame().setEditor(false);
-		} else {
-			if (this.bUserlevel) {
-				this.getGame().setMenu();
-			} else {
-				this.getGame().setPuzzleChooser();
-			}
-		}
-	}
+//@public class ApoHybridGame extends ApoHybridModel {
+//@
+//@	public static final String BACK = "back";
+//@
+//@	private boolean bEditor = false;
+//@	private boolean bUserlevel = false;
+//@	
+//@	private String levelString = "";
+//@
+//@	public static final byte changeY = 25;
+//@
+//@	public void onBackButtonPressed() {
+//@		if (this.bEditor) {
+//@			this.getGame().setEditor(false);
+//@		} else {
+//@			if (this.bUserlevel) {
+//@				this.getGame().setMenu();
+//@			} else {
+//@				this.getGame().setPuzzleChooser();
+//@			}
+//@		}
+//@	}
 	//#endif
 	
 	
 	//#if DiceGameLogic
-
-
-	/**
-	 * p[0] == Maus losgelassen
-	 * p[1] == aktuelles Level
-	 * p[2] == how much dices
-	 * p[3] == Level geschafft Klick
-	 * p[4] == Maus X-Wert
-	 * p[5] == Maus Y-Wert
-	 * p[6] == aktuell gedr?ckter W?rfel x-Wert
-	 * p[7] == aktuell gedr?ckter W?rfel y-Wert
-	 * p[8] == difference gedr?ckter W?rfel x-Wert
-	 * p[9] == difference gedr?ckter W?rfel y-Wert
-	 * p[10] == cX /pressed and mouse X change
-	 * p[11] == cY / pressed and mouse Y change
-	 * p[12] == c / hoe much change
-	 */
-	private final int[] p = new int[13];
-	private boolean bBreak = false;
-	
-	
-	private byte[][] level = new byte[16][8];
-	
-
-	
-	private final String[] HELP = new String[] {
-		"The number on the dice shows the count",
-		"of possible moves. Move each dice to a",
-		"gray spot with no moves remaining.",
-		"A dice can push another dice"
-	};
-	
-	public ApoHybridGame(ApoHybridPanel game) {
-		super(game);
-	}
-
-	@Override
-	public void init() {		
-		this.getStringWidth().put(ApoHybridGame.BACK, (int)(ApoHybridMenu.font.getLength(ApoHybridGame.BACK)));
-		
-		String s = "ApoDice";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = "Congratulation";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
-		s = "Touch to start the next level";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = "Please try again";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
-		s = "restart";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = "Touch to restart the level";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = HELP[0];
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = HELP[1];
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = HELP[2];
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		s = HELP[3];
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-	}
-	
-	@Override
-	public void touchedPressed(int x, int y, int finger) {
-		p[2] = 1;
-		p[4] = x;
-		p[5] = y;
-	}
-
-	@Override
-	public void touchedReleased(int x, int y, int finger) {
-		p[2] = 0;
-		p[0] = 1;
-	}
-
-	@Override
-	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+//@
+//@
+//@	/*
+//@	 * p[0] == Maus losgelassen
+//@	 * p[1] == aktuelles Level
+//@	 * p[2] == how much dices
+//@	 * p[3] == Level geschafft Klick
+//@	 * p[4] == Maus X-Wert
+//@	 * p[5] == Maus Y-Wert
+//@	 * p[6] == aktuell gedr?ckter W?rfel x-Wert
+//@	 * p[7] == aktuell gedr?ckter W?rfel y-Wert
+//@	 * p[8] == difference gedr?ckter W?rfel x-Wert
+//@	 * p[9] == difference gedr?ckter W?rfel y-Wert
+//@	 * p[10] == cX /pressed and mouse X change
+//@	 * p[11] == cY / pressed and mouse Y change
+//@	 * p[12] == c / hoe much change
+//@	 */
+//@	private final int[] p = new int[13];
+//@	private boolean bBreak = false;
+//@	
+//@	
+//@	private byte[][] level = new byte[16][8];
+//@	
+//@
+//@	
+//@	private final String[] HELP = new String[] {
+//@		"The number on the dice shows the count",
+//@		"of possible moves. Move each dice to a",
+//@		"gray spot with no moves remaining.",
+//@		"A dice can push another dice"
+//@	};
+//@	
+//@	public ApoHybridGame(ApoHybridPanel game) {
+//@		super(game);
+//@	}
+//@
+//@	@Override
+//@	public void init() {		
+//@		this.getStringWidth().put(ApoHybridGame.BACK, (int)(ApoHybridMenu.font.getLength(ApoHybridGame.BACK)));
+//@		
+//@		String s = "ApoDice";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = "Congratulation";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
+//@		s = "Touch to start the next level";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = "Please try again";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.title_font.getLength(s));
+//@		s = "restart";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = "Touch to restart the level";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = HELP[0];
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = HELP[1];
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = HELP[2];
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		s = HELP[3];
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@	}
+//@	
+//@	@Override
+//@	public void touchedPressed(int x, int y, int finger) {
+//@		p[2] = 1;
+//@		p[4] = x;
+//@		p[5] = y;
+//@	}
+//@
+//@	@Override
+//@	public void touchedReleased(int x, int y, int finger) {
+//@		p[2] = 0;
+//@		p[0] = 1;
+//@	}
+//@
+//@	@Override
+//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
 		//#if Drag
-		p[4] = x;
-		p[5] = y;
-		
-		bBreak = false;
-		if (p[6] < 0) {
-			return;
-		}
-		p[10] = p[11] = p[12] = 0;
-		if (Math.abs(p[4] - (p[6] * 60 + p[8])) > Math.abs(p[5] - changeY - (p[7]  *60 + p[9]))) {
-			if (p[4] - (p[6] * 60 + p[8]) < 0) {
-				p[10] = -1;
-			} else {
-				p[10] = 1;
-			}
-		} else if (p[5] - changeY - (p[7] * 60 + p[9]) != 0) {
-			if (p[5] - changeY - (p[7] * 60 + p[9]) < 0) {
-				p[11] = -1;
-			} else {
-				p[11] = 1;
-			}
-		}
-		p[12] = p[10];
-		if (p[10] != 0) {
-			while ((p[6] + p[12] >= 0) && (p[6] + p[12] < 8) && (level[p[7] + 8][p[6] + p[12]] > 0)) {
-				p[12] += p[10];
-			}
-			if ((p[6] + p[12] < 0) || (p[6] + p[12] > 7)) {
-				bBreak = true;
-			}
-		}
-		if (p[11] != 0) {
-			p[12] = p[11];
-			while ((p[7] + p[12] >= 0) && (p[7] + p[12] < 8) && (level[p[7] + p[12] + 8][p[6]] > 0)) {
-				p[12] += p[11];
-			}
-			if ((p[7] + p[12] < 0) || (p[7] + p[12] > 7)) {
-				bBreak = true;
-			}
-		}
-	
+//@		p[4] = x;
+//@		p[5] = y;
+//@		
+//@		bBreak = false;
+//@		if (p[6] < 0) {
+//@			return;
+//@		}
+//@		p[10] = p[11] = p[12] = 0;
+//@		if (Math.abs(p[4] - (p[6] * 60 + p[8])) > Math.abs(p[5] - changeY - (p[7]  *60 + p[9]))) {
+//@			if (p[4] - (p[6] * 60 + p[8]) < 0) {
+//@				p[10] = -1;
+//@			} else {
+//@				p[10] = 1;
+//@			}
+//@		} else if (p[5] - changeY - (p[7] * 60 + p[9]) != 0) {
+//@			if (p[5] - changeY - (p[7] * 60 + p[9]) < 0) {
+//@				p[11] = -1;
+//@			} else {
+//@				p[11] = 1;
+//@			}
+//@		}
+//@		p[12] = p[10];
+//@		if (p[10] != 0) {
+//@			while ((p[6] + p[12] >= 0) && (p[6] + p[12] < 8) && (level[p[7] + 8][p[6] + p[12]] > 0)) {
+//@				p[12] += p[10];
+//@			}
+//@			if ((p[6] + p[12] < 0) || (p[6] + p[12] > 7)) {
+//@				bBreak = true;
+//@			}
+//@		}
+//@		if (p[11] != 0) {
+//@			p[12] = p[11];
+//@			while ((p[7] + p[12] >= 0) && (p[7] + p[12] < 8) && (level[p[7] + p[12] + 8][p[6]] > 0)) {
+//@				p[12] += p[11];
+//@			}
+//@			if ((p[7] + p[12] < 0) || (p[7] + p[12] > 7)) {
+//@				bBreak = true;
+//@			}
+//@		}
+//@	
 		//#endif
-}
-	
-	@Override
-	public void touchedButton(String function) {
-		if (function.equals(ApoHybridGame.BACK)) {
-			this.onBackButtonPressed();
-		}
-	}
-	
-	
-	public void loadLevel(int nextLevel, boolean bUserLevel, String levelString) {
-		this.bUserlevel = bUserLevel;
-		if (ApoHybridLevel.editorLevels == null) {
-			this.bUserlevel = false;
-		}
-		p[1] = nextLevel;
-		if (p[1] < 0) {
-			if (this.bUserlevel) {
-				p[1] = ApoHybridLevel.editorLevels.length - 1;
-			} else {
-				p[1] = this.getGame().getMaxCanChoosen();
-			}
-		}
-		if (this.bUserlevel) {
-			if (p[1] >= ApoHybridLevel.editorLevels.length) {
-				p[1] = 0;
-			}
-		} else if (p[1] >= this.getGame().getMaxCanChoosen() + 1) {
-			p[1] = 0;
-		}
-		this.bEditor = false;
-		String l = "";
-		if ((levelString != null) && (levelString.length() > 0)) {
-			l = levelString;
-			this.bEditor = true;
-		} else {
-			if (this.bUserlevel) {
-				l = ApoHybridLevel.editorLevels[p[1]];
-			} else {
-				l = ApoHybridLevel.getLevel(p[1]);
-			}
-		}
-		this.levelString = levelString;
-		
-		level = new byte[16][8];
-		for (int y = 0; y < 8; y += 1) {
-			for (int x = 0; x < level[y].length; x += 1) {
-				char c = l.charAt(y * 8 + x);
-				if ((c >= 48) && (c <= 57)) {
-					byte value = Byte.valueOf(l.substring(y * 8 + x, y * 8 + x + 1));
-					if (value <= 1) {
-						level[y][x] = value;
-					} else {
-						level[y + 8][x] = value;
-					}
-				} else {
-					byte value = (byte)((int)c - 95);
-					level[y][x] = 1;
-					level[y + 8][x] = value;
-				}
-			}
-		}
-		
-		p[3] = p[2] = p[0] = 0;
-		p[6] = -1;
-	}
-
-	@Override
-	public void think(int delta) {
-		if (level[0][0] == -1) {
-			this.loadLevel(p[1], this.bUserlevel, this.levelString);
-		} else {
-			if (p[0] > 0) {
-				if ((p[4] > 20) && (p[4] < 60) &&
-					(p[5] > 590) && (p[5] < 630) && (!this.bEditor)) {
-					p[1] -= 1;
-					level[0][0] = -1;
-				} else if ((p[4] > 320) && (p[4] < 360) &&
-						(p[5] > 590) && (p[5] < 630) && (!this.bEditor)) {
-					p[1] += 1;
-					level[0][0] = -1;
-				} else if ((p[4] > 150) && (p[4] < 230) &&
-						(p[5] > 590) && (p[5] < 630)) {
-					level[0][0] = -1;
-				} else if (p[3] > 0) {
-					level[0][0] = -1;
-					if (p[3] == 1) {
-						if (this.bEditor) {
-							this.getGame().setEditor(true);
-						} else {
-							p[1] += 1;
-						}
-					}
-				} else if (p[6] >= 0) {
-					if (((int)(p[4])/60 != p[6]) || ((int)(p[5] - changeY)/60 != p[7])) {
-						
-						if (!bBreak) {
-							level[p[7] + 8][p[6]] -= 1;
-							if (p[10] < 0) {
-								for (int i = p[6] + p[12]; i <= p[6]; i++) {
-									if (i + 1 < 8) {
-										level[p[7] + 8][i] = level[p[7] + 8][i + 1];
-									} else {
-										level[p[7] + 8][i] = 0;
-									}
-								}
-							} else if (p[10] > 0) {
-								for (int i = p[6] + p[12] - 1; i >= p[6]; i--) {
-									level[p[7] + 8][i + 1] = level[p[7] + 8][i];
-								}
-							}
-							if (p[11] < 0) {
-								for (int i = p[7] + p[12]; i <= p[7]; i++) {
-									if (i + 1 < 8) {
-										level[i + 8][p[6]] = level[i + 8 + 1][p[6]];
-									} else {
-										level[i + 8][p[6]] = 0;
-									}
-								}
-							} else if (p[11] > 0) {
-								for (int i = p[7] + p[12] - 1; i >= p[7]; i--) {
-									level[i + 1 + 8][p[6]] = level[i + 8][p[6]];
-								}
-							}
-							level[p[7] + 8][p[6]] = 0;
-						}
-						
-						// is level solved?
-						boolean bWin = true;
-						boolean bLoose = true;
-						for (int y = 0; y < 8; y += 1) {
-							for (int x = 0; x < level[y].length; x += 1) {
-								if ((level[y][x] == 1) && (level[y+8][x] != 2)) {
-									bWin = false;
-								}
-								if (level[y+8][x] > 2) {
-									bLoose = false;
-								}
-							}
-						}
-						if (bWin) {
-							p[3] = 1;
-							if ((!this.bUserlevel) && (!this.bEditor)) {
-								this.getGame().solvedLevel(p[1] + 1);
-							}
-						} else if (bLoose) {
-							p[3] = 2;
-						}
-					}
-					
-					p[6] = -1;
-				}
-			} else if (p[2] > 0) {
-				if (p[6] < 0) {
-					int x = p[4] / 60;
-					int y = (p[5] - changeY) / 60;
-					if ((x >= 0) && (y >= 0) && (x < 8) && (y < 8) && (level[y+8][x] > 2)) {
-						p[6] = x;
-						p[7] = y;
-						p[2] = 0;
-						p[8] = p[4] - p[6] * 60;
-						p[9] = p[5] - changeY - p[7] * 60;
-					}
-				}
-			}
-		}
-		
-		p[0] = 0;
-	}
-
-	@Override
-	public void render(BitsGraphics g) {
-		
-		g.setColor(128, 128, 128, 255);
-		g.drawFilledRect(0,0,480,changeY);
-		g.drawFilledRect(0,480 + changeY,480,160 - changeY);
-		
-		g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
-		g.drawRect(0,0,480,changeY);
-		g.drawRect(0,480 + changeY,480,160 - changeY);
-
-		String s = "ApoDice";
-		this.getGame().drawString(g, s, 240, - 4, ApoHybridMenu.game_font);
-		
-		if (!this.bEditor) {
-			if (this.bUserlevel) {
-				s = "Level "+(p[1] + 1)+" / "+(ApoHybridLevel.editorLevels.length);
-			} else {
-				s = "Level "+(p[1] + 1)+" / "+(this.getGame().getMaxCanChoosen() + 1);
-			}
-		} else {
-			s = "Editorlevel";
-		}
-		this.getGame().drawString(g, s, 5, - 4, ApoHybridMenu.game_font);
-
-		for (int y = 0; y < 8; y += 1) {
-			for (int x = 0; x < level[y].length; x += 1) {
-				if (level[y][x] == 1) {
-					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-					g.drawFilledRoundRect(x * 60 + 1, changeY + y * 60 + 1, 58, 58, 6, 10);
-				}
-				if (level[y+8][x] > 0) {
-					g.setColor(255f/255f, 255f/255f, 255f/255f, 1.0f);
-					g.drawFilledRoundRect(x * 60 + 5, changeY + y * 60 + 5, 50, 50, 6, 10);
-					if ((p[6] == x) && (p[7] == y)) {
-						g.setColor(255f/255f, 0f/255f, 0f/255f, 1.0f);
-						g.drawRoundRect(x * 60 + 5, changeY + y * 60 + 5, 50, 50, 6, 6);
-					}
-					g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
-					if ((level[y+8][x] == 3) || (level[y+8][x] == 5) || (level[y+8][x] == 7)) {
-						g.drawFilledCircle(x * 60 + 30, changeY + y * 60 + 30, 6, 40);
-					}
-					if ((level[y+8][x] == 4) || (level[y+8][x] == 5) || (level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
-						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 14, 6, 40);
-						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 46, 6, 40);
-					}
-					if ((level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
-						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 14, 6, 40);
-						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 46, 6, 40);
-					}
-					if (level[y+8][x] == 8) {
-						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 30, 6, 40);
-						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 30, 6, 40);
-					}
-				}
-			}
-		}
-		
-		if (p[6] >= 0) {
-			g.setColor(128, 128, 128, 128);
-			if (((int)(p[4])/60 != p[6]) || ((int)(p[5] - changeY)/60 != p[7])) {
-				if (!bBreak) {
-					if (p[10] < 0) {
-						for (int i = p[6] + p[12]; i < p[6]; i++) {
-							g.drawFilledRoundRect((i) * 60 + 8, changeY + p[7] * 60 + 8, 44, 44, 6, 10);
-						}
-					} else if (p[10] > 0) {
-						for (int i = p[6] + p[12]; i > p[6]; i--) {
-							g.drawFilledRoundRect((i) * 60 + 8, changeY + p[7] * 60 + 8, 44, 44, 6, 10);
-						}
-					}
-					if (p[11] < 0) {
-						for (int i = p[7] + p[12]; i < p[7]; i++) {
-							g.drawFilledRoundRect((p[6]) * 60 + 8, changeY + (i) * 60 + 8, 44, 44, 6, 10);
-						}
-					} else if (p[11] > 0) {
-						for (int i = p[7] + p[12]; i > p[7]; i--) {
-							g.drawFilledRoundRect((p[6]) * 60 + 8, changeY + (i) * 60 + 8, 44, 44, 6, 10);
-						}
-					}
-				}
-			}
-		}
-		
-		
-		if (p[3] > 0) {
-			String s2 = "";
-			if (p[3] == 1) {
-				s2 = "Congratulation";					
-				s = "Touch to start the next level";
-			} else if (p[3] > 1) {
-				s2 = "Please try again";					
-				s = "Touch to restart the level";
-			}
-			if (p[3] > 0) {
-				float w = ApoHybridMenu.title_font.getLength(s2);
-				g.setColor(128, 128, 128, 255);
-				g.drawFilledRect(240 - w/2 - 10, 277, w + 20, 46);
-				g.setColor(0, 0, 0, 255);
-				g.drawRect(240 - w/2 - 10, 277, w + 20, 46);
-				
-				this.getGame().drawString(g, s2, 240, 273, ApoHybridMenu.title_font);
-				
-				this.getGame().drawString(g, s, 190, 595, ApoHybridMenu.game_font);
-			}
-		} else {
-			if ((p[1] == 0) || (this.bUserlevel)) {
-				this.getGame().drawString(g, HELP[0], 240, 510, ApoHybridMenu.game_font);
-				this.getGame().drawString(g, HELP[1], 240, 530, ApoHybridMenu.game_font);
-				this.getGame().drawString(g, HELP[2], 240, 550, ApoHybridMenu.game_font);
-			} else if ((p[1] == 1) && (!this.bUserlevel)) {
-				this.getGame().drawString(g, HELP[3], 240, 530, ApoHybridMenu.game_font);
-			}
-			
-			g.setColor(160, 160, 160, 255);
-			g.drawFilledRoundRect(150, 590, 80, 40, 6, 10);
-			if (!this.bEditor) {
-				g.drawFilledRoundRect(20, 590, 40, 40, 6, 10);
-				g.drawFilledRoundRect(320, 590, 40, 40, 6, 10);
-			}
-			g.setLineSize(3.0f);
-			g.setColor(0, 0, 0, 255);
-			g.drawRoundRect(150, 590, 80, 40, 6, 10);
-			if (!this.bEditor) {
-				g.drawRoundRect(20, 590, 40, 40, 6, 10);
-				g.drawRoundRect(320, 590, 40, 40, 6, 10);
-			}
-
-			if (!this.bEditor) {
-				g.drawLine(30, 610, 50, 600);
-				g.drawLine(30, 610, 50, 620);
-
-				g.drawLine(350, 610, 330, 600);
-				g.drawLine(350, 610, 330, 620);
-			}
-			g.setLineSize(1.0f);
-			
-			this.getGame().drawString(g, "restart", 190, 590, ApoHybridMenu.game_font);
-		}
-		
-		this.getGame().renderButtons(g);
-	}
-
-
+//@}
+//@	
+//@	@Override
+//@	public void touchedButton(String function) {
+//@		if (function.equals(ApoHybridGame.BACK)) {
+//@			this.onBackButtonPressed();
+//@		}
+//@	}
+//@	
+//@	
+//@	public void loadLevel(int nextLevel, boolean bUserLevel, String levelString) {
+//@		this.bUserlevel = bUserLevel;
+//@		if (ApoHybridLevel.editorLevels == null) {
+//@			this.bUserlevel = false;
+//@		}
+//@		p[1] = nextLevel;
+//@		if (p[1] < 0) {
+//@			if (this.bUserlevel) {
+//@				p[1] = ApoHybridLevel.editorLevels.length - 1;
+//@			} else {
+//@				p[1] = this.getGame().getMaxCanChoosen();
+//@			}
+//@		}
+//@		if (this.bUserlevel) {
+//@			if (p[1] >= ApoHybridLevel.editorLevels.length) {
+//@				p[1] = 0;
+//@			}
+//@		} else if (p[1] >= this.getGame().getMaxCanChoosen() + 1) {
+//@			p[1] = 0;
+//@		}
+//@		this.bEditor = false;
+//@		String l = "";
+//@		if ((levelString != null) && (levelString.length() > 0)) {
+//@			l = levelString;
+//@			this.bEditor = true;
+//@		} else {
+//@			if (this.bUserlevel) {
+//@				l = ApoHybridLevel.editorLevels[p[1]];
+//@			} else {
+//@				l = ApoHybridLevel.getLevel(p[1]);
+//@			}
+//@		}
+//@		this.levelString = levelString;
+//@		
+//@		level = new byte[16][8];
+//@		for (int y = 0; y < 8; y += 1) {
+//@			for (int x = 0; x < level[y].length; x += 1) {
+//@				char c = l.charAt(y * 8 + x);
+//@				if ((c >= 48) && (c <= 57)) {
+//@					byte value = Byte.valueOf(l.substring(y * 8 + x, y * 8 + x + 1));
+//@					if (value <= 1) {
+//@						level[y][x] = value;
+//@					} else {
+//@						level[y + 8][x] = value;
+//@					}
+//@				} else {
+//@					byte value = (byte)((int)c - 95);
+//@					level[y][x] = 1;
+//@					level[y + 8][x] = value;
+//@				}
+//@			}
+//@		}
+//@		
+//@		p[3] = p[2] = p[0] = 0;
+//@		p[6] = -1;
+//@	}
+//@
+//@	@Override
+//@	public void think(int delta) {
+//@		if (level[0][0] == -1) {
+//@			this.loadLevel(p[1], this.bUserlevel, this.levelString);
+//@		} else {
+//@			if (p[0] > 0) {
+//@				if ((p[4] > 20) && (p[4] < 60) &&
+//@					(p[5] > 590) && (p[5] < 630) && (!this.bEditor)) {
+//@					p[1] -= 1;
+//@					level[0][0] = -1;
+//@				} else if ((p[4] > 320) && (p[4] < 360) &&
+//@						(p[5] > 590) && (p[5] < 630) && (!this.bEditor)) {
+//@					p[1] += 1;
+//@					level[0][0] = -1;
+//@				} else if ((p[4] > 150) && (p[4] < 230) &&
+//@						(p[5] > 590) && (p[5] < 630)) {
+//@					level[0][0] = -1;
+//@				} else if (p[3] > 0) {
+//@					level[0][0] = -1;
+//@					if (p[3] == 1) {
+//@						if (this.bEditor) {
+//@							this.getGame().setEditor(true);
+//@						} else {
+//@							p[1] += 1;
+//@						}
+//@					}
+//@				} else if (p[6] >= 0) {
+//@					if (((int)(p[4])/60 != p[6]) || ((int)(p[5] - changeY)/60 != p[7])) {
+//@						
+//@						if (!bBreak) {
+//@							level[p[7] + 8][p[6]] -= 1;
+//@							if (p[10] < 0) {
+//@								for (int i = p[6] + p[12]; i <= p[6]; i++) {
+//@									if (i + 1 < 8) {
+//@										level[p[7] + 8][i] = level[p[7] + 8][i + 1];
+//@									} else {
+//@										level[p[7] + 8][i] = 0;
+//@									}
+//@								}
+//@							} else if (p[10] > 0) {
+//@								for (int i = p[6] + p[12] - 1; i >= p[6]; i--) {
+//@									level[p[7] + 8][i + 1] = level[p[7] + 8][i];
+//@								}
+//@							}
+//@							if (p[11] < 0) {
+//@								for (int i = p[7] + p[12]; i <= p[7]; i++) {
+//@									if (i + 1 < 8) {
+//@										level[i + 8][p[6]] = level[i + 8 + 1][p[6]];
+//@									} else {
+//@										level[i + 8][p[6]] = 0;
+//@									}
+//@								}
+//@							} else if (p[11] > 0) {
+//@								for (int i = p[7] + p[12] - 1; i >= p[7]; i--) {
+//@									level[i + 1 + 8][p[6]] = level[i + 8][p[6]];
+//@								}
+//@							}
+//@							level[p[7] + 8][p[6]] = 0;
+//@						}
+//@						
+//@						// is level solved?
+//@						boolean bWin = true;
+//@						boolean bLoose = true;
+//@						for (int y = 0; y < 8; y += 1) {
+//@							for (int x = 0; x < level[y].length; x += 1) {
+//@								if ((level[y][x] == 1) && (level[y+8][x] != 2)) {
+//@									bWin = false;
+//@								}
+//@								if (level[y+8][x] > 2) {
+//@									bLoose = false;
+//@								}
+//@							}
+//@						}
+//@						if (bWin) {
+//@							p[3] = 1;
+//@							if ((!this.bUserlevel) && (!this.bEditor)) {
+//@								this.getGame().solvedLevel(p[1] + 1);
+//@							}
+//@						} else if (bLoose) {
+//@							p[3] = 2;
+//@						}
+//@					}
+//@					
+//@					p[6] = -1;
+//@				}
+//@			} else if (p[2] > 0) {
+//@				if (p[6] < 0) {
+//@					int x = p[4] / 60;
+//@					int y = (p[5] - changeY) / 60;
+//@					if ((x >= 0) && (y >= 0) && (x < 8) && (y < 8) && (level[y+8][x] > 2)) {
+//@						p[6] = x;
+//@						p[7] = y;
+//@						p[2] = 0;
+//@						p[8] = p[4] - p[6] * 60;
+//@						p[9] = p[5] - changeY - p[7] * 60;
+//@					}
+//@				}
+//@			}
+//@		}
+//@		
+//@		p[0] = 0;
+//@	}
+//@
+//@	@Override
+//@	public void render(BitsGraphics g) {
+//@		
+//@		g.setColor(128, 128, 128, 255);
+//@		g.drawFilledRect(0,0,480,changeY);
+//@		g.drawFilledRect(0,480 + changeY,480,160 - changeY);
+//@		
+//@		g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
+//@		g.drawRect(0,0,480,changeY);
+//@		g.drawRect(0,480 + changeY,480,160 - changeY);
+//@
+//@		String s = "ApoDice";
+//@		this.getGame().drawString(g, s, 240, - 4, ApoHybridMenu.game_font);
+//@		
+//@		if (!this.bEditor) {
+//@			if (this.bUserlevel) {
+//@				s = "Level "+(p[1] + 1)+" / "+(ApoHybridLevel.editorLevels.length);
+//@			} else {
+//@				s = "Level "+(p[1] + 1)+" / "+(this.getGame().getMaxCanChoosen() + 1);
+//@			}
+//@		} else {
+//@			s = "Editorlevel";
+//@		}
+//@		this.getGame().drawString(g, s, 5, - 4, ApoHybridMenu.game_font);
+//@
+//@		for (int y = 0; y < 8; y += 1) {
+//@			for (int x = 0; x < level[y].length; x += 1) {
+//@				if (level[y][x] == 1) {
+//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+//@					g.drawFilledRoundRect(x * 60 + 1, changeY + y * 60 + 1, 58, 58, 6, 10);
+//@				}
+//@				if (level[y+8][x] > 0) {
+//@					g.setColor(255f/255f, 255f/255f, 255f/255f, 1.0f);
+//@					g.drawFilledRoundRect(x * 60 + 5, changeY + y * 60 + 5, 50, 50, 6, 10);
+//@					if ((p[6] == x) && (p[7] == y)) {
+//@						g.setColor(255f/255f, 0f/255f, 0f/255f, 1.0f);
+//@						g.drawRoundRect(x * 60 + 5, changeY + y * 60 + 5, 50, 50, 6, 6);
+//@					}
+//@					g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
+//@					if ((level[y+8][x] == 3) || (level[y+8][x] == 5) || (level[y+8][x] == 7)) {
+//@						g.drawFilledCircle(x * 60 + 30, changeY + y * 60 + 30, 6, 40);
+//@					}
+//@					if ((level[y+8][x] == 4) || (level[y+8][x] == 5) || (level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
+//@						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 14, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 46, 6, 40);
+//@					}
+//@					if ((level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
+//@						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 14, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 46, 6, 40);
+//@					}
+//@					if (level[y+8][x] == 8) {
+//@						g.drawFilledCircle(x * 60 + 46, changeY + y * 60 + 30, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 14, changeY + y * 60 + 30, 6, 40);
+//@					}
+//@				}
+//@			}
+//@		}
+//@		
+//@		if (p[6] >= 0) {
+//@			g.setColor(128, 128, 128, 128);
+//@			if (((int)(p[4])/60 != p[6]) || ((int)(p[5] - changeY)/60 != p[7])) {
+//@				if (!bBreak) {
+//@					if (p[10] < 0) {
+//@						for (int i = p[6] + p[12]; i < p[6]; i++) {
+//@							g.drawFilledRoundRect((i) * 60 + 8, changeY + p[7] * 60 + 8, 44, 44, 6, 10);
+//@						}
+//@					} else if (p[10] > 0) {
+//@						for (int i = p[6] + p[12]; i > p[6]; i--) {
+//@							g.drawFilledRoundRect((i) * 60 + 8, changeY + p[7] * 60 + 8, 44, 44, 6, 10);
+//@						}
+//@					}
+//@					if (p[11] < 0) {
+//@						for (int i = p[7] + p[12]; i < p[7]; i++) {
+//@							g.drawFilledRoundRect((p[6]) * 60 + 8, changeY + (i) * 60 + 8, 44, 44, 6, 10);
+//@						}
+//@					} else if (p[11] > 0) {
+//@						for (int i = p[7] + p[12]; i > p[7]; i--) {
+//@							g.drawFilledRoundRect((p[6]) * 60 + 8, changeY + (i) * 60 + 8, 44, 44, 6, 10);
+//@						}
+//@					}
+//@				}
+//@			}
+//@		}
+//@		
+//@		
+//@		if (p[3] > 0) {
+//@			String s2 = "";
+//@			if (p[3] == 1) {
+//@				s2 = "Congratulation";					
+//@				s = "Touch to start the next level";
+//@			} else if (p[3] > 1) {
+//@				s2 = "Please try again";					
+//@				s = "Touch to restart the level";
+//@			}
+//@			if (p[3] > 0) {
+//@				float w = ApoHybridMenu.title_font.getLength(s2);
+//@				g.setColor(128, 128, 128, 255);
+//@				g.drawFilledRect(240 - w/2 - 10, 277, w + 20, 46);
+//@				g.setColor(0, 0, 0, 255);
+//@				g.drawRect(240 - w/2 - 10, 277, w + 20, 46);
+//@				
+//@				this.getGame().drawString(g, s2, 240, 273, ApoHybridMenu.title_font);
+//@				
+//@				this.getGame().drawString(g, s, 190, 595, ApoHybridMenu.game_font);
+//@			}
+//@		} else {
+//@			if ((p[1] == 0) || (this.bUserlevel)) {
+//@				this.getGame().drawString(g, HELP[0], 240, 510, ApoHybridMenu.game_font);
+//@				this.getGame().drawString(g, HELP[1], 240, 530, ApoHybridMenu.game_font);
+//@				this.getGame().drawString(g, HELP[2], 240, 550, ApoHybridMenu.game_font);
+//@			} else if ((p[1] == 1) && (!this.bUserlevel)) {
+//@				this.getGame().drawString(g, HELP[3], 240, 530, ApoHybridMenu.game_font);
+//@			}
+//@			
+//@			g.setColor(160, 160, 160, 255);
+//@			g.drawFilledRoundRect(150, 590, 80, 40, 6, 10);
+//@			if (!this.bEditor) {
+//@				g.drawFilledRoundRect(20, 590, 40, 40, 6, 10);
+//@				g.drawFilledRoundRect(320, 590, 40, 40, 6, 10);
+//@			}
+//@			g.setLineSize(3.0f);
+//@			g.setColor(0, 0, 0, 255);
+//@			g.drawRoundRect(150, 590, 80, 40, 6, 10);
+//@			if (!this.bEditor) {
+//@				g.drawRoundRect(20, 590, 40, 40, 6, 10);
+//@				g.drawRoundRect(320, 590, 40, 40, 6, 10);
+//@			}
+//@
+//@			if (!this.bEditor) {
+//@				g.drawLine(30, 610, 50, 600);
+//@				g.drawLine(30, 610, 50, 620);
+//@
+//@				g.drawLine(350, 610, 330, 600);
+//@				g.drawLine(350, 610, 330, 620);
+//@			}
+//@			g.setLineSize(1.0f);
+//@			
+//@			this.getGame().drawString(g, "restart", 190, 590, ApoHybridMenu.game_font);
+//@		}
+//@		
+//@		this.getGame().renderButtons(g);
+//@	}
+//@
+//@
 	//#elif SnakeGameLogic
 //@	
-//@	/**
+//@	/*
 //@	 * p[0] == aktuelles Level
 //@	 * p[1] == aktuelle Moveanzahl
 //@	 * p[2] == level geloest
@@ -1387,7 +1387,7 @@ public class ApoHybridGame extends ApoHybridModel {
 //@
 //@	private ApoHybridEntityClock[] clocks = new ApoHybridEntityClock[1];
 //@
-//@	/**
+//@	/*
 //@	 * 0 = X-Wert,
 //@	 * 1 = y-Wert,
 //@	 * 2 = Angle,
@@ -1395,7 +1395,7 @@ public class ApoHybridGame extends ApoHybridModel {
 //@	 */
 //@	private ApoHybridEntityBall ball;
 //@
-//@	/**
+//@	/*
 //@	 * this.curLevel == aktuelles Level,
 //@	 * this.winInt == Level geschafft Klick,
 //@	 * this.touchX == Maus X-Wert,
@@ -1403,7 +1403,7 @@ public class ApoHybridGame extends ApoHybridModel {
 //@	 */
 //@	private int curLevel, touchX, touchY, winInt;
 //@
-//@	/**
+//@	/*
 //@	 * bPressed == losgelassen,
 //@	 * bStarted == Spiel gestartet
 //@	 */
@@ -1767,19 +1767,18 @@ public class ApoHybridGame extends ApoHybridModel {
 //@
 //@
 //#elif MonoGameLogic
-
 public class ApoHybridGame extends ApoHybridModel {
 
 	public static final String BACK = "back";
 	public static final String RETRY = "retry";
-	
+
 	public static final int SPEECH_MAX_TIME = 4000;
 	public static final int SPEECH_NOMOVE_TIME = 10000;
 	public static final int BEAMER_CHANGE_TIME = 400;
 	public static final int MIRROR_CHANGE_TIME = 200;
 	public static final int FRAME_TIME = 400;
 	public static final int FRAME_GRAVITY_TIME = 1000;
-	
+
 	/**
 	 * p[0] == aktuelles Level
 	 * p[1] == mirrorcount horizontal
@@ -1793,37 +1792,37 @@ public class ApoHybridGame extends ApoHybridModel {
 	 * p[9] == gravitychangecount
 	 */
 	private final int[] p = new int[10];
-	
+
 	private boolean bEditor = false;
 	private boolean bUserlevel = false;
-	
+
 	private String levelString = "";
-	
+
 	private int[][] level = new int[1][1];
 	private int[][] falla = new int[1][1];
 	private int[][] boxes = new int[1][1];
-	
+
 	public static final int changeY = 40;
-	
+
 	private int add, x, y, i, playerX, playerY, addLeft, fall, addX, addY, mirrorX, mirrorY, withBox, playerStartX, playerStartY;
-	
+
 	private BitsGLImage iMirror, iBackground;
-	
+
 	private int gravity = 1;
-	
+
 	private ArrayList<ApoParticle> particles;
-	
+
 	private int frameGoal, frameTimeGoal, mirrorChange, speechShowTime, noMoveTime, noMoveTimeNext, beamerFrame, beamerFrameTime;
 	private float frameGravity, frameGravityAdd, frameGravityTime;
-	
+
 	private ApoHybridSpeech speech;
-	
+
 	private ArrayList<int[][]> backsteps;
-	
+
 	private int backgroundWait = 0;
-	
+
 	private boolean bCanExplodeSound;
-	
+
 	public ApoHybridGame(ApoHybridPanel game) {
 		super(game);
 	}
@@ -1835,7 +1834,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			this.frameGoal = 0;
 			this.frameGravity = 0;
 			this.frameGravityAdd = 1;
-			this.frameGravityTime= 0; 
+			this.frameGravityTime= 0;
 		}
 		if (this.particles == null) {
 			this.particles = new ArrayList<ApoParticle>();
@@ -1852,7 +1851,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			this.speech.setVisible(false);
 		}
 	}
-	
+
 	@Override
 	public void touchedPressed(int x, int y, int finger) {
 		p[5] = x;
@@ -1878,7 +1877,7 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON);
 	}
-	
+
 	public void onKeyDown(final int key) {
 		if (key == BitsKeyEvent.KEY_LEFT) {
 			p[5] = 25;
@@ -1927,20 +1926,20 @@ public class ApoHybridGame extends ApoHybridModel {
 	}
 
 	public void onKeyUp(final int key) {
-		if ((key == BitsKeyEvent.KEY_LEFT) || (key == BitsKeyEvent.KEY_RIGHT) || 
-			(key == BitsKeyEvent.KEY_UP) || (key == BitsKeyEvent.KEY_DOWN) || 
-			(key == BitsKeyEvent.KEY_SPACE) || (key == BitsKeyEvent.KEY_R) || 
-			(key == BitsKeyEvent.KEY_P) || (key == BitsKeyEvent.KEY_N) || 
-			(key == BitsKeyEvent.KEY_ESCAPE) || (key == BitsKeyEvent.KEY_SHIFT_RIGHT) ||
-			(key == BitsKeyEvent.KEY_CTRL_RIGHT)) {
+		if ((key == BitsKeyEvent.KEY_LEFT) || (key == BitsKeyEvent.KEY_RIGHT) ||
+				(key == BitsKeyEvent.KEY_UP) || (key == BitsKeyEvent.KEY_DOWN) ||
+				(key == BitsKeyEvent.KEY_SPACE) || (key == BitsKeyEvent.KEY_R) ||
+				(key == BitsKeyEvent.KEY_P) || (key == BitsKeyEvent.KEY_N) ||
+				(key == BitsKeyEvent.KEY_ESCAPE) || (key == BitsKeyEvent.KEY_SHIFT_RIGHT) ||
+				(key == BitsKeyEvent.KEY_CTRL_RIGHT)) {
 			if ((key == BitsKeyEvent.KEY_LEFT) || (key == BitsKeyEvent.KEY_RIGHT)) {
-					this.mirrorChange = ApoHybridGame.MIRROR_CHANGE_TIME + 1;
+				this.mirrorChange = ApoHybridGame.MIRROR_CHANGE_TIME + 1;
 			}
 			p[5] = -1;
 			p[6] = -1;
 		}
 	}
-	
+
 	public void onBackButtonPressed() {
 		if (this.bEditor) {
 			this.getGame().setEditor(false);
@@ -1952,7 +1951,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	public void loadLevel(final int nextLevel, final boolean bUserLevel, final String levelString) {
 		this.bUserlevel = bUserLevel;
 		if (ApoHybridLevel.editorLevels == null) {
@@ -1986,7 +1985,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 		this.levelString = levelString;
-		
+
 		boxes = new int[15][30];
 		falla = new int[15][30];
 		level = new int[15][30];
@@ -2038,18 +2037,18 @@ public class ApoHybridGame extends ApoHybridModel {
 		this.makeBackground();
 		this.saveNextBackstep();
 	}
-	
+
 	private void setPreviousStep() {
 		if (this.backsteps.size() > 0) {
 			int[][] backLevel = this.backsteps.get(this.backsteps.size() - 1);
-			
+
 			int[][] previousLevel = new int[backLevel.length][backLevel[0].length];
 			for (int y = 0; y < backLevel.length; y++) {
 				for (int x = 0; x < backLevel[0].length; x++) {
 					previousLevel[y][x] = backLevel[y][x];
 				}
 			}
-		
+
 			String val = String.valueOf(previousLevel[0][0]);
 			this.p[1] = Integer.valueOf(val.substring(1, 2));
 			this.p[8] = Integer.valueOf(val.substring(2, 3));
@@ -2058,10 +2057,10 @@ public class ApoHybridGame extends ApoHybridModel {
 			if (grav == 2) {
 				grav = -1;
 			}
-			
+
 			this.gravity = grav;
 			previousLevel[0][0] = Integer.valueOf(val.substring(5));
-			
+
 			for (int y = 0; y < this.level.length; y++) {
 				for (int x = 0; x < this.level[0].length; x++) {
 					if (previousLevel[y][x] < 50) {
@@ -2087,7 +2086,7 @@ public class ApoHybridGame extends ApoHybridModel {
 					this.boxes[y][x] = previousLevel[y + this.boxes.length][x];
 				}
 			}
-			
+
 			if (this.backsteps.size() > 1) {
 				this.backsteps.remove(this.backsteps.size() - 1);
 			}
@@ -2095,7 +2094,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			this.makeBackground();
 		}
 	}
-	
+
 	private void saveNextBackstep() {
 		int grav = 1;
 		if (this.gravity < 0) {
@@ -2122,21 +2121,21 @@ public class ApoHybridGame extends ApoHybridModel {
 			value += 5;
 		}
 		backLevel[this.playerY][this.playerX] = value;
-		
+
 		this.hideSpeech();
 		this.backsteps.add(backLevel);
 	}
-	
+
 	private void setNoMoveTimeNext() {
 		this.noMoveTime = 0;
 		this.noMoveTimeNext = ApoHybridGame.SPEECH_NOMOVE_TIME + (int)(Math.random() * 10000);
 	}
-	
+
 	private void makeBackground() {
- 		ApoHybridGame.this.loadAndMakeBackground();
- 		backgroundWait = 200;
+		ApoHybridGame.this.loadAndMakeBackground();
+		backgroundWait = 200;
 	}
-	
+
 	public void onResume() {
 		if (this.iBackground == null) {
 			this.makeBackground();
@@ -2145,7 +2144,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	private void loadAndMakeBackground() {
 		int scale = 1;
 		boolean bScale = false;
@@ -2155,13 +2154,13 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		BitsBitmap bitmap = new BitsBitmap(512 * scale, 256 * scale, BitsBitmap.TYPE_ARGB);
 		BitsGraphics g = bitmap.createGraphics();
-		
+
 		g.setColor(0f,0f,0f, 1f);
 		for (int y = 0; y < level.length; y++) {
 			for (int x = 0; x < level[0].length; x++) {
 				int addPX = x * 16 * scale;
 				int addPY = y * 16 * scale;
-				
+
 				if ((level[y][x] != 0) && (level[y][x] != 4) && (level[y][x] != 3)) {
 					if (level[y][x] == 1) {
 						g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
@@ -2200,24 +2199,24 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 		g.release();
-		
+
 		//release old image
 		if (this.iBackground != null) {
 			BitsGLFactory.getInstance().markForReleasing(this.iBackground);
 			BitsGLFactory.getInstance().releaseAllMarked();
 		}
-		
+
 		//get new image
 		this.iBackground = BitsGLFactory.getInstance().getImage(bitmap, BitsGLImage.FILTER_NEAREST, true);
 //		BitsGLFactory.getInstance().markForLoading(this.iBackground);
 		BitsGLFactory.getInstance().loadAllMarked();
 	}
-	
+
 	private void makeMirrrorImage() {
 		int width = this.level[0].length * 16;
 		BitsBitmap bitmap = new BitsBitmap(512, 256, BitsBitmap.TYPE_ARGB);
 		BitsGraphics g = bitmap.createGraphics();
-		
+
 		g.setColor(1f,1f,1f, 1f);
 		for (y = 0; y < level.length; y++) {
 			for (x = 0; x < level[0].length; x++) {
@@ -2228,7 +2227,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				if ((y == playerY) && (x == playerX)) {
 					ApoHybridGame.renderPlayer(g, addPX, addPY, this.add, this.gravity, this.withBox);
 				}
-				
+
 				if (level[y][x] != 0) {
 					g.setColor(ApoHybridConstants.DARK_BRIGHT[0], ApoHybridConstants.DARK_BRIGHT[1], ApoHybridConstants.DARK_BRIGHT[2]);
 					if ((level[y][x] == 4) || (level[y][x] == 5) || (level[y][x] == 8)) {
@@ -2254,16 +2253,16 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 		g.release();
-		
+
 		//release old image
 		this.releaseImage();
-		
+
 		//get new image
 		this.iMirror = BitsGLFactory.getInstance().getImage(bitmap, BitsGLImage.FILTER_NEAREST, true);
 //		BitsGLFactory.getInstance().markForLoading(this.iMirror);
 		BitsGLFactory.getInstance().loadAllMarked();
 	}
-	
+
 	private void addParticle(int x, int y) {
 		this.particles.add(new ApoParticle(x, y, (float)(-0.05f + Math.random() * 0.03f), -0.05f));
 		this.particles.add(new ApoParticle(x, y, (float)(-0.05f + Math.random() * 0.03f), -0.03f));
@@ -2282,7 +2281,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			BitsGLFactory.getInstance().releaseAllMarked();
 		}
 	}
-	
+
 	@Override
 	public void think(int delta) {
 		this.bCanExplodeSound = true;
@@ -2294,16 +2293,16 @@ public class ApoHybridGame extends ApoHybridModel {
 				this.beamerFrame = 0;
 			}
 		}
-		
+
 		if (this.speech == null) {
 			this.speech = new ApoHybridSpeech(this.getGame(), 0, 0, false, true, "");
 			this.speech.setVisible(false);
 		}
-		
+
 		if (this.backgroundWait > 0) {
 			this.backgroundWait -= delta;
 		}
-		
+
 		if (this.p[2] == 0) {
 			this.noMoveTime += delta;
 			if (noMoveTime >= this.noMoveTimeNext) {
@@ -2330,7 +2329,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				this.frameGravityTime = FRAME_GRAVITY_TIME;
 			}
 		}
-		
+
 		this.frameTimeGoal += delta;
 		if (this.frameTimeGoal > ApoHybridGame.FRAME_TIME) {
 			this.frameTimeGoal -= ApoHybridGame.FRAME_TIME;
@@ -2339,7 +2338,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				this.frameGoal = 0;
 			}
 		}
-		
+
 		for (int k = this.particles.size() - 1; k >= 0; k--) {
 			this.particles.get(k).think(delta);
 			if (!this.particles.get(k).isVisible()) {
@@ -2412,7 +2411,7 @@ public class ApoHybridGame extends ApoHybridModel {
 										if (level[y][mirrorX - 1 - x] != 8) {
 											level[y][mirrorX + x] = boxes[y][mirrorX + x];
 										}
-										
+
 									} else if ((mirrorX - x - 1 < 0) && (mirrorX + x < level[0].length) && (level[y][mirrorX + x] != 8)) {
 										level[y][mirrorX + x] = boxes[y][mirrorX + x];
 									}
@@ -2439,7 +2438,7 @@ public class ApoHybridGame extends ApoHybridModel {
 										}
 									}
 								}
-							}	
+							}
 						}
 						p[1] -= 1;
 					} else if (this.mirrorY >= 0) {
@@ -2478,7 +2477,7 @@ public class ApoHybridGame extends ApoHybridModel {
 										if (level[mirrorY - 1 - y][x] != 8) {
 											level[mirrorY + y][x] = boxes[mirrorY + y][x];
 										}
-										
+
 									} else if ((mirrorY - y - 1 < 0) && (mirrorY + y < level.length) && (level[mirrorY + y][x] != 8)) {
 										level[mirrorY + y][x] = boxes[mirrorY + y][x];
 									}
@@ -2511,7 +2510,7 @@ public class ApoHybridGame extends ApoHybridModel {
 										}
 									}
 								}
-							}	
+							}
 						}
 						p[8] -= 1;
 					}
@@ -2520,7 +2519,7 @@ public class ApoHybridGame extends ApoHybridModel {
 							this.lostLevel();
 						}
 					}
-					
+
 					mirrorX = -1;
 					mirrorY = -1;
 					this.makeBackground();
@@ -2529,7 +2528,7 @@ public class ApoHybridGame extends ApoHybridModel {
 					}
 				}
 			}
-			
+
 			int move = 0;
 			int up = 0;
 			int mirrorMode = 0;
@@ -2652,7 +2651,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			} else if ((addX == 0) && (addY == 0) && (fall == 0)) {
 				/** FALL */
 				this.fall();
-				
+
 				if (fall != 0) {
 				} else if (p[3] <= 0) {
 					addLeft = 0;
@@ -2763,12 +2762,12 @@ public class ApoHybridGame extends ApoHybridModel {
 													this.addParticle((playerX) * 16 + 8, (playerY - this.gravity) * 16 + changeY + 8);
 													this.withBox = 0;
 												}
-												
+
 												if ((playerY + this.gravity < this.level.length) && (this.level[playerY + this.gravity][playerX] == 12)) {
 													this.level[playerY + this.gravity][playerX] = 0;
 													this.addParticle((playerX) * 16 + 8, (playerY + this.gravity) * 16 + changeY + 8);
 												}
-												
+
 												playerX += addLeft;
 												playerY -= 1 * this.gravity;
 												addX = -addLeft * 16;
@@ -2872,7 +2871,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	private void fallNew(final int x, final int startY) {
 		int start = 0;
 		int end = startY;
@@ -2895,7 +2894,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	private void fall() {
 		for (int x = 0; x < level[0].length; x++) {
 			if (p[2] > 0) {
@@ -2906,8 +2905,8 @@ public class ApoHybridGame extends ApoHybridModel {
 			int start = 0;
 			if (gravity > 0) {
 				start = level.length - 1;
-			}					
-			
+			}
+
 			for (int y = start; y >= 0 && y < level.length; y += -this.gravity) {
 				if ((level[y][x] == 1) || (level[y][x] == 12) || (level[y][x] == 5) || (level[y][x] == 8) || (level[y][x] == 10)) {
 					addFallPlayer = addFall = 0;
@@ -2915,7 +2914,7 @@ public class ApoHybridGame extends ApoHybridModel {
 					addFall += 1;
 					addFallPlayer += 1;
 				}
-				
+
 				if ((x == playerX) && (y == playerY)) {
 					if ((y + addFallPlayer*this.gravity + this.gravity >= 0) && (y + addFallPlayer*this.gravity + this.gravity < this.level.length)) {
 						if (level[y+addFallPlayer*this.gravity+this.gravity][x] == 3) {
@@ -2927,7 +2926,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				if (boxes[y][x] == 11) {
 					/** TODO Beamer */
 					if ((y + addFall + this.gravity >= 0) && (y + addFall + this.gravity < this.level.length) && (addFall == 0) && ((level[y+this.gravity][x] == 12) || (level[y+this.gravity][x] == 1) || (level[y+this.gravity][x] == 4) || (level[y+this.gravity][x] == 5) || (level[y+this.gravity][x] == 8))) {
-						addFallPlayer = addFall = 0;						
+						addFallPlayer = addFall = 0;
 					} else {
 						addFallPlayer = addFall = 1;
 					}
@@ -2974,7 +2973,7 @@ public class ApoHybridGame extends ApoHybridModel {
 						playerY += addFall;
 					} else {
 						level[y + addFall][x] = level[y][x];
-						level[y][x] = boxes[y][x];	
+						level[y][x] = boxes[y][x];
 					}
 					falla[y + addFall][x] = addFall * 16 * this.gravity;
 					fall = 1;
@@ -2990,7 +2989,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	private boolean beamValue(final int startX, final int startY) {
 		int value = this.level[startY][startX];
 		if (value != 4) {
@@ -3003,8 +3002,8 @@ public class ApoHybridGame extends ApoHybridModel {
 						if ((x == playerX) && (y == playerY) && (falla[y][x] == 0)) {
 							return false;
 						}
-						
-						this.fallNew(x, y);						
+
+						this.fallNew(x, y);
 						this.level[startY][startX] = 0;
 						this.level[y][x] = value;
 						if (this.level[y][x] != 4) {
@@ -3026,13 +3025,13 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		return false;
 	}
-	
+
 	private void lostLevel() {
 		this.addParticle((playerX) * 16 + 8, playerY * 16 + changeY + 8);
 		p[4] = 0;
 		p[2] = 2;
 	}
-	
+
 	private void winLevel() {
 		p[4] = 0;
 		p[2] = 1;
@@ -3043,7 +3042,7 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_WIN);
 	}
-	
+
 	private void showSpeech(String text) {
 		this.speech.setX(this.playerX * 16 + 8);
 		this.speech.setY(this.playerY * 16 + ApoHybridGame.changeY - 20);
@@ -3056,12 +3055,12 @@ public class ApoHybridGame extends ApoHybridModel {
 		if (this.gravity > 0) {
 			this.speech.setUp(true);
 		} else {
-			this.speech.setUp(false);			
+			this.speech.setUp(false);
 		}
 		this.speech.setVisible(true);
 		this.speechShowTime = ApoHybridGame.SPEECH_MAX_TIME;
 	}
-	
+
 	private void hideSpeech() {
 		this.speech.setVisible(false);
 		this.noMoveTime = 0;
@@ -3070,7 +3069,7 @@ public class ApoHybridGame extends ApoHybridModel {
 	@Override
 	public void render(BitsGLGraphics g) {
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
-		
+
 		String s = "Level";
 		this.getGame().drawString(g, s, (int)(240 - ApoHybridPanel.game_font.getLength(s)/2), 10 - ApoHybridPanel.game_font.mCharCellHeight/2, ApoHybridPanel.game_font);
 
@@ -3080,25 +3079,25 @@ public class ApoHybridGame extends ApoHybridModel {
 			} else {
 				if (this.getGame().getSolvedLevels().isLevelSolved(p[0])) {
 					g.setColor(0f, 1f, 0f, 1f);
-					
+
 					g.setLineSize(4f);
 					g.drawLine(240 - ApoHybridPanel.game_font.getLength(s)/2, 30, 245 - ApoHybridPanel.game_font.getLength(s)/2, 35);
 					g.drawLine(245 - ApoHybridPanel.game_font.getLength(s)/2, 35, 255 - ApoHybridPanel.game_font.getLength(s)/2, 25);
 					g.setLineSize(1f);
-					
+
 					g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 				}
 				s = (p[0] + 1)+" / "+(this.getGame().getMaxCanChoosen() + 1);
-			}			
+			}
 		} else {
 			s = "Editor";
 		}
 		this.getGame().drawString(g, s, (int)(240 - ApoHybridPanel.game_font.getLength(s)/2), 30 - ApoHybridPanel.game_font.mCharCellHeight/2, ApoHybridPanel.game_font);
-		
+
 		ApoHybridGame.drawMenu(g, this.getGame(), ApoHybridConstants.DARK_BRIGHT, ApoHybridConstants.DARK, p[1], p[8], p[9], this.frameGravity);
-		
+
 		this.getGame().drawButtons(g, ApoHybridPanel.game_font, 2);
-		
+
 		g.setColor(1f,1f,1f,1f);
 		if ((this.iBackground != null) && (this.iBackground.isLoaded) && (this.backgroundWait <= 0)) {
 			int scale = 1;
@@ -3107,7 +3106,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 			g.cropImage(this.iBackground, 0, changeY, ApoHybridConstants.GAME_WIDTH, 242, 0, 0, ApoHybridConstants.GAME_WIDTH * scale, 242 * scale);
 		}
-		
+
 		for (y = 0; y < level.length; y++) {
 			for (x = 0; x < level[0].length; x++) {
 				int addPX = x * 16;
@@ -3140,7 +3139,7 @@ public class ApoHybridGame extends ApoHybridModel {
 								if (level[y][x] == 8) {
 									ApoHybridGame.drawBlockPlusMirror(g, addPX, addPY);
 								} else {
-									ApoHybridGame.drawBox(g, addPX, addPY, false);									
+									ApoHybridGame.drawBox(g, addPX, addPY, false);
 								}
 							}
 						}
@@ -3175,16 +3174,16 @@ public class ApoHybridGame extends ApoHybridModel {
 				}
 			}
 		}
-		
+
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		if (p[2] <= 1) {
 			if ((p[3] > 0) && (((this.mirrorX <= playerX) && (this.mirrorX > 0)) || ((this.mirrorY <= playerY) && (this.mirrorY > 0)))) {
-				
+
 			} else {
 				ApoHybridGame.renderPlayer(g, playerX * 16 + addX, playerY * 16 + changeY + addY - falla[playerY][playerX] * this.gravity, add, this.gravity, withBox);
 			}
 		}
-		
+
 		if (p[1] <= 1) {
 			if ((this.speech != null) && (this.speech.isVisible())) {
 				this.speech.render(g);
@@ -3197,7 +3196,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				g.fillRect(mirrorX * 16 - 1, y + changeY, 2, 2);
 			}
 			g.setColor(1f,1f,1f,0.5f);
-			
+
 			if (this.iMirror != null) {
 				if (this.iMirror.isLoaded) {
 					int width = ApoHybridConstants.GAME_WIDTH - mirrorX * 16;
@@ -3211,7 +3210,7 @@ public class ApoHybridGame extends ApoHybridModel {
 				g.fillRect(x, mirrorY * 16 - 1 + changeY, 2, 2);
 			}
 			g.setColor(1f,1f,1f,0.5f);
-			
+
 			if (this.iMirror != null) {
 				if( this.iMirror.isLoaded == true ) {
 					int height = 240 - mirrorY * 16;
@@ -3242,17 +3241,17 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		if (this.mirrorY > 0) {
 			this.drawInputUpBox(g, bActive);
-			this.drawInputDownBox(g, bActive);			
+			this.drawInputDownBox(g, bActive);
 		} else {
 			this.drawInputLeftBox(g, bActive);
-			this.drawInputRightBox(g, bActive);			
+			this.drawInputRightBox(g, bActive);
 		}
-		
+
 		if ((this.p[9] > 0) && (this.mirrorX < 0) && (this.mirrorY < 0)) {
 			bActive = false;
 			this.drawInputGravityBox(g, bActive);
 		}
-		
+
 		if ((this.backsteps.size() > 1) || ((playerX != playerStartX) || (playerY != playerStartY))) {
 			bActive = false;
 			if ((p[0] == 3) && (!this.bUserlevel) && (!this.bEditor)) {
@@ -3260,10 +3259,10 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 			this.drawInputBackBox(g, bActive);
 		}
-		
+
 		this.drawInputLeftBoxForLevelchooser(g);
 		this.drawInputRightBoxForLevelchooser(g);
-		
+
 		bActive = false;
 		if ((p[0] == 1) && (!bUserlevel) && (!bEditor)) {
 			bActive = true;
@@ -3295,12 +3294,12 @@ public class ApoHybridGame extends ApoHybridModel {
 				this.drawInputMirrorExitBox(g, bActive);
 			}
 		}
-		
+
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		for (int i = this.particles.size() - 1; i >= 0; i--) {
 			this.particles.get(i).render(g, 0, 0);
 		}
-		
+
 		if (p[2] > 0) {
 			String[] array = ApoHybridConstants.GAME_WIN.split(":");
 			if (p[2] > 1) {
@@ -3329,7 +3328,7 @@ public class ApoHybridGame extends ApoHybridModel {
 					} else if (p[0] >= ApoHybridConstants.HELP.length) {
 						curString = "";
 					}
-					
+
 					if (curString.length() > 0) {
 						String[] array = curString.split(":");
 						for (int i = 0; i < array.length; i++) {
@@ -3340,7 +3339,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			}
 		}
 	}
-	
+
 	public static void renderPlayer(final BitsGraphics g, final int addPX, int addPY, final int add, final int gravity, final int withBox) {
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		int addGravity = 0;
@@ -3368,13 +3367,13 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.setColor(color[0], color[1], color[2], 0.5f);
 		g.fillRect(2, 6 + addY, 6, 8);
 		g.fillRect(1, 7 + addY, 8, 6);
-		
+
 		g.fillRect(51, 1 + addY, 6, 8);
 		g.fillRect(50, 2 + addY, 8, 6);
 		g.setColor(color[0], color[1], color[2], 1f);
 		g.fillRect(14, 6 + addY, 6, 8);
 		g.fillRect(13, 7 + addY, 8, 6);
-		
+
 		g.fillRect(51, 12 + addY, 6, 8);
 		g.fillRect(50, 13 + addY, 8, 6);
 		for (int i = 0; i < 8; i+= 2) {
@@ -3383,10 +3382,10 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		String s = ":"+String.valueOf(horizontal);
 		panel.drawString(g, s, (int)(23), 2 + addY, ApoHybridPanel.game_font, colorText);
-		
+
 		s = ":"+String.valueOf(vertical);
 		panel.drawString(g, s, (int)(60), 2 + addY, ApoHybridPanel.game_font, colorText);
-		
+
 		g.fillRect(87, 13 + frameGravity/2, 6, 8);
 		g.fillRect(86, 13 + frameGravity/2 + 1, 8, 6);
 		s = ":"+String.valueOf(gravity);
@@ -3396,11 +3395,11 @@ public class ApoHybridGame extends ApoHybridModel {
 	public static void drawX(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawX(g, addPX, addPY, false, ApoHybridConstants.DARK_BRIGHT, true, true);
 	}
-	
+
 	public static void drawX(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		ApoHybridGame.drawX(g, addPX, addPY, bDouble, ApoHybridConstants.DARK_BRIGHT, true, true);
 	}
-	
+
 	public static void drawX(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble, final float[] backColor, final boolean bBrighter, final boolean bShadow) {
 		int scale = 1;
 		if (bDouble) {
@@ -3422,11 +3421,11 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(addPX + 11 * scale - i*2 * scale, addPY + 3 * scale + i*2 * scale, 2 * scale, 2 * scale);
 		}
 	}
-	
+
 	public static void drawAir(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawAir(g, addPX, addPY, false);
 	}
-	
+
 	public static void drawAir(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3439,7 +3438,7 @@ public class ApoHybridGame extends ApoHybridModel {
 	public static void drawSpikes(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawSpikes(g, addPX, addPY, false);
 	}
-	
+
 	public static void drawSpikes(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3455,11 +3454,11 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.fillRect(addPX + 4 * scale, addPY + 2 * scale, 1 * scale, 3 * scale);
 		g.fillRect(addPX + 12 * scale, addPY + 2 * scale, 1 * scale, 3 * scale);
 	}
-	
+
 	public static void drawBeamer(final BitsGraphics g, final int addPX, final int addPY, final int frame) {
 		ApoHybridGame.drawBeamer(g, addPX, addPY, frame, false, ApoHybridConstants.DARK_BRIGHT);
 	}
-	
+
 	public static void drawBeamer(final BitsGraphics g, final int addPX, final int addPY, final int frame, final boolean bDouble, float[] color) {
 		int scale = 1;
 		if (bDouble) {
@@ -3479,7 +3478,7 @@ public class ApoHybridGame extends ApoHybridModel {
 	public static void drawBox(final BitsGraphics g, final int addPX, final int addPY, final boolean bWithShadow) {
 		ApoHybridGame.drawBox(g, addPX, addPY, bWithShadow, false);
 	}
-	
+
 	public static void drawBox(final BitsGraphics g, final int addPX, final int addPY, final boolean bWithShadow, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3497,11 +3496,11 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(addPX + 14 * scale, addPY + 14 * scale, 2 * scale, 2 * scale);
 		}
 	}
-	
+
 	public static void drawBlockPlusMirror(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawBlockPlusMirror(g, addPX, addPY, false);
-	}		
-	
+	}
+
 	public static void drawBlockPlusMirror(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3511,12 +3510,12 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2], 1f);
 		g.fillRect(addPX + 3 * scale, addPY + 6 * scale, 10 * scale, 4 * scale);
 		g.fillRect(addPX + 6 * scale, addPY + 3 * scale, 4 * scale, 10 * scale);
-	}	
+	}
 
 	public static void drawBlock(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawBlock(g, addPX, addPY, false);
 	}
-	
+
 	public static void drawBlock(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3526,11 +3525,11 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2], 1f);
 		g.fillRect(addPX + 6 * scale, addPY + 6 * scale, 4 * scale, 4 * scale);
 	}
-	
+
 	public static void drawOnStepBlock(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawOnStepBlock(g, addPX, addPY, false);
 	}
-	
+
 	public static void drawOnStepBlock(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3548,7 +3547,7 @@ public class ApoHybridGame extends ApoHybridModel {
 	public static void drawMoveableBox(final BitsGraphics g, final int addPX, final int addPY) {
 		ApoHybridGame.drawMoveableBox(g, addPX, addPY, false);
 	}
-	
+
 	public static void drawMoveableBox(final BitsGraphics g, final int addPX, final int addPY, final boolean bDouble) {
 		int scale = 1;
 		if (bDouble) {
@@ -3561,19 +3560,19 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.setColor(ApoHybridConstants.DARK_BRIGHT[0], ApoHybridConstants.DARK_BRIGHT[1], ApoHybridConstants.DARK_BRIGHT[2], 1f);
 		g.fillRect(addPX + 5 * scale, addPY + 5 * scale, 6 * scale, 6 * scale);
 	}
-	
+
 	public static void setDarkerColor(final BitsGraphics g) {
 		ApoHybridGame.setChangeColor(g, -25, -25, -25);
 	}
-	
+
 	public static void setBrighterColor(final BitsGraphics g) {
 		if (ApoHybridConstants.BRIGHT[0] == ApoHybridConstants.BRIGHT_GREEN[0]) {
 			ApoHybridGame.setChangeColor(g, 70, 70, -5);
 		} else {
-			ApoHybridGame.setChangeColor(g, +70, +70, +70);	
+			ApoHybridGame.setChangeColor(g, +70, +70, +70);
 		}
 	}
-	
+
 	public static void setChangeColor(final BitsGraphics g, final int valueRed, final int valueGreen, final int valuesBlue) {
 		float[] values = g.getColor();
 		float red = values[0] + valueRed/256f;
@@ -3609,12 +3608,12 @@ public class ApoHybridGame extends ApoHybridModel {
 		}
 		g.setColor(red, green, blue, alpha);
 	}
-	
+
 	public static void drawFinish(final BitsGraphics g, final int addPX, final int addPY, final int frame) {
 		g.fillRect(addPX + 7 * 2, addPY + 0 * 2, 1 * 2, 9 * 2);
 		ApoHybridGame.setBrighterColor(g);
 		g.fillRect(addPX + 8 * 2, addPY + 1 * 2 - 1, 1 * 1, 9 * 2);
-		
+
 		g.setColor(ApoHybridConstants.DARK_BRIGHT[0], ApoHybridConstants.DARK_BRIGHT[1], ApoHybridConstants.DARK_BRIGHT[2], 1f);
 		ApoHybridGame.setBrighterColor(g);
 		if (frame == 0) {
@@ -3645,7 +3644,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 10 + i * 2, y + 10 + i * 1, 2, 20 - i * 2);
 		}
 	}
-	
+
 	private void drawInputLeftBox(final BitsGraphics g, final boolean bActive) {
 		int x = 5;
 		int y = ApoHybridGame.changeY + 245;
@@ -3655,7 +3654,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 30 - i * 2, y + 10 + i * 1, 2, 20 - i * 2);
 		}
 	}
-	
+
 	private void drawInputUpBox(final BitsGraphics g, final boolean bActive) {
 		int x = 5;
 		int y = ApoHybridGame.changeY + 245;
@@ -3665,7 +3664,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 10 + i * 1, y +  + 30 - i * 2, 20 - i * 2, 2);
 		}
 	}
-	
+
 	private void drawInputDownBox(final BitsGraphics g, final boolean bActive) {
 		int x = 55;
 		int y = ApoHybridGame.changeY + 245;
@@ -3675,7 +3674,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 10 + i * 1, y + 10 + i * 2, 20 - i * 2, 2);
 		}
 	}
-	
+
 	private void drawInputGravityBox(final BitsGraphics g, final boolean bActive) {
 		int x = 105;
 		int y = ApoHybridGame.changeY + 245;
@@ -3685,23 +3684,23 @@ public class ApoHybridGame extends ApoHybridModel {
 		y += 8 + (int)(this.frameGravity);
 		g.fillRect(x + 1 - 9, y, 6, 8);
 		g.fillRect(x - 9, y + 1, 8, 6);
-		
+
 		g.fillRect(x + 1 + 9, y, 6, 8);
 		g.fillRect(x + 9, y + 1, 8, 6);
-		
+
 		g.fillRect(x + 1, y, 6, 8);
 		g.fillRect(x, y + 1, 8, 6);
 		g.setColor(ApoHybridConstants.DARK_BRIGHT[0], ApoHybridConstants.DARK_BRIGHT[1], ApoHybridConstants.DARK_BRIGHT[2], 1f);
 		g.fillRect(x + 2, y + 3, 4, 2);
 		g.fillRect(x + 3, y + 2, 2, 4);
 	}
-	
+
 	private void drawInputWithBox(final BitsGraphics g, final boolean bActive) {
 		int x = ApoHybridConstants.GAME_WIDTH - 45;
 		int y = ApoHybridGame.changeY + 245;
 		this.drawInputBox(g, x, y, bActive);
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
-		
+
 		x += 12;
 		g.fillRect(x + 5, y + 20 - 1, 2, 2);
 		g.fillRect(x + 9, y + 20 - 1, 2, 2);
@@ -3710,7 +3709,7 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.fillRect(x + 11 - add * 8, y + 20 + 5, 2, 2);
 		g.fillRect(x + 5, y + 20 + 12, 2, 5);
 		g.fillRect(x + 9, y + 20 + 12, 2, 5);
-		
+
 		g.fillRect(x, y + 4 + 2, 16, 12);
 		g.fillRect(x + 2, y + 4, 12, 16);
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
@@ -3718,13 +3717,13 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 		g.fillRect(x + 5, y + 4 + 5, 6, 6);
 	}
-	
+
 	private void drawInputMirrorHorizontalBox(final BitsGraphics g, final boolean bActive) {
 		int x = ApoHybridConstants.GAME_WIDTH - 95;
 		int y = ApoHybridGame.changeY + 245;
 		this.drawInputBox(g, x, y, bActive);
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
-		
+
 		for (int i = 0; i < 9; i++) {
 			g.fillRect(x + 19, y + 4 + i * 4, 2, 2);
 		}
@@ -3737,16 +3736,16 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.fillRect(x, y + 2, 16, 12);
 		g.fillRect(x + 2, y, 12, 2);
 		g.fillRect(x + 2, y + 14, 12, 2);
-		
+
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 	}
-	
+
 	private void drawInputMirrorVerticalBox(final BitsGraphics g, final boolean bActive) {
 		int x = ApoHybridConstants.GAME_WIDTH - 145;
 		int y = ApoHybridGame.changeY + 245;
 		this.drawInputBox(g, x, y, bActive);
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
-		
+
 		for (int i = 0; i < 9; i++) {
 			g.fillRect(x + 4 + i * 4, y + 19, 2, 2);
 		}
@@ -3759,10 +3758,10 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.fillRect(x, y + 2, 16, 12);
 		g.fillRect(x + 2, y, 12, 2);
 		g.fillRect(x + 2, y + 14, 12, 2);
-		
+
 		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 	}
-	
+
 
 	private void drawInputMirrorExitBox(final BitsGraphics g, final boolean bActive) {
 		int x = ApoHybridConstants.GAME_WIDTH - 195;
@@ -3774,7 +3773,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 30 - i * 2, y + 9 + i * 2, 2, 2);
 		}
 	}
-	
+
 	private void drawInputBackBox(final BitsGLGraphics g, final boolean bActive) {
 		int x = ApoHybridConstants.GAME_WIDTH/2 - 20;
 		int y = ApoHybridGame.changeY + 245;
@@ -3790,13 +3789,13 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 10 + i * 2, y + 16 - i * 2, 2, 2 + i * 4);
 		}
 	}
-	
+
 	private void drawInputBox(final BitsGraphics g, int x, int y, final boolean bActive) {
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		g.fillRect(x + 2, y + 2, 36, 36);
 		ApoHybridGame.setDarkerColor(g);
 		if ((p[5] > x) && (p[5] < x + 40) && (p[6] > y) && (p[6] < y + 40)) {
-			g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2], 1f);			
+			g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2], 1f);
 		}
 		g.fillRect(x + 2, y, 36, 2);
 		g.fillRect(x + 2, y + 38, 36, 2);
@@ -3814,7 +3813,7 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.setLineSize(1);
 		}
 	}
-	
+
 	private void drawInputLeftBoxForLevelchooser(final BitsGraphics g) {
 		int x = ApoHybridConstants.GAME_WIDTH/2 - 95;
 		int y = 1;
@@ -3824,17 +3823,17 @@ public class ApoHybridGame extends ApoHybridModel {
 			g.fillRect(x + 26 - i * 2, y + 10 + i * 1, 2, 20 - i * 2);
 		}
 	}
-	
+
 	private void drawInputRightBoxForLevelchooser(final BitsGraphics g) {
 		int x = ApoHybridConstants.GAME_WIDTH/2 + 55;
 		int y = 1;
 		this.drawInputBoxForLevelchooser(g, x, y, 38, 38);
-		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);		
+		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 		for (int i = 0; i < 10; i++) {
 			g.fillRect(x + 10 + i * 2, y + 10 + i * 1, 2, 20 - i * 2);
 		}
 	}
-	
+
 	private void drawInputBoxForLevelchooser(final BitsGraphics g, int x, int y, final int width, final int height) {
 		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		g.fillRect(x + 2, y + 2, width - 4, height - 4);
@@ -3848,6 +3847,7 @@ public class ApoHybridGame extends ApoHybridModel {
 		g.fillRect(x + width, y + 4, 2, height - 4);
 		g.fillRect(x + width - 2, y + height - 2, 2, 2);
 	}
-//#endif
 }
+
+//#endif
 

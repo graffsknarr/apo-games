@@ -73,6 +73,7 @@
                 <feature name="SnakeGameLogic"/>
                 <feature name="DiceGameLogic"/>
                 <feature name="ClockGameLogic"/>
+                <feature name="MonoGameLogic"/>
             </and>
         </and>
     </struct>

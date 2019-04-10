@@ -39,7 +39,7 @@ import net.gliblybits.bitsengine.input.listener.BitsPointerListener;
 public abstract class ApoHybridComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
 //#endif
 
-	/** Array der ganzen Buttons im Spiel */
+	/* Array der ganzen Buttons im Spiel */
 	private ApoButton[] buttons;
 
 	private int oldX, oldY;
@@ -56,16 +56,16 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@
 	//#elif ClockGameLogic
-	public void setModel(final ApoHybridModel model) {
-		this.model = model;
-	}
-
+//@	public void setModel(final ApoHybridModel model) {
+//@		this.model = model;
+//@	}
+//@
 	//#elif MonoGameLogic
 	public void onButtonPressed(BitsButtonWidget button) {
 
 	}
 
-	public void setModel(ApoMonoModel model) {
+	public void setModel(ApoHybridModel model) {
 		this.model = model;
 	}
 	//#endif
@@ -83,7 +83,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 
 
 
-	/**
+	/*
 	 * gibt das Array mit den Buttons zur?ck
 	 * @return gibt das Array mit den Buttons zur?ck
 	 */
@@ -91,7 +91,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 		return this.buttons;
 	}
 
-	/**
+	/*
 	 * setzt das Array mit den Buttons auf den ?bergebenen Wert
 	 * @param buttons : neues Array mit Buttons
 	 */
@@ -107,7 +107,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 				//#if MonoGameLogic
 				if ((this.getButtons()[b].isBVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 					//#else
-					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
+//@					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 						//#endif
 						String function = this.getButtons()[b].getFunction();
 						this.setButtonFunction(function);
@@ -147,7 +147,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 		}
 		//#endif
 
-		/**
+		/*
 		 * rendert die Buttons
 		 * @param g : das Graphics2D Object
 		 */
@@ -165,7 +165,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 		}
 
 
-		/**
+		/*
 		 * wird aufgerufen, wenn ein Button gedr?ckt wurde
 		 * @param function : Funktion, die der Button ausf?hren soll und ihn einzigartig macht
 		 */
@@ -344,22 +344,22 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@
 		//#elif ClockGameLogic
-		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
-			if (this.model != null) {
-				this.model.onKeyDown(key, event);
-			}
-
-			return true;
-		}
-
-		public boolean onKeyUp(final int key, final BitsKeyEvent event) {
-			if (this.model != null) {
-				this.model.onKeyUp(key, event);
-			}
-
-			return true;
-		}
-
+//@		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
+//@			if (this.model != null) {
+//@				this.model.onKeyDown(key, event);
+//@			}
+//@
+//@			return true;
+//@		}
+//@
+//@		public boolean onKeyUp(final int key, final BitsKeyEvent event) {
+//@			if (this.model != null) {
+//@				this.model.onKeyUp(key, event);
+//@			}
+//@
+//@			return true;
+//@		}
+//@
 		//#elif MonoGameLogic
 		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
 			if (this.model != null) {

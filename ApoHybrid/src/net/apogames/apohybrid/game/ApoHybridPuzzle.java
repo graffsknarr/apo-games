@@ -65,7 +65,7 @@
 			//#endif
 //@		} else if (function.equals(ApoHybridPuzzle.USERLEVELS)) {
 //@			if ((ApoHybridLevel.editorLevels != null) && (ApoHybridLevel.editorLevels.length > 0)) {
-//@				this.getGame().setPuzzleGame(0, null, true);
+//@				this.getGame().setGame(0, null, true);
 //@			}
 //@		}
 //@	}

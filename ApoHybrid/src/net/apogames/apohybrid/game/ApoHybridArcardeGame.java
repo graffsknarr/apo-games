@@ -10,7 +10,7 @@
 //@	
 //@	private int clocks = 0;
 //@	
-//@	/**
+//@	/*
 //@	 * level besteht aus
 //@	 * 1 = x-Wert Uhr
 //@	 * 2 = y-Wert Uhr
@@ -24,7 +24,7 @@
 //@	 * */
 //@	private int[] level = new int[1];
 //@	
-//@	/**
+//@	/*
 //@	 * 0 = X-Wert
 //@	 * 1 = y-Wert
 //@	 * 2 = Angle
@@ -32,7 +32,7 @@
 //@	 */
 //@	private float[] ball = new float[5];
 //@	
-//@	/**
+//@	/*
 //@	 * p[0] == losgelassen
 //@	 * p[1] == aktuelle Punkteanzahl
 //@	 * p[2] == Spiel gestartet
@@ -99,7 +99,7 @@
 //@	protected void loadLevel() {
 //@		p[1] = 0;
 //@		
-//@		/**
+//@		/*
 //@		 * level besteht aus
 //@		 * 1 = x-Wert Uhr
 //@		 * 2 = y-Wert Uhr

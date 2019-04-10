@@ -6,13 +6,13 @@ import net.apogames.apohybrid.ApoHybridModel;
 import net.apogames.apohybrid.ApoHybridSoundPlayer;
 import net.apogames.apohybrid.entity.ApoLevelChooserButton;
 
-//#if ClockGameLogic ||MonoGameLogic
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//#if ClockGameLogic || MonoGameLogic
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#elif SnakeGameLogic || DiceGameLogic
-import net.gliblybits.bitsengine.render.BitsGraphics;
-import net.apogames.apohybrid.level.ApoHybridLevel;
-import net.gliblybits.bitsengine.core.BitsFactory;
-import net.gliblybits.bitsengine.core.BitsFont;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//@import net.apogames.apohybrid.level.ApoHybridLevel;
+//@import net.gliblybits.bitsengine.core.BitsFactory;
+//@import net.gliblybits.bitsengine.core.BitsFont;
 //#endif
 
 
@@ -33,9 +33,9 @@ public class ApoHybridMenu extends ApoHybridModel {
 	private float clockRotate;
 
 	//#if SnakeGameLogic || DiceGameLogic
-	public static BitsFont font;
-	public static BitsFont game_font;
-	public static BitsFont title_font;
+//@	public static BitsFont font;
+//@	public static BitsFont game_font;
+//@	public static BitsFont title_font;
 	//#endif
 	
 	public ApoHybridMenu(ApoHybridPanel game) {
@@ -52,37 +52,37 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
 //@
 		//#elif MonoMenu
-		this.getStringWidth().put(ApoMonoMenu.TITLE, (int)(ApoMonoPanel.title_font.getLength(ApoMonoMenu.TITLE)));
-		this.getStringWidth().put(ApoMonoMenu.SUB, (int)(ApoMonoPanel.game_font.getLength(ApoMonoMenu.SUB)));
-		this.getStringWidth().put(ApoMonoMenu.SUB_2, (int)(ApoMonoPanel.game_font.getLength(ApoMonoMenu.SUB_2)));
+		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
+		this.getStringWidth().put(ApoHybridMenu.SUB, (int)(ApoHybridPanel.game_font.getLength(ApoHybridMenu.SUB)));
+		this.getStringWidth().put(ApoHybridMenu.SUB_2, (int)(ApoHybridPanel.game_font.getLength(ApoHybridMenu.SUB_2)));
 
 		//#else
-		this.loadFonts();
-
-		this.getStringWidth().put(ApoHybridMenu.USERLEVELS, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.USERLEVELS)));
-		this.getStringWidth().put(ApoHybridMenu.EDITOR, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.EDITOR)));
-		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridMenu.title_font.getLength(ApoHybridMenu.TITLE)));
-		this.getStringWidth().put(ApoHybridMenu.QUIT, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.QUIT)));
-		this.getStringWidth().put(ApoHybridMenu.PUZZLE, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.PUZZLE)));
-
-		this.setUserlevels();
+//@		this.loadFonts();
+//@
+//@		this.getStringWidth().put(ApoHybridMenu.USERLEVELS, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.USERLEVELS)));
+//@		this.getStringWidth().put(ApoHybridMenu.EDITOR, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.EDITOR)));
+//@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridMenu.title_font.getLength(ApoHybridMenu.TITLE)));
+//@		this.getStringWidth().put(ApoHybridMenu.QUIT, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.QUIT)));
+//@		this.getStringWidth().put(ApoHybridMenu.PUZZLE, (int)(ApoHybridMenu.font.getLength(ApoHybridMenu.PUZZLE)));
+//@
+//@		this.setUserlevels();
 		//#endif
 
 	}
 	
 	public void onResume() {
-		//#if !ClockGameLogic
-		this.loadFonts();
+		//#if !ClockGameLogic && !MonoGameLogic
+//@		this.loadFonts();
 		//#endif
 	}
 
 	//#if DiceGameLogic || SnakeGameLogic
-	private void loadFonts() {
-		ApoHybridMenu.font = BitsFactory.getIt().getFont("reprise.ttf", 30);
-		ApoHybridMenu.title_font = BitsFactory.getIt().getFont("reprise.ttf", 38);
-			
-		ApoHybridMenu.game_font = BitsFactory.getIt().getFont("reprise.ttf", 26);
-	}
+//@	private void loadFonts() {
+//@		ApoHybridMenu.font = BitsFactory.getIt().getFont("reprise.ttf", 30);
+//@		ApoHybridMenu.title_font = BitsFactory.getIt().getFont("reprise.ttf", 38);
+//@			
+//@		ApoHybridMenu.game_font = BitsFactory.getIt().getFont("reprise.ttf", 26);
+//@	}
 	//#endif
 	
 	@Override
@@ -126,36 +126,36 @@ public class ApoHybridMenu extends ApoHybridModel {
 		}
 		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON);
 		//#else
-		} else if (function.equals(ApoHybridMenu.PUZZLE)) {
-			this.getGame().setPuzzleChooser();
-		} else if (function.equals(ApoHybridMenu.EDITOR)) {
-			this.getGame().setEditor(false);
-		} else if (function.equals(ApoHybridMenu.USERLEVELS)) {
+//@		} else if (function.equals(ApoHybridMenu.PUZZLE)) {
+//@			this.getGame().setPuzzleChooser();
+//@		} else if (function.equals(ApoHybridMenu.EDITOR)) {
+//@			this.getGame().setEditor(false);
+//@		} else if (function.equals(ApoHybridMenu.USERLEVELS)) {
 			//#if DiceGameLogic
-			this.getGame().setPuzzleGame(0, "", true);
+//@			this.getGame().setGame(0, "", true);
 			//#elif SnakeGameLogic
-//@			this.getGame().setPuzzleGame(-1, "", true);
+//@			this.getGame().setGame(-1, "", true);
 			//#elif MonoGameLogic
-			this.getGame().setGame(0, null, true);
+//@			this.getGame().setGame(0, null, true);
 			//#endif
-		}
+//@		}
 		//#endif
 	}
 	//#if ClockMenu || MonoMenu
-//@	public void onBackButtonPressed() {
-//@		BitsGame.getInstance().finishApp();
-//@	}
-	//#else
 	public void onBackButtonPressed() {
-		BitsGame.getIt().finish();
+		BitsGame.getInstance().finishApp();
 	}
-	
-	public void setUserlevels() {
-		this.getGame().getButtons()[2].setVisible(true);
-		if (ApoHybridLevel.editorLevels == null) {
-			this.getGame().getButtons()[2].setVisible(false);
-		}
-	}
+	//#else
+//@	public void onBackButtonPressed() {
+//@		BitsGame.getIt().finish();
+//@	}
+//@	
+//@	public void setUserlevels() {
+//@		this.getGame().getButtons()[2].setVisible(true);
+//@		if (ApoHybridLevel.editorLevels == null) {
+//@			this.getGame().getButtons()[2].setVisible(false);
+//@		}
+//@	}
 	//#endif
 
 	
@@ -227,12 +227,12 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@}
 	//#elif MonoMenu
 	public void render(final BitsGLGraphics g) {
-		if (ApoMonoConstants.FREE_VERSION) {
-			this.getGame().drawString(g, ApoMonoMenu.TITLE, 240, 55, ApoMonoPanel.title_font);			
+		if (ApoHybridConstants.FREE_VERSION) {
+			this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 55, ApoHybridPanel.title_font);
 		} else {
-			this.getGame().drawString(g, ApoMonoMenu.TITLE, 240, 5, ApoMonoPanel.title_font);
-			this.getGame().drawString(g, ApoMonoMenu.SUB, 240, 50, ApoMonoPanel.game_font);
-			this.getGame().drawString(g, ApoMonoMenu.SUB_2, 240, 65, ApoMonoPanel.game_font);
+			this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 5, ApoHybridPanel.title_font);
+			this.getGame().drawString(g, ApoHybridMenu.SUB, 240, 50, ApoHybridPanel.game_font);
+			this.getGame().drawString(g, ApoHybridMenu.SUB_2, 240, 65, ApoHybridPanel.game_font);
 		}
 		
 		if (this.getGame().getButtons() != null) {
@@ -246,26 +246,26 @@ public class ApoHybridMenu extends ApoHybridModel {
 					
 					ApoLevelChooserButton.drawOneBlock(g, x, y, width, height);
 					
-					if (s.equals(ApoMonoMenu.CREDITS)) {
+					if (s.equals(ApoHybridMenu.CREDITS)) {
 						s = "c";
-						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoPanel.font.getLength(s)/2), y + height/2 - ApoMonoPanel.font.mCharCellHeight/2, ApoMonoPanel.font, ApoMonoConstants.BRIGHT);
-					} else if (s.equals(ApoMonoMenu.QUIT)) {
+						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
+					} else if (s.equals(ApoHybridMenu.QUIT)) {
 //						s = "x";
-//						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoMenu.game_font.getLength(s)/2), y + height/2 - ApoMonoMenu.game_font.mCharCellHeight/2, ApoMonoMenu.game_font, ApoMonoConstants.BRIGHT);
-						ApoMonoPuzzleGame.drawX(g, x + width/2 - 16, y + height/2 - 16, true, ApoMonoConstants.BRIGHT, false, false);
-					} else if (s.equals(ApoMonoMenu.PLAY)) {
-						s = ApoMonoConstants.MENU_PLAY;
-						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoPanel.font.getLength(s)/2), y + height/2 - ApoMonoPanel.font.mCharCellHeight/2, ApoMonoPanel.font, ApoMonoConstants.BRIGHT);
-					} else if (s.equals(ApoMonoMenu.OPTIONS)) {
+//						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridMenu.game_font.getLength(s)/2), y + height/2 - ApoHybridMenu.game_font.mCharCellHeight/2, ApoHybridMenu.game_font, ApoHybridConstants.BRIGHT);
+						ApoHybridGame.drawX(g, x + width/2 - 16, y + height/2 - 16, true, ApoHybridConstants.BRIGHT, false, false);
+					} else if (s.equals(ApoHybridMenu.PLAY)) {
+						s = ApoHybridConstants.MENU_PLAY;
+						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
+					} else if (s.equals(ApoHybridMenu.OPTIONS)) {
 //						s = "o";
-//						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoMenu.game_font.getLength(s)/2), y + height/2 - ApoMonoMenu.game_font.mCharCellHeight/2, ApoMonoMenu.game_font, ApoMonoConstants.BRIGHT);
+//						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridMenu.game_font.getLength(s)/2), y + height/2 - ApoHybridMenu.game_font.mCharCellHeight/2, ApoHybridMenu.game_font, ApoHybridConstants.BRIGHT);
 						this.drawOptions(g, x, y, width, height);
-					} else if (s.equals(ApoMonoMenu.EDITOR)) {
-						s = ApoMonoConstants.MENU_EDITOR;
-						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoPanel.font.getLength(s)/2), y + height/2 - ApoMonoPanel.font.mCharCellHeight/2, ApoMonoPanel.font, ApoMonoConstants.BRIGHT);
-					} else if (s.equals(ApoMonoMenu.USERLEVELS)) {
-						s = ApoMonoConstants.MENU_USERLEVELS;
-						this.getGame().drawString(g, s,(int)(x + width/2 - ApoMonoPanel.font.getLength(s)/2), y + height/2 - ApoMonoPanel.font.mCharCellHeight/2, ApoMonoPanel.font, ApoMonoConstants.BRIGHT);
+					} else if (s.equals(ApoHybridMenu.EDITOR)) {
+						s = ApoHybridConstants.MENU_EDITOR;
+						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
+					} else if (s.equals(ApoHybridMenu.USERLEVELS)) {
+						s = ApoHybridConstants.MENU_USERLEVELS;
+						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
 					}
 				}
 			}
@@ -273,13 +273,13 @@ public class ApoHybridMenu extends ApoHybridModel {
 	}
 	
 	private final void drawOptions(final BitsGLGraphics g, final int x, final int y, final int width, final int height) {
-		g.setColor(ApoMonoConstants.BRIGHT[0], ApoMonoConstants.BRIGHT[1], ApoMonoConstants.BRIGHT[2], 1f);
-		g.setLineSize(1 * ApoMonoConstants.MAX);
+		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
+		g.setLineSize(1 * ApoHybridConstants.MAX);
 		g.fillCircle(x + width/2 + 1, y + height/2, 12);
-		g.setColor(ApoMonoConstants.DARK[0], ApoMonoConstants.DARK[1], ApoMonoConstants.DARK[2], 1f);
+		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
 		g.fillCircle(x + width/2 + 1, y + height/2, 8);
-		g.setLineSize(1 * ApoMonoConstants.MAX);
-		g.setColor(ApoMonoConstants.BRIGHT[0], ApoMonoConstants.BRIGHT[1], ApoMonoConstants.BRIGHT[2], 1f);
+		g.setLineSize(1 * ApoHybridConstants.MAX);
+		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 		for (int i = 0; i < 360; i+= 45) {
 			if (i == 0) {
 				g.setRotation(0.01f);				
@@ -295,59 +295,59 @@ public class ApoHybridMenu extends ApoHybridModel {
 
 }
 	//#else
-	public void render(final BitsGraphics g) {
-		
-		this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 45, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-		
-		int number = 1;
-		if (this.getGame().getButtons() != null) {
-			for (int i = 0; i < this.getGame().getButtons().length; i++) {
-				if (this.getGame().getButtons()[i].isBVisible()) {
+//@	public void render(final BitsGraphics g) {
+//@		
+//@		this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 45, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+//@		
+//@		int number = 1;
+//@		if (this.getGame().getButtons() != null) {
+//@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
+//@				if (this.getGame().getButtons()[i].isBVisible()) {
 					//#if !LevelGrid
 //@					if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
 					//#endif
-
+//@
 					//#if !Editor
 //@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR)) i++;
 					//#endif
-					
-					int x = (int)(this.getGame().getButtons()[i].getX());
-					int y = (int)(this.getGame().getButtons()[i].getY());
-					int width = (int)(this.getGame().getButtons()[i].getWidth());
-					int height = (int)(this.getGame().getButtons()[i].getHeight());
-					
-					g.setColor(128, 128, 128, 255);
-					g.drawFilledRect(x, y, width, height);
-					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-					g.drawRect(x, y, width, height);
-					
-					this.getGame().drawString(g, this.getGame().getButtons()[i].getFunction(), x + width/2, y + height/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
-					
-					for (int hybrid = 0; hybrid < 2; hybrid++) {
-						x += hybrid * width;
-						
+//@					
+//@					int x = (int)(this.getGame().getButtons()[i].getX());
+//@					int y = (int)(this.getGame().getButtons()[i].getY());
+//@					int width = (int)(this.getGame().getButtons()[i].getWidth());
+//@					int height = (int)(this.getGame().getButtons()[i].getHeight());
+//@					
+//@					g.setColor(128, 128, 128, 255);
+//@					g.drawFilledRect(x, y, width, height);
+//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+//@					g.drawRect(x, y, width, height);
+//@					
+//@					this.getGame().drawString(g, this.getGame().getButtons()[i].getFunction(), x + width/2, y + height/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
+//@					
+//@					for (int hybrid = 0; hybrid < 2; hybrid++) {
+//@						x += hybrid * width;
+//@						
 						//#if DiceMenu
-						g.setColor(255, 255, 255, 255);
-						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
-
-						g.setLineSize(3.0f);
-						g.setColor(48, 48, 48);
-						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
-						
-						g.setLineSize(1.0f);
-						
-						if ((number == 1) || (number == 3) || (number == 5)) {
-							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
-						}
-						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
-							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
-							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
-						}
-						if ((number == 4) || (number == 5)) {
-							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
-							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
-						}
-
+//@						g.setColor(255, 255, 255, 255);
+//@						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
+//@
+//@						g.setLineSize(3.0f);
+//@						g.setColor(48, 48, 48);
+//@						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
+//@						
+//@						g.setLineSize(1.0f);
+//@						
+//@						if ((number == 1) || (number == 3) || (number == 5)) {
+//@							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
+//@						}
+//@						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
+//@							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
+//@							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
+//@						}
+//@						if ((number == 4) || (number == 5)) {
+//@							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
+//@							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
+//@						}
+//@
 						//#elif SnakeMenu
 //@						g.setColor(255, 0, 0, 255);
 //@						if (number == 2) {
@@ -368,14 +368,14 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@						
 //@						g.setLineSize(1.0f);
 						//#endif
-					}
-					number += 1;
-							
-
-				}
-			}
-		}
-	}
-
-}
+//@					}
+//@					number += 1;
+//@							
+//@
+//@				}
+//@			}
+//@		}
+//@	}
+//@
+//@}
 //#endif

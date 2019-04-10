@@ -83,7 +83,7 @@ public class ApoHybridUserlevels {
 			String s = this.userlevels.getLevels().get(i);
 			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
 			//#elif DiceGameLogic || SnakeGameLogic
-			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
+//@			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
 			//#endif
 				float time = this.userlevels.getTimes().get(i);
 				boolean bAdd = false;
