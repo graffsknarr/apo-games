@@ -80,10 +80,10 @@ public class ApoHybridUserlevels {
 		this.sortByUpload.clear();
 		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
 			//#if MonoGameLogic
-			String s = this.userlevels.getLevels().get(i);
-			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
+//@			String s = this.userlevels.getLevels().get(i);
+//@			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
 			//#elif DiceGameLogic || SnakeGameLogic
-//@			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
+			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
 			//#endif
 				float time = this.userlevels.getTimes().get(i);
 				boolean bAdd = false;

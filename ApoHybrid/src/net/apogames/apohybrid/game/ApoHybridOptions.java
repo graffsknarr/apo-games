@@ -4,6 +4,7 @@
 //@
 //@import net.apogames.apohybrid.ApoHybridModel;
 //@
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.input.BitsInput;
 //@import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //@
@@ -142,141 +143,141 @@
 //@
 //@}
 //#elif MonoGameLogic
-
-package net.apogames.apohybrid.game;
-
-import net.apogames.apohybrid.ApoHybridConstants;
-import net.apogames.apohybrid.ApoHybridModel;
-import net.apogames.apohybrid.ApoHybridSoundPlayer;
-import net.apogames.apohybrid.entity.ApoLevelChooserButton;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-
-public class ApoHybridOptions  extends ApoHybridModel {
-
-	public static final String BACK = "back";
-	public static final String LANGUAGE_GERMAN = "german";
-	public static final String LANGUAGE_ENGLISH = "english";
-	public static final String COLOR_WHITE = "white";
-	public static final String COLOR_GREEN = "green";
-	public static final String SOUND = "sound";
-	public static final String MUSIC = "music";
-	
-	public ApoHybridOptions(ApoHybridPanel game) {
-		super(game);
-	}
-
-	@Override
-	public void init() {
-	}
-	
-	public void onResume() {
-	}
-
-	@Override
-	public void touchedPressed(int x, int y, int finger) {
-		
-	}
-
-	@Override
-	public void touchedReleased(int x, int y, int finger) {
-		
-	}
-
-	@Override
-	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-		
-	}
-
-	@Override
-	public void touchedButton(String function) {
-		if (function.equals(ApoHybridOptions.BACK)) {
-			this.onBackButtonPressed();
-		} else if (function.equals(ApoHybridOptions.LANGUAGE_GERMAN)) {
-			ApoLevelChooserButton buttonGerman = (ApoLevelChooserButton)(this.getGame().getButtons()[12]);
-			if (!buttonGerman.isSelected()) {
-				buttonGerman.setSelected(true);
-				((ApoLevelChooserButton)(this.getGame().getButtons()[13])).setSelected(false);
-				ApoHybridConstants.changeLanguageToGerman();
-			}
-		} else if (function.equals(ApoHybridOptions.LANGUAGE_ENGLISH)) {
-			ApoLevelChooserButton buttonEnglish = (ApoLevelChooserButton)(this.getGame().getButtons()[13]);
-			if (!buttonEnglish.isSelected()) {
-				buttonEnglish.setSelected(true);
-				((ApoLevelChooserButton)(this.getGame().getButtons()[12])).setSelected(false);
-				ApoHybridConstants.changeLanguageToEnglish();
-			}
-		} else if (function.equals(ApoHybridOptions.COLOR_WHITE)) {
-			ApoLevelChooserButton buttonWhite = (ApoLevelChooserButton)(this.getGame().getButtons()[14]);
-			if (!buttonWhite.isSelected()) {
-				buttonWhite.setSelected(true);
-				((ApoLevelChooserButton)(this.getGame().getButtons()[15])).setSelected(false);
-				ApoHybridConstants.changeToWhiteColor();
-			}
-		} else if (function.equals(ApoHybridOptions.COLOR_GREEN)) {
-			ApoLevelChooserButton buttonGreen = (ApoLevelChooserButton)(this.getGame().getButtons()[15]);
-			if (!buttonGreen.isSelected()) {
-				buttonGreen.setSelected(true);
-				((ApoLevelChooserButton)(this.getGame().getButtons()[14])).setSelected(false);
-				ApoHybridConstants.changeToGreenColor();
-			}
-		} else if (function.equals(ApoHybridOptions.SOUND)) {
-			ApoLevelChooserButton buttonSound = (ApoLevelChooserButton)(this.getGame().getButtons()[21]);
-			buttonSound.setSelected(!buttonSound.isSelected());
-			this.getGame().setSound(buttonSound.isSelected());
-		} else if (function.equals(ApoHybridOptions.MUSIC)) {
-			ApoLevelChooserButton buttonMusic = (ApoLevelChooserButton)(this.getGame().getButtons()[22]);
-			buttonMusic.setSelected(!buttonMusic.isSelected());
-			this.getGame().setMusic(buttonMusic.isSelected());
-		}
-		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON_2);
-	}
-	
-	public void onBackButtonPressed() {
-		this.getGame().setMenu();
-	}
-	
-	@Override
-	public void think(int delta) {
-		
-	}
-
-	@Override
-	public void render(final BitsGLGraphics g) {
-		int addY = 0;
-		if (ApoHybridConstants.FREE_VERSION) {
-			addY += 45;
-		}
-		this.getGame().drawString(g, ApoHybridConstants.OPTION_TITLE, (int)(240 - ApoHybridPanel.title_font.getLength(ApoHybridConstants.OPTION_TITLE)/2), 5 + addY, ApoHybridPanel.title_font);
-
-		g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2]);
-		g.fillRect(5, 57 + addY, 420, 58);
-		g.fillRect(5, 117 + addY, 420, 58);
-		g.fillRect(5, 177 + addY, 420, 58);
-		
-		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2]);
-		g.drawRect(5, 57 + addY, 420, 58);
-		g.drawRect(5, 117 + addY, 420, 58);
-		g.drawRect(5, 177 + addY, 420, 58);
-		this.getGame().drawString(g, ApoHybridConstants.OPTION_LANGUAGE, (int)(10), 78 + addY, ApoHybridPanel.game_font);
-		this.getGame().drawString(g, ApoHybridConstants.OPTION_COLOR, (int)(10), 138 + addY, ApoHybridPanel.game_font);
-		this.getGame().drawString(g, "audio", (int)(10), 198 + addY, ApoHybridPanel.game_font);
-		
-		String s = "deutsch";
-		this.getGame().drawString(g, s, (int)(175), 78 + addY, ApoHybridPanel.game_font);
-		s = "english";
-		this.getGame().drawString(g, s, (int)(310), 78 + addY, ApoHybridPanel.game_font);
-		
-		s = ApoHybridConstants.OPTION_COLOR_WHITE;
-		this.getGame().drawString(g, s, (int)(175), 138 + addY, ApoHybridPanel.game_font);
-		s = ApoHybridConstants.OPTION_COLOR_GREEN;
-		this.getGame().drawString(g, s, (int)(310), 138 + addY, ApoHybridPanel.game_font);
-		
-		s = ApoHybridConstants.OPTION_SOUND;
-		this.getGame().drawString(g, s, (int)(175), 198 + addY, ApoHybridPanel.game_font);
-		s = ApoHybridConstants.OPTION_MUSIC;
-		this.getGame().drawString(g, s, (int)(310), 198 + addY, ApoHybridPanel.game_font);
-		
-		this.getGame().renderButtons(g);
-	}
-}
+//@
+//@package net.apogames.apohybrid.game;
+//@
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.ApoHybridSoundPlayer;
+//@import net.apogames.apohybrid.entity.ApoLevelChooserButton;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@
+//@public class ApoHybridOptions  extends ApoHybridModel {
+//@
+//@	public static final String BACK = "back";
+//@	public static final String LANGUAGE_GERMAN = "german";
+//@	public static final String LANGUAGE_ENGLISH = "english";
+//@	public static final String COLOR_WHITE = "white";
+//@	public static final String COLOR_GREEN = "green";
+//@	public static final String SOUND = "sound";
+//@	public static final String MUSIC = "music";
+//@	
+//@	public ApoHybridOptions(ApoHybridPanel game) {
+//@		super(game);
+//@	}
+//@
+//@	@Override
+//@	public void init() {
+//@	}
+//@	
+//@	public void onResume() {
+//@	}
+//@
+//@	@Override
+//@	public void touchedPressed(int x, int y, int finger) {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void touchedReleased(int x, int y, int finger) {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void touchedButton(String function) {
+//@		if (function.equals(ApoHybridOptions.BACK)) {
+//@			this.onBackButtonPressed();
+//@		} else if (function.equals(ApoHybridOptions.LANGUAGE_GERMAN)) {
+//@			ApoLevelChooserButton buttonGerman = (ApoLevelChooserButton)(this.getGame().getButtons()[12]);
+//@			if (!buttonGerman.isSelected()) {
+//@				buttonGerman.setSelected(true);
+//@				((ApoLevelChooserButton)(this.getGame().getButtons()[13])).setSelected(false);
+//@				ApoHybridConstants.changeLanguageToGerman();
+//@			}
+//@		} else if (function.equals(ApoHybridOptions.LANGUAGE_ENGLISH)) {
+//@			ApoLevelChooserButton buttonEnglish = (ApoLevelChooserButton)(this.getGame().getButtons()[13]);
+//@			if (!buttonEnglish.isSelected()) {
+//@				buttonEnglish.setSelected(true);
+//@				((ApoLevelChooserButton)(this.getGame().getButtons()[12])).setSelected(false);
+//@				ApoHybridConstants.changeLanguageToEnglish();
+//@			}
+//@		} else if (function.equals(ApoHybridOptions.COLOR_WHITE)) {
+//@			ApoLevelChooserButton buttonWhite = (ApoLevelChooserButton)(this.getGame().getButtons()[14]);
+//@			if (!buttonWhite.isSelected()) {
+//@				buttonWhite.setSelected(true);
+//@				((ApoLevelChooserButton)(this.getGame().getButtons()[15])).setSelected(false);
+//@				ApoHybridConstants.changeToWhiteColor();
+//@			}
+//@		} else if (function.equals(ApoHybridOptions.COLOR_GREEN)) {
+//@			ApoLevelChooserButton buttonGreen = (ApoLevelChooserButton)(this.getGame().getButtons()[15]);
+//@			if (!buttonGreen.isSelected()) {
+//@				buttonGreen.setSelected(true);
+//@				((ApoLevelChooserButton)(this.getGame().getButtons()[14])).setSelected(false);
+//@				ApoHybridConstants.changeToGreenColor();
+//@			}
+//@		} else if (function.equals(ApoHybridOptions.SOUND)) {
+//@			ApoLevelChooserButton buttonSound = (ApoLevelChooserButton)(this.getGame().getButtons()[21]);
+//@			buttonSound.setSelected(!buttonSound.isSelected());
+//@			this.getGame().setSound(buttonSound.isSelected());
+//@		} else if (function.equals(ApoHybridOptions.MUSIC)) {
+//@			ApoLevelChooserButton buttonMusic = (ApoLevelChooserButton)(this.getGame().getButtons()[22]);
+//@			buttonMusic.setSelected(!buttonMusic.isSelected());
+//@			this.getGame().setMusic(buttonMusic.isSelected());
+//@		}
+//@		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON_2);
+//@	}
+//@	
+//@	public void onBackButtonPressed() {
+//@		this.getGame().setMenu();
+//@	}
+//@	
+//@	@Override
+//@	public void think(int delta) {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void render(final BitsGLGraphics g) {
+//@		int addY = 0;
+//@		if (ApoHybridConstants.FREE_VERSION) {
+//@			addY += 45;
+//@		}
+//@		this.getGame().drawString(g, ApoHybridConstants.OPTION_TITLE, (int)(240 - ApoHybridPanel.title_font.getLength(ApoHybridConstants.OPTION_TITLE)/2), 5 + addY, ApoHybridPanel.title_font);
+//@
+//@		g.setColor(ApoHybridConstants.BRIGHT_DARK[0], ApoHybridConstants.BRIGHT_DARK[1], ApoHybridConstants.BRIGHT_DARK[2]);
+//@		g.fillRect(5, 57 + addY, 420, 58);
+//@		g.fillRect(5, 117 + addY, 420, 58);
+//@		g.fillRect(5, 177 + addY, 420, 58);
+//@		
+//@		g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2]);
+//@		g.drawRect(5, 57 + addY, 420, 58);
+//@		g.drawRect(5, 117 + addY, 420, 58);
+//@		g.drawRect(5, 177 + addY, 420, 58);
+//@		this.getGame().drawString(g, ApoHybridConstants.OPTION_LANGUAGE, (int)(10), 78 + addY, ApoHybridPanel.game_font);
+//@		this.getGame().drawString(g, ApoHybridConstants.OPTION_COLOR, (int)(10), 138 + addY, ApoHybridPanel.game_font);
+//@		this.getGame().drawString(g, "audio", (int)(10), 198 + addY, ApoHybridPanel.game_font);
+//@		
+//@		String s = "deutsch";
+//@		this.getGame().drawString(g, s, (int)(175), 78 + addY, ApoHybridPanel.game_font);
+//@		s = "english";
+//@		this.getGame().drawString(g, s, (int)(310), 78 + addY, ApoHybridPanel.game_font);
+//@		
+//@		s = ApoHybridConstants.OPTION_COLOR_WHITE;
+//@		this.getGame().drawString(g, s, (int)(175), 138 + addY, ApoHybridPanel.game_font);
+//@		s = ApoHybridConstants.OPTION_COLOR_GREEN;
+//@		this.getGame().drawString(g, s, (int)(310), 138 + addY, ApoHybridPanel.game_font);
+//@		
+//@		s = ApoHybridConstants.OPTION_SOUND;
+//@		this.getGame().drawString(g, s, (int)(175), 198 + addY, ApoHybridPanel.game_font);
+//@		s = ApoHybridConstants.OPTION_MUSIC;
+//@		this.getGame().drawString(g, s, (int)(310), 198 + addY, ApoHybridPanel.game_font);
+//@		
+//@		this.getGame().renderButtons(g);
+//@	}
+//@}
 //#endif

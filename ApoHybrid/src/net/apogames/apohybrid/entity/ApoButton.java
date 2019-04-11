@@ -2,12 +2,12 @@ package net.apogames.apohybrid.entity;
 
 
 //#if ClockGameLogic || MonoGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#else
-//@import net.gliblybits.bitsengine.core.BitsImage;
-//@import net.gliblybits.bitsengine.render.BitsGraphics;
-//@
+import net.gliblybits.bitsengine.core.BitsImage;
+import net.gliblybits.bitsengine.render.BitsGraphics;
+
 //#endif
 /*
  * Diese Klasse handelt einen Button, die ein 3geteiltes Bild enth?lt
@@ -26,9 +26,9 @@ public class ApoButton extends ApoEntity {
 	private boolean 		bOver, bPressed;
 
 	//#if ClockGameLogic || MonoGameLogic
-	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
+//@	public ApoButton( BitsGLImage iBackground, int x, int y, int width, int height, String function )	{
 	//#else
-//@	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
+	public ApoButton( BitsImage iBackground, int x, int y, int width, int height, String function )	{
 	//#endif
 		super( iBackground, x, y, width, height );
 		
@@ -259,11 +259,11 @@ public class ApoButton extends ApoEntity {
 //@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 //@		if ( this.isVisible() ) {
 	//#elif MonoGameLogic
-	public void render(BitsGLGraphics g, int changeX, int changeY ) {
-		if ( this.isBVisible() ) {
-	//#else
-//@	public void render(BitsGraphics g, int changeX, int changeY ) {
+//@	public void render(BitsGLGraphics g, int changeX, int changeY ) {
 //@		if ( this.isBVisible() ) {
+	//#else
+	public void render(BitsGraphics g, int changeX, int changeY ) {
+		if ( this.isBVisible() ) {
 	//#endif
 			super.render(g, changeX, changeY);
 		}

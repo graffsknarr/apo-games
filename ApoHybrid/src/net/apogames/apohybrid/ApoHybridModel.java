@@ -9,9 +9,9 @@ import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.input.BitsKeyEvent;
 //#elif MonoGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
-//@import net.gliblybits.bitsengine.render.BitsGraphics;
+import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
 public abstract class ApoHybridModel {
@@ -70,16 +70,16 @@ public abstract class ApoHybridModel {
 	public abstract void think(int delta);
 
 	//#if ClockGameLogic || MonoGameLogic
-	public abstract void render(BitsGLGraphics g);
-
-	public void drawOverlay(BitsGLGraphics g) {
-	}
-
-	//#else
-//@	public abstract void render(BitsGraphics g);
+//@	public abstract void render(BitsGLGraphics g);
 //@
-//@	public void drawOverlay(BitsGraphics g) {
+//@	public void drawOverlay(BitsGLGraphics g) {
 //@	}
+//@
+	//#else
+	public abstract void render(BitsGraphics g);
+
+	public void drawOverlay(BitsGraphics g) {
+	}
 	//#endif
 
 }
