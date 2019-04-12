@@ -22,4 +22,8 @@
     <feature manual="selected" name="Nickname"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="ClockGameLogic"/>
+    <feature automatic="selected" name="Font"/>
+    <feature manual="selected" name="ApoFont"/>
+    <feature automatic="unselected" name="TreasureFont"/>
+    <feature automatic="unselected" name="MonoFont"/>
 </configuration>

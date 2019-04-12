@@ -9,4 +9,8 @@
     <feature automatic="unselected" name="ClockMenu"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="MonoGameLogic"/>
+    <feature automatic="selected" name="Font"/>
+    <feature manual="selected" name="ApoFont"/>
+    <feature automatic="unselected" name="TreasureFont"/>
+    <feature automatic="unselected" name="MonoFont"/>
 </configuration>

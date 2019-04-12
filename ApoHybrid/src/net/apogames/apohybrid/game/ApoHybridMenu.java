@@ -7,7 +7,7 @@ import net.apogames.apohybrid.entity.ApoLevelChooserButton;
 //#if ClockGameLogic || MonoGameLogic
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 	//#if MonoGameLogic
-	//@import net.apogames.apohybrid.ApoHybridSoundPlayer;
+//@	import net.apogames.apohybrid.ApoHybridSoundPlayer;
 	//#endif
 //#elif SnakeGameLogic || DiceGameLogic
 import net.gliblybits.bitsengine.render.BitsGraphics;
@@ -78,14 +78,22 @@ public class ApoHybridMenu extends ApoHybridModel {
 	}
 
 	//#if DiceGameLogic || SnakeGameLogic
+	//#if ApoFont
 	private void loadFonts() {
 		ApoHybridMenu.font = BitsFactory.getIt().getFont("reprise.ttf", 30);
 		ApoHybridMenu.title_font = BitsFactory.getIt().getFont("reprise.ttf", 38);
 			
 		ApoHybridMenu.game_font = BitsFactory.getIt().getFont("reprise.ttf", 26);
 	}
+	//#elif MonoFont
+//@		private void loadFonts() {
+//@		ApoHybridMenu.font = BitsFactory.getIt().getFont("res/font/font.ttf", 30);
+//@		ApoHybridMenu.title_font = BitsFactory.getIt().getFont("res/font/font.ttf", 38);
+//@
+//@		ApoHybridMenu.game_font = BitsFactory.getIt().getFont("res/font/font.ttf", 26);
+//@	}
 	//#endif
-	
+	//#endif
 	@Override
 	public void touchedPressed(int x, int y, int finger) {
 		

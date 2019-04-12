@@ -18,4 +18,8 @@
     <feature manual="selected" name="LevelGrid"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="DiceGameLogic"/>
+    <feature automatic="selected" name="Font"/>
+    <feature manual="selected" name="ApoFont"/>
+    <feature automatic="unselected" name="TreasureFont"/>
+    <feature automatic="unselected" name="MonoFont"/>
 </configuration>

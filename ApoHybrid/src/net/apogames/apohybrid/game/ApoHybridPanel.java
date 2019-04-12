@@ -173,8 +173,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		//#endif
 
 
-
-
 		if (this.userlevels == null) {
 			this.userlevels = new ApoHybridUserlevels(this);
 			this.loadUserlevels();
@@ -193,16 +191,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	}
 
 	//#if ClockGameLogic
-//@	private void loadFonts() {
-//@		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("reprise.ttf", 30, 4, true);
-//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.font);
-//@		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 38, 2, true);
-//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.title_font);
-//@		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 26, 2, true);
-//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.game_font);
-//@
-//@		BitsGLFactory.getInstance().loadAllMarked();
-//@	}
 //@
 //@	protected final void loadPreferences() {
 //@		int solved = ApoHybrid.settings.getInt("solved", 0);
@@ -236,21 +224,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@	}
 //@
 	//#elif MonoGameLogic
-//@	private void loadFonts() {
-//@		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 24, +4, BitsGLFont.FILTER_NEAREST, true);
-//@//		ApoHybridPanel.font.mFilterMode = BitsGLFont.FILTER_NEAREST;
-//@//		BitsGLFactory.getInstance().markForLoading(font);
-//@
-//@		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 36, +6, BitsGLFont.FILTER_NEAREST, true);
-//@//		ApoHybridPanel.title_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
-//@//		BitsGLFactory.getInstance().markForLoading(title_font);
-//@
-//@		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 18, +3, BitsGLFont.FILTER_NEAREST, true);
-//@//		ApoHybridPanel.game_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
-//@//		BitsGLFactory.getInstance().markForLoading(game_font);
-//@
-//@		BitsGLFactory.getInstance().loadAllMarked();
-//@	}
 //@
 //@
 //@	protected final void loadPreferences() {
@@ -268,10 +241,10 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@	}
 //@
 //@	private void loadOptions(boolean bEnglish, boolean bColorGreen, boolean bSound, boolean bMusic) {
-//@		((ApoLevelChooserButton)(this.getButtons()[12])).setSelected(!bEnglish);
-//@		((ApoLevelChooserButton)(this.getButtons()[13])).setSelected(bEnglish);
-//@		((ApoLevelChooserButton)(this.getButtons()[14])).setSelected(!bColorGreen);
-//@		((ApoLevelChooserButton)(this.getButtons()[15])).setSelected(bColorGreen);
+//@		((ApoLevelChooserButton) (this.getButtons()[12])).setSelected(!bEnglish);
+//@		((ApoLevelChooserButton) (this.getButtons()[13])).setSelected(bEnglish);
+//@		((ApoLevelChooserButton) (this.getButtons()[14])).setSelected(!bColorGreen);
+//@		((ApoLevelChooserButton) (this.getButtons()[15])).setSelected(bColorGreen);
 //@
 //@		if (bEnglish) {
 //@			ApoHybridConstants.changeLanguageToEnglish();
@@ -286,8 +259,8 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@		}
 //@
 //@
-//@		((ApoLevelChooserButton)(this.getButtons()[21])).setSelected(bSound);
-//@		((ApoLevelChooserButton)(this.getButtons()[22])).setSelected(bMusic);
+//@		((ApoLevelChooserButton) (this.getButtons()[21])).setSelected(bSound);
+//@		((ApoLevelChooserButton) (this.getButtons()[22])).setSelected(bMusic);
 //@		this.setSound(bSound);
 //@		this.setMusic(bMusic);
 //@	}
@@ -320,24 +293,24 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@		SharedPreferences settings = ApoHybrid.settings;
 //@		SharedPreferences.Editor editor = settings.edit();
 //@		boolean bEnglish = true;
-//@		if (((ApoLevelChooserButton)(this.getButtons()[12])).isSelected()) {
+//@		if (((ApoLevelChooserButton) (this.getButtons()[12])).isSelected()) {
 //@			bEnglish = false;
 //@		}
 //@		editor.putBoolean("language", bEnglish);
 //@		boolean bColorGreen = true;
-//@		if (((ApoLevelChooserButton)(this.getButtons()[14])).isSelected()) {
+//@		if (((ApoLevelChooserButton) (this.getButtons()[14])).isSelected()) {
 //@			bColorGreen = false;
 //@		}
 //@		editor.putBoolean("color", bColorGreen);
 //@
 //@		boolean bSound = true;
-//@		if (!((ApoLevelChooserButton)(this.getButtons()[21])).isSelected()) {
+//@		if (!((ApoLevelChooserButton) (this.getButtons()[21])).isSelected()) {
 //@			bSound = false;
 //@		}
 //@		editor.putBoolean("sound", bSound);
 //@
 //@		boolean bMusic = true;
-//@		if (!((ApoLevelChooserButton)(this.getButtons()[22])).isSelected()) {
+//@		if (!((ApoLevelChooserButton) (this.getButtons()[22])).isSelected()) {
 //@			bMusic = false;
 //@		}
 //@		editor.putBoolean("music", bMusic);
@@ -444,7 +417,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 	//#endif
 
 
-
 	public final void loadUserlevels() {
 		Thread t = new Thread(new Runnable() {
 			@Override
@@ -454,7 +426,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		});
 		t.start();
 	}
-
 
 
 	public final ApoHybridUserlevels getUserlevels() {
@@ -469,7 +440,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		super.setModel(this.menu);
 
 		this.setButtonVisible(ApoHybridConstants.BUTTON_MENU);
-
 
 
 		super.getModel().init();
@@ -490,32 +460,32 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 	//#if MonoGameLogic
 //@	protected final void setEditor(boolean bUpload) {
-	//#else
+		//#else
 	protected final void setEditor(boolean bSolvedLevel) {
-	//#endif
-			if (super.getModel() != null) {
-				super.getModel().close();
-			}
-
-			super.setModel(this.editor);
-
-			this.setButtonVisible(ApoHybridConstants.BUTTON_EDITOR);
-
-			super.getModel().init();
-
-			//#if MonoGameLogic
-//@			this.editor.setUploadVisible(bUpload);
-//@			this.musicPlayer.setMenu(true);
-//@
-			//#else
-			this.editor.setLevelSolved(bSolvedLevel);
-			//#endif
-
-			//#if ClockGameLogic
-//@			this.textfield.setVisible(false);
-			//#endif
+		//#endif
+		if (super.getModel() != null) {
+			super.getModel().close();
 		}
+
+		super.setModel(this.editor);
+
+		this.setButtonVisible(ApoHybridConstants.BUTTON_EDITOR);
+
+		super.getModel().init();
+
+		//#if MonoGameLogic
+//@		this.editor.setUploadVisible(bUpload);
+//@		this.musicPlayer.setMenu(true);
+//@
+		//#else
+			this.editor.setLevelSolved(bSolvedLevel);
+		//#endif
+
 		//#if ClockGameLogic
+//@			this.textfield.setVisible(false);
+		//#endif
+	}
+	//#if ClockGameLogic
 //@		protected final void setPuzzle() {
 //@			if (super.getModel() != null) {
 //@				super.getModel().close();
@@ -632,9 +602,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@
 //@			g.setLineSize(1.0f);
 //@		}
-		//#endif
+	//#endif
 
-		//#if !MonoGameLogic
+	//#if !MonoGameLogic
 		protected final void setPuzzleChooser() {
 			if (super.getModel() != null) {
 				super.getModel().close();
@@ -649,29 +619,29 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			//TODO
 			//this.musicPlayer.setMenu(true);
 
-			//#if ClockGameLogic
+	//#if ClockGameLogic
 //@			this.textfield.setVisible(false);
-			//#endif
+	//#endif
 		}
-		//#endif
+	//#endif
 
-		protected final void setGame(final int level, final String levelString, final boolean bUserlevel) {
-			if (super.getModel() != null) {
-				super.getModel().close();
-			}
+	protected final void setGame(final int level, final String levelString, final boolean bUserlevel) {
+		if (super.getModel() != null) {
+			super.getModel().close();
+		}
 
-			super.setModel(this.game);
+		super.setModel(this.game);
 
-			this.setButtonVisible(ApoHybridConstants.BUTTON_GAME);
+		this.setButtonVisible(ApoHybridConstants.BUTTON_GAME);
 
-			super.getModel().init();
+		super.getModel().init();
 
-			//#if MonoGameLogic
-//@			this.game.loadLevel(level, bUserlevel, levelString);
-//@			this.musicPlayer.setMenu(false);
+		//#if MonoGameLogic
+//@		this.game.loadLevel(level, bUserlevel, levelString);
+//@		this.musicPlayer.setMenu(false);
 //@
 //@
-			//#elif ClockGameLogic
+		//#elif ClockGameLogic
 //@			if (levelString != null) {
 //@				this.game.loadLevelWithString(levelString, true);
 //@			} else {
@@ -679,169 +649,169 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@			}
 //@
 //@			this.textfield.setVisible(false);
-			//#elif SnakeGameLogic || DiceGameLogic
+		//#elif SnakeGameLogic || DiceGameLogic
 		this.game.loadLevel(level, bUserlevel, levelString);
-			//#endif
-		}
-
-
-		public final void setButtonVisible(boolean[] bVisibile) {
-			for (int i = 0; i < this.getButtons().length && i < bVisibile.length; i++) {
-				this.getButtons()[i].setVisible(bVisibile[i]);
-			}
-		}
-
-
-		@Override
-		public void setButtonFunction(final String function) {
-			if (super.getModel() != null) {
-				super.getModel().touchedButton(function);
-			}
-		}
-
-		@Override
-		//#if SnakeGameLogic || DiceGameLogic
-			public void onResume() {
-		//#elif ClockGameLogic || MonoGameLogic
-//@		public void onResumeScreen() {
 		//#endif
-			if (super.getModel() != null) {
-				super.getModel().onResume();
-			}
+	}
 
-			//#if MonoGameLogic
-//@			if (this.musicPlayer != null) {
-//@				this.setMusic(this.bMusic);
-//@			}
-			//#endif
 
+	public final void setButtonVisible(boolean[] bVisibile) {
+		for (int i = 0; i < this.getButtons().length && i < bVisibile.length; i++) {
+			this.getButtons()[i].setVisible(bVisibile[i]);
+		}
+	}
+
+
+	@Override
+	public void setButtonFunction(final String function) {
+		if (super.getModel() != null) {
+			super.getModel().touchedButton(function);
+		}
+	}
+
+	@Override
+	//#if SnakeGameLogic || DiceGameLogic
+			public void onResume() {
+	//#elif ClockGameLogic || MonoGameLogic
+//@	public void onResumeScreen() {
+		//#endif
+		if (super.getModel() != null) {
+			super.getModel().onResume();
 		}
 
-		public void onBackButtonPressed() {
-			if (super.getModel() != null) {
-				super.getModel().onBackButtonPressed();
-			}
-		}
+		//#if MonoGameLogic
+//@		if (this.musicPlayer != null) {
+//@			this.setMusic(this.bMusic);
+//@		}
+		//#endif
 
-		public int getMaxCanChoosen() {
-			//#if MonoGameLogic
-//@			int value = this.solvedLevels.solvedCout + 2;
-//@			if (value >= ApoHybridLevel.MAX_LEVELS) {
-//@				value = ApoHybridLevel.MAX_LEVELS -1;
-//@			}
-//@			return value;
-			//#else
+	}
+
+	public void onBackButtonPressed() {
+		if (super.getModel() != null) {
+			super.getModel().onBackButtonPressed();
+		}
+	}
+
+	public int getMaxCanChoosen() {
+		//#if MonoGameLogic
+//@		int value = this.solvedLevels.solvedCout + 2;
+//@		if (value >= ApoHybridLevel.MAX_LEVELS) {
+//@			value = ApoHybridLevel.MAX_LEVELS - 1;
+//@		}
+//@		return value;
+		//#else
 			return this.levelChooser.getSolved();
-			//#endif
-		}
+		//#endif
+	}
 
-		//#if !MonoGameLogic
+	//#if !MonoGameLogic
 		public void solvedLevel(int level) {
 			this.levelChooser.setSolved(level);
 		}
+	//#endif
+
+	public void onUpdate(float delta) {
+		super.onUpdate(delta);
+
+		//#if ClockGameLogic || MonoGameLogic
+//@		this.think += delta;
+		//#elif SnakeGameLogic || DiceGameLogic
+					this.think += delta * 1000;
 		//#endif
 
-		public void onUpdate(float delta) {
-			super.onUpdate(delta);
+		//#if SnakeGameLogic
+		//@		this.checkTouchInput();
+		//#endif
 
-			//#if ClockGameLogic || MonoGameLogic
-//@			this.think += delta;
-			//#elif SnakeGameLogic || DiceGameLogic
-					this.think += delta * 1000;
-			//#endif
-
-			//#if SnakeGameLogic
-			//@		this.checkTouchInput();
-			//#endif
-
-			// Update / think
-			// Wenn 10 ms vergangen sind, dann denke nach
-			while (this.think >= 10) {
-				this.think -= 10;
-				if (super.getModel() != null) {
-					super.getModel().think((int)10);
-					//#if ClockGameLogic
+		// Update / think
+		// Wenn 10 ms vergangen sind, dann denke nach
+		while (this.think >= 10) {
+			this.think -= 10;
+			if (super.getModel() != null) {
+				super.getModel().think((int) 10);
+				//#if ClockGameLogic
 //@					this.textfield.think(10);
-					//#endif
+				//#endif
 
-				}
 			}
 		}
+	}
 
-		@Override
-		//#if ClockGameLogic || MonoGameLogic
-//@		public void onDrawFrame(BitsGLGraphics g) {
+	@Override
+	//#if ClockGameLogic || MonoGameLogic
+//@	public void onDrawFrame(BitsGLGraphics g) {
 		//#elif SnakeGameLogic || DiceGameLogic
 		public void onDrawFrame(BitsGraphics g) {
 		//#endif
-			if (super.getModel() != null) {
-				super.getModel().render(g);
-			}
-			super.renderButtons(g);
-			if (super.getModel() != null) {
-				super.getModel().drawOverlay(g);
-			}
-			//#if MonoGameLogic
-//@			if (ApoHybridConstants.FPS) {
-//@				g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
-//@				g.setFont(ApoHybridPanel.game_font);
-//@				g.drawFPS(5, ApoHybridGame.changeY);
-//@			}
-			//#endif
+		if (super.getModel() != null) {
+			super.getModel().render(g);
 		}
-
-
+		super.renderButtons(g);
+		if (super.getModel() != null) {
+			super.getModel().drawOverlay(g);
+		}
 		//#if MonoGameLogic
-//@		public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font) {
-//@			this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, false);
-//@		}
-//@
-//@		public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, boolean bShadow) {
-//@			this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, bShadow);
-//@		}
-//@
-//@		public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorFront) {
-//@			this.drawString(g, s, x, y, font, colorFront, false);
-//@		}
-//@
-//@		public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorFront, boolean bShadow) {
-//@			int w = 0;
-//@			if (super.getModel().getStringWidth().containsKey(s)) {
-//@				w = super.getModel().getStringWidth().get(s);
-//@			}
-//@
-//@			float alpha = 1;
-//@			if (colorFront.length > 3) {
-//@				alpha = colorFront[3];
-//@			}
-//@			g.setFont(font);
-//@			if (bShadow) {
-//@				g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
-//@				if (colorFront[0] > 0.5f) {
-//@					ApoHybridGame.setDarkerColor(g);
-//@					ApoHybridGame.setDarkerColor(g);
-//@				} else {
-//@					ApoHybridGame.setBrighterColor(g);
-//@				}
-//@				g.drawText(s, x - w/2 + 1, y + 1);
-//@			}
-//@			g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
-//@			g.drawText(s, x - w/2 + 0, y + 0);
+//@		if (ApoHybridConstants.FPS) {
+//@			g.setColor(ApoHybridConstants.DARK[0], ApoHybridConstants.DARK[1], ApoHybridConstants.DARK[2], 1f);
+//@			g.setFont(ApoHybridPanel.game_font);
+//@			g.drawFPS(5, ApoHybridGame.changeY);
 //@		}
 		//#endif
+	}
 
-		//#if ClockGameLogic
+
+	//#if MonoGameLogic
+//@	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font) {
+//@		this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, false);
+//@	}
+//@
+//@	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, boolean bShadow) {
+//@		this.drawString(g, s, x, y, font, ApoHybridConstants.DARK, bShadow);
+//@	}
+//@
+//@	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorFront) {
+//@		this.drawString(g, s, x, y, font, colorFront, false);
+//@	}
+//@
+//@	public void drawString(final BitsGLGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorFront, boolean bShadow) {
+//@		int w = 0;
+//@		if (super.getModel().getStringWidth().containsKey(s)) {
+//@			w = super.getModel().getStringWidth().get(s);
+//@		}
+//@
+//@		float alpha = 1;
+//@		if (colorFront.length > 3) {
+//@			alpha = colorFront[3];
+//@		}
+//@		g.setFont(font);
+//@		if (bShadow) {
+//@			g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
+//@			if (colorFront[0] > 0.5f) {
+//@				ApoHybridGame.setDarkerColor(g);
+//@				ApoHybridGame.setDarkerColor(g);
+//@			} else {
+//@				ApoHybridGame.setBrighterColor(g);
+//@			}
+//@			g.drawText(s, x - w / 2 + 1, y + 1);
+//@		}
+//@		g.setColor(colorFront[0], colorFront[1], colorFront[2], alpha);
+//@		g.drawText(s, x - w / 2 + 0, y + 0);
+//@	}
+	//#endif
+
+	//#if ClockGameLogic
 //@		public void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font) {
 //@			this.drawString(g, s, x, y, font, new float[] {0, 0, 0, 1}, new float[] {1, 1, 1, 1});
 //@		}
-		//#elif SnakeGameLogic || DiceGameLogic
+	//#elif SnakeGameLogic || DiceGameLogic
 		protected void drawString(BitsGraphics g, final String s, final int x, final int y, final BitsFont font) {
 			this.drawString(g, s, x, y, font, new float[] {0, 0, 0, 1}, new float[] {1, 1, 1, 1});
 		}
-		//#endif
+	//#endif
 
 
-		//#if ClockGameLogic
+	//#if ClockGameLogic
 //@		protected void drawString(BitsGLGraphics g, final String s, final int x, final int y, final BitsGLFont font, float[] colorBack, float[] colorFront) {
 //@			int w = 0;
 //@			if (super.getModel().getStringWidth().containsKey(s)) {
@@ -849,7 +819,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@			}
 //@			g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
 //@
-		//#elif SnakeGameLogic || DiceGameLogic
+	//#elif SnakeGameLogic || DiceGameLogic
 		protected void drawString(BitsGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorBack, float[] colorFront) {
 			int w = 0;
 			if (super.getModel().getStringWidth().containsKey(s)) {
@@ -857,20 +827,21 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			}
 			g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
 
-		//#endif
+	//#endif
 
-			//#if ClockGameLogic
+	//#if ClockGameLogic
 //@			g.setFont(font);
 //@			g.drawText(s, x - w / 2 + 1, y + 2 - font.mCharCellHeight / 6);
 //@			g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
 //@			g.drawText(s, x - w / 2 + 0, y + 0 - font.mCharCellHeight / 6);
-			//#elif SnakeGameLogic || DiceGameLogic
+	//#elif SnakeGameLogic || DiceGameLogic
 		g.drawText(s, font, x - w/2 + 1, y + 2);
 		g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
 		g.drawText(s, font, x - w/2 + 0, y + 0);
 
-			//#endif
-		}
+}
+	//#endif
+
 		//#if ClockGameLogic
 //@		public void renderButtons(final BitsGLGraphics g) {
 //@			this.renderButtons(g, ApoHybridPanel.font);
@@ -956,4 +927,35 @@ public class ApoHybridPanel extends ApoHybridComponent {
 		}
 	}
 		//#endif
-	}
+
+	//#if MonoGameLogic || ClockGameLogic
+	//#if MonoFont
+	//@	private void loadFonts() {
+//@		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 24, +4, BitsGLFont.FILTER_NEAREST, true);
+//@//		ApoHybridPanel.font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+//@//		BitsGLFactory.getInstance().markForLoading(font);
+//@
+//@		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 36, +6, BitsGLFont.FILTER_NEAREST, true);
+//@//		ApoHybridPanel.title_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+//@//		BitsGLFactory.getInstance().markForLoading(title_font);
+//@
+//@		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("res/font/font.ttf", 18, +3, BitsGLFont.FILTER_NEAREST, true);
+//@//		ApoHybridPanel.game_font.mFilterMode = BitsGLFont.FILTER_NEAREST;
+//@//		BitsGLFactory.getInstance().markForLoading(game_font);
+//@
+//@		BitsGLFactory.getInstance().loadAllMarked();
+//@	}
+	//#elif ApoFont
+//@		private void loadFonts() {
+//@		ApoHybridPanel.font = BitsGLFactory.getInstance().getFont("reprise.ttf", 30, 4, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.font);
+//@		ApoHybridPanel.title_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 38, 2, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.title_font);
+//@		ApoHybridPanel.game_font = BitsGLFactory.getInstance().getFont("reprise.ttf", 26, 2, true);
+//@		BitsGLFactory.getInstance().markForLoading(ApoHybridPanel.game_font);
+//@
+//@		BitsGLFactory.getInstance().loadAllMarked();
+//@	}
+	//#endif
+	//#endif
+}

@@ -75,6 +75,11 @@
                 <feature name="ClockGameLogic"/>
                 <feature name="MonoGameLogic"/>
             </and>
+            <alt name="Font">
+                <feature name="ApoFont"/>
+                <feature name="TreasureFont"/>
+                <feature name="MonoFont"/>
+            </alt>
         </and>
     </struct>
     <constraints/>
