@@ -6,8 +6,8 @@ import net.apogames.apohybrid.ApoHybridModel;
 import net.apogames.apohybrid.entity.ApoLevelChooserButton;
 //#if ClockGameLogic || MonoGameLogic
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-	//#if MonoGameLogic
-//@	import net.apogames.apohybrid.ApoHybridSoundPlayer;
+	//#if MonoGameLogic || TreasureGameLogic
+	//@	import net.apogames.apohybrid.ApoHybridSoundPlayer;
 	//#endif
 //#elif SnakeGameLogic || DiceGameLogic
 import net.gliblybits.bitsengine.render.BitsGraphics;
@@ -30,6 +30,10 @@ public class ApoHybridMenu extends ApoHybridModel {
 	public static final String SUB = "a game made by Dirk Aporius";
 	public static final String SUB_2 = "made with the bits-engine by Marc Wiedenhoeft";
 	public static final String CREDITS = "credits";
+	//#if TreasureGameLogic
+	public static final String CREDITS = "C";
+	public static final String OPTIONS = "O";
+	//#endif
 	
 	private float clockRotate;
 
@@ -39,9 +43,15 @@ public class ApoHybridMenu extends ApoHybridModel {
 	public static BitsFont title_font;
 	//#endif
 	
+	//#if TreasureGameLogic
 	public ApoHybridMenu(ApoHybridPanel game) {
 		super(game);
 	}
+	//#else
+	public ApoHybridMenu(ApoHybridPanel game) {
+		super(game);
+	}
+	//#endif
 
 	@Override
 	public void init() {
@@ -134,6 +144,29 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@			this.getGame().setOptions();
 //@		}
 //@		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON);
+		//#elif TreasureMenu
+		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+		if (function.equals(MyTreasureMenu.GAME)) {
+			this.getGame().setMap();
+		}
+		if (function.equals(MyTreasureMenu.CREDITS)) {
+			this.getGame().setCredits();
+		}
+
+		if (function.equals(MyTreasureMenu.OPTIONS)) {
+			this.getGame().setOptions();
+		}
+		if (function.equals(MyTreasureMenu.EDITOR)) {
+			if (!MyTreasureConstants.FREE_VERSION) {
+				this.getGame().setEditor(false, 95);
+			}
+		}
+		if (function.equals(MyTreasureMenu.USERLEVELS)) {
+			if (!MyTreasureConstants.FREE_VERSION) {
+//				this.getGame().setGame(true, false, 0, "");
+				this.getGame().setLevelChooser(0, 0, false, true);
+			}
+		}
 		//#else
 		} else if (function.equals(ApoHybridMenu.PUZZLE)) {
 			this.getGame().setPuzzleChooser();
@@ -150,7 +183,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 		}
 		//#endif
 	}
-	//#if ClockMenu || MonoMenu
+	//#if ClockMenu || MonoMenu || TreasureMenu
 //@	public void onBackButtonPressed() {
 //@		BitsGame.getInstance().finishApp();
 //@	}
@@ -303,6 +336,39 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@	}
 //@
 //@}
+	//#elif TreasureMenu
+	public void render(BitsGLGraphics g) {
+		g.cropImage(MyTreasureConstants.iSheet, 0, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT, MyTreasureConstants.iSheet.mWidth - MyTreasureConstants.GAME_WIDTH, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT);
+
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4, 25 * 4, 72 * 4, 8 * 4, 0, 112 * 4, 72 * 4, 8 * 4);
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4 + 32 * 4, 25 * 4 - 24, 8 * 4, 8 * 4, 0, 0, 8 * 4, 8 * 4);
+
+		g.cropImage(MyTreasureConstants.iSheet, 2 * 4, 390, 76 * 4, 8 * 4, 0, 96 * 4, 76 * 4, 8 * 4);
+	
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4 + 50 * 4 - 16, 25 * 4 - 24 - 16, 64, 64, 8 * 32, 32, 64, 64);
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4 + 50 * 4, 25 * 4 - 24, 32, 32, 0 * 32, 1 * 32, 32, 32);
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4 + 12 * 4 - 16, 25 * 4 - 24 - 16, 64, 64, 8 * 32, 32, 64, 64);
+		g.cropImage(MyTreasureConstants.iSheet, 5 * 4 + 12 * 4, 25 * 4 - 24, 32, 32, 0 * 32, 1 * 32, 32, 32);
+		
+		g.setFont(MyTreasureConstants.font);
+		g.setColor(MyTreasureConstants.COLOR_DARK[0], MyTreasureConstants.COLOR_DARK[1], MyTreasureConstants.COLOR_DARK[2]);
+		
+		String s = "MyTreasure";
+		float w = MyTreasureConstants.font.getLength(s);
+		g.drawText(s, MyTreasureConstants.GAME_WIDTH/2 - w/2 + 4, 54 - MyTreasureConstants.font.mCharCellHeight);
+		
+		if (MyTreasureConstants.FREE_VERSION) {
+			s = "free version";
+			g.setFont(MyTreasureConstants.fontSmall);
+			
+			w = MyTreasureConstants.fontSmall.getLength(s);
+			g.drawText(s, MyTreasureConstants.GAME_WIDTH/2 - w/2 + 4, 56);
+		}
+		
+		g.setColor(1f, 1f, 1f, 1f);
+	}
+
+}
 	//#else
 	public void render(final BitsGraphics g) {
 		

@@ -1,6 +1,6 @@
 package net.apogames.apohybrid.entity;
 
-//#if ClockGameLogic || MonoGameLogic
+//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //@import net.gliblybits.bitsengine.utils.BitsRect;
@@ -23,7 +23,7 @@ public class ApoEntity {
 
 	private float width, height;
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	private BitsGLImage iBackground;
 //@
 //@	private boolean bSelect, bVisible, bClose, bUse, bOpaque;
@@ -122,7 +122,7 @@ public class ApoEntity {
 	 *
 	 * @return gibt zur?ck, ob die Entity angezeigt werden soll oder nicht
 	 */
-	//#if ClockGameLogic
+	//#if ClockGameLogic || TreasureGameLogic
 //@	public boolean isVisible() {
 	//#else
 	public boolean isBVisible() {
@@ -148,6 +148,8 @@ public class ApoEntity {
 
 	//#if ClockGameLogic
 //@	public boolean isSelect() {
+	//#elif TreasureGameLogic
+	public boolean isSelected() {
 	//#else
 	public boolean isBSelect() {
 	//#endif
@@ -163,6 +165,8 @@ public class ApoEntity {
 
 	//#if ClockGameLogic
 //@	public void setSelect(boolean bSelect) {
+	//#elif TreasureGameLogic
+	public void setSelected(boolean bSelect) {
 	//#else
 	public void setBSelect(boolean bSelect) {
 	//#endif
@@ -250,11 +254,11 @@ public class ApoEntity {
 	 * @return Bild
 	 */
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	public BitsGLImage getIBackground() {
-		//#else
+	//#else
 	public BitsImage getIBackground() {
-		//#endif
+	//#endif
 
 		return this.iBackground;
 	}
@@ -265,7 +269,7 @@ public class ApoEntity {
 	 * @param background
 	 */
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	public void setIBackground(BitsGLImage background) {
 		//#else
 	public void setIBackground(BitsImage background) {
@@ -377,11 +381,11 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(float x, float y, float width, float height) {
-		//#if ClockGameLogic
+		//#if ClockGameLogic || TreasureGameLogic
 //@		if (this.getRec().intersects((int) x, (int) y, (int) (width), (int) (height))) {
-			//#else
+		//#else
 		if (this.getRec().intersects((int)x, (int)y, (int)(width + x), (int)(y + height))) {
-			//#endif
+		//#endif
 
 			return true;
 		}
@@ -395,7 +399,7 @@ public class ApoEntity {
 	 * @return TRUE, falls drin, sonst FALSE
 	 */
 	public boolean intersects(ApoEntity entity) {
-		//#if ClockGameLogic || MonoGameLogic
+		//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@		if (this.getRec().intersects(entity.getRec())) {
 			//#else
 		if (this.getRec().intersects(entity.getRec().left, entity.getRec().top, entity.getRec().right, entity.getRec().bottom)) {
@@ -436,7 +440,7 @@ public class ApoEntity {
 	 * @return gibt das aktuelle Rechteck der Entity zur?ck
 	 */
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	public BitsRect getRec() {
 //@		return new BitsRect((int) this.getX(), (int) this.getY(), (int) (this.getWidth()), (int) (this.getHeight()));
 //@	}
@@ -480,18 +484,22 @@ public class ApoEntity {
 	 *
 	 * @param g
 	 */
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	public void render(BitsGLGraphics g, int x, int y) {
-		//#if ClockGameLogic
+		//#if ClockGameLogic || TreasureGameLogic
 //@		if ((this.getIBackground() != null) && (this.isVisible())) {
 //@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
-//@			if (this.isSelect()) {
+//@			//#if ClockGameLogic
+			if (this.isSelect()) {
+			//#elif TreasureGameLogic
+			if (this.isSelected()) {
+			//#endif
 		//#elif MonoGameLogic
 //@		if ((this.getIBackground() != null) && (this.isBVisible())) {
 //@			g.drawImage(this.iBackground, (this.getX() + x), (this.getY() + y), (this.getX() + x + this.getWidth()), (this.getY() + y + this.getHeight()));
 //@			if (this.isBSelect()) {
 		//#endif
-//@						g.setColor(255, 0, 0);
+//@				g.setColor(255, 0, 0);
 //@				g.drawRect((int) (this.getX() + x), (int) (this.getY() + y), (int) (this.getWidth() - 1), (int) (this.getHeight() - 1));
 //@			}
 //@		}
@@ -525,5 +533,11 @@ public class ApoEntity {
 		this.render(g, 0, 0);
 	}
 
+	//#endif
+
+	//#if TreasureGameLogic
+	public void render(BitsGLGraphics g) {
+		this.render(g, 0, 0);
+	}
 	//#endif
 }

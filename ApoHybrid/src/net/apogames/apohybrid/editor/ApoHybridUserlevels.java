@@ -82,7 +82,7 @@ public class ApoHybridUserlevels {
 			//#if MonoGameLogic
 //@			String s = this.userlevels.getLevels().get(i);
 //@			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
-			//#elif DiceGameLogic || SnakeGameLogic
+			//#elif DiceGameLogic || SnakeGameLogic || TreasureGameLogic
 			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
 			//#endif
 				float time = this.userlevels.getTimes().get(i);
@@ -108,6 +108,29 @@ public class ApoHybridUserlevels {
 		return this.sortByUpload;
 	}
 	
+	//#if TreasureGameLogic
+	public boolean isIn(final String level) {
+		for (int i = 0; i < MyTreasureLevel.MAX_LEVELS; i++) {
+			if (MyTreasureLevel.isInWithoutSteps(level)) {
+				return false;
+			}
+		}
+		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
+			if (this.userlevels.getLevels().get(i).substring(0, this.userlevels.getLevels().get(i).length() - 4).equals(level.substring(0, level.length() - 4))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean addLevel(String level) {
+		if (this.isIn(level)) {
+			return MyTreasureUserlevelsLoad.getInstance().save(level);
+		}
+		return false;
+	}
+	//#else
+	
 	public boolean addLevel(String level) {
 		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
 			if (this.userlevels.getLevels().get(i).equals(level)) {
@@ -116,6 +139,7 @@ public class ApoHybridUserlevels {
 		}
 		return ApoHybridUserlevelsLoad.getInstance().save(level);
 	}
+	//#endif
 	
 	public float getStars(int level) {
 		if (this.userlevels.getCount().get(this.sortByUpload.get(level)) <= 0) {
