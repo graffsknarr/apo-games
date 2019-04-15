@@ -1,14 +1,16 @@
-//#if MonoGameLogic
+//#if MonoGameLogic || TreasureGameLogic
 //@package net.apogames.apohybrid;
 //@
 //@import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.gliblybits.bitsengine.core.BitsApp;
-//@import net.gliblybits.bitsengine.utils.BitsLog;
 //@import android.media.MediaPlayer;
 //@import android.media.MediaPlayer.OnCompletionListener;
+//#if MonoGameLogic
+//@import net.gliblybits.bitsengine.utils.BitsLog;
+//#endif
 //@
 //@public class ApoHybridMusicPlayer implements OnCompletionListener {
-//@
+	//#if MonoGameLogic
 //@    private final int[] MUSIC_INGAME = new int[] {
 //@            R.raw.ingame_1,
 //@            R.raw.ingame_2,
@@ -16,6 +18,14 @@
 //@    };
 //@
 //@    private final int MENU = R.raw.menu;
+	
+	//#elif TreasureGameLogic
+	private final int[] MUSIC_INGAME = new int[] {
+			0
+	};
+	
+	private final int MENU = R.raw.game_theme;
+	//#endif
 //@
 //@    private MediaPlayer mAudio = null;
 //@
