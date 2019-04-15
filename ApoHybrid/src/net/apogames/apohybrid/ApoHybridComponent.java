@@ -3,8 +3,8 @@ package net.apogames.apohybrid;
 import net.apogames.apohybrid.entity.ApoButton;
 import net.gliblybits.bitsengine.gui.BitsScreen;
 
-//#if ClockGameLogic || MonoGameLogic
-//#if MonoGameLogic
+//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
+//#if MonoGameLogic || TreasureGameLogic
 //@import net.gliblybits.bitsengine.gui.widgets.BitsButtonWidget;
 //#endif
 //@
@@ -35,7 +35,7 @@ import net.gliblybits.bitsengine.input.BitsTouchListener;
 public abstract class ApoHybridComponent extends BitsScreen implements BitsTouchListener, BitsKeyListener {
 //#elif SnakeGameLogic
 //@public abstract class ApoHybridComponent extends BitsScreen {
-//#elif ClockGameLogic || MonoGameLogic
+//#elif ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@public abstract class ApoHybridComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
 //#endif
 
@@ -43,6 +43,8 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 	private ApoButton[] buttons;
 
 	private int oldX, oldY;
+
+	private ApoHybridModel model;
 
 	//#if DiceGameLogic || SnakeGameLogic
 	private final boolean[] touched = new boolean[3];
@@ -60,7 +62,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //@		this.model = model;
 //@	}
 //@
-	//#elif MonoGameLogic
+	//#elif MonoGameLogic || TreasureGameLogic
 //@	public void onButtonPressed(BitsButtonWidget button) {
 //@
 //@	}
@@ -70,7 +72,6 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //@	}
 	//#endif
 
-	private ApoHybridModel model;
 
 	protected ApoHybridComponent(int id) {
 		super(id);
@@ -98,7 +99,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 		this.buttons = buttons;
 	}
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	public final boolean onPointerDown( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
 //@		boolean bButton = false;
 //@		if (this.getButtons() != null) {
@@ -108,11 +109,19 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 	//#else
 //@					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 	//#endif
+	//#if TreasureGameLogic
+						this.getButtons()[b].setBPressed(true);
+					} else {
+						this.getButtons()[b].setBPressed(false);
+					}
+	//#else
+
 //@						String function = this.getButtons()[b].getFunction();
 //@						this.setButtonFunction(function);
 //@						bButton = true;
 //@						break;
 //@					}
+	//#endif
 //@				}
 //@			}
 //@			if (!bButton) {
@@ -127,10 +136,28 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //@		}
 //@
 //@		public final boolean onPointerUp( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
+			//#if TreasureGameLogic
+			boolean bButton = false;
+			if (this.getButtons() != null) {
+				for (int b = 0; b < this.getButtons().length; b++) {
+					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1)) && (!bButton) && (this.getButtons()[b].isBPressed())) {
+						String function = this.getButtons()[b].getFunction();
+						this.setButtonFunction(function);
+						bButton = true;
+					}
+					this.getButtons()[b].setBPressed(false);
+				}
+			}
+			if (!bButton) {
+				if (this.model != null) {
+					this.model.touchedReleased((int)x, (int)y, pointerId);
+				}
+			}
+			//#else
 //@			if (this.model != null) {
 //@				this.model.touchedReleased((int)x, (int)y, pointerId);
 //@			}
-//@
+			//#endif
 //@			return true;
 //@		}
 //@
@@ -151,7 +178,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 	 * @param g : das Graphics2D Object
 	 */
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@		public void renderButtons(BitsGLGraphics g) {
 	//#else
 	public void renderButtons(BitsGraphics g) {
@@ -170,7 +197,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 	 */
 	public abstract void setButtonFunction(String function);
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@		@Override
 //@		public void onInitScreen() {
 //@			BitsInput.getInstance().registerPointerListener(this);
@@ -277,7 +304,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 		}
 	}
 
-		//#elif SnakeGameLogic
+	//#elif SnakeGameLogic
 //@	@Override
 //@	public void onInit() {
 //@		init();
@@ -359,7 +386,7 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //@			return true;
 //@		}
 //@
-		//#elif MonoGameLogic
+		//#elif MonoGameLogic || TreasureGameLogic
 //@		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
 //@			if (this.model != null) {
 //@				this.model.onKeyDown(key);
@@ -377,5 +404,6 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsTouch
 //@		}
 //@
 		//#endif
+
 
 	}

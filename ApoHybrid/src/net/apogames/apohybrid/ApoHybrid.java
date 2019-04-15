@@ -31,7 +31,7 @@ public class ApoHybrid extends BitsApp {
 	//#endif
 
 	@Override
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	protected void onCreateApp()
 	//#else
 	protected void onCreate( )
@@ -88,6 +88,17 @@ public class ApoHybrid extends BitsApp {
 //@
 //@		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
 //@
+		//#elif TreasureGameLogic
+		BitsApp.sGameWidth = MyTreasureConstants.GAME_WIDTH;
+		BitsApp.sGameHeight = MyTreasureConstants.GAME_HEIGHT;
+		BitsApp.sMaxUpdate = 100;
+		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+		BitsApp.sWantTitleBar = false;
+		BitsApp.sMaxCirclePoints = 180;
+		BitsApp.sMaxTouchPointer = 3;
+	
+		BitsGame.getInstance().addScreen(new MyTreasurePanel(1));
+
 		//#else
 		BitsGame.sWantFullscreen = true;
 		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
@@ -126,7 +137,7 @@ public class ApoHybrid extends BitsApp {
 
 
 
-	//#if ClockGameLogic || MonoGameLogic
+	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
 //@	@Override
 //@	protected void onAddView() {
 //@
