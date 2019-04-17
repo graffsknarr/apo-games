@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="ApoGames"/>
+    <feature automatic="selected" name="Menu"/>
+    <feature automatic="unselected" name="SnakeMenu"/>
+    <feature automatic="unselected" name="DiceMenu"/>
+    <feature automatic="unselected" name="TreasureMenu"/>
+    <feature manual="selected" name="MonoMenu"/>
+    <feature automatic="unselected" name="ClockMenu"/>
+    <feature manual="selected" name="Editor"/>
+    <feature automatic="selected" name="GameLogic"/>
+    <feature manual="selected" name="MonoGameLogic"/>
+    <feature automatic="selected" name="Font"/>
+    <feature automatic="unselected" name="ApoFont"/>
+    <feature automatic="unselected" name="TreasureFont"/>
+    <feature manual="selected" name="MonoFont"/>
+</configuration>
