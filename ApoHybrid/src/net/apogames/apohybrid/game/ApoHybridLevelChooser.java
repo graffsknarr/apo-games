@@ -2,10 +2,10 @@ package net.apogames.apohybrid.game;
 
 //#if !TreasureGameLogic
 //#if ClockGameLogic
-import net.apogames.apohybrid.ApoHybridModel;
-import net.apogames.apohybrid.entity.ApoLevelChooserButton;
-import net.apogames.apohybrid.level.ApoHybridLevel;
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.entity.ApoLevelChooserButton;
+//@import net.apogames.apohybrid.level.ApoHybridLevel;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#elif SnakeGameLogic || DiceGameLogic
 //@import net.apogames.apohybrid.ApoHybrid;
 //@import net.apogames.apohybrid.ApoHybridModel;
@@ -47,8 +47,8 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 	@Override
 	public void init() {
 		//#if ClockGameLogic
-		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridPanel.font.getLength(ApoHybridLevelChooser.BACK)));
-		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridPanel.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
+//@		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridPanel.font.getLength(ApoHybridLevelChooser.BACK)));
+//@		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridPanel.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
 		//#elif SnakeGameLogic || DiceGameLogic		
 //@		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridMenu.font.getLength(ApoHybridLevelChooser.BACK)));
 //@		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridMenu.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
@@ -166,7 +166,7 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 				}
 			}
 			//#if ClockGameLogic
-			this.getGame().savePreferences();
+//@			this.getGame().savePreferences();
 			//#elif SnakeGameLogic || DiceGameLogic
 //@			this.getGame().savePreferences(ApoHybrid.settings);
 			//#endif
@@ -233,7 +233,7 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 
 	public void onBackButtonPressed() {
 		//#if ClockGameLogic
-		this.getGame().setPuzzle();
+//@		this.getGame().setPuzzle();
 		//#elif SnakeGameLogic || DiceGameLogic || MonoGameLogic
 //@		this.getGame().setMenu();
 		//#endif
@@ -247,9 +247,9 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 
 	@Override
 	//#if ClockGameLogic
-	public void render(BitsGLGraphics g) {
-		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridPanel.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-	
+//@	public void render(BitsGLGraphics g) {
+//@		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridPanel.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+//@	
 	//#elif SnakeGameLogic || DiceGameLogic
 //@	public void render(BitsGraphics g) {
 //@		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
@@ -300,21 +300,21 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 //@				}
 //@
 				//#elif ClockMenu
-				g.fillCircle(x + radius/2, y + radius/2, radius/2, 120);
-				
-				g.setLineSize(2.5f);
-				g.setColor(48, 48, 48);
-				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
-				
-				for (int j = 0; j < 12; j++) {
-					g.drawLine(x + radius/2 + (int)((radius/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + radius/2 + (int)((radius/2) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2) * Math.cos(Math.toRadians(j * 30))));
-				}
-				
-				if (this.solved == i) {
-					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-				} else {
-					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
-				}	
+//@				g.fillCircle(x + radius/2, y + radius/2, radius/2, 120);
+//@				
+//@				g.setLineSize(2.5f);
+//@				g.setColor(48, 48, 48);
+//@				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
+//@				
+//@				for (int j = 0; j < 12; j++) {
+//@					g.drawLine(x + radius/2 + (int)((radius/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + radius/2 + (int)((radius/2) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2) * Math.cos(Math.toRadians(j * 30))));
+//@				}
+//@				
+//@				if (this.solved == i) {
+//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+//@				} else {
+//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
+//@				}	
 				//#endif
 				
 				

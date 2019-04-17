@@ -7,9 +7,8 @@
 //@
 //@import android.media.MediaPlayer;
 //@import android.media.MediaPlayer.OnCompletionListener;
-//#if MonoGameLogic
-//@import net.gliblybits.bitsengine.utils.BitsLog;
-//#endif
+//@
+//@
 //@
 //@public class ApoHybridMusicPlayer implements OnCompletionListener {
 	//#if MonoGameLogic

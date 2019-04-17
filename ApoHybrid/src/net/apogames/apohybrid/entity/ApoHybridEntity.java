@@ -2,9 +2,9 @@
 package net.apogames.apohybrid.entity;
 
 //#if ClockGameLogic || MonoGameLogic
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
-//@import net.gliblybits.bitsengine.render.BitsGraphics;
+import net.gliblybits.bitsengine.render.BitsGraphics;
 //#endif
 
 

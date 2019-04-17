@@ -7,15 +7,15 @@ import net.gliblybits.bitsengine.gui.BitsScreen;
 //#if MonoGameLogic || TreasureGameLogic
 //@import net.gliblybits.bitsengine.gui.widgets.BitsButtonWidget;
 //#endif
-
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-import net.gliblybits.bitsengine.input.BitsInput;
-import net.gliblybits.bitsengine.input.BitsKeyEvent;
-import net.gliblybits.bitsengine.input.BitsPointerEvent;
-import net.gliblybits.bitsengine.input.listener.BitsKeyListener;
-import net.gliblybits.bitsengine.input.listener.BitsPointerListener;
-
-
+//@
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@import net.gliblybits.bitsengine.input.BitsInput;
+//@import net.gliblybits.bitsengine.input.BitsKeyEvent;
+//@import net.gliblybits.bitsengine.input.BitsPointerEvent;
+//@import net.gliblybits.bitsengine.input.listener.BitsKeyListener;
+//@import net.gliblybits.bitsengine.input.listener.BitsPointerListener;
+//@
+//@
 //#elif DiceGameLogic
 //@import net.gliblybits.bitsengine.gui.BitsButton;
 //@import net.gliblybits.bitsengine.render.BitsGraphics;
@@ -36,7 +36,7 @@ import net.gliblybits.bitsengine.input.listener.BitsPointerListener;
 //#elif SnakeGameLogic
 //@public abstract class ApoHybridComponent extends BitsScreen {
 //#elif ClockGameLogic || MonoGameLogic || TreasureGameLogic
-public abstract class ApoHybridComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
+//@public abstract class ApoHybridComponent extends BitsScreen implements BitsPointerListener, BitsKeyListener {
 //#endif
 
 	/* Array der ganzen Buttons im Spiel */
@@ -58,10 +58,10 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@
 	//#elif ClockGameLogic
-	public void setModel(final ApoHybridModel model) {
-		this.model = model;
-	}
-
+//@	public void setModel(final ApoHybridModel model) {
+//@		this.model = model;
+//@	}
+//@
 	//#elif MonoGameLogic || TreasureGameLogic
 //@	public void onButtonPressed(BitsButtonWidget button) {
 //@
@@ -100,14 +100,14 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 	}
 
 	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
-	public final boolean onPointerDown( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
-		boolean bButton = false;
-		if (this.getButtons() != null) {
-			for (int b = 0; b < this.getButtons().length; b++) {
+//@	public final boolean onPointerDown( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
+//@		boolean bButton = false;
+//@		if (this.getButtons() != null) {
+//@			for (int b = 0; b < this.getButtons().length; b++) {
 	//#if MonoGameLogic
 //@				if ((this.getButtons()[b].isBVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 	//#else
-					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
+//@					if ((this.getButtons()[b].isVisible()) && (this.getButtons()[b].intersects(x, y, 1, 1))) {
 	//#endif
 	//#if TreasureGameLogic
 //@						this.getButtons()[b].setBPressed(true);
@@ -115,27 +115,27 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@						this.getButtons()[b].setBPressed(false);
 //@					}
 	//#else
-
-						String function = this.getButtons()[b].getFunction();
-						this.setButtonFunction(function);
-						bButton = true;
-						break;
-					}
+//@
+//@						String function = this.getButtons()[b].getFunction();
+//@						this.setButtonFunction(function);
+//@						bButton = true;
+//@						break;
+//@					}
 	//#endif
-				}
-			}
-			if (!bButton) {
-				if (this.model != null) {
-					this.model.touchedPressed((int)x, (int)y, pointerId);
-				}
-			}
-			this.oldX = (int)x;
-			this.oldY = (int)y;
-
-			return true;
-		}
-
-		public final boolean onPointerUp( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
+//@				}
+//@			}
+//@			if (!bButton) {
+//@				if (this.model != null) {
+//@					this.model.touchedPressed((int)x, (int)y, pointerId);
+//@				}
+//@			}
+//@			this.oldX = (int)x;
+//@			this.oldY = (int)y;
+//@
+//@			return true;
+//@		}
+//@
+//@		public final boolean onPointerUp( final int pointerId, final float x, final float y, final BitsPointerEvent event ) {
 			//#if TreasureGameLogic
 //@			boolean bButton = false;
 //@			if (this.getButtons() != null) {
@@ -154,23 +154,23 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@				}
 //@			}
 			//#else
-			if (this.model != null) {
-				this.model.touchedReleased((int)x, (int)y, pointerId);
-			}
+//@			if (this.model != null) {
+//@				this.model.touchedReleased((int)x, (int)y, pointerId);
+//@			}
 			//#endif
-			return true;
-		}
-
-		public final boolean onPointerDragged( final int pointerId, final float x, final float y, final float deltaX, final float deltaY, final BitsPointerEvent event ) {
-			if ((this.model != null) && (((int)(x) != this.oldX) || ((int)(y) != this.oldY))) {
-				this.model.touchedDragged((int)(x), (int)(y), this.oldX, this.oldY, pointerId);
-			}
-
-			this.oldX = (int)x;
-			this.oldY = (int)y;
-
-			return true;
-		}
+//@			return true;
+//@		}
+//@
+//@		public final boolean onPointerDragged( final int pointerId, final float x, final float y, final float deltaX, final float deltaY, final BitsPointerEvent event ) {
+//@			if ((this.model != null) && (((int)(x) != this.oldX) || ((int)(y) != this.oldY))) {
+//@				this.model.touchedDragged((int)(x), (int)(y), this.oldX, this.oldY, pointerId);
+//@			}
+//@
+//@			this.oldX = (int)x;
+//@			this.oldY = (int)y;
+//@
+//@			return true;
+//@		}
 	//#endif
 
 	/*
@@ -179,9 +179,9 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 	 */
 
 	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
-		public void renderButtons(BitsGLGraphics g) {
+//@		public void renderButtons(BitsGLGraphics g) {
 	//#else
-//@	public void renderButtons(BitsGraphics g) {
+	public void renderButtons(BitsGraphics g) {
 		//#endif
 		if (this.buttons != null) {
 			for (int i = 0; i < this.buttons.length; i++) {
@@ -198,46 +198,46 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 	public abstract void setButtonFunction(String function);
 
 	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
-		@Override
-		public void onInitScreen() {
-			BitsInput.getInstance().registerPointerListener(this);
-			BitsInput.getInstance().registerKeyListener(this);
-			init();
-		}
-
-		@Override
-		public void onPauseScreen() {
-
-		}
-
-		@Override
-		public void onResumeScreen() {
-
-		}
-
-		@Override
-		public void onFinishScreen() {
-
-		}
-
-
+//@		@Override
+//@		public void onInitScreen() {
+//@			BitsInput.getInstance().registerPointerListener(this);
+//@			BitsInput.getInstance().registerKeyListener(this);
+//@			init();
+//@		}
+//@
+//@		@Override
+//@		public void onPauseScreen() {
+//@
+//@		}
+//@
+//@		@Override
+//@		public void onResumeScreen() {
+//@
+//@		}
+//@
+//@		@Override
+//@		public void onFinishScreen() {
+//@
+//@		}
+//@
+//@
 	//#else
-//@
-//@	@Override
-//@	public void onPause() {
-//@
-//@	}
-//@
-//@	@Override
-//@	public void onResume() {
-//@
-//@	}
-//@
-//@	@Override
-//@	public void onFinish() {
-//@
-//@	}
-//@
+
+	@Override
+	public void onPause() {
+
+	}
+
+	@Override
+	public void onResume() {
+
+	}
+
+	@Override
+	public void onFinish() {
+
+	}
+
 	//#endif
 
 	public void init() {
@@ -370,22 +370,22 @@ public abstract class ApoHybridComponent extends BitsScreen implements BitsPoint
 //@	}
 //@
 		//#elif ClockGameLogic
-		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
-			if (this.model != null) {
-				this.model.onKeyDown(key, event);
-			}
-
-			return true;
-		}
-
-		public boolean onKeyUp(final int key, final BitsKeyEvent event) {
-			if (this.model != null) {
-				this.model.onKeyUp(key, event);
-			}
-
-			return true;
-		}
-
+//@		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
+//@			if (this.model != null) {
+//@				this.model.onKeyDown(key, event);
+//@			}
+//@
+//@			return true;
+//@		}
+//@
+//@		public boolean onKeyUp(final int key, final BitsKeyEvent event) {
+//@			if (this.model != null) {
+//@				this.model.onKeyUp(key, event);
+//@			}
+//@
+//@			return true;
+//@		}
+//@
 		//#elif MonoGameLogic || TreasureGameLogic
 //@		public boolean onKeyDown(final int key, final BitsKeyEvent event) {
 //@			if (this.model != null) {

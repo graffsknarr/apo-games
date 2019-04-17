@@ -56,51 +56,51 @@ public class ApoHybridUserlevels {
 	}
 	
 	//#if ClockGameLogic
-	private void sortByUpload() {
-		this.sortByUpload.clear();
-		this.sortByUpload.add(0);
-		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
-			float time = this.userlevels.getTimes().get(i);
-			boolean bAdd = false;
-			for (int k = 0; k < this.sortByUpload.size(); k++) {
-				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
-				if (time > sortTime) {
-					this.sortByUpload.add(k, i);
-					bAdd = true;
-					break;
-				}
-			}
-			if (!bAdd) {
-				this.sortByUpload.add(i);
-			}
-		}
-	}
-	//#else
 //@	private void sortByUpload() {
 //@		this.sortByUpload.clear();
-//@		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
+//@		this.sortByUpload.add(0);
+//@		for (int i = 1; i < this.userlevels.getLevels().size(); i++) {
+//@			float time = this.userlevels.getTimes().get(i);
+//@			boolean bAdd = false;
+//@			for (int k = 0; k < this.sortByUpload.size(); k++) {
+//@				float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
+//@				if (time > sortTime) {
+//@					this.sortByUpload.add(k, i);
+//@					bAdd = true;
+//@					break;
+//@				}
+//@			}
+//@			if (!bAdd) {
+//@				this.sortByUpload.add(i);
+//@			}
+//@		}
+//@	}
+	//#else
+	private void sortByUpload() {
+		this.sortByUpload.clear();
+		for (int i = 0; i < this.userlevels.getLevels().size(); i++) {
 			//#if MonoGameLogic
 //@			String s = this.userlevels.getLevels().get(i);
 //@			if ((s != null) && (s.length() > 2) && (!ApoHybridLevel.isIn(s))) {
 			//#elif DiceGameLogic || SnakeGameLogic || TreasureGameLogic
 //@			if (!ApoHybridLevel.isIn(this.userlevels.getLevels().get(i))) {
 			//#endif
-//@				float time = this.userlevels.getTimes().get(i);
-//@				boolean bAdd = false;
-//@				for (int k = 0; k < this.sortByUpload.size(); k++) {
-//@					float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
-//@					if (time > sortTime) {
-//@						this.sortByUpload.add(k, i);
-//@						bAdd = true;
-//@						break;
-//@					}
-//@				}
-//@				if (!bAdd) {
-//@					this.sortByUpload.add(i);
-//@				}
-//@			}
-//@		}
-//@	}
+				float time = this.userlevels.getTimes().get(i);
+				boolean bAdd = false;
+				for (int k = 0; k < this.sortByUpload.size(); k++) {
+					float sortTime = this.userlevels.getTimes().get(this.sortByUpload.get(k));
+					if (time > sortTime) {
+						this.sortByUpload.add(k, i);
+						bAdd = true;
+						break;
+					}
+				}
+				if (!bAdd) {
+					this.sortByUpload.add(i);
+				}
+			}
+		}
+	}
 	//#endif
 
 

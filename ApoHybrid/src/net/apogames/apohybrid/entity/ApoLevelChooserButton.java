@@ -2,14 +2,14 @@
 package net.apogames.apohybrid.entity;
 
 //#if ClockMenu
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 //#elif MonoMenu
 //@import net.apogames.apohybrid.ApoHybridConstants;
 //@import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.apogames.apohybrid.game.ApoHybridGame;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //#else
-//@import net.gliblybits.bitsengine.core.BitsImage;
+import net.gliblybits.bitsengine.core.BitsImage;
 //#endif
 
 public class ApoLevelChooserButton extends ApoButton {
@@ -17,10 +17,10 @@ public class ApoLevelChooserButton extends ApoButton {
 	private String text;
 	private boolean bSolved;
 	//#if ClockMenu
-	public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
-		super(iBackground, x, y, width, height, function);
-		
-		this.bSolved = false;
+//@	public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
+//@		super(iBackground, x, y, width, height, function);
+//@		
+//@		this.bSolved = false;
 	//#elif MonoMenu
 //@	public ApoLevelChooserButton(int x, int y, int width, int height, String function, String text) {
 //@		this(x, y, width, height, function, text, false);
@@ -33,10 +33,10 @@ public class ApoLevelChooserButton extends ApoButton {
 //@		this.text = text;
 //@
 	//#else
-//@	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
-//@		super(iBackground, x, y, width, height, function);
-//@		
-//@		this.bSolved = false;
+	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
+		super(iBackground, x, y, width, height, function);
+		
+		this.bSolved = false;
 	//#endif
 
 	}
