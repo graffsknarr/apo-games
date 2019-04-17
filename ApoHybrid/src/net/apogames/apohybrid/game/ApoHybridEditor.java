@@ -1,343 +1,343 @@
 package net.apogames.apohybrid.game;
 
 //#if DiceGameLogic
-import net.apogames.apohybrid.ApoHybrid;
-import net.apogames.apohybrid.ApoHybridModel;
-import net.apogames.apohybrid.ApoHybridConstants;
-import net.apogames.apohybrid.entity.ApoHybridString;
-
-import net.gliblybits.bitsengine.render.BitsGraphics;
-import net.gliblybits.bitsengine.utils.BitsLog;
-
-public class ApoHybridEditor extends ApoHybridModel {
-
-	private final int EMPTY = 0;
-	private final int GOAL = 1;
-	private final int DICE_EMPTY = 2;
-	private final int DICE_ONE = 3;
-	private final int DICE_TWO = 4;
-	private final int DICE_THREE = 5;
-	private final int DICE_FOUR = 6;
-	private final int DICE_FIVE = 7;
-	private final int DICE_SIX = 8;
-	
-	public static final String BACK = "back";
-	public static final String UPLOAD = "upload";
-	public static final String TEST = "test";
-	public static final String NEW = "new";
-	public static final String SOLVE = "solve";
-
-	private ApoHybridString uploadString;
-	
-	private int[][] level = new int[16][8];
-	
-	private int curSelect;
-	
-	private Thread t;
-	
-	public ApoHybridEditor(ApoHybridPanel game) {
-		super(game);
-	}
-
-	@Override
-	public void init() {
-		this.getStringWidth().put(ApoHybridEditor.BACK, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.BACK)));
-		this.getStringWidth().put(ApoHybridEditor.NEW, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.NEW)));
-		this.getStringWidth().put(ApoHybridEditor.TEST, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.TEST)));
-		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.UPLOAD)));
-		this.getStringWidth().put(ApoHybridEditor.SOLVE, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.SOLVE)));
-		
-		String s = "Hybrid - Editor";
-		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
-		
-		this.checkTestLevel();
-	}
-	
-	public void setLevelSolved(boolean bSolved) {
-		if ((!bSolved) || (!ApoHybrid.isOnline())) {
-			this.getGame().getButtons()[9].setVisible(false);
-		} else {
-			this.getGame().getButtons()[9].setVisible(true);
-		}
-	}
-	
-	private void checkTestLevel() {
-		int goals = 0;
-		int dices = 0;
-		for (int y = 0; y < 8; y += 1) {
-			for (int x = 0; x < level[y].length; x += 1) {
-				if (level[y][x] == 1) {
-					goals += 1;
-				}
-				if (level[y+8][x] >= 2) {
-					dices += 1;
-				}
-			}
-		}
-		if ((goals > 0) && (dices == goals)) {
-			this.getGame().getButtons()[8].setVisible(true);
-//			this.getGame().getButtons()[10].setVisible(true);
-		} else {
-			this.getGame().getButtons()[8].setVisible(false);
-			this.getGame().getButtons()[9].setVisible(false);
-			this.getGame().getButtons()[10].setVisible(false);
-		}
-	}
-
-	@Override
-	public void touchedPressed(int x, int y, int finger) {
-		if (y > 505) {
-			for (int i = 0; i < 7; i++) {
-				if ((x >= 5 + i*65) && (x < 65 + i * 65) && (y >= 510) && (y < 570)) {
-					this.curSelect = i + 2;
-				}
-			}
-			if ((x >= 5) && (x < 65) && (y >= 575) && (y < 635)) {
-				this.curSelect = this.EMPTY;
-			}
-			if ((x >= 70) && (x < 130) && (y >= 575) && (y < 635)) {
-				this.curSelect = this.GOAL;
-			}
-		} else {
-			if ((y >= ApoHybridGame.changeY) && (y < 480 + ApoHybridGame.changeY)) {
-				int newY = (y - ApoHybridGame.changeY)/60;
-				if (this.curSelect == this.EMPTY) {
-					level[newY][x/60] = level[newY + 8][x/60] = 0;
-				} else if (this.curSelect == this.GOAL) {
-					level[newY][x/60] = 1;
-				} else if (this.curSelect == this.DICE_EMPTY) {
-					level[newY + 8][x/60] = 2;
-				} else if (this.curSelect == this.DICE_ONE) {
-					level[newY + 8][x/60] = 3;
-				} else if (this.curSelect == this.DICE_TWO) {
-					level[newY + 8][x/60] = 4;
-				} else if (this.curSelect == this.DICE_THREE) {
-					level[newY + 8][x/60] = 5;
-				} else if (this.curSelect == this.DICE_FOUR) {
-					level[newY + 8][x/60] = 6;
-				} else if (this.curSelect == this.DICE_FIVE) {
-					level[newY + 8][x/60] = 7;
-				} else if (this.curSelect == this.DICE_SIX) {
-					level[newY + 8][x/60] = 8;
-				}
-				this.checkTestLevel();
-			}
-		}
-	}
-
-	@Override
-	public void touchedReleased(int x, int y, int finger) {
-		
-	}
-
-	@Override
-	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-		
-	}
-	
-	@Override
-	public void touchedButton(String function) {
-		if (function.equals(ApoHybridEditor.BACK)) {
-			this.onBackButtonPressed();
-		} else if (function.equals(ApoHybridEditor.NEW)) {
-			this.level = new int[16][8];
-			this.checkTestLevel();
-		} else if (function.equals(ApoHybridEditor.TEST)) {
-			String levelString = this.getLevelString();
-			BitsLog.d("levelString", levelString);
-			this.getGame().setGame(-1, levelString, false);
-		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
-			this.setLevelSolved(false);
-			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading ...", true, 200, true);
-			
-			Thread t = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					ApoHybridEditor.this.uploadString();
-				}
-	 		});
-	 		t.start();
-		} else if (function.equals(ApoHybridEditor.SOLVE)) {
-			this.uploadString = new ApoHybridString(240, 30, 20, "Try to solve ...", true, 20000, true);
-			this.t = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					solveLevel();
-				}
-	 		});
-	 		this.t.start();
-		}
-	}
-	
-	private void solveLevel() {
-		this.solve = new ApoHybridSolve();
-		if (solve.canBeSolved(ApoHybridEditor.this.level)) {
-			ApoHybridEditor.this.uploadString = new ApoHybridString(240, 30, 20, "Can be solved", true, 20, true);
-			setLevelSolved(true);
-		} else {
-			ApoHybridEditor.this.uploadString = new ApoHybridString(240, 30, 20, "Can't be solved", true, 20, true);
-			setLevelSolved(false);
-		}
-		this.solve = null;
-	}
-	
-	private ApoHybridSolve solve = null;
-	
-	private void uploadString() {
-		if (this.getGame().getUserlevels().addLevel(this.getLevelString())) {
-			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading successfully", true, 20, true);
-			this.getGame().loadUserlevels();
-		} else {
-			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading failed", true, 20, true);
-		}
-	}
-	
-	public void onBackButtonPressed() {
-		try {
-			if (this.solve != null) {
-				this.solve.setBreak(true);
-				this.solve = null;
-			}
-		} catch (Exception ex) {
-		}
-		this.getGame().setMenu();
-	}
-	
-	private String getLevelString() {
-		String level = "";
-		for (int y = 0; y < 8; y++) {
-			for (int x = 0; x < 8; x++) {
-				if (this.level[y+8][x] > 1) {
-					if (this.level[y][x] <= 0) {
-						level += String.valueOf(this.level[y+8][x]);
-					} else {
-						char c = (char)(95 + this.level[y+8][x]);
-						level += String.valueOf(c);
-					}
-				} else {
-					level += String.valueOf(this.level[y][x]);
-				}
-			}
-		}
-		return level;
-	}
-
-	@Override
-	public void think(int delta) {
-
-		if (this.uploadString != null) {
-			this.uploadString.think(delta);
-			
-			if (!this.uploadString.isVisible()) {
-				this.uploadString = null;
-			}
-		}
-	}
-
-	@Override
-	public void render(BitsGraphics g) {
-		g.setColor(128, 128, 128, 255);
-		g.drawFilledRect(0,0,480,ApoHybridGame.changeY);
-		g.drawFilledRect(0,480 + ApoHybridGame.changeY,480,160 - ApoHybridGame.changeY);
-		
-		g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
-		g.drawRect(0,0,480,ApoHybridGame.changeY);
-		g.drawRect(0,480 + ApoHybridGame.changeY,480,160 - ApoHybridGame.changeY);
-		
-		g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-		for (int y = 0; y < 8; y += 1) {
-			g.drawLine(0, ApoHybridGame.changeY + y * 60, ApoHybridConstants.GAME_WIDTH, ApoHybridGame.changeY + y * 60);
-			g.drawLine((y + 1) * 60, ApoHybridGame.changeY, (y + 1) * 60, ApoHybridGame.changeY + 8 * 60);
-		}
-		
-		String s = "ApoHybrid - Editor";
-		this.getGame().drawString(g, s, 240, -4, ApoHybridMenu.game_font);
-		
-		this.getGame().renderButtons(g, ApoHybridMenu.game_font);
-		
-		for (int y = 0; y < 8; y += 1) {
-			for (int x = 0; x < level[y].length; x += 1) {
-				if (level[y][x] == 1) {
-					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-					g.drawFilledRoundRect(x * 60 + 1, ApoHybridGame.changeY + y * 60 + 1, 58, 58, 6, 10);
-				}
-				if (level[y+8][x] > 0) {
-					g.setColor(255f/255f, 255f/255f, 255f/255f, 1.0f);
-					g.drawFilledRoundRect(x * 60 + 5, ApoHybridGame.changeY + y * 60 + 5, 50, 50, 6, 10);
-					g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
-					if ((level[y+8][x] == 3) || (level[y+8][x] == 5) || (level[y+8][x] == 7)) {
-						g.drawFilledCircle(x * 60 + 30, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
-					}
-					if ((level[y+8][x] == 4) || (level[y+8][x] == 5) || (level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
-						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 14, 6, 40);
-						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 46, 6, 40);
-					}
-					if ((level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
-						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 14, 6, 40);
-						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 46, 6, 40);
-					}
-					if (level[y+8][x] == 8) {
-						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
-						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
-					}
-				}
-			}
-		}
-		
-		if (this.uploadString != null) {
-			this.uploadString.render(g, 0, 0);
-		}
-		
-		//draw empty
-		g.setColor(192, 192, 192, 255);
-		g.drawFilledRoundRect(5, 575, 60, 60, 6, 10);
-		if (this.curSelect == 0) {
-			g.setLineSize(3f);
-			g.setColor(255, 0, 0, 255);
-			g.drawRoundRect(5, 575, 60, 60, 6, 10);
-			g.setLineSize(1f);
-		}
-		
-		// draw goal
-		g.setColor(48, 48, 48, 255);
-		g.drawFilledRoundRect(70, 575, 60, 60, 6, 10);
-		if (this.curSelect == 1) {
-			g.setLineSize(3f);
-			g.setColor(255, 0, 0, 255);
-			g.drawRoundRect(70, 575, 60, 60, 6, 10);
-			g.setLineSize(1f);
-		}
-		
-		for (int i = 0; i < 7; i++) {
-			g.setColor(255, 255, 255, 255);
-			g.drawFilledRoundRect(5 + i * 65, 510, 60, 60, 6, 10);
-			if (this.curSelect == i + 2) {
-				g.setLineSize(3f);
-				g.setColor(255, 0, 0, 255);
-				g.drawRoundRect(5 + i * 65, 510, 60, 60, 6, 10);
-				g.setLineSize(1f);
-			}
-			g.setColor(0, 0, 0, 255);
-			if ((i == 1) || (i == 3) || (i == 5)) {
-				g.drawFilledCircle(5 + i * 65 + 30, 510 + 30, 6, 40);
-			}
-			if ((i == 2) || (i == 3) || (i == 4) || (i == 5) || (i == 6)) {
-				g.drawFilledCircle(5 + i * 65 + 14, 510 + 14, 6, 40);
-				g.drawFilledCircle(5 + i * 65 + 46, 510 + 46, 6, 40);
-			}
-			if ((i == 4) || (i == 5) || (i == 6)) {
-				g.drawFilledCircle(5 + i * 65 + 46, 510 + 14, 6, 40);
-				g.drawFilledCircle(5 + i * 65 + 14, 510 + 46, 6, 40);
-			}
-			if (i == 6) {
-				g.drawFilledCircle(5 + i * 65 + 46, 510 + 30, 6, 40);
-				g.drawFilledCircle(5 + i * 65 + 14, 510 + 30, 6, 40);
-			}
-		}
-	}
-
-}
-
+//@import net.apogames.apohybrid.ApoHybrid;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.entity.ApoHybridString;
+//@
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
+//@import net.gliblybits.bitsengine.utils.BitsLog;
+//@
+//@public class ApoHybridEditor extends ApoHybridModel {
+//@
+//@	private final int EMPTY = 0;
+//@	private final int GOAL = 1;
+//@	private final int DICE_EMPTY = 2;
+//@	private final int DICE_ONE = 3;
+//@	private final int DICE_TWO = 4;
+//@	private final int DICE_THREE = 5;
+//@	private final int DICE_FOUR = 6;
+//@	private final int DICE_FIVE = 7;
+//@	private final int DICE_SIX = 8;
+//@	
+//@	public static final String BACK = "back";
+//@	public static final String UPLOAD = "upload";
+//@	public static final String TEST = "test";
+//@	public static final String NEW = "new";
+//@	public static final String SOLVE = "solve";
+//@
+//@	private ApoHybridString uploadString;
+//@	
+//@	private int[][] level = new int[16][8];
+//@	
+//@	private int curSelect;
+//@	
+//@	private Thread t;
+//@	
+//@	public ApoHybridEditor(ApoHybridPanel game) {
+//@		super(game);
+//@	}
+//@
+//@	@Override
+//@	public void init() {
+//@		this.getStringWidth().put(ApoHybridEditor.BACK, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.BACK)));
+//@		this.getStringWidth().put(ApoHybridEditor.NEW, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.NEW)));
+//@		this.getStringWidth().put(ApoHybridEditor.TEST, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.TEST)));
+//@		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.UPLOAD)));
+//@		this.getStringWidth().put(ApoHybridEditor.SOLVE, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.SOLVE)));
+//@		
+//@		String s = "Hybrid - Editor";
+//@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
+//@		
+//@		this.checkTestLevel();
+//@	}
+//@	
+//@	public void setLevelSolved(boolean bSolved) {
+//@		if ((!bSolved) || (!ApoHybrid.isOnline())) {
+//@			this.getGame().getButtons()[9].setVisible(false);
+//@		} else {
+//@			this.getGame().getButtons()[9].setVisible(true);
+//@		}
+//@	}
+//@	
+//@	private void checkTestLevel() {
+//@		int goals = 0;
+//@		int dices = 0;
+//@		for (int y = 0; y < 8; y += 1) {
+//@			for (int x = 0; x < level[y].length; x += 1) {
+//@				if (level[y][x] == 1) {
+//@					goals += 1;
+//@				}
+//@				if (level[y+8][x] >= 2) {
+//@					dices += 1;
+//@				}
+//@			}
+//@		}
+//@		if ((goals > 0) && (dices == goals)) {
+//@			this.getGame().getButtons()[8].setVisible(true);
+//@//			this.getGame().getButtons()[10].setVisible(true);
+//@		} else {
+//@			this.getGame().getButtons()[8].setVisible(false);
+//@			this.getGame().getButtons()[9].setVisible(false);
+//@			this.getGame().getButtons()[10].setVisible(false);
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void touchedPressed(int x, int y, int finger) {
+//@		if (y > 505) {
+//@			for (int i = 0; i < 7; i++) {
+//@				if ((x >= 5 + i*65) && (x < 65 + i * 65) && (y >= 510) && (y < 570)) {
+//@					this.curSelect = i + 2;
+//@				}
+//@			}
+//@			if ((x >= 5) && (x < 65) && (y >= 575) && (y < 635)) {
+//@				this.curSelect = this.EMPTY;
+//@			}
+//@			if ((x >= 70) && (x < 130) && (y >= 575) && (y < 635)) {
+//@				this.curSelect = this.GOAL;
+//@			}
+//@		} else {
+//@			if ((y >= ApoHybridGame.changeY) && (y < 480 + ApoHybridGame.changeY)) {
+//@				int newY = (y - ApoHybridGame.changeY)/60;
+//@				if (this.curSelect == this.EMPTY) {
+//@					level[newY][x/60] = level[newY + 8][x/60] = 0;
+//@				} else if (this.curSelect == this.GOAL) {
+//@					level[newY][x/60] = 1;
+//@				} else if (this.curSelect == this.DICE_EMPTY) {
+//@					level[newY + 8][x/60] = 2;
+//@				} else if (this.curSelect == this.DICE_ONE) {
+//@					level[newY + 8][x/60] = 3;
+//@				} else if (this.curSelect == this.DICE_TWO) {
+//@					level[newY + 8][x/60] = 4;
+//@				} else if (this.curSelect == this.DICE_THREE) {
+//@					level[newY + 8][x/60] = 5;
+//@				} else if (this.curSelect == this.DICE_FOUR) {
+//@					level[newY + 8][x/60] = 6;
+//@				} else if (this.curSelect == this.DICE_FIVE) {
+//@					level[newY + 8][x/60] = 7;
+//@				} else if (this.curSelect == this.DICE_SIX) {
+//@					level[newY + 8][x/60] = 8;
+//@				}
+//@				this.checkTestLevel();
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void touchedReleased(int x, int y, int finger) {
+//@		
+//@	}
+//@
+//@	@Override
+//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+//@		
+//@	}
+//@	
+//@	@Override
+//@	public void touchedButton(String function) {
+//@		if (function.equals(ApoHybridEditor.BACK)) {
+//@			this.onBackButtonPressed();
+//@		} else if (function.equals(ApoHybridEditor.NEW)) {
+//@			this.level = new int[16][8];
+//@			this.checkTestLevel();
+//@		} else if (function.equals(ApoHybridEditor.TEST)) {
+//@			String levelString = this.getLevelString();
+//@			BitsLog.d("levelString", levelString);
+//@			this.getGame().setGame(-1, levelString, false);
+//@		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
+//@			this.setLevelSolved(false);
+//@			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading ...", true, 200, true);
+//@			
+//@			Thread t = new Thread(new Runnable() {
+//@				@Override
+//@				public void run() {
+//@					ApoHybridEditor.this.uploadString();
+//@				}
+//@	 		});
+//@	 		t.start();
+//@		} else if (function.equals(ApoHybridEditor.SOLVE)) {
+//@			this.uploadString = new ApoHybridString(240, 30, 20, "Try to solve ...", true, 20000, true);
+//@			this.t = new Thread(new Runnable() {
+//@				@Override
+//@				public void run() {
+//@					solveLevel();
+//@				}
+//@	 		});
+//@	 		this.t.start();
+//@		}
+//@	}
+//@	
+//@	private void solveLevel() {
+//@		this.solve = new ApoHybridSolve();
+//@		if (solve.canBeSolved(ApoHybridEditor.this.level)) {
+//@			ApoHybridEditor.this.uploadString = new ApoHybridString(240, 30, 20, "Can be solved", true, 20, true);
+//@			setLevelSolved(true);
+//@		} else {
+//@			ApoHybridEditor.this.uploadString = new ApoHybridString(240, 30, 20, "Can't be solved", true, 20, true);
+//@			setLevelSolved(false);
+//@		}
+//@		this.solve = null;
+//@	}
+//@	
+//@	private ApoHybridSolve solve = null;
+//@	
+//@	private void uploadString() {
+//@		if (this.getGame().getUserlevels().addLevel(this.getLevelString())) {
+//@			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading successfully", true, 20, true);
+//@			this.getGame().loadUserlevels();
+//@		} else {
+//@			this.uploadString = new ApoHybridString(240, 470, 20, "Uploading failed", true, 20, true);
+//@		}
+//@	}
+//@	
+//@	public void onBackButtonPressed() {
+//@		try {
+//@			if (this.solve != null) {
+//@				this.solve.setBreak(true);
+//@				this.solve = null;
+//@			}
+//@		} catch (Exception ex) {
+//@		}
+//@		this.getGame().setMenu();
+//@	}
+//@	
+//@	private String getLevelString() {
+//@		String level = "";
+//@		for (int y = 0; y < 8; y++) {
+//@			for (int x = 0; x < 8; x++) {
+//@				if (this.level[y+8][x] > 1) {
+//@					if (this.level[y][x] <= 0) {
+//@						level += String.valueOf(this.level[y+8][x]);
+//@					} else {
+//@						char c = (char)(95 + this.level[y+8][x]);
+//@						level += String.valueOf(c);
+//@					}
+//@				} else {
+//@					level += String.valueOf(this.level[y][x]);
+//@				}
+//@			}
+//@		}
+//@		return level;
+//@	}
+//@
+//@	@Override
+//@	public void think(int delta) {
+//@
+//@		if (this.uploadString != null) {
+//@			this.uploadString.think(delta);
+//@			
+//@			if (!this.uploadString.isVisible()) {
+//@				this.uploadString = null;
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void render(BitsGraphics g) {
+//@		g.setColor(128, 128, 128, 255);
+//@		g.drawFilledRect(0,0,480,ApoHybridGame.changeY);
+//@		g.drawFilledRect(0,480 + ApoHybridGame.changeY,480,160 - ApoHybridGame.changeY);
+//@		
+//@		g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
+//@		g.drawRect(0,0,480,ApoHybridGame.changeY);
+//@		g.drawRect(0,480 + ApoHybridGame.changeY,480,160 - ApoHybridGame.changeY);
+//@		
+//@		g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+//@		for (int y = 0; y < 8; y += 1) {
+//@			g.drawLine(0, ApoHybridGame.changeY + y * 60, ApoHybridConstants.GAME_WIDTH, ApoHybridGame.changeY + y * 60);
+//@			g.drawLine((y + 1) * 60, ApoHybridGame.changeY, (y + 1) * 60, ApoHybridGame.changeY + 8 * 60);
+//@		}
+//@		
+//@		String s = "ApoHybrid - Editor";
+//@		this.getGame().drawString(g, s, 240, -4, ApoHybridMenu.game_font);
+//@		
+//@		this.getGame().renderButtons(g, ApoHybridMenu.game_font);
+//@		
+//@		for (int y = 0; y < 8; y += 1) {
+//@			for (int x = 0; x < level[y].length; x += 1) {
+//@				if (level[y][x] == 1) {
+//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+//@					g.drawFilledRoundRect(x * 60 + 1, ApoHybridGame.changeY + y * 60 + 1, 58, 58, 6, 10);
+//@				}
+//@				if (level[y+8][x] > 0) {
+//@					g.setColor(255f/255f, 255f/255f, 255f/255f, 1.0f);
+//@					g.drawFilledRoundRect(x * 60 + 5, ApoHybridGame.changeY + y * 60 + 5, 50, 50, 6, 10);
+//@					g.setColor(0f/255f, 0f/255f, 0f/255f, 1.0f);
+//@					if ((level[y+8][x] == 3) || (level[y+8][x] == 5) || (level[y+8][x] == 7)) {
+//@						g.drawFilledCircle(x * 60 + 30, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
+//@					}
+//@					if ((level[y+8][x] == 4) || (level[y+8][x] == 5) || (level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
+//@						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 14, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 46, 6, 40);
+//@					}
+//@					if ((level[y+8][x] == 6) || (level[y+8][x] == 7) || (level[y+8][x] == 8)) {
+//@						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 14, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 46, 6, 40);
+//@					}
+//@					if (level[y+8][x] == 8) {
+//@						g.drawFilledCircle(x * 60 + 14, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
+//@						g.drawFilledCircle(x * 60 + 46, ApoHybridGame.changeY + y * 60 + 30, 6, 40);
+//@					}
+//@				}
+//@			}
+//@		}
+//@		
+//@		if (this.uploadString != null) {
+//@			this.uploadString.render(g, 0, 0);
+//@		}
+//@		
+//@		//draw empty
+//@		g.setColor(192, 192, 192, 255);
+//@		g.drawFilledRoundRect(5, 575, 60, 60, 6, 10);
+//@		if (this.curSelect == 0) {
+//@			g.setLineSize(3f);
+//@			g.setColor(255, 0, 0, 255);
+//@			g.drawRoundRect(5, 575, 60, 60, 6, 10);
+//@			g.setLineSize(1f);
+//@		}
+//@		
+//@		// draw goal
+//@		g.setColor(48, 48, 48, 255);
+//@		g.drawFilledRoundRect(70, 575, 60, 60, 6, 10);
+//@		if (this.curSelect == 1) {
+//@			g.setLineSize(3f);
+//@			g.setColor(255, 0, 0, 255);
+//@			g.drawRoundRect(70, 575, 60, 60, 6, 10);
+//@			g.setLineSize(1f);
+//@		}
+//@		
+//@		for (int i = 0; i < 7; i++) {
+//@			g.setColor(255, 255, 255, 255);
+//@			g.drawFilledRoundRect(5 + i * 65, 510, 60, 60, 6, 10);
+//@			if (this.curSelect == i + 2) {
+//@				g.setLineSize(3f);
+//@				g.setColor(255, 0, 0, 255);
+//@				g.drawRoundRect(5 + i * 65, 510, 60, 60, 6, 10);
+//@				g.setLineSize(1f);
+//@			}
+//@			g.setColor(0, 0, 0, 255);
+//@			if ((i == 1) || (i == 3) || (i == 5)) {
+//@				g.drawFilledCircle(5 + i * 65 + 30, 510 + 30, 6, 40);
+//@			}
+//@			if ((i == 2) || (i == 3) || (i == 4) || (i == 5) || (i == 6)) {
+//@				g.drawFilledCircle(5 + i * 65 + 14, 510 + 14, 6, 40);
+//@				g.drawFilledCircle(5 + i * 65 + 46, 510 + 46, 6, 40);
+//@			}
+//@			if ((i == 4) || (i == 5) || (i == 6)) {
+//@				g.drawFilledCircle(5 + i * 65 + 46, 510 + 14, 6, 40);
+//@				g.drawFilledCircle(5 + i * 65 + 14, 510 + 46, 6, 40);
+//@			}
+//@			if (i == 6) {
+//@				g.drawFilledCircle(5 + i * 65 + 46, 510 + 30, 6, 40);
+//@				g.drawFilledCircle(5 + i * 65 + 14, 510 + 30, 6, 40);
+//@			}
+//@		}
+//@	}
+//@
+//@}
+//@
 //#elif SnakeGameLogic
 //@
 //@import net.apogames.apohybrid.ApoHybrid;
@@ -775,252 +775,252 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@}
 //@
 //#elif ClockGameLogic
-//@
-//@import java.util.ArrayList;
-//@
-//@import net.apogames.apohybrid.ApoHybrid;
-//@import net.apogames.apohybrid.ApoHybridConstants;
-//@import net.apogames.apohybrid.ApoHybridModel;
-//@import net.apogames.apohybrid.editor.ApoHybridEditorClockStats;
-//@import net.apogames.apohybrid.entity.ApoHybridEntityBall;
-//@import net.apogames.apohybrid.entity.ApoHybridEntityClock;
-//@import net.apogames.apohybrid.entity.ApoHybridString;
-//@
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//@import net.gliblybits.bitsengine.utils.BitsLog;
-//@
-//@public class ApoHybridEditor extends ApoHybridModel {
-//@
-//@	public static final String BACK = "back";
-//@	public static final String ADD = "add";
-//@	public static final String REMOVE = "remove";
-//@	public static final String NEW = "new";
-//@	public static final String UPLOAD = "upload";
-//@	public static final String TEST = "test";
-//@	
-//@	private ArrayList<ApoHybridEntityClock> clocks;
-//@	
-//@	private ApoHybridEditorClockStats clockStats;
-//@	
-//@	private ApoHybridString uploadString;
-//@	
-//@	private final ApoHybridEntityBall ball = new ApoHybridEntityBall(5, 260, 5, 90, 0.2f);
-//@	
-//@	private boolean bCanDragged;
-//@	
-//@	public ApoHybridEditor(ApoHybridPanel game) {
-//@		super(game);
-//@	}
-//@
-//@	@Override
-//@	public void init() {
-//@		if (this.clocks == null) {
-//@			this.clocks = new ArrayList<ApoHybridEntityClock>();
-//@		}
-//@		
-//@		this.getStringWidth().put(ApoHybridEditor.BACK, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.BACK)));
-//@		this.getStringWidth().put(ApoHybridEditor.ADD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.ADD)));
-//@		this.getStringWidth().put(ApoHybridEditor.REMOVE, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.REMOVE)));
-//@		this.getStringWidth().put(ApoHybridEditor.NEW, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.NEW)));
-//@		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.UPLOAD)));
-//@		this.getStringWidth().put(ApoHybridEditor.TEST, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.TEST)));
-//@		
-//@		String s = "ApoHybrid - Editor";
-//@		this.getStringWidth().put(s, (int) ApoHybridPanel.game_font.getLength(s));
-//@		
-//@		this.checkTestLevel();
-//@	}
-//@	
-//@	public void setLevelSolved(boolean bSolved) {
-//@		if ((!bSolved) || (!ApoHybrid.isOnline())) {
-//@			this.getGame().getButtons()[13].setVisible(false);
-//@		}
-//@	}
-//@	
-//@	private void checkTestLevel() {
-//@		if (this.clocks.size() < 2) {
-//@			this.getGame().getButtons()[14].setVisible(false);
-//@		} else {
-//@			this.getGame().getButtons()[14].setVisible(true);
-//@		}
-//@	}
-//@
-//@	@Override
-//@	public void touchedPressed(int x, int y, int finger) {
-//@		this.bCanDragged = false;
-//@		if (this.clockStats != null) {
-//@			if (this.clockStats.contains(x, y)) {
-//@				if (this.clockStats.touchedPressed(x, y, finger)) {
-//@					this.setLevelSolved(false);
-//@				}
-//@				return;
-//@			}
-//@		}
-//@		boolean bBreak = false;
-//@		for (int i = 0; i < this.clocks.size(); i++) {
-//@			if (this.clocks.get(i).intersects(x, y, 1)) {
-//@				if (this.clockStats != null) {
-//@					this.clockStats.getClock().setSelected(false);
-//@				}
-//@				this.bCanDragged = true;
-//@				this.clockStats = new ApoHybridEditorClockStats(this.clocks.get(i));
-//@				bBreak = true;
-//@				break;
-//@			}
-//@		}
-//@		if (!bBreak) {
-//@			if (this.clockStats != null) {
-//@				this.clockStats.getClock().setSelected(false);
-//@			}
-//@			this.clockStats = null;
-//@		}
-//@	}
-//@
-//@	@Override
-//@	public void touchedReleased(int x, int y, int finger) {
-//@		this.bCanDragged = false;
-//@	}
-//@
-//@	@Override
-//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-//@		if ((this.clockStats != null) && (this.bCanDragged)) {
-//@			int changeX = x - oldX;
-//@			int changeY = y - oldY;
-//@			int newX = (int)(this.clockStats.getClock().getX() + changeX);
-//@			if (newX - this.clockStats.getClock().getRadius() < 0) {
-//@				newX = (int)(this.clockStats.getClock().getRadius());
-//@			} else if (newX + this.clockStats.getClock().getRadius() >= ApoHybridConstants.GAME_WIDTH) {
-//@				newX = ApoHybridConstants.GAME_WIDTH - (int)(this.clockStats.getClock().getRadius());
-//@			}
-//@			
-//@			int newY = (int)(this.clockStats.getClock().getY() + changeY);
-//@			if (newY - this.clockStats.getClock().getRadius() < 25) {
-//@				newY = (int)(this.clockStats.getClock().getRadius()) + 25;
-//@			} else if (newY + this.clockStats.getClock().getRadius() >= 590) {
-//@				newY = 590 - (int)(this.clockStats.getClock().getRadius());
-//@			}
-//@			this.clockStats.getClock().setX(newX);
-//@			this.clockStats.getClock().setY(newY);
-//@		}
-//@	}
-//@	
-//@	@Override
-//@	public void touchedButton(String function) {
-//@		if (function.equals(ApoHybridEditor.ADD)) {
-//@			if (this.clockStats != null) {
-//@				this.clockStats.getClock().setSelected(false);
-//@			}
-//@			this.setLevelSolved(false);
-//@			this.clockStats = null;
-//@			ApoHybridEntityClock clock = new ApoHybridEntityClock(240, 260, 40, (int)(Math.random() * 360), (int)(Math.random() * 10 + 4));
-//@			if (Math.random() * 100 > 50) {
-//@				clock.setRotateClockwise(false);
-//@			}
-//@			this.clocks.add(clock);
-//@			this.checkTestLevel();
-//@		} else if (function.equals(ApoHybridEditor.BACK)) {
-//@			this.onBackButtonPressed();
-//@		} else if (function.equals(ApoHybridEditor.NEW)) {
-//@			if (this.clockStats != null) {
-//@				this.clockStats.getClock().setSelected(false);
-//@			}
-//@			this.setLevelSolved(false);
-//@			this.clockStats = null;
-//@			this.clocks.clear();
-//@			this.checkTestLevel();
-//@		} else if (function.equals(ApoHybridEditor.REMOVE)) {
-//@			if (this.clockStats != null) {
-//@				this.clocks.remove(this.clockStats.getClock());
-//@				this.clockStats = null;
-//@			}
-//@			this.setLevelSolved(false);
-//@			this.checkTestLevel();
-//@		} else if (function.equals(ApoHybridEditor.TEST)) {
-//@			String levelString = this.getLevelString();
-//@			BitsLog.d("levelString", levelString);
-//@			this.getGame().setGame(-1, levelString, false);
-//@		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
-//@			this.setLevelSolved(false);
-//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading ...", true, 200, true);
-//@			
-//@			Thread t = new Thread(new Runnable() {
-//@				@Override
-//@				public void run() {
-//@					ApoHybridEditor.this.uploadString();
-//@				}
-//@	 		});
-//@	 		t.start();
-//@		}
-//@	}
-//@	
-//@	private void uploadString() {
-//@		if (this.getGame().getUserlevels().addLevel(this.getLevelString())) {
-//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading successfully", true, 20, true);
-//@			this.getGame().loadUserlevels();
-//@		} else {
-//@			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading failed", true, 20, true);
-//@		}
-//@	}
-//@	
-//@	public void onBackButtonPressed() {
-//@		this.getGame().setPuzzle();
-//@	}
-//@	
-//@	private String getLevelString() {
-//@		String level = "";
-//@		for (int i = 0; i < this.clocks.size(); i++) {
-//@			level += this.clocks.get(i).getStringForLevel();
-//@			if (i + 1 < this.clocks.size()) {
-//@				level += ",";
-//@			}
-//@		}
-//@		return level;
-//@	}
-//@
-//@	@Override
-//@	public void think(int delta) {
-//@		if (this.clockStats != null) {
-//@			this.clockStats.think(delta);
-//@		}
-//@		if (this.uploadString != null) {
-//@			this.uploadString.think(delta);
-//@			
-//@			if (!this.uploadString.isVisible()) {
-//@				this.uploadString = null;
-//@			}
-//@		}
-//@	}
-//@
-//@	@Override
-//@	public void render(BitsGLGraphics g) {
-//@		g.setColor(128f/255f, 128f/255f, 128f/255f, 1.0f);
-//@		g.fillRect(0,0,480,25);
-//@		g.fillRect(0,590,480,50);
-//@		
-//@		g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-//@		g.drawRect(0,0,480,25);
-//@		g.drawRect(0,590,480,50);
-//@		
-//@		String s = "ApoHybrid - Editor";
-//@		this.getGame().drawString(g, s, 240, -4, ApoHybridPanel.game_font);
-//@		
-//@		for (int i = 0; i < this.clocks.size(); i++) {
-//@			this.clocks.get(i).render(g);
-//@		}
-//@		this.ball.render(g);
-//@		
-//@		this.getGame().renderButtons(g, ApoHybridPanel.game_font);
-//@		
-//@		if (this.clockStats != null) {
-//@			this.clockStats.render(g);
-//@		}
-//@		
-//@		if (this.uploadString != null) {
-//@			this.uploadString.render(g, 0, 0);
-//@		}
-//@	}
-//@
-//@}
+
+import java.util.ArrayList;
+
+import net.apogames.apohybrid.ApoHybrid;
+import net.apogames.apohybrid.ApoHybridConstants;
+import net.apogames.apohybrid.ApoHybridModel;
+import net.apogames.apohybrid.editor.ApoHybridEditorClockStats;
+import net.apogames.apohybrid.entity.ApoHybridEntityBall;
+import net.apogames.apohybrid.entity.ApoHybridEntityClock;
+import net.apogames.apohybrid.entity.ApoHybridString;
+
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+import net.gliblybits.bitsengine.utils.BitsLog;
+
+public class ApoHybridEditor extends ApoHybridModel {
+
+	public static final String BACK = "back";
+	public static final String ADD = "add";
+	public static final String REMOVE = "remove";
+	public static final String NEW = "new";
+	public static final String UPLOAD = "upload";
+	public static final String TEST = "test";
+	
+	private ArrayList<ApoHybridEntityClock> clocks;
+	
+	private ApoHybridEditorClockStats clockStats;
+	
+	private ApoHybridString uploadString;
+	
+	private final ApoHybridEntityBall ball = new ApoHybridEntityBall(5, 260, 5, 90, 0.2f);
+	
+	private boolean bCanDragged;
+	
+	public ApoHybridEditor(ApoHybridPanel game) {
+		super(game);
+	}
+
+	@Override
+	public void init() {
+		if (this.clocks == null) {
+			this.clocks = new ArrayList<ApoHybridEntityClock>();
+		}
+		
+		this.getStringWidth().put(ApoHybridEditor.BACK, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.BACK)));
+		this.getStringWidth().put(ApoHybridEditor.ADD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.ADD)));
+		this.getStringWidth().put(ApoHybridEditor.REMOVE, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.REMOVE)));
+		this.getStringWidth().put(ApoHybridEditor.NEW, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.NEW)));
+		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.UPLOAD)));
+		this.getStringWidth().put(ApoHybridEditor.TEST, (int)(ApoHybridPanel.game_font.getLength(ApoHybridEditor.TEST)));
+		
+		String s = "ApoHybrid - Editor";
+		this.getStringWidth().put(s, (int) ApoHybridPanel.game_font.getLength(s));
+		
+		this.checkTestLevel();
+	}
+	
+	public void setLevelSolved(boolean bSolved) {
+		if ((!bSolved) || (!ApoHybrid.isOnline())) {
+			this.getGame().getButtons()[13].setVisible(false);
+		}
+	}
+	
+	private void checkTestLevel() {
+		if (this.clocks.size() < 2) {
+			this.getGame().getButtons()[14].setVisible(false);
+		} else {
+			this.getGame().getButtons()[14].setVisible(true);
+		}
+	}
+
+	@Override
+	public void touchedPressed(int x, int y, int finger) {
+		this.bCanDragged = false;
+		if (this.clockStats != null) {
+			if (this.clockStats.contains(x, y)) {
+				if (this.clockStats.touchedPressed(x, y, finger)) {
+					this.setLevelSolved(false);
+				}
+				return;
+			}
+		}
+		boolean bBreak = false;
+		for (int i = 0; i < this.clocks.size(); i++) {
+			if (this.clocks.get(i).intersects(x, y, 1)) {
+				if (this.clockStats != null) {
+					this.clockStats.getClock().setSelected(false);
+				}
+				this.bCanDragged = true;
+				this.clockStats = new ApoHybridEditorClockStats(this.clocks.get(i));
+				bBreak = true;
+				break;
+			}
+		}
+		if (!bBreak) {
+			if (this.clockStats != null) {
+				this.clockStats.getClock().setSelected(false);
+			}
+			this.clockStats = null;
+		}
+	}
+
+	@Override
+	public void touchedReleased(int x, int y, int finger) {
+		this.bCanDragged = false;
+	}
+
+	@Override
+	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+		if ((this.clockStats != null) && (this.bCanDragged)) {
+			int changeX = x - oldX;
+			int changeY = y - oldY;
+			int newX = (int)(this.clockStats.getClock().getX() + changeX);
+			if (newX - this.clockStats.getClock().getRadius() < 0) {
+				newX = (int)(this.clockStats.getClock().getRadius());
+			} else if (newX + this.clockStats.getClock().getRadius() >= ApoHybridConstants.GAME_WIDTH) {
+				newX = ApoHybridConstants.GAME_WIDTH - (int)(this.clockStats.getClock().getRadius());
+			}
+			
+			int newY = (int)(this.clockStats.getClock().getY() + changeY);
+			if (newY - this.clockStats.getClock().getRadius() < 25) {
+				newY = (int)(this.clockStats.getClock().getRadius()) + 25;
+			} else if (newY + this.clockStats.getClock().getRadius() >= 590) {
+				newY = 590 - (int)(this.clockStats.getClock().getRadius());
+			}
+			this.clockStats.getClock().setX(newX);
+			this.clockStats.getClock().setY(newY);
+		}
+	}
+	
+	@Override
+	public void touchedButton(String function) {
+		if (function.equals(ApoHybridEditor.ADD)) {
+			if (this.clockStats != null) {
+				this.clockStats.getClock().setSelected(false);
+			}
+			this.setLevelSolved(false);
+			this.clockStats = null;
+			ApoHybridEntityClock clock = new ApoHybridEntityClock(240, 260, 40, (int)(Math.random() * 360), (int)(Math.random() * 10 + 4));
+			if (Math.random() * 100 > 50) {
+				clock.setRotateClockwise(false);
+			}
+			this.clocks.add(clock);
+			this.checkTestLevel();
+		} else if (function.equals(ApoHybridEditor.BACK)) {
+			this.onBackButtonPressed();
+		} else if (function.equals(ApoHybridEditor.NEW)) {
+			if (this.clockStats != null) {
+				this.clockStats.getClock().setSelected(false);
+			}
+			this.setLevelSolved(false);
+			this.clockStats = null;
+			this.clocks.clear();
+			this.checkTestLevel();
+		} else if (function.equals(ApoHybridEditor.REMOVE)) {
+			if (this.clockStats != null) {
+				this.clocks.remove(this.clockStats.getClock());
+				this.clockStats = null;
+			}
+			this.setLevelSolved(false);
+			this.checkTestLevel();
+		} else if (function.equals(ApoHybridEditor.TEST)) {
+			String levelString = this.getLevelString();
+			BitsLog.d("levelString", levelString);
+			this.getGame().setGame(-1, levelString, false);
+		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
+			this.setLevelSolved(false);
+			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading ...", true, 200, true);
+			
+			Thread t = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					ApoHybridEditor.this.uploadString();
+				}
+	 		});
+	 		t.start();
+		}
+	}
+	
+	private void uploadString() {
+		if (this.getGame().getUserlevels().addLevel(this.getLevelString())) {
+			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading successfully", true, 20, true);
+			this.getGame().loadUserlevels();
+		} else {
+			this.uploadString = new ApoHybridString(240, 550, 20, "Uploading failed", true, 20, true);
+		}
+	}
+	
+	public void onBackButtonPressed() {
+		this.getGame().setPuzzle();
+	}
+	
+	private String getLevelString() {
+		String level = "";
+		for (int i = 0; i < this.clocks.size(); i++) {
+			level += this.clocks.get(i).getStringForLevel();
+			if (i + 1 < this.clocks.size()) {
+				level += ",";
+			}
+		}
+		return level;
+	}
+
+	@Override
+	public void think(int delta) {
+		if (this.clockStats != null) {
+			this.clockStats.think(delta);
+		}
+		if (this.uploadString != null) {
+			this.uploadString.think(delta);
+			
+			if (!this.uploadString.isVisible()) {
+				this.uploadString = null;
+			}
+		}
+	}
+
+	@Override
+	public void render(BitsGLGraphics g) {
+		g.setColor(128f/255f, 128f/255f, 128f/255f, 1.0f);
+		g.fillRect(0,0,480,25);
+		g.fillRect(0,590,480,50);
+		
+		g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
+		g.drawRect(0,0,480,25);
+		g.drawRect(0,590,480,50);
+		
+		String s = "ApoHybrid - Editor";
+		this.getGame().drawString(g, s, 240, -4, ApoHybridPanel.game_font);
+		
+		for (int i = 0; i < this.clocks.size(); i++) {
+			this.clocks.get(i).render(g);
+		}
+		this.ball.render(g);
+		
+		this.getGame().renderButtons(g, ApoHybridPanel.game_font);
+		
+		if (this.clockStats != null) {
+			this.clockStats.render(g);
+		}
+		
+		if (this.uploadString != null) {
+			this.uploadString.render(g, 0, 0);
+		}
+	}
+
+}
 //#elif MonoGameLogic
 //@
 //@import net.apogames.apohybrid.ApoHybridConstants;
@@ -1805,407 +1805,406 @@ public class ApoHybridEditor extends ApoHybridModel {
 //@	}
 //@}
 //#elif TreasureGameLogic
-
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-
-import com.apogames.mytreasure.MyTreasureConstants;
-import com.apogames.mytreasure.MyTreasureModel;
-import com.apogames.mytreasure.MyTreasureSoundPlayer;
-
-public class MyTreasureEditor extends MyTreasureModel {
-
-	public static final int ENTITY_WALL = 0;
-	public static final int ENTITY_FREE = 1;
-	public static final int ENTITY_PLAYER = 2;
-	public static final int ENTITY_SKULL = 3;
-	public static final int ENTITY_BLOCK = 4;
-	
-	public static final String BACK = "back";
-	public static final String SIZE_LEFT = "left";
-	public static final String SIZE_RIGHT = "right";
-	public static final String TEST = "test";
-	public static final String UPLOAD = "upload";
-	public static final String SOLVE = "solve";
-	
-	private int[][] level;
-	
-	private int size = 6;
-	
-	private int curChoose;
-	
-	private int steps;
-	
-	private int startX, startY;
-	
-	private int time;
-	private String uploadString;
-	
-	private Thread t;
-	
-	private int[][] levelRandom;
-	
-	public MyTreasureEditor(final MyTreasurePanel game) {
-		super(game);
-	}
-
-	@Override
-	public void init() {
-		if (this.level == null) {
-			this.level = new int[6][6];
-			this.makeStandardLevel();
-			
-			this.curChoose = MyTreasureEditor.ENTITY_BLOCK;
-		}
-		this.time = 0;
-		this.makeBackground();
-		this.setCanBeTest();
-	}
-	
-	public void makeBackground() {
-		this.levelRandom = new int[16][11];
-		
-		for (int y = 0; y < 16; y += 1) {
-			for (int x = 0; x < 11; x += 1) {
-				this.levelRandom[y][x] = (int)(Math.random() * 4);
-			}
-		}
-	}
-	
-	public void setSteps(int steps) {
-		if (this.steps > steps) {
-			this.steps = steps;
-		}
-//		System.out.println(this.getLevelString());
-	}
-	
-	public void setVisibleUpload(final boolean visible) {
-		this.getGame().getButtons()[19].setVisible(visible);
-		if (!visible) {
-			this.time = 0;
-		}
-	}	
-	
-	public void makeStandardLevel() {
-		for (int y = 1; y < this.level.length - 1; y++) {
-			for (int x = 1; x < this.level[0].length - 1; x++) {
-				this.level[y][x] = 1;
-			}
-		}
-		this.level[this.level.length - 2][2] = 2;
-		this.level[this.level.length - 2][1] = 4;
-		this.level[1][this.level[0].length - 3] = 3;
-		
-		this.startX = MyTreasureConstants.GAME_WIDTH/2 - this.level[0].length * 16;
-		this.startY = MyTreasureConstants.GAME_HEIGHT/2 - this.level.length * 16 - 32;
-	}
-	
-	public void setCanBeTest() {
-		int player = 0;
-		int skull = 0;
-		
-		for (int y = 0; y < this.level.length; y += 1) {
-			for (int x = 0; x < this.level[0].length; x += 1) {
-				if (this.level[y][x] == 2) player += 1;
-				if (this.level[y][x] == 3) skull += 1;
-			}
-		}
-		
-		if ((player == 1) && (skull == 1)) {
-			this.getGame().getButtons()[18].setVisible(true);
-			this.getGame().getButtons()[20].setVisible(true);	
-		} else {
-			this.getGame().getButtons()[18].setVisible(false);
-			this.getGame().getButtons()[20].setVisible(false);
-		}
-	}
-	
-	public String getLevelString() {
-		String levelString = "";
-		String width = String.valueOf(this.level[0].length);
-		if (width.length() < 2) {
-			width = "0" + width;
-		}
-		String height = String.valueOf(this.level.length);
-		if (height.length() < 2) {
-			height = "0" + height;
-		}
-		levelString = width + height;
-		for (int y = 0; y < this.level.length; y += 1) {
-			for (int x = 0; x < this.level[0].length; x += 1) {
-				levelString += String.valueOf(this.level[y][x]);
-			}
-		}
-		String stepsString = String.valueOf(this.steps);
-		
-		if (stepsString.length() < 2) {
-			stepsString = "0" + stepsString;
-		}
-		
-		levelString += stepsString;
-		
-		stepsString = String.valueOf(this.steps + 4);
-		if (stepsString.length() < 2) {
-			stepsString = "0" + stepsString;
-		}
-		
-		levelString += stepsString;
-		
-		return levelString;
-	}
-
-	@Override
-	public void touchedButton(String function) {
-		this.getGame().playSound(MyTreasureSoundPlayer.SOUND_CLICK);
-		if (function.equals(MyTreasureEditor.BACK)) {
-			this.onBackButtonPressed();
-		} else if (function.equals(MyTreasureEditor.SIZE_LEFT)) {
-			if (this.size > 5) {
-				this.size -= 1;
-				this.level = new int[this.size][this.size];
-				this.makeStandardLevel();
-				this.steps = 95;
-			}
-		} else if (function.equals(MyTreasureEditor.SIZE_RIGHT)) {
-			if (this.size < 10) {
-				this.size += 1;
-				this.level = new int[this.size][this.size];
-				this.makeStandardLevel();
-				this.steps = 95;
-			}
-		} else if (function.equals(MyTreasureEditor.TEST)) {
-			this.getGame().setGame(false, true, 0, this.getLevelString());
-		} else if (function.equals(MyTreasureEditor.UPLOAD)) {
-			this.upload();
-		} else if (function.equals(MyTreasureEditor.SOLVE)) {
-			this.setSolutionString("");
-			this.solveLevel(this.getLevelString());
-		}
-	}
-
-	public void setTestString(final String solution) {
-		this.time = 10000;
-		this.uploadString = solution;
-	}
-	
-	public void setSolutionString(final String solution) {
-		this.time = 10000;
-		if (solution.length() == 0) {
-			this.uploadString = "try to solve the level";
-		} else if (solution.startsWith("no solution")) {
-			this.uploadString = solution;
-		} else {
-			this.uploadString = "level solved in "+solution.length()+" steps";
-			this.steps = solution.length();
-			this.setVisibleUpload(true);
-		}
-	}
-	
-	public final void solveLevel(final String level) {
-		this.t = new Thread(new Runnable() {
-
-			public void run() {
-				MyTreasureEditor.this.getGame().doSolveLevel(level);
-			}
- 		});
- 		this.t.start();
-	}
-	
-	public void onBackButtonPressed() {
-		this.getGame().setMenu();
-	}
-	
-	public void upload() {
-		this.time = 5000;
-		this.uploadString = "uploading ...";
-		this.setVisibleUpload(false);
-		this.t = new Thread(new Runnable() {
-			public void run() {
-				MyTreasureEditor.this.uploadString();
-			}
- 		});
-		this.t.start();
-	}
-	
-	public void uploadString() {
-		boolean bUpload = this.getGame().getUserlevels().addLevel(this.getLevelString());
-		if (bUpload) {
-			this.uploadString = "upload successfully";
-			this.getGame().loadUserlevels();
-			this.time = 2000;
-		} else {
-			this.uploadString = "upload failed";
-			this.time = 2000;
-		}
-	}
-	
-
-	@Override
-	public void touchedPressed(int x, int y, int finger) {
-		this.touchedReleased(x, y, finger);
-	}
-
-	@Override
-	public void touchedReleased(int x, int y, int finger) {
-		if ((y >= MyTreasureConstants.GAME_HEIGHT - 64) && (y <= MyTreasureConstants.GAME_HEIGHT - 32) && 
-				(x >= 128)) {
-				for (int i = 0; i < 5; i++) {
-					if ((x >= 128 + i * 40) && (x <= 160 + i * 40)) {
-						this.curChoose = i;
-						this.getGame().playSound(MyTreasureSoundPlayer.SOUND_CLICK);
-						break;
-					}
-				}
-			}
-			if ((y >= this.startY) && (y < this.startY + this.size * 32) &&
-				(x >= this.startX) && (x < this.startX + this.size * 32)) {
-				int curX = (x - this.startX) / 32;
-				int curY = (y - this.startY) / 32;
-				if ((this.curChoose == 2) || (this.curChoose == 3)) {
-					if ((curX < 1) || (curY < 1) || (curX >= this.level[0].length - 1) || (curY >= this.level.length - 1)) {
-						return;
-					}
-				}
-				if (this.level[curY][curX] != this.curChoose) {
-					if ((this.curChoose == MyTreasureEditor.ENTITY_SKULL) || (this.curChoose == MyTreasureEditor.ENTITY_PLAYER)) {
-						for (int lY = 0; lY < this.level.length; lY += 1) {
-							for (int lX = 0; lX < this.level[0].length; lX += 1) {
-								if (this.level[lY][lX] == this.curChoose) {
-									this.level[lY][lX] = MyTreasureEditor.ENTITY_FREE;
-								}
-							}
-						}
-					}
-					this.level[curY][curX] = this.curChoose;
-					this.steps = 95;
-					this.setCanBeTest();
-					this.setVisibleUpload(false);
-				}
-			}
-	}
-
-	@Override
-	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-		if ((y >= this.startY) && (y < this.startY + this.size * 32) &&
-				(x >= this.startX) && (x < this.startX + this.size * 32)) {
-				this.touchedReleased(x, y, finger);
-			}
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public void think(int delta) {
-		if (this.time > 0) {
-			this.time -= delta;
-			if (this.time <= 0) {
-				if (this.uploadString.equals("uploading ...")) {
-					if (this.t != null) {
-						try {
-							this.t.stop();
-						} catch (Exception ex) {}
-					}
-				} else if (this.uploadString.equals("try to solve the level")) {
-					if (this.t != null) {
-						try {
-							this.t.stop();
-						} catch (Exception ex) {}
-					}
-					this.time = 3000;
-					this.uploadString = "Can't find a solution in 10 sec";
-				}
-			}
-		}
-	}
-
-	@Override
-	public void render(BitsGLGraphics g) {
-//		g.cropImage(this.iBackground, 0, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT, 0, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT);
-		
-		for (int y = 1; y < 16; y += 1) {
-			for (int x = 0; x < 11; x += 1) {
-				g.cropImage(MyTreasureConstants.iSheet, (x-1) * 32, (y) * 32, 32, 32, this.levelRandom[y][x] * 32, 3 * 32, 32, 32);
-			}
-		}
-		for (int i = 0; i < 3; i++) {
-			g.cropImage(MyTreasureConstants.iSheet, 0, 448 - i * 32, 320, 32, 384, 480, 320, 32);
-		}
-		g.cropImage(MyTreasureConstants.iSheet, 0, 0, 320, 32, 384, 480, 320, 32);
-		
-		
-		for (int y = 0; y < this.level.length; y += 1) {
-			for (int x = 0; x < this.level[0].length; x += 1) {
-				g.setColor(1f, 1f, 1f, 1f);
-				if (this.level[y][x] == 3) {
-					g.cropImage(MyTreasureConstants.iSheet, this.startX + (x) * 32 - 16, this.startY +(y) * 32 - 16, 64, 64, 8 * 32, 32, 64, 64);
-					g.cropImage(MyTreasureConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 0 * 32, 1 * 32, 32, 32);
-				}
-				if (this.level[y][x] == 4) {
-					g.cropImage(MyTreasureConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 2 * 32, 0 * 32, 32, 32);
-				}
-				if (this.level[y][x] == 0) {
-					g.cropImage(MyTreasureConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 0 * 32, 2 * 32, 32, 32);
-				}
-				if (this.level[y][x] == 2) {
-					int curX = 0;
-					int curY = 0;
-					g.cropImage(MyTreasureConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, curX * 32, curY * 32, 32, 32);
-				}
-				if (this.level[y][x] == 1) {
-					g.setColor(MyTreasureConstants.COLOR_LIGHT);
-					g.drawRect(this.startX + (x) * 32, this.startY + (y) * 32, 32, 32);
-				}
-			}
-		}
-		
-		g.setColor(MyTreasureConstants.COLOR_SEPARATOR);
-		g.setFont(MyTreasureConstants.FONT_STATISTICS);
-		
-		String s = "size";
-		float w = MyTreasureConstants.FONT_STATISTICS.getLength(s);
-		g.drawText(s, 60 - w/2, MyTreasureConstants.GAME_HEIGHT - 72 - MyTreasureConstants.FONT_STATISTICS.mCharCellHeight);
-		
-		s = String.valueOf(this.size);
-		w = MyTreasureConstants.FONT_STATISTICS.getLength(s);
-		g.drawText(s, 60 - w/2, MyTreasureConstants.GAME_HEIGHT - 38 - MyTreasureConstants.FONT_STATISTICS.mCharCellHeight);
-		
-		s = "level objects";
-		w = MyTreasureConstants.FONT_STATISTICS.getLength(s);
-		g.drawText(s, 220 - w/2, MyTreasureConstants.GAME_HEIGHT - 72 - MyTreasureConstants.FONT_STATISTICS.mCharCellHeight);
-		
-		g.setColor(MyTreasureConstants.COLOR_SEPARATOR);
-		g.fillRect(120, MyTreasureConstants.GAME_HEIGHT - 94, 2, 92);
-		
-		g.setColor(1f, 1f, 1f, 1f);
-		// block
-		g.cropImage(MyTreasureConstants.iSheet, 128, MyTreasureConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 2 * 32, 32, 32);
-		// free
-		g.cropImage(MyTreasureConstants.iSheet, 168, MyTreasureConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 3 * 32, 32, 32);
-		// player
-		g.cropImage(MyTreasureConstants.iSheet, 208, MyTreasureConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 0 * 32, 32, 32);
-		// skull
-		g.cropImage(MyTreasureConstants.iSheet, 248, MyTreasureConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 1 * 32, 32, 32);
-		// block
-		g.cropImage(MyTreasureConstants.iSheet, 288, MyTreasureConstants.GAME_HEIGHT - 64, 32, 32, 2 * 32, 0 * 32, 32, 32);
-		
-		float lineSize = g.getLineSize();
-		g.setLineSize(5f);
-		g.setColor(new int[] {255, 0, 0});
-		g.drawRect(128 + 40 * this.curChoose, MyTreasureConstants.GAME_HEIGHT - 64, 31, 32);
-		g.setLineSize(lineSize);
-		
-		if (this.time > 0) {
-			g.setColor(new int[] {255, 255, 255});
-			w = MyTreasureConstants.FONT_STATISTICS.getLength(this.uploadString);
-			float x = 128 - w/2 - 5;
-			if (x < 0) {
-				x = 0;
-			}
-			g.fillRect(x + 1, 32, w + 8, 24);
-			g.setColor(new int[] {0, 0, 0});
-			g.drawRect(x + 1, 32, w + 8, 24);
-			g.drawText(this.uploadString, x + 5, 51 - MyTreasureConstants.FONT_STATISTICS.mCharCellHeight);
-		}
-	}
-
-}
+//@
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.ApoHybridSoundPlayer;
+//@
+//@public class ApoHybridEditor extends ApoHybridModel {
+//@
+//@	public static final int ENTITY_WALL = 0;
+//@	public static final int ENTITY_FREE = 1;
+//@	public static final int ENTITY_PLAYER = 2;
+//@	public static final int ENTITY_SKULL = 3;
+//@	public static final int ENTITY_BLOCK = 4;
+//@	
+//@	public static final String BACK = "back";
+//@	public static final String SIZE_LEFT = "left";
+//@	public static final String SIZE_RIGHT = "right";
+//@	public static final String TEST = "test";
+//@	public static final String UPLOAD = "upload";
+//@	public static final String SOLVE = "solve";
+//@	
+//@	private int[][] level;
+//@	
+//@	private int size = 6;
+//@	
+//@	private int curChoose;
+//@	
+//@	private int steps;
+//@	
+//@	private int startX, startY;
+//@	
+//@	private int time;
+//@	private String uploadString;
+//@	
+//@	private Thread t;
+//@	
+//@	private int[][] levelRandom;
+//@	
+//@	public ApoHybridEditor(final ApoHybridPanel game) {
+//@		super(game);
+//@	}
+//@
+//@	@Override
+//@	public void init() {
+//@		if (this.level == null) {
+//@			this.level = new int[6][6];
+//@			this.makeStandardLevel();
+//@			
+//@			this.curChoose = ApoHybridEditor.ENTITY_BLOCK;
+//@		}
+//@		this.time = 0;
+//@		this.makeBackground();
+//@		this.setCanBeTest();
+//@	}
+//@	
+//@	public void makeBackground() {
+//@		this.levelRandom = new int[16][11];
+//@		
+//@		for (int y = 0; y < 16; y += 1) {
+//@			for (int x = 0; x < 11; x += 1) {
+//@				this.levelRandom[y][x] = (int)(Math.random() * 4);
+//@			}
+//@		}
+//@	}
+//@	
+//@	public void setSteps(int steps) {
+//@		if (this.steps > steps) {
+//@			this.steps = steps;
+//@		}
+//@//		System.out.println(this.getLevelString());
+//@	}
+//@	
+//@	public void setVisibleUpload(final boolean visible) {
+//@		this.getGame().getButtons()[19].setVisible(visible);
+//@		if (!visible) {
+//@			this.time = 0;
+//@		}
+//@	}	
+//@	
+//@	public void makeStandardLevel() {
+//@		for (int y = 1; y < this.level.length - 1; y++) {
+//@			for (int x = 1; x < this.level[0].length - 1; x++) {
+//@				this.level[y][x] = 1;
+//@			}
+//@		}
+//@		this.level[this.level.length - 2][2] = 2;
+//@		this.level[this.level.length - 2][1] = 4;
+//@		this.level[1][this.level[0].length - 3] = 3;
+//@		
+//@		this.startX = ApoHybridConstants.GAME_WIDTH/2 - this.level[0].length * 16;
+//@		this.startY = ApoHybridConstants.GAME_HEIGHT/2 - this.level.length * 16 - 32;
+//@	}
+//@	
+//@	public void setCanBeTest() {
+//@		int player = 0;
+//@		int skull = 0;
+//@		
+//@		for (int y = 0; y < this.level.length; y += 1) {
+//@			for (int x = 0; x < this.level[0].length; x += 1) {
+//@				if (this.level[y][x] == 2) player += 1;
+//@				if (this.level[y][x] == 3) skull += 1;
+//@			}
+//@		}
+//@		
+//@		if ((player == 1) && (skull == 1)) {
+//@			this.getGame().getButtons()[18].setVisible(true);
+//@			this.getGame().getButtons()[20].setVisible(true);	
+//@		} else {
+//@			this.getGame().getButtons()[18].setVisible(false);
+//@			this.getGame().getButtons()[20].setVisible(false);
+//@		}
+//@	}
+//@	
+//@	public String getLevelString() {
+//@		String levelString = "";
+//@		String width = String.valueOf(this.level[0].length);
+//@		if (width.length() < 2) {
+//@			width = "0" + width;
+//@		}
+//@		String height = String.valueOf(this.level.length);
+//@		if (height.length() < 2) {
+//@			height = "0" + height;
+//@		}
+//@		levelString = width + height;
+//@		for (int y = 0; y < this.level.length; y += 1) {
+//@			for (int x = 0; x < this.level[0].length; x += 1) {
+//@				levelString += String.valueOf(this.level[y][x]);
+//@			}
+//@		}
+//@		String stepsString = String.valueOf(this.steps);
+//@		
+//@		if (stepsString.length() < 2) {
+//@			stepsString = "0" + stepsString;
+//@		}
+//@		
+//@		levelString += stepsString;
+//@		
+//@		stepsString = String.valueOf(this.steps + 4);
+//@		if (stepsString.length() < 2) {
+//@			stepsString = "0" + stepsString;
+//@		}
+//@		
+//@		levelString += stepsString;
+//@		
+//@		return levelString;
+//@	}
+//@
+//@	@Override
+//@	public void touchedButton(String function) {
+//@		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+//@		if (function.equals(ApoHybridEditor.BACK)) {
+//@			this.onBackButtonPressed();
+//@		} else if (function.equals(ApoHybridEditor.SIZE_LEFT)) {
+//@			if (this.size > 5) {
+//@				this.size -= 1;
+//@				this.level = new int[this.size][this.size];
+//@				this.makeStandardLevel();
+//@				this.steps = 95;
+//@			}
+//@		} else if (function.equals(ApoHybridEditor.SIZE_RIGHT)) {
+//@			if (this.size < 10) {
+//@				this.size += 1;
+//@				this.level = new int[this.size][this.size];
+//@				this.makeStandardLevel();
+//@				this.steps = 95;
+//@			}
+//@		} else if (function.equals(ApoHybridEditor.TEST)) {
+//@			this.getGame().setGame(false, true, 0, this.getLevelString());
+//@		} else if (function.equals(ApoHybridEditor.UPLOAD)) {
+//@			this.upload();
+//@		} else if (function.equals(ApoHybridEditor.SOLVE)) {
+//@			this.setSolutionString("");
+//@			this.solveLevel(this.getLevelString());
+//@		}
+//@	}
+//@
+//@	public void setTestString(final String solution) {
+//@		this.time = 10000;
+//@		this.uploadString = solution;
+//@	}
+//@	
+//@	public void setSolutionString(final String solution) {
+//@		this.time = 10000;
+//@		if (solution.length() == 0) {
+//@			this.uploadString = "try to solve the level";
+//@		} else if (solution.startsWith("no solution")) {
+//@			this.uploadString = solution;
+//@		} else {
+//@			this.uploadString = "level solved in "+solution.length()+" steps";
+//@			this.steps = solution.length();
+//@			this.setVisibleUpload(true);
+//@		}
+//@	}
+//@	
+//@	public final void solveLevel(final String level) {
+//@		this.t = new Thread(new Runnable() {
+//@
+//@			public void run() {
+//@				ApoHybridEditor.this.getGame().doSolveLevel(level);
+//@			}
+//@ 		});
+//@ 		this.t.start();
+//@	}
+//@	
+//@	public void onBackButtonPressed() {
+//@		this.getGame().setMenu();
+//@	}
+//@	
+//@	public void upload() {
+//@		this.time = 5000;
+//@		this.uploadString = "uploading ...";
+//@		this.setVisibleUpload(false);
+//@		this.t = new Thread(new Runnable() {
+//@			public void run() {
+//@				ApoHybridEditor.this.uploadString();
+//@			}
+//@ 		});
+//@		this.t.start();
+//@	}
+//@	
+//@	public void uploadString() {
+//@		boolean bUpload = this.getGame().getUserlevels().addLevel(this.getLevelString());
+//@		if (bUpload) {
+//@			this.uploadString = "upload successfully";
+//@			this.getGame().loadUserlevels();
+//@			this.time = 2000;
+//@		} else {
+//@			this.uploadString = "upload failed";
+//@			this.time = 2000;
+//@		}
+//@	}
+//@	
+//@
+//@	@Override
+//@	public void touchedPressed(int x, int y, int finger) {
+//@		this.touchedReleased(x, y, finger);
+//@	}
+//@
+//@	@Override
+//@	public void touchedReleased(int x, int y, int finger) {
+//@		if ((y >= ApoHybridConstants.GAME_HEIGHT - 64) && (y <= ApoHybridConstants.GAME_HEIGHT - 32) &&
+//@				(x >= 128)) {
+//@				for (int i = 0; i < 5; i++) {
+//@					if ((x >= 128 + i * 40) && (x <= 160 + i * 40)) {
+//@						this.curChoose = i;
+//@						this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+//@						break;
+//@					}
+//@				}
+//@			}
+//@			if ((y >= this.startY) && (y < this.startY + this.size * 32) &&
+//@				(x >= this.startX) && (x < this.startX + this.size * 32)) {
+//@				int curX = (x - this.startX) / 32;
+//@				int curY = (y - this.startY) / 32;
+//@				if ((this.curChoose == 2) || (this.curChoose == 3)) {
+//@					if ((curX < 1) || (curY < 1) || (curX >= this.level[0].length - 1) || (curY >= this.level.length - 1)) {
+//@						return;
+//@					}
+//@				}
+//@				if (this.level[curY][curX] != this.curChoose) {
+//@					if ((this.curChoose == ApoHybridEditor.ENTITY_SKULL) || (this.curChoose == ApoHybridEditor.ENTITY_PLAYER)) {
+//@						for (int lY = 0; lY < this.level.length; lY += 1) {
+//@							for (int lX = 0; lX < this.level[0].length; lX += 1) {
+//@								if (this.level[lY][lX] == this.curChoose) {
+//@									this.level[lY][lX] = ApoHybridEditor.ENTITY_FREE;
+//@								}
+//@							}
+//@						}
+//@					}
+//@					this.level[curY][curX] = this.curChoose;
+//@					this.steps = 95;
+//@					this.setCanBeTest();
+//@					this.setVisibleUpload(false);
+//@				}
+//@			}
+//@	}
+//@
+//@	@Override
+//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+//@		if ((y >= this.startY) && (y < this.startY + this.size * 32) &&
+//@				(x >= this.startX) && (x < this.startX + this.size * 32)) {
+//@				this.touchedReleased(x, y, finger);
+//@			}
+//@	}
+//@	
+//@	@SuppressWarnings("deprecation")
+//@	@Override
+//@	public void think(int delta) {
+//@		if (this.time > 0) {
+//@			this.time -= delta;
+//@			if (this.time <= 0) {
+//@				if (this.uploadString.equals("uploading ...")) {
+//@					if (this.t != null) {
+//@						try {
+//@							this.t.stop();
+//@						} catch (Exception ex) {}
+//@					}
+//@				} else if (this.uploadString.equals("try to solve the level")) {
+//@					if (this.t != null) {
+//@						try {
+//@							this.t.stop();
+//@						} catch (Exception ex) {}
+//@					}
+//@					this.time = 3000;
+//@					this.uploadString = "Can't find a solution in 10 sec";
+//@				}
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void render(BitsGLGraphics g) {
+//@//		g.cropImage(this.iBackground, 0, 0, ApoHybridConstants.GAME_WIDTH, ApoHybridConstants.GAME_HEIGHT, 0, 0, ApoHybridConstants.GAME_WIDTH, ApoHybridConstants.GAME_HEIGHT);
+//@		
+//@		for (int y = 1; y < 16; y += 1) {
+//@			for (int x = 0; x < 11; x += 1) {
+//@				g.cropImage(ApoHybridConstants.iSheet, (x-1) * 32, (y) * 32, 32, 32, this.levelRandom[y][x] * 32, 3 * 32, 32, 32);
+//@			}
+//@		}
+//@		for (int i = 0; i < 3; i++) {
+//@			g.cropImage(ApoHybridConstants.iSheet, 0, 448 - i * 32, 320, 32, 384, 480, 320, 32);
+//@		}
+//@		g.cropImage(ApoHybridConstants.iSheet, 0, 0, 320, 32, 384, 480, 320, 32);
+//@		
+//@		
+//@		for (int y = 0; y < this.level.length; y += 1) {
+//@			for (int x = 0; x < this.level[0].length; x += 1) {
+//@				g.setColor(1f, 1f, 1f, 1f);
+//@				if (this.level[y][x] == 3) {
+//@					g.cropImage(ApoHybridConstants.iSheet, this.startX + (x) * 32 - 16, this.startY +(y) * 32 - 16, 64, 64, 8 * 32, 32, 64, 64);
+//@					g.cropImage(ApoHybridConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 0 * 32, 1 * 32, 32, 32);
+//@				}
+//@				if (this.level[y][x] == 4) {
+//@					g.cropImage(ApoHybridConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 2 * 32, 0 * 32, 32, 32);
+//@				}
+//@				if (this.level[y][x] == 0) {
+//@					g.cropImage(ApoHybridConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, 0 * 32, 2 * 32, 32, 32);
+//@				}
+//@				if (this.level[y][x] == 2) {
+//@					int curX = 0;
+//@					int curY = 0;
+//@					g.cropImage(ApoHybridConstants.iSheet, this.startX + (x) * 32, this.startY + (y) * 32, 32, 32, curX * 32, curY * 32, 32, 32);
+//@				}
+//@				if (this.level[y][x] == 1) {
+//@					g.setColor(ApoHybridConstants.COLOR_LIGHT);
+//@					g.drawRect(this.startX + (x) * 32, this.startY + (y) * 32, 32, 32);
+//@				}
+//@			}
+//@		}
+//@		
+//@		g.setColor(ApoHybridConstants.COLOR_SEPARATOR);
+//@		g.setFont(ApoHybridConstants.FONT_STATISTICS);
+//@		
+//@		String s = "size";
+//@		float w = ApoHybridConstants.FONT_STATISTICS.getLength(s);
+//@		g.drawText(s, 60 - w/2, ApoHybridConstants.GAME_HEIGHT - 72 - ApoHybridConstants.FONT_STATISTICS.mCharCellHeight);
+//@		
+//@		s = String.valueOf(this.size);
+//@		w = ApoHybridConstants.FONT_STATISTICS.getLength(s);
+//@		g.drawText(s, 60 - w/2, ApoHybridConstants.GAME_HEIGHT - 38 - ApoHybridConstants.FONT_STATISTICS.mCharCellHeight);
+//@		
+//@		s = "level objects";
+//@		w = ApoHybridConstants.FONT_STATISTICS.getLength(s);
+//@		g.drawText(s, 220 - w/2, ApoHybridConstants.GAME_HEIGHT - 72 - ApoHybridConstants.FONT_STATISTICS.mCharCellHeight);
+//@		
+//@		g.setColor(ApoHybridConstants.COLOR_SEPARATOR);
+//@		g.fillRect(120, ApoHybridConstants.GAME_HEIGHT - 94, 2, 92);
+//@		
+//@		g.setColor(1f, 1f, 1f, 1f);
+//@		// block
+//@		g.cropImage(ApoHybridConstants.iSheet, 128, ApoHybridConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 2 * 32, 32, 32);
+//@		// free
+//@		g.cropImage(ApoHybridConstants.iSheet, 168, ApoHybridConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 3 * 32, 32, 32);
+//@		// player
+//@		g.cropImage(ApoHybridConstants.iSheet, 208, ApoHybridConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 0 * 32, 32, 32);
+//@		// skull
+//@		g.cropImage(ApoHybridConstants.iSheet, 248, ApoHybridConstants.GAME_HEIGHT - 64, 32, 32, 0 * 32, 1 * 32, 32, 32);
+//@		// block
+//@		g.cropImage(ApoHybridConstants.iSheet, 288, ApoHybridConstants.GAME_HEIGHT - 64, 32, 32, 2 * 32, 0 * 32, 32, 32);
+//@		
+//@		float lineSize = g.getLineSize();
+//@		g.setLineSize(5f);
+//@		g.setColor(new int[] {255, 0, 0});
+//@		g.drawRect(128 + 40 * this.curChoose, ApoHybridConstants.GAME_HEIGHT - 64, 31, 32);
+//@		g.setLineSize(lineSize);
+//@		
+//@		if (this.time > 0) {
+//@			g.setColor(new int[] {255, 255, 255});
+//@			w = ApoHybridConstants.FONT_STATISTICS.getLength(this.uploadString);
+//@			float x = 128 - w/2 - 5;
+//@			if (x < 0) {
+//@				x = 0;
+//@			}
+//@			g.fillRect(x + 1, 32, w + 8, 24);
+//@			g.setColor(new int[] {0, 0, 0});
+//@			g.drawRect(x + 1, 32, w + 8, 24);
+//@			g.drawText(this.uploadString, x + 5, 51 - ApoHybridConstants.FONT_STATISTICS.mCharCellHeight);
+//@		}
+//@	}
+//@
+//@}
 //#endif
-

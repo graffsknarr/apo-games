@@ -2,16 +2,16 @@ package net.apogames.apohybrid.game;
 
 //#if !TreasureGameLogic
 //#if ClockGameLogic
-//@import net.apogames.apohybrid.ApoHybridModel;
-//@import net.apogames.apohybrid.entity.ApoLevelChooserButton;
-//@import net.apogames.apohybrid.level.ApoHybridLevel;
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//#elif SnakeGameLogic || DiceGameLogic
-import net.apogames.apohybrid.ApoHybrid;
 import net.apogames.apohybrid.ApoHybridModel;
 import net.apogames.apohybrid.entity.ApoLevelChooserButton;
 import net.apogames.apohybrid.level.ApoHybridLevel;
-import net.gliblybits.bitsengine.render.BitsGraphics;
+import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//#elif SnakeGameLogic || DiceGameLogic
+//@import net.apogames.apohybrid.ApoHybrid;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.entity.ApoLevelChooserButton;
+//@import net.apogames.apohybrid.level.ApoHybridLevel;
+//@import net.gliblybits.bitsengine.render.BitsGraphics;
 //#elif MonoGameLogic
 //@import net.apogames.apohybrid.ApoHybridConstants;
 //@import net.apogames.apohybrid.ApoHybridModel;
@@ -47,11 +47,11 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 	@Override
 	public void init() {
 		//#if ClockGameLogic
-//@		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridPanel.font.getLength(ApoHybridLevelChooser.BACK)));
-//@		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridPanel.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
+		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridPanel.font.getLength(ApoHybridLevelChooser.BACK)));
+		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridPanel.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
 		//#elif SnakeGameLogic || DiceGameLogic		
-		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridMenu.font.getLength(ApoHybridLevelChooser.BACK)));
-		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridMenu.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
+//@		this.getStringWidth().put(ApoHybridLevelChooser.BACK, (int)(ApoHybridMenu.font.getLength(ApoHybridLevelChooser.BACK)));
+//@		this.getStringWidth().put(ApoHybridLevelChooser.LEVEL_CHOOSER, (int)(ApoHybridMenu.title_font.getLength(ApoHybridLevelChooser.LEVEL_CHOOSER)));
 		//#endif
 
 		//#if MonoGameLogic
@@ -166,9 +166,9 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 				}
 			}
 			//#if ClockGameLogic
-//@			this.getGame().savePreferences();
+			this.getGame().savePreferences();
 			//#elif SnakeGameLogic || DiceGameLogic
-			this.getGame().savePreferences(ApoHybrid.settings);
+//@			this.getGame().savePreferences(ApoHybrid.settings);
 			//#endif
 		}
 	}
@@ -233,9 +233,9 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 
 	public void onBackButtonPressed() {
 		//#if ClockGameLogic
-//@		this.getGame().setPuzzle();
+		this.getGame().setPuzzle();
 		//#elif SnakeGameLogic || DiceGameLogic || MonoGameLogic
-		this.getGame().setMenu();
+//@		this.getGame().setMenu();
 		//#endif
 
 	}
@@ -247,12 +247,12 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 
 	@Override
 	//#if ClockGameLogic
-//@	public void render(BitsGLGraphics g) {
-//@		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridPanel.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@	
+	public void render(BitsGLGraphics g) {
+		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridPanel.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+	
 	//#elif SnakeGameLogic || DiceGameLogic
-	public void render(BitsGraphics g) {
-		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+//@	public void render(BitsGraphics g) {
+//@		this.getGame().drawString(g, ApoHybridLevelChooser.LEVEL_CHOOSER, 240, 2, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
 	//#endif
 
 
@@ -272,18 +272,18 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 					g.setColor(128, 128, 128, 255);
 				}
 				//#if DiceMenu
-				g.drawFilledRoundRect(x, y, radius, radius, 6, 10);
-
-				g.setLineSize(2.5f);
-				g.setColor(48, 48, 48);
-				g.drawRoundRect(x, y, radius, radius, 6, 10);
-				
-				if (this.solved == i) {
-					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-				} else {
-					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
-				}
-
+//@				g.drawFilledRoundRect(x, y, radius, radius, 6, 10);
+//@
+//@				g.setLineSize(2.5f);
+//@				g.setColor(48, 48, 48);
+//@				g.drawRoundRect(x, y, radius, radius, 6, 10);
+//@				
+//@				if (this.solved == i) {
+//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+//@				} else {
+//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
+//@				}
+//@
 				//#elif SnakeMenu
 //@				g.drawFilledCircle(x + radius/2, y + radius/2, radius/2, 120);
 //@
@@ -300,21 +300,21 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 //@				}
 //@
 				//#elif ClockMenu
-//@				g.fillCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@				
-//@				g.setLineSize(2.5f);
-//@				g.setColor(48, 48, 48);
-//@				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@				
-//@				for (int j = 0; j < 12; j++) {
-//@					g.drawLine(x + radius/2 + (int)((radius/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + radius/2 + (int)((radius/2) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2) * Math.cos(Math.toRadians(j * 30))));
-//@				}
-//@				
-//@				if (this.solved == i) {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@				} else {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
-//@				}	
+				g.fillCircle(x + radius/2, y + radius/2, radius/2, 120);
+				
+				g.setLineSize(2.5f);
+				g.setColor(48, 48, 48);
+				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
+				
+				for (int j = 0; j < 12; j++) {
+					g.drawLine(x + radius/2 + (int)((radius/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + radius/2 + (int)((radius/2) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2) * Math.cos(Math.toRadians(j * 30))));
+				}
+				
+				if (this.solved == i) {
+					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
+				} else {
+					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
+				}	
 				//#endif
 				
 				
@@ -409,400 +409,399 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 	//#endif
 }
 //#else
-/*
- * Copyright (c) 2005-2013 Dirk Aporius <dirk.aporius@gmail.com>
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-
-import com.apogames.mytreasure.MyTreasureConstants;
-import com.apogames.mytreasure.MyTreasureModel;
-import com.apogames.mytreasure.MyTreasureSoundPlayer;
-import com.apogames.mytreasure.entity.ApoEntity;
-import com.apogames.mytreasure.entity.MyTreasureTutorial;
-import com.apogames.mytreasure.entity.MyTreasureTutorialHelp;
-import com.apogames.mytreasure.userlevels.MyTreasureLevels;
-
-public class MyTreasureLevelChooser extends MyTreasureModel {
-
-	public static final String BACK = "back";
-	
-	public static final int EASY = 0;
-	public static final int MEDIUM = 1;
-	public static final int HARD = 2;
-	public static final int VERYHARD = 3;
-	
-	public static int FREE = 5;
-	
-	private int difficulty;
-	
-	private ApoEntity[] levels;
-	
-	private float curChange = 0;
-	private int curStart = 0;
-	private int curI = 0;
-	private int min = 0;
-	private int max = 20;
-	
-	private int mousePressedX, mousePressedY;
-	
-	private int curTouchX;
-	
-	private MyTreasureTutorial tutorial;
-	
-	private boolean bUserlevels;
-	
-	public MyTreasureLevelChooser(final MyTreasurePanel game) {
-		super(game);
-		
-		this.difficulty = MyTreasureLevelChooser.EASY;		
-	}
-
-	@Override
-	public void init() {
-		if (this.levels == null) {
-			this.levels = new ApoEntity[5000];
-			int curX = 6 * 4;
-			int curY = 24 * 4;
-			for (int i = 0; i < 20; i++) {
-				for (int j = 0; j < this.levels.length/20; j++) {
-					this.levels[i + j * 20] = new ApoEntity(null, curX + 17 * 16 * j, curY, 16 * 4, 16 * 4);
-				}
-				
-				curX += 17 * 4;
-				if (curX > 280) {
-					curX = 6 * 4;
-					curY += 18 * 4;
-				}
-			}
-		}
-		this.curTouchX = 0;
-		
-		if (MyTreasureConstants.FIRST_LEVELCHOOSER) {
-			MyTreasureTutorialHelp[] points = new MyTreasureTutorialHelp[4];
-			points[0] = new MyTreasureTutorialHelp(144, 224, 64, 224, 500);
-			points[1] = new MyTreasureTutorialHelp(48, 113, 64, 224, 100);
-			points[2] = new MyTreasureTutorialHelp(48, 113, 96, 224, 1000);
-			points[3] = new MyTreasureTutorialHelp(48, 113, 64, 224, 600);
-			this.tutorial = new MyTreasureTutorial(points);
-		} else {
-			this.tutorial = null;
-		}
-	}
-	
-	public int getCurMax() {
-		int free = MyTreasureLevelChooser.FREE;
-		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
-			boolean bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.getLevel(this.curI + i));
-			if (!bSolved) {
-				free -= 1;
-				if (free <= 0) {
-					return i;
-				}
-			}
-		}
-		return this.max - this.min;
-	}
-
-	public int getMin() {
-		return this.min;
-	}
-
-	public int getCurI() {
-		return this.curI;
-	}
-
-	public int getDifficulty() {
-		return this.difficulty;
-	}
-
-	public void setDifficulty(final int difficulty, final int level, final boolean bMap) {
-		this.difficulty = difficulty;
-		this.curChange = 0;
-		this.curStart = level / 20;
-		
-		if (this.difficulty == MyTreasureLevelChooser.EASY) {
-			this.min = 0;
-			this.max = 40;
-			if (MyTreasureConstants.FREE_VERSION) {
-				this.max = 20;
-			}
-			this.curI = 0; 
-		}
-		if (this.difficulty == MyTreasureLevelChooser.MEDIUM) {
-			this.min = 40;
-			this.max = 80;
-			this.curI = 40; 
-		}
-		
-		if (this.difficulty == MyTreasureLevelChooser.HARD) {
-			this.min = 80;
-			this.max = 120;
-			this.curI = 80; 
-		}
-		if (this.difficulty == MyTreasureLevelChooser.VERYHARD) {
-			this.min = 120;
-			this.max = 150;
-			this.curI = 120; 
-		}
-		if ((!MyTreasureConstants.FIRST_LEVELCHOOSER) && (level < 20) && (level + MyTreasureLevelChooser.FREE >= 20) && (MyTreasureConstants.FIRST_LEVELCHOOSER_DRAG)) {
-			MyTreasureTutorialHelp[] points = new MyTreasureTutorialHelp[5];
-			points[0] = new MyTreasureTutorialHelp(144, 224, 64, 224, 0);
-			points[1] = new MyTreasureTutorialHelp(289, 65, 64, 224, 0);
-			points[2] = new MyTreasureTutorialHelp(289, 65, 96, 224, 200);
-			points[3] = new MyTreasureTutorialHelp( 40, 65, 96, 224, 50);
-			points[4] = new MyTreasureTutorialHelp( 40, 65, 64, 224, 500);
-			this.tutorial = new MyTreasureTutorial(points);
-		} else if ((!MyTreasureConstants.FIRST_LEVELCHOOSER) && (level >= 20) && (MyTreasureConstants.FIRST_LEVELCHOOSER_DRAG)) {
-			MyTreasureTutorialHelp[] points = new MyTreasureTutorialHelp[5];
-			points[0] = new MyTreasureTutorialHelp(144, 224, 64, 224, 0);
-			points[1] = new MyTreasureTutorialHelp( 40, 65, 64, 224, 0);
-			points[2] = new MyTreasureTutorialHelp( 40, 65, 96, 224, 200);
-			points[3] = new MyTreasureTutorialHelp(289, 65, 96, 224, 50);
-			points[4] = new MyTreasureTutorialHelp(289, 65, 64, 224, 500);
-			this.tutorial = new MyTreasureTutorial(points);
-		}
-		
-		if (bMap) {
-			for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
-				boolean bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.getLevel(this.curI + i));
-				if (!bSolved) {
-					this.curStart = i / 20;
-					break;
-				}
-			}
-		}
-		this.bUserlevels = false;
-	}
-
-	public void setUserlevels() {
-		this.bUserlevels = true;
-		this.curChange = this.curI = this.min = 0;
-		this.max = MyTreasureLevels.editorLevels.length;
-		
-		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
-			boolean bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.editorLevels[this.curI + i]);
-			if (!bSolved) {
-				this.curStart = i / 20;
-				break;
-			}
-		}
-	}
-
-	@Override
-	public void touchedPressed(int x, int y, int finger) {
-		this.mousePressedX = x;
-		this.mousePressedY = y;
-		this.curTouchX = x;
-	}
-
-	@Override
-	public void touchedReleased(int x, int y, int finger) {
-		if (Math.abs(x - this.mousePressedX) > MyTreasureConstants.CHANGE_DRAG) {
-			if (this.mousePressedX > x) {
-				if (this.curStart * 20 + 20 + this.min < this.max) {
-					this.curChange = 17 * 16 + (this.curTouchX - this.mousePressedX);
-					this.curStart += 1;
-				}
-			}
-			if (this.mousePressedX < x) {
-				if (this.curStart * 20 - 20 + this.min >= this.min) {
-					this.curChange = -17 * 16 + (this.curTouchX - this.mousePressedX);;
-					this.curStart -= 1;
-				}
-			}
-		} else if (Math.abs(x - this.mousePressedX) <= 2) {
-			int free = MyTreasureLevelChooser.FREE;
-			for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
-				boolean bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.getLevel(this.curI + i));
-				if (!bSolved) {
-					free -= 1;
-				}
-				if ((this.levels[i].getX() <= x + this.curStart * 272) && (this.levels[i].getX() + 64 >= x + this.curStart * 272) &&
-					(this.levels[i].getY() <= y) && (this.levels[i].getY() + 64 >= y)) {
-					if (this.bUserlevels) {
-						this.getGame().playSound(MyTreasureSoundPlayer.SOUND_CLICK);
-						this.getGame().setGame(true, false, i, "");
-					} else if ((free > 0) || (bSolved)) {
-						if (MyTreasureConstants.FIRST_LEVELCHOOSER) {
-							MyTreasureConstants.FIRST_LEVELCHOOSER = false;
-							if (this.tutorial != null) {
-								this.tutorial.setVisible(false);
-							}
-						}
-						this.getGame().playSound(MyTreasureSoundPlayer.SOUND_CLICK);
-						this.getGame().setGame(false, false, i, "");
-					}
-					return;
-				}
-			}
-		} else if (this.curTouchX != 0){
-			this.curChange = (this.curTouchX - this.mousePressedX);
-		}
-		this.curTouchX = 0;
-		this.mousePressedX = 0;
-	}
-
-	@Override
-	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
-		if (this.mousePressedX > x) {
-			if (this.curStart * 20 + 20 + this.min < this.max) {
-				this.curTouchX = x;
-			}
-		}
-		if (this.mousePressedX < x) {
-			if (this.curStart * 20 - 20 + this.min >= this.min) {
-				this.curTouchX = x;
-			}
-		}
-	}
-
-	@Override
-	public void touchedButton(String function) {
-		this.getGame().playSound(MyTreasureSoundPlayer.SOUND_CLICK);
-		if (function.equals(MyTreasureMap.BACK)) {
-			this.onBackButtonPressed();
-		}
-	}
-	
-	public void onBackButtonPressed() {
-		if (this.bUserlevels) {
-			this.getGame().setMenu();
-		} else {
-			this.getGame().setMap();
-		}
-	}
-	
-	@Override
-	public void think(int delta) {
-		if (this.curChange > 0) {
-			this.curChange -= 4;
-		}
-		
-		if (this.curChange < 0) {
-			this.curChange += 4;
-		}
-		
-		if (this.tutorial != null) {
-			if (this.tutorial.isVisible()) {
-				this.tutorial.think(delta);
-				if (!this.tutorial.isVisible()) {
-					if (MyTreasureConstants.FIRST_LEVELCHOOSER) {
-						MyTreasureConstants.FIRST_LEVELCHOOSER = false;
-					} else {
-						MyTreasureConstants.FIRST_LEVELCHOOSER_DRAG = false;
-					}
-				}
-			}
-		}
-	}
-
-	@Override
-	public void render(BitsGLGraphics g) {
-		g.cropImage(MyTreasureConstants.iSheet, 0, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT, 1024 - MyTreasureConstants.GAME_WIDTH, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT);
-
-		g.cropImage(MyTreasureConstants.iSheet, 2 * 4, 58, 76 * 4, 8 * 4, 0, 96 * 4, 76 * 4, 8 * 4);
-		
-		g.setFont(MyTreasureConstants.FONT_LEVELCHOOSER);
-		int y = MyTreasureConstants.FONT_LEVELCHOOSER.mCharCellHeight;
-		g.setColor(MyTreasureConstants.COLOR_DARK);
-		String s = MyTreasureConstants.DIFFICULTY[this.difficulty];
-		if (this.bUserlevels) {
-			s = "Userlevels";
-		}
-		float w = MyTreasureConstants.FONT_LEVELCHOOSER.getLength(s);
-		g.drawText(s, MyTreasureConstants.GAME_WIDTH*1/2 - w/2, 48 - y);
-		
-		if ((this.max - this.min - 1) / 20 > 0) {
-			g.setFont(MyTreasureConstants.fontSmall);
-			y = MyTreasureConstants.fontSmall.mCharCellHeight;
-			s = " ("+(this.curStart + 1) + " / " + ((this.max - this.min - 1)/20 + 1)+")";
-			g.drawText(s, MyTreasureConstants.GAME_WIDTH*1/2 + w/2, 46 - y);	
-		}
-		
-		int free = MyTreasureLevelChooser.FREE;
-		g.setClip(16, 96, 288, 360);
-		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
-			boolean bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.getLevel(this.curI + i));
-			if (this.bUserlevels) {
-				bSolved = this.getGame().getSolvedLevel().containsKey(MyTreasureLevels.editorLevels[this.curI + i]);
-			}
-			if ((!bSolved) && (!this.bUserlevels)) {
-				free -= 1;
-			}
-			int change = 0;
-			if (this.curTouchX > 0) {
-				change = -(this.curTouchX - this.mousePressedX);
-			}
-			if ((this.levels[i].getX() + 64 > 20 - this.curChange + this.curStart * 272 + change) && (this.levels[i].getX() < 20 - this.curChange + (this.curStart + 1) * 272 + change)) {
-				int add = 0;
-				if ((Math.abs(this.curTouchX - this.mousePressedX) <= 2) && (this.levels[i].intersects(this.mousePressedX - this.curChange + this.curStart * 272 + change, this.mousePressedY))) {
-					add = 2;
-				}
-				g.setColor(1f, 1f, 1f, 1f);
-				if ((free > 0) || (bSolved)) {
-					g.cropImage(MyTreasureConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272), (int)(this.levels[i].getY() + add), 64, 64, 16 * 4, 80 * 4, 64, 64);
-				} else {
-					g.cropImage(MyTreasureConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272), (int)(this.levels[i].getY() + add), 64, 64, 0, 80 * 4, 64, 64);
-				}
-				g.setColor(MyTreasureConstants.COLOR_LIGHT);
-				g.setFont(MyTreasureConstants.fontBig);
-				y = MyTreasureConstants.fontBig.mCharCellHeight;
-				s = String.valueOf(i + 1);
-				w = MyTreasureConstants.fontBig.getLength(s);
-				g.drawText(s, (int)(this.levels[i].getX() + this.curChange - change - this.curStart * 272 + 32) - w/2, (int)(this.levels[i].getY() + 38 - y + add));
-				
-				if (bSolved) {
-					g.setColor(1f, 1f, 1f, 1f);
-					int skulls = 0;
-					if (!this.bUserlevels) {
-						skulls = this.getGame().getSolvedLevel().get(MyTreasureLevels.getLevel(this.curI + i));
-					} else {
-						skulls = this.getGame().getSolvedLevel().get(MyTreasureLevels.editorLevels[this.curI + i]);
-					}
-					g.cropImage(MyTreasureConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 2 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 8 * 4, 120 * 4, 12, 12);
-					if (skulls > 1) {
-						g.cropImage(MyTreasureConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 6 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 12 * 4, 120 * 4, 12, 12);
-						if (skulls > 2) {
-							g.cropImage(MyTreasureConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 10 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 16 * 4, 120 * 4, 12, 12);
-						}
-					}
-				}
-			}
-		}
-		g.setClip(0, 0, MyTreasureConstants.GAME_WIDTH, MyTreasureConstants.GAME_HEIGHT);
-		
-		g.setColor(1f, 1f, 1f, 1f);
-		if (this.tutorial != null) {
-			if (this.tutorial.isVisible()) {
-				this.tutorial.render(g);
-			}
-		}
-	}
-
-}
+//@/*
+//@ * Copyright (c) 2005-2013 Dirk Aporius <dirk.aporius@gmail.com>
+//@ * All rights reserved.
+//@ * 
+//@ * Redistribution and use in source and binary forms, with or without
+//@ * modification, are permitted provided that the following conditions
+//@ * are met:
+//@ * 1. Redistributions of source code must retain the above copyright
+//@ *    notice, this list of conditions and the following disclaimer.
+//@ * 2. Redistributions in binary form must reproduce the above copyright
+//@ *    notice, this list of conditions and the following disclaimer in the
+//@ *    documentation and/or other materials provided with the distribution.
+//@ * 3. The name of the author may not be used to endorse or promote products
+//@ *    derived from this software without specific prior written permission.
+//@ * 
+//@ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+//@ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+//@ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+//@ * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+//@ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+//@ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+//@ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+//@ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//@ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+//@ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//@ */
+//@
+//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//@
+//@import net.apogames.apohybrid.ApoHybridConstants;
+//@import net.apogames.apohybrid.ApoHybridModel;
+//@import net.apogames.apohybrid.ApoHybridSoundPlayer;
+//@import net.apogames.apohybrid.entity.ApoEntity;
+//@import net.apogames.apohybrid.entity.ApoHybridTutorial;
+//@import net.apogames.apohybrid.entity.ApoHybridTutorialHelp;
+//@import net.apogames.apohybrid.level.ApoHybridLevel;
+//@
+//@public class ApoHybridLevelChooser extends ApoHybridModel {
+//@
+//@	public static final String BACK = "back";
+//@	
+//@	public static final int EASY = 0;
+//@	public static final int MEDIUM = 1;
+//@	public static final int HARD = 2;
+//@	public static final int VERYHARD = 3;
+//@	
+//@	public static int FREE = 5;
+//@	
+//@	private int difficulty;
+//@	
+//@	private ApoEntity[] levels;
+//@	
+//@	private float curChange = 0;
+//@	private int curStart = 0;
+//@	private int curI = 0;
+//@	private int min = 0;
+//@	private int max = 20;
+//@	
+//@	private int mousePressedX, mousePressedY;
+//@	
+//@	private int curTouchX;
+//@	
+//@	private ApoHybridTutorial tutorial;
+//@	
+//@	private boolean bUserlevels;
+//@	
+//@	public ApoHybridLevelChooser(final ApoHybridPanel game) {
+//@		super(game);
+//@		
+//@		this.difficulty = ApoHybridLevelChooser.EASY;
+//@	}
+//@
+//@	@Override
+//@	public void init() {
+//@		if (this.levels == null) {
+//@			this.levels = new ApoEntity[5000];
+//@			int curX = 6 * 4;
+//@			int curY = 24 * 4;
+//@			for (int i = 0; i < 20; i++) {
+//@				for (int j = 0; j < this.levels.length/20; j++) {
+//@					this.levels[i + j * 20] = new ApoEntity(null, curX + 17 * 16 * j, curY, 16 * 4, 16 * 4);
+//@				}
+//@				
+//@				curX += 17 * 4;
+//@				if (curX > 280) {
+//@					curX = 6 * 4;
+//@					curY += 18 * 4;
+//@				}
+//@			}
+//@		}
+//@		this.curTouchX = 0;
+//@		
+//@		if (ApoHybridConstants.FIRST_LEVELCHOOSER) {
+//@			ApoHybridTutorialHelp[] points = new ApoHybridTutorialHelp[4];
+//@			points[0] = new ApoHybridTutorialHelp(144, 224, 64, 224, 500);
+//@			points[1] = new ApoHybridTutorialHelp(48, 113, 64, 224, 100);
+//@			points[2] = new ApoHybridTutorialHelp(48, 113, 96, 224, 1000);
+//@			points[3] = new ApoHybridTutorialHelp(48, 113, 64, 224, 600);
+//@			this.tutorial = new ApoHybridTutorial(points);
+//@		} else {
+//@			this.tutorial = null;
+//@		}
+//@	}
+//@	
+//@	public int getCurMax() {
+//@		int free = ApoHybridLevelChooser.FREE;
+//@		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
+//@			boolean bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.getLevel(this.curI + i));
+//@			if (!bSolved) {
+//@				free -= 1;
+//@				if (free <= 0) {
+//@					return i;
+//@				}
+//@			}
+//@		}
+//@		return this.max - this.min;
+//@	}
+//@
+//@	public int getMin() {
+//@		return this.min;
+//@	}
+//@
+//@	public int getCurI() {
+//@		return this.curI;
+//@	}
+//@
+//@	public int getDifficulty() {
+//@		return this.difficulty;
+//@	}
+//@
+//@	public void setDifficulty(final int difficulty, final int level, final boolean bMap) {
+//@		this.difficulty = difficulty;
+//@		this.curChange = 0;
+//@		this.curStart = level / 20;
+//@		
+//@		if (this.difficulty == ApoHybridLevelChooser.EASY) {
+//@			this.min = 0;
+//@			this.max = 40;
+//@			if (ApoHybridConstants.FREE_VERSION) {
+//@				this.max = 20;
+//@			}
+//@			this.curI = 0; 
+//@		}
+//@		if (this.difficulty == ApoHybridLevelChooser.MEDIUM) {
+//@			this.min = 40;
+//@			this.max = 80;
+//@			this.curI = 40; 
+//@		}
+//@		
+//@		if (this.difficulty == ApoHybridLevelChooser.HARD) {
+//@			this.min = 80;
+//@			this.max = 120;
+//@			this.curI = 80; 
+//@		}
+//@		if (this.difficulty == ApoHybridLevelChooser.VERYHARD) {
+//@			this.min = 120;
+//@			this.max = 150;
+//@			this.curI = 120; 
+//@		}
+//@		if ((!ApoHybridConstants.FIRST_LEVELCHOOSER) && (level < 20) && (level + ApoHybridLevelChooser.FREE >= 20) && (ApoHybridConstants.FIRST_LEVELCHOOSER_DRAG)) {
+//@			ApoHybridTutorialHelp[] points = new ApoHybridTutorialHelp[5];
+//@			points[0] = new ApoHybridTutorialHelp(144, 224, 64, 224, 0);
+//@			points[1] = new ApoHybridTutorialHelp(289, 65, 64, 224, 0);
+//@			points[2] = new ApoHybridTutorialHelp(289, 65, 96, 224, 200);
+//@			points[3] = new ApoHybridTutorialHelp( 40, 65, 96, 224, 50);
+//@			points[4] = new ApoHybridTutorialHelp( 40, 65, 64, 224, 500);
+//@			this.tutorial = new ApoHybridTutorial(points);
+//@		} else if ((!ApoHybridConstants.FIRST_LEVELCHOOSER) && (level >= 20) && (ApoHybridConstants.FIRST_LEVELCHOOSER_DRAG)) {
+//@			ApoHybridTutorialHelp[] points = new ApoHybridTutorialHelp[5];
+//@			points[0] = new ApoHybridTutorialHelp(144, 224, 64, 224, 0);
+//@			points[1] = new ApoHybridTutorialHelp( 40, 65, 64, 224, 0);
+//@			points[2] = new ApoHybridTutorialHelp( 40, 65, 96, 224, 200);
+//@			points[3] = new ApoHybridTutorialHelp(289, 65, 96, 224, 50);
+//@			points[4] = new ApoHybridTutorialHelp(289, 65, 64, 224, 500);
+//@			this.tutorial = new ApoHybridTutorial(points);
+//@		}
+//@		
+//@		if (bMap) {
+//@			for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
+//@				boolean bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.getLevel(this.curI + i));
+//@				if (!bSolved) {
+//@					this.curStart = i / 20;
+//@					break;
+//@				}
+//@			}
+//@		}
+//@		this.bUserlevels = false;
+//@	}
+//@
+//@	public void setUserlevels() {
+//@		this.bUserlevels = true;
+//@		this.curChange = this.curI = this.min = 0;
+//@		this.max = ApoHybridLevel.editorLevels.length;
+//@		
+//@		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
+//@			boolean bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.editorLevels[this.curI + i]);
+//@			if (!bSolved) {
+//@				this.curStart = i / 20;
+//@				break;
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void touchedPressed(int x, int y, int finger) {
+//@		this.mousePressedX = x;
+//@		this.mousePressedY = y;
+//@		this.curTouchX = x;
+//@	}
+//@
+//@	@Override
+//@	public void touchedReleased(int x, int y, int finger) {
+//@		if (Math.abs(x - this.mousePressedX) > ApoHybridConstants.CHANGE_DRAG) {
+//@			if (this.mousePressedX > x) {
+//@				if (this.curStart * 20 + 20 + this.min < this.max) {
+//@					this.curChange = 17 * 16 + (this.curTouchX - this.mousePressedX);
+//@					this.curStart += 1;
+//@				}
+//@			}
+//@			if (this.mousePressedX < x) {
+//@				if (this.curStart * 20 - 20 + this.min >= this.min) {
+//@					this.curChange = -17 * 16 + (this.curTouchX - this.mousePressedX);;
+//@					this.curStart -= 1;
+//@				}
+//@			}
+//@		} else if (Math.abs(x - this.mousePressedX) <= 2) {
+//@			int free = ApoHybridLevelChooser.FREE;
+//@			for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
+//@				boolean bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.getLevel(this.curI + i));
+//@				if (!bSolved) {
+//@					free -= 1;
+//@				}
+//@				if ((this.levels[i].getX() <= x + this.curStart * 272) && (this.levels[i].getX() + 64 >= x + this.curStart * 272) &&
+//@					(this.levels[i].getY() <= y) && (this.levels[i].getY() + 64 >= y)) {
+//@					if (this.bUserlevels) {
+//@						this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+//@						this.getGame().setGame(true, false, i, "");
+//@					} else if ((free > 0) || (bSolved)) {
+//@						if (ApoHybridConstants.FIRST_LEVELCHOOSER) {
+//@							ApoHybridConstants.FIRST_LEVELCHOOSER = false;
+//@							if (this.tutorial != null) {
+//@								this.tutorial.setVisible(false);
+//@							}
+//@						}
+//@						this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+//@						this.getGame().setGame(false, false, i, "");
+//@					}
+//@					return;
+//@				}
+//@			}
+//@		} else if (this.curTouchX != 0){
+//@			this.curChange = (this.curTouchX - this.mousePressedX);
+//@		}
+//@		this.curTouchX = 0;
+//@		this.mousePressedX = 0;
+//@	}
+//@
+//@	@Override
+//@	public void touchedDragged(int x, int y, int oldX, int oldY, int finger) {
+//@		if (this.mousePressedX > x) {
+//@			if (this.curStart * 20 + 20 + this.min < this.max) {
+//@				this.curTouchX = x;
+//@			}
+//@		}
+//@		if (this.mousePressedX < x) {
+//@			if (this.curStart * 20 - 20 + this.min >= this.min) {
+//@				this.curTouchX = x;
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void touchedButton(String function) {
+//@		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_CLICK);
+//@		if (function.equals(ApoHybridMap.BACK)) {
+//@			this.onBackButtonPressed();
+//@		}
+//@	}
+//@	
+//@	public void onBackButtonPressed() {
+//@		if (this.bUserlevels) {
+//@			this.getGame().setMenu();
+//@		} else {
+//@			this.getGame().setMap();
+//@		}
+//@	}
+//@	
+//@	@Override
+//@	public void think(int delta) {
+//@		if (this.curChange > 0) {
+//@			this.curChange -= 4;
+//@		}
+//@		
+//@		if (this.curChange < 0) {
+//@			this.curChange += 4;
+//@		}
+//@		
+//@		if (this.tutorial != null) {
+//@			if (this.tutorial.isVisible()) {
+//@				this.tutorial.think(delta);
+//@				if (!this.tutorial.isVisible()) {
+//@					if (ApoHybridConstants.FIRST_LEVELCHOOSER) {
+//@						ApoHybridConstants.FIRST_LEVELCHOOSER = false;
+//@					} else {
+//@						ApoHybridConstants.FIRST_LEVELCHOOSER_DRAG = false;
+//@					}
+//@				}
+//@			}
+//@		}
+//@	}
+//@
+//@	@Override
+//@	public void render(BitsGLGraphics g) {
+//@		g.cropImage(ApoHybridConstants.iSheet, 0, 0, ApoHybridConstants.GAME_WIDTH, ApoHybridConstants.GAME_HEIGHT, 1024 - ApoHybridConstants.GAME_WIDTH, 0, ApoHybridConstants.GAME_WIDTH, ApoHybridConstants.GAME_HEIGHT);
+//@
+//@		g.cropImage(ApoHybridConstants.iSheet, 2 * 4, 58, 76 * 4, 8 * 4, 0, 96 * 4, 76 * 4, 8 * 4);
+//@		
+//@		g.setFont(ApoHybridConstants.FONT_LEVELCHOOSER);
+//@		int y = ApoHybridConstants.FONT_LEVELCHOOSER.mCharCellHeight;
+//@		g.setColor(ApoHybridConstants.COLOR_DARK);
+//@		String s = ApoHybridConstants.DIFFICULTY[this.difficulty];
+//@		if (this.bUserlevels) {
+//@			s = "Userlevels";
+//@		}
+//@		float w = ApoHybridConstants.FONT_LEVELCHOOSER.getLength(s);
+//@		g.drawText(s, ApoHybridConstants.GAME_WIDTH*1/2 - w/2, 48 - y);
+//@		
+//@		if ((this.max - this.min - 1) / 20 > 0) {
+//@			g.setFont(ApoHybridConstants.fontSmall);
+//@			y = ApoHybridConstants.fontSmall.mCharCellHeight;
+//@			s = " ("+(this.curStart + 1) + " / " + ((this.max - this.min - 1)/20 + 1)+")";
+//@			g.drawText(s, ApoHybridConstants.GAME_WIDTH*1/2 + w/2, 46 - y);
+//@		}
+//@		
+//@		int free = ApoHybridLevelChooser.FREE;
+//@		g.setClip(16, 96, 288, 360);
+//@		for (int i = 0; i < this.levels.length && i < this.max - this.min; i++) {
+//@			boolean bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.getLevel(this.curI + i));
+//@			if (this.bUserlevels) {
+//@				bSolved = this.getGame().getSolvedLevel().containsKey(ApoHybridLevel.editorLevels[this.curI + i]);
+//@			}
+//@			if ((!bSolved) && (!this.bUserlevels)) {
+//@				free -= 1;
+//@			}
+//@			int change = 0;
+//@			if (this.curTouchX > 0) {
+//@				change = -(this.curTouchX - this.mousePressedX);
+//@			}
+//@			if ((this.levels[i].getX() + 64 > 20 - this.curChange + this.curStart * 272 + change) && (this.levels[i].getX() < 20 - this.curChange + (this.curStart + 1) * 272 + change)) {
+//@				int add = 0;
+//@				if ((Math.abs(this.curTouchX - this.mousePressedX) <= 2) && (this.levels[i].intersects(this.mousePressedX - this.curChange + this.curStart * 272 + change, this.mousePressedY))) {
+//@					add = 2;
+//@				}
+//@				g.setColor(1f, 1f, 1f, 1f);
+//@				if ((free > 0) || (bSolved)) {
+//@					g.cropImage(ApoHybridConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272), (int)(this.levels[i].getY() + add), 64, 64, 16 * 4, 80 * 4, 64, 64);
+//@				} else {
+//@					g.cropImage(ApoHybridConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272), (int)(this.levels[i].getY() + add), 64, 64, 0, 80 * 4, 64, 64);
+//@				}
+//@				g.setColor(ApoHybridConstants.COLOR_LIGHT);
+//@				g.setFont(ApoHybridConstants.fontBig);
+//@				y = ApoHybridConstants.fontBig.mCharCellHeight;
+//@				s = String.valueOf(i + 1);
+//@				w = ApoHybridConstants.fontBig.getLength(s);
+//@				g.drawText(s, (int)(this.levels[i].getX() + this.curChange - change - this.curStart * 272 + 32) - w/2, (int)(this.levels[i].getY() + 38 - y + add));
+//@				
+//@				if (bSolved) {
+//@					g.setColor(1f, 1f, 1f, 1f);
+//@					int skulls = 0;
+//@					if (!this.bUserlevels) {
+//@						skulls = this.getGame().getSolvedLevel().get(ApoHybridLevel.getLevel(this.curI + i));
+//@					} else {
+//@						skulls = this.getGame().getSolvedLevel().get(ApoHybridLevel.editorLevels[this.curI + i]);
+//@					}
+//@					g.cropImage(ApoHybridConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 2 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 8 * 4, 120 * 4, 12, 12);
+//@					if (skulls > 1) {
+//@						g.cropImage(ApoHybridConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 6 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 12 * 4, 120 * 4, 12, 12);
+//@						if (skulls > 2) {
+//@							g.cropImage(ApoHybridConstants.iSheet, (int)(this.levels[i].getX() - change + this.curChange - this.curStart * 272 + 10 * 4), (int)(this.levels[i].getY() + 10 * 4 + add), 12, 12, 16 * 4, 120 * 4, 12, 12);
+//@						}
+//@					}
+//@				}
+//@			}
+//@		}
+//@		g.setClip(0, 0, ApoHybridConstants.GAME_WIDTH, ApoHybridConstants.GAME_HEIGHT);
+//@		
+//@		g.setColor(1f, 1f, 1f, 1f);
+//@		if (this.tutorial != null) {
+//@			if (this.tutorial.isVisible()) {
+//@				this.tutorial.render(g);
+//@			}
+//@		}
+//@	}
+//@
+//@}
 //#endif
-

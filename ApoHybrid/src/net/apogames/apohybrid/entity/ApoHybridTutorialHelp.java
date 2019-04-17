@@ -1,6 +1,6 @@
-package com.apogames.mytreasure.entity;
+package net.apogames.apohybrid.entity;
 
-public class MyTreasureTutorialHelp {
+public class ApoHybridTutorialHelp {
 
 	private final float x;
 	private final float y;
@@ -8,7 +8,7 @@ public class MyTreasureTutorialHelp {
 	private final int cropY;
 	private final int waitTime;
 	
-	public MyTreasureTutorialHelp(final float x, final float y, final int cropX, final int cropY, final int waitTime) {
+	public ApoHybridTutorialHelp(final float x, final float y, final int cropX, final int cropY, final int waitTime) {
 		this.x = x;
 		this.y = y;
 		this.cropX = cropX;

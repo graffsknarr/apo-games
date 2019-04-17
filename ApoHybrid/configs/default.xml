@@ -7,10 +7,11 @@
     <feature automatic="unselected" name="TreasureMenu"/>
     <feature manual="selected" name="MonoMenu"/>
     <feature automatic="unselected" name="ClockMenu"/>
+    <feature manual="selected" name="Editor"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="MonoGameLogic"/>
     <feature automatic="selected" name="Font"/>
-    <feature manual="selected" name="ApoFont"/>
+    <feature automatic="unselected" name="ApoFont"/>
     <feature automatic="unselected" name="TreasureFont"/>
-    <feature automatic="unselected" name="MonoFont"/>
+    <feature manual="selected" name="MonoFont"/>
 </configuration>

@@ -74,6 +74,7 @@
                 <feature name="DiceGameLogic"/>
                 <feature name="ClockGameLogic"/>
                 <feature name="MonoGameLogic"/>
+                <feature name="TreasureGameLogic"/>
             </and>
             <alt name="Font">
                 <feature name="ApoFont"/>

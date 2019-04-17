@@ -25,14 +25,14 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.apogames.mytreasure.entity;
+package net.apogames.apohybrid.entity;
 
-public class MyTreasureMapHelp {
+public class ApoHybridMapHelp {
 
 	private final float x;
 	private final float y;
 	
-	public MyTreasureMapHelp(final float x, final float y) {
+	public ApoHybridMapHelp(final float x, final float y) {
 		this.x = x;
 		this.y = y;
 	}

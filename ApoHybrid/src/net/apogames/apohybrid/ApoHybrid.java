@@ -32,9 +32,9 @@ public class ApoHybrid extends BitsApp {
 
 	@Override
 	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
-//@	protected void onCreateApp()
+	protected void onCreateApp()
 	//#else
-	protected void onCreate( )
+//@	protected void onCreate( )
 	//#endif
 	{
 		//#if MonoGameLogic
@@ -75,47 +75,47 @@ public class ApoHybrid extends BitsApp {
 		BitsLog.setLogType(BitsLog.TYPE_NONE);
 
 		//#if ClockGameLogic
-//@		BitsApp.sWantFullscreen = true;
-//@		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
-//@		BitsApp.sGameWidth = 480;
-//@		BitsApp.sGameHeight = 640;
-//@		BitsApp.sWantTitleBar = false;
-//@		BitsApp.sMaxCirclePoints = 180;
-//@//		BitsApp.sMaxFPS = 60;
-//@		BitsApp.sMaxUpdate = 100;
-//@		BitsApp.sMaxTouchPointer = 3;
-//@//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
-//@
-//@		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
-//@
-		//#elif TreasureGameLogic
-		BitsApp.sGameWidth = MyTreasureConstants.GAME_WIDTH;
-		BitsApp.sGameHeight = MyTreasureConstants.GAME_HEIGHT;
-		BitsApp.sMaxUpdate = 100;
+		BitsApp.sWantFullscreen = true;
 		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+		BitsApp.sGameWidth = 480;
+		BitsApp.sGameHeight = 640;
 		BitsApp.sWantTitleBar = false;
 		BitsApp.sMaxCirclePoints = 180;
+//		BitsApp.sMaxFPS = 60;
+		BitsApp.sMaxUpdate = 100;
 		BitsApp.sMaxTouchPointer = 3;
-	
-		BitsGame.getInstance().addScreen(new MyTreasurePanel(1));
+//		BitsApp.sSleepMode = BitsApp.SLEEP_MODE_OFF;
 
+		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
+
+		//#elif TreasureGameLogic
+//@		BitsApp.sGameWidth = ApoHybridConstants.GAME_WIDTH;
+//@		BitsApp.sGameHeight = ApoHybridConstants.GAME_HEIGHT;
+//@		BitsApp.sMaxUpdate = 100;
+//@		BitsApp.sOrientationMode = BitsApp.ORIENTATION_PORTRAIT;
+//@		BitsApp.sWantTitleBar = false;
+//@		BitsApp.sMaxCirclePoints = 180;
+//@		BitsApp.sMaxTouchPointer = 3;
+//@	
+//@		BitsGame.getInstance().addScreen(new ApoHybridPanel(1));
+//@
 		//#else
-		BitsGame.sWantFullscreen = true;
-		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
-		BitsGame.sGameWidth = 480;
-		BitsGame.sGameHeight = 640;
-		BitsGame.sWantTitleBar = false;
-		BitsGame.sMaxRenderCommands = 1000;
-		BitsGame.sMaxImageCount = 10;
-		BitsGame.sMaxCirclePoints = 180;
-		BitsGame.sMaxFPS = 60;
-		BitsGame.sMaxTouchPointer = 3;
-		BitsGame.sSleepMode = BitsGame.SLEEP_MODE_OFF;
-		BitsGame.sWantMusic = false;
-		BitsGame.sWantSound = false;
-		BitsGame.sMaxFontCount = 3;
-
-		BitsGame.getIt().addScreen(new ApoHybridPanel(1));
+//@		BitsGame.sWantFullscreen = true;
+//@		BitsGame.sOrientationMode = BitsGame.ORIENTATION_PORTRAIT;
+//@		BitsGame.sGameWidth = 480;
+//@		BitsGame.sGameHeight = 640;
+//@		BitsGame.sWantTitleBar = false;
+//@		BitsGame.sMaxRenderCommands = 1000;
+//@		BitsGame.sMaxImageCount = 10;
+//@		BitsGame.sMaxCirclePoints = 180;
+//@		BitsGame.sMaxFPS = 60;
+//@		BitsGame.sMaxTouchPointer = 3;
+//@		BitsGame.sSleepMode = BitsGame.SLEEP_MODE_OFF;
+//@		BitsGame.sWantMusic = false;
+//@		BitsGame.sWantSound = false;
+//@		BitsGame.sMaxFontCount = 3;
+//@
+//@		BitsGame.getIt().addScreen(new ApoHybridPanel(1));
 		//#endif
 		//#endif
 
@@ -138,48 +138,48 @@ public class ApoHybrid extends BitsApp {
 
 
 	//#if ClockGameLogic || MonoGameLogic || TreasureGameLogic
-//@	@Override
-//@	protected void onAddView() {
-//@
-//@	}
-//@
-//@		@Override
-//@	protected void onStopApp( ) {
-//@	}
-//@
-//@	@Override
-//@	public void onAudioFocusChange(int focusChange) {
-//@		// TODO Auto-generated method stub
-//@
-//@	}
-//@
-//@	@Override
-//@	protected void onInitApp() {
-//@		// TODO Auto-generated method stub
-//@
-//@	}
-//@
-//@	@Override
-//@	protected void onPauseApp() {
-//@		// TODO Auto-generated method stub
-//@
-//@	}
-//@
-//@	@Override
-//@	protected void onResumeApp() {
-//@		// TODO Auto-generated method stub
-//@
-//@	}
-//@
-//@	@Override
-//@	protected void onDestroyApp() {
-//@		// TODO Auto-generated method stub
-//@
-//@	}
-	//#else
 	@Override
-	protected void onFinish( ) {
+	protected void onAddView() {
+
 	}
+
+		@Override
+	protected void onStopApp( ) {
+	}
+
+	@Override
+	public void onAudioFocusChange(int focusChange) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void onInitApp() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void onPauseApp() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void onResumeApp() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void onDestroyApp() {
+		// TODO Auto-generated method stub
+
+	}
+	//#else
+//@	@Override
+//@	protected void onFinish( ) {
+//@	}
 	//#endif
 
 

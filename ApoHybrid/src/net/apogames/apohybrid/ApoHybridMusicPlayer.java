@@ -3,6 +3,8 @@
 //@
 //@import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.gliblybits.bitsengine.core.BitsApp;
+//@import net.gliblybits.bitsengine.utils.BitsLog;
+//@
 //@import android.media.MediaPlayer;
 //@import android.media.MediaPlayer.OnCompletionListener;
 //#if MonoGameLogic
@@ -18,13 +20,13 @@
 //@    };
 //@
 //@    private final int MENU = R.raw.menu;
-	
+//@	
 	//#elif TreasureGameLogic
-	private final int[] MUSIC_INGAME = new int[] {
-			0
-	};
-	
-	private final int MENU = R.raw.game_theme;
+//@	private final int[] MUSIC_INGAME = new int[] {
+//@			0
+//@	};
+//@	
+//@	private final int MENU = R.raw.game_theme;
 	//#endif
 //@
 //@    private MediaPlayer mAudio = null;

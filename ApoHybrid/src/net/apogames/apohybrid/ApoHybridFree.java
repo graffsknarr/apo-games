@@ -1,12 +1,14 @@
-package com.apogames.mytreasure;
-
-public class MyTreasureActivityFree extends MyTreasureActivity {
-
-
-	@Override
-	protected void onCreateApp() {
-		MyTreasureConstants.FREE_VERSION = true;
-		super.onCreateApp();
-	}
-
-}
+//#if TreasureGameLogic
+//@package net.apogames.apohybrid;
+//@
+//@public class ApoHybridFree extends ApoHybrid {
+//@
+//@
+//@	@Override
+//@	protected void onCreateApp() {
+//@		ApoHybridConstants.FREE_VERSION = true;
+//@		super.onCreateApp();
+//@	}
+//@
+//@}
+//#endif
