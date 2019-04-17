@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, ApoDiceActivity!</string>
-    <string name="app_name">ApoDice</string>
+    <string name="hello">Hello World, ApoHybridActivity!</string>
+    <string name="app_name">ApoHybrid</string>
 
 </resources>
