@@ -11,47 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="01ef9be4-fa17-400a-899e-e59872d49f5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/configs/default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/model.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridButtons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridButtons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridFree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridFree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridMusicPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridMusicPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridSoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridSoundPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/editor/ApoHybridEditorClockStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/editor/ApoHybridEditorClockStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/editor/ApoHybridUserlevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/editor/ApoHybridUserlevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntityBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntityBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntityClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntityClock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridMapHelp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridMapHelp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridMapPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridMapPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridSolve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridSolve.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridTutorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridTutorial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridTutorialHelp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridTutorialHelp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoLevelChooserButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoLevelChooserButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoParticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoParticle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoTextfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoTextfield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridArcarde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridArcarde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridArcardeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridArcardeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridCredits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridLevelChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridLevelChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPuzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscoreLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscoreLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscoreLocal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscoreLocal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/apogames/apohybrid/level/ApoHybridLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/apogames/apohybrid/level/ApoHybridLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,129 +58,56 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1636044633">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="xml" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="XML" value="15" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="1120" selection-start-line="1120" selection-end-line="1120" />
-              <folding>
-                <element signature="e#4144#4145#0" expanded="true" />
-                <element signature="e#4160#4161#0" expanded="true" />
-                <element signature="e#9386#9387#0" expanded="true" />
-                <element signature="e#9410#9411#0" expanded="true" />
-                <element signature="e#14832#14833#0" expanded="true" />
-                <element signature="e#14890#14891#0" expanded="true" />
-                <element signature="e#14966#14967#0" expanded="true" />
-                <element signature="e#14995#14996#0" expanded="true" />
-                <element signature="e#18651#18652#0" expanded="true" />
-                <element signature="e#18681#18682#0" expanded="true" />
-                <element signature="e#18727#18728#0" expanded="true" />
-                <element signature="e#18770#18771#0" expanded="true" />
-                <element signature="e#28469#28470#0" expanded="true" />
-                <element signature="e#28512#28513#0" expanded="true" />
-                <element signature="e#33456#33457#0" expanded="true" />
-                <element signature="e#33507#33508#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-522">
-              <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoLevelChooserButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridButtons.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#45326#45327#0" expanded="true" />
-                <element signature="e#45344#45345#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+            <state relative-caret-position="242">
+              <caret line="788" column="48" selection-start-line="788" selection-start-column="48" selection-end-line="788" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMenu.java">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="251" column="115" selection-start-line="251" selection-start-column="115" selection-end-line="251" selection-end-column="115" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1955#1956#0" expanded="true" />
-                <element signature="e#1973#1974#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoHybridEntityClock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridLevelChooser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/bitsenginedice.jar!/net/gliblybits/bitsengine/core/BitsFont.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-510">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="51">
+              <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -324,6 +211,7 @@
         <option value="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridPanel.java" />
         <option value="$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybridButtons.java" />
         <option value="$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridMenu.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -337,12 +225,75 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="assets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="assets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="libs" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="values" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="net" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="net" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="apogames" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ApoHybrid" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="net" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="apogames" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="apohybrid" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,7 +328,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="device.picker.selection" value="Nexus_5X_API_28" />
+    <property name="device.picker.selection" value="Pixel_XL_API_28" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Android/BitsEngineAndroid" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -404,7 +355,60 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.ApoHybrid">
+    <configuration name="ApoHybrid" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="ApoHybrid" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="ApoHybrid" />
       <option name="DEPLOY" value="true" />
@@ -458,6 +462,10 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Android App.Unnamed" />
+      <item itemvalue="Android App.ApoHybrid" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -473,11 +481,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16979866" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17324094" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -488,7 +496,7 @@
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.49932885" weight="0.32907802" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.29865772" side_tool="true" weight="0.5148936" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.17730497" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.17678958" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49932885" weight="0.32907802" />
       <window_info anchor="bottom" id="Logcat" order="6" sideWeight="0.7013423" weight="0.34893617" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
@@ -551,13 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="865" column="34" selection-start-line="865" selection-start-column="34" selection-end-line="865" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/editor/ApoHybridEditorClockStats.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -597,13 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-            <element signature="e#2133#2134#0" expanded="true" />
-            <element signature="e#2173#2174#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -669,13 +663,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-8/android.jar!/java/lang/Integer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-8/android.jar!/java/lang/Integer.class" />
     <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/highscore/ApoHybridHighscoreLocal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -817,9 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2703">
           <caret line="311" column="68" selection-start-line="311" selection-start-column="68" selection-end-line="311" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#13092#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -830,13 +815,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/bitsenginemono.jar!/net/gliblybits/bitsengine/core/BitsGame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/bitsenginemono.jar!/net/gliblybits/bitsengine/core/BitsGame.class" />
     <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/ApoHybrid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="583">
@@ -844,13 +823,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/bitsenginemono.jar!/net/gliblybits/bitsengine/utils/BitsRect.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="75" column="56" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/bitsenginemono.jar!/net/gliblybits/bitsengine/utils/BitsRect.class" />
     <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/entity/ApoLevelChooserButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -952,6 +925,27 @@
             <element signature="e#1955#1956#0" expanded="true" />
             <element signature="e#1973#1974#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/apogames/apohybrid/game/ApoHybridEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="788" column="48" selection-start-line="788" selection-start-column="48" selection-end-line="788" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
         </state>
       </provider>
     </entry>
