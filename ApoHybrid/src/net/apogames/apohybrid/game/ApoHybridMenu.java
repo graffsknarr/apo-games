@@ -203,21 +203,26 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@				this.getGame().setLevelChooser(0, 0, false, true);
 //@			}
 //@		}
-            //#else
+            //#elif ApoMenu
             //#if ClockGameLogic
-//@        } else if (function.equals(ApoHybridMenu.PUZZLE)) {
+//@        } else if (function.equals(ApoHybridMenu.PLAY)) {
 //@            this.getGame().setPuzzle();
 //@		} else if (function.equals(ApoHybridMenu.ARCADE)) {
 //@			this.getGame().setAracardeHelp(-1, -1);
 //@		} else if (function.equals(ApoHybridMenu.OPTIONS)) {
 //@			this.getGame().setOptions();
-//@		}
+//@        } else if (function.equals(ApoHybridPuzzle.EDITOR)) {
+            //#if Editor
+//@            this.getGame().setEditor(false);
+            //#endif
+//@        }
+//@
             //#else
-        } else if (function.equals(ApoHybridMenu.PUZZLE)) {
-            this.getGame().setPuzzleChooser();
-        } else if (function.equals(ApoHybridMenu.EDITOR)) {
-            this.getGame().setEditor(false);
-        } else if (function.equals(ApoHybridMenu.USERLEVELS)) {
+//@        } else if (function.equals(ApoHybridMenu.PUZZLE)) {
+//@            this.getGame().setPuzzleChooser();
+//@        } else if (function.equals(ApoHybridMenu.EDITOR)) {
+//@            this.getGame().setEditor(false);
+//@        } else if (function.equals(ApoHybridMenu.USERLEVELS)) {
             //#if DiceGameLogic
 //@			this.getGame().setGame(0, "", true);
             //#elif SnakeGameLogic
@@ -225,7 +230,7 @@ public class ApoHybridMenu extends ApoHybridModel {
             //#elif MonoGameLogic
 //@			this.getGame().setGame(0, null, true);
             //#endif
-        }
+//@        }
         //#endif
         //#endif
     }
@@ -249,7 +254,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@	}
     //#else
 //@    public void onBackButtonPressed() {
-//@        BitsGame.getInstance().finishApp();
+//@        //BitsGame.getInstance().finishApp();
 //@    }
 //@
     //#endif
@@ -332,8 +337,8 @@ public class ApoHybridMenu extends ApoHybridModel {
     //#else
 //@    @Override
 //@    public void render(final BitsGLGraphics g) {
-//@        this.getGame().drawBackgroundCircle(g, 100, 20, 100, (int) this.clockRotate);
-//@        this.getGame().drawBackgroundCircle(g, 380, 20, 100, (int) this.clockRotate);
+//@       // this.getGame().drawBackgroundCircle(g, 100, 20, 100, (int) this.clockRotate);
+//@       // this.getGame().drawBackgroundCircle(g, 380, 20, 100, (int) this.clockRotate);
 //@
 //@        this.getGame().drawString(g, ApoHybridMenu.TITLE, 180, 45, ApoHybridPanel.title_font, new float[]{1, 1, 1, 1}, new float[]{0, 0, 0, 1});
 //@
@@ -359,29 +364,6 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@
 //@                    this.getGame().drawString(g, this.getGame().getButtons()[i].getFunction(), x + width / 2 - (int) ApoHybridPanel.font.getLength(text) / 2, y + height / 2 - ApoHybridPanel.font.mCharCellHeight / 2, ApoHybridPanel.font);
 //@
-//@                    for (int circle = 0; circle < 2; circle++) {
-//@                        x += circle * width;
-//@
-//@                        g.setColor(255, 255, 255, 255);
-//@                        g.fillCircle(x, y + height / 2, height / 2, 120);
-//@
-//@                        g.setLineSize(3.0f);
-//@                        g.setColor(48, 48, 48);
-//@                        g.drawCircle(x, y + height / 2, height / 2, 120);
-//@
-//@                        g.setLineSize(5.0f);
-//@                        for (int j = 0; j < 12; j++) {
-//@                            g.drawLine(x + (int) ((height / 2 - 5) * Math.sin(Math.toRadians(j * 30))), y + height / 2 + (int) (-(height / 2 - 5) * Math.cos(Math.toRadians(j * 30))), x + (int) ((height / 2) * Math.sin(Math.toRadians(j * 30))), y + height / 2 + (int) (-(height / 2) * Math.cos(Math.toRadians(j * 30))));
-//@                        }
-//@
-//@                        int angle = (int) (this.clockRotate + circle * 180) + i * 100;
-//@                        while (angle > 360) {
-//@                            angle -= 360;
-//@                        }
-//@                        g.drawLine(x, y + height / 2, x + (int) ((height / 2 - 5) * Math.sin(Math.toRadians(angle))), y + height / 2 + (int) (-(height / 2 - 5) * Math.cos(Math.toRadians(angle))));
-//@
-//@                        g.setLineSize(1.0f);
-//@                    }
 //@                }
 //@            }
 //@        }

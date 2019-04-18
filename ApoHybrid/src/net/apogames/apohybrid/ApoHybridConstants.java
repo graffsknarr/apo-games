@@ -45,12 +45,12 @@ public class ApoHybridConstants {
 //@
 //@	public static final String PREFS_NAME = "ApoClockPref";
 //@
-//@	public static final boolean[] BUTTON_MENU = new boolean[] {true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true};
+//@	public static final boolean[] BUTTON_MENU = new boolean[] {true, true, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, true};
 //@	public static final boolean[] BUTTON_GAME = new boolean[] {false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_PUZZLE = new boolean[] {false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_ARCARDE = new boolean[] {false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_ARCARDE_GAME = new boolean[] {false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false};
-//@	public static final boolean[] BUTTON_PUZZLE_FIRST = new boolean[] {false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false};
+//@	public static final boolean[] BUTTON_PUZZLE_FIRST = new boolean[] {false, false, true, false, false, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_EDITOR = new boolean[] {false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, false, false};
 //@	public static final boolean[] BUTTON_OPTIONS = new boolean[] {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false};
 //@

@@ -18,8 +18,6 @@ package net.apogames.apohybrid.entity;
 	//#endif
 //#endif
 
-import net.gliblybits.bitsengine.core.BitsImage;
-
 public class ApoLevelChooserButton extends ApoButton {
 	private boolean bSelected;
 	private String text;
