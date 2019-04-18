@@ -71,7 +71,10 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 	private ApoHybridUserlevels userlevels;
 
-	//#if TreasureFont
+    //private ApoHybridOptions options;
+
+
+    //#if TreasureFont
 //@	private final String fontPath = "res/font/pixel.TTF";
 	//#elif ApoFont
 //@	private final String fontPath = "res/font/reprise.ttf";
@@ -466,6 +469,20 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@
 //@
 	//#elif SnakeGameLogic || DiceGameLogic
+//@//    protected final void setOptions() {
+//@//        if (super.getModel() != null) {
+//@//			super.getModel().close();
+//@//        }
+//@//
+//@//		super.setModel(this.options);
+//@//
+//@//		this.setButtonVisible(ApoHybridConstants.BUTTON_OPTIONS);
+//@//
+//@//		super.getModel().init();
+//@//
+//@//		//this.musicPlayer.setMenu(true);
+//@//	}
+//@
 //@	protected final void loadPreferences(SharedPreferences settings) {
 //@		int solved = settings.getInt("solved", 0);
 //@		this.solvedLevel(solved);
@@ -1125,9 +1142,13 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@				w = super.getModel().getStringWidth().get(s);
 //@			}
 //@			g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
-//@		}
+//@			g.setFont(font);
+//@			g.drawText(s, x - w / 2 + 1, y + 2 - font.mCharCellHeight / 6);
+//@			g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
+//@			g.drawText(s, x - w / 2 + 0, y + 0 - font.mCharCellHeight / 6);
 //@
-			//#elif SnakeGameLogic || DiceGameLogic
+//@		}
+	//#elif SnakeGameLogic || DiceGameLogic
 //@		protected void drawString(BitsGraphics g, final String s, final int x, final int y, final BitsFont font, float[] colorBack, float[] colorFront) {
 //@			int w = 0;
 //@			if (super.getModel().getStringWidth().containsKey(s)) {
@@ -1135,14 +1156,8 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@			}
 //@			g.setColor(colorBack[0], colorBack[1], colorBack[2], colorBack[3]);
 //@
-			//#endif
-
-			//#if ClockGameLogic
-//@			g.setFont(font);
-//@			g.drawText(s, x - w / 2 + 1, y + 2 - font.mCharCellHeight / 6);
-//@			g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
-//@			g.drawText(s, x - w / 2 + 0, y + 0 - font.mCharCellHeight / 6);
-			//#elif SnakeGameLogic || DiceGameLogic
+//@
+//@
 //@			g.drawText(s, font, x - w/2 + 1, y + 2);
 //@			g.setColor(colorFront[0], colorFront[1], colorFront[2], colorFront[3]);
 //@			g.drawText(s, font, x - w/2 + 0, y + 0);

@@ -9,6 +9,7 @@
                 <feature name="TreasureMenu"/>
                 <feature name="MonoMenu"/>
                 <feature name="ClockMenu"/>
+                <feature name="ApoMenu"/>
             </alt>
             <and name="World">
                 <and abstract="true" name="Component">

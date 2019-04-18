@@ -8,9 +8,17 @@ package net.apogames.apohybrid.entity;
 //@import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.apogames.apohybrid.game.ApoHybridGame;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
+//#elif DiceMenu || SnakeMenu
+//@import net.gliblybits.bitsengine.core.BitsImage;
 //#else
-import net.gliblybits.bitsengine.core.BitsImage;
+	//#if DiceGameLogic
+//@
+	//#else
+	import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+	//#endif
 //#endif
+
+import net.gliblybits.bitsengine.core.BitsImage;
 
 public class ApoLevelChooserButton extends ApoButton {
 	private boolean bSelected;
@@ -32,11 +40,25 @@ public class ApoLevelChooserButton extends ApoButton {
 //@		this.bSelected = bSelected;
 //@		this.text = text;
 //@
+	//#elif SnakeMenu || DiceMenu
+//@	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
+//@		super(iBackground, x, y, width, height, function);
+//@		
+//@		this.bSolved = false;
+//@
 	//#else
-	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
+		//#if DiceGameLogic
+//@		public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
+//@			super(iBackground, x, y, width, height, function);
+//@
+//@			this.bSolved = false;
+		//#else
+		public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
 		super(iBackground, x, y, width, height, function);
-		
+
 		this.bSolved = false;
+
+				//#endif
 	//#endif
 
 	}

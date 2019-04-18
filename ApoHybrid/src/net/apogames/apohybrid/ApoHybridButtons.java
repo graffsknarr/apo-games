@@ -592,7 +592,11 @@ public class ApoHybridButtons {
 
 
 			//#if DiceGameLogic
+				//#if ApoMenu
+//@				this.game.setButtons(new ApoButton[12]);
+				//#else
 //@				this.game.setButtons(new ApoButton[11]);
+				//#endif
 //@
 			//#elif SnakeGameLogic
 //@				this.game.setButtons(new ApoButton[13]);
@@ -725,6 +729,17 @@ public class ApoHybridButtons {
 //@				this.game.getButtons()[12] = new ApoButton(null, x, y, width, height, function);
 //@
 			//#endif
+			//#endif
+			//#if ApoMenu
+				//#if DiceGameLogic || SnakeGameLogic
+//@					function = ApoHybridMenu.OPTIONS;
+//@					width = 300;
+//@					height = 60;
+//@					x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
+//@					y = 150 + height * 3 + 20 * 3;
+//@					this.game.getButtons()[11] = new ApoButton(null, x, y, width, height, function);
+//@
+				//#endif
 			//#endif
 			for (int i = 0; i < this.game.getButtons().length; i++) {
 				this.game.getButtons()[i].setBOpaque(true);

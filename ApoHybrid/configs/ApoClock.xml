@@ -6,7 +6,8 @@
     <feature automatic="unselected" name="DiceMenu"/>
     <feature automatic="unselected" name="TreasureMenu"/>
     <feature automatic="unselected" name="MonoMenu"/>
-    <feature manual="selected" name="ClockMenu"/>
+    <feature automatic="unselected" name="ClockMenu"/>
+    <feature manual="selected" name="ApoMenu"/>
     <feature automatic="selected" name="World"/>
     <feature automatic="selected" name="Component"/>
     <feature automatic="selected" name="Dynamic"/>
