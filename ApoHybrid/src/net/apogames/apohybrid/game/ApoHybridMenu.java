@@ -1,5 +1,8 @@
 package net.apogames.apohybrid.game;
 
+import android.util.Log;
+
+import net.apogames.apohybrid.level.ApoHybridLevel;
 import net.gliblybits.bitsengine.core.BitsGame;
 import net.apogames.apohybrid.ApoHybridConstants;
 import net.apogames.apohybrid.ApoHybridModel;
@@ -207,10 +210,12 @@ public class ApoHybridMenu extends ApoHybridModel {
             //#if ClockGameLogic
 //@        } else if (function.equals(ApoHybridMenu.PLAY)) {
 //@            this.getGame().setPuzzle();
-//@		} else if (function.equals(ApoHybridMenu.ARCADE)) {
-//@			this.getGame().setAracardeHelp(-1, -1);
+//@		} else if (function.equals(ApoHybridPuzzle.USERLEVELS)) {
+//@            if ((ApoHybridLevel.editorLevels != null) && (ApoHybridLevel.editorLevels.length > 0)) {
+//@                //this.getGame().setGame(0, ApoHybridLevel.editorLevels[0], true);
+//@            }
 //@		} else if (function.equals(ApoHybridMenu.OPTIONS)) {
-//@			this.getGame().setOptions();
+//@            this.getGame().setOptions();
 //@        } else if (function.equals(ApoHybridPuzzle.EDITOR)) {
             //#if Editor
 //@            this.getGame().setEditor(false);

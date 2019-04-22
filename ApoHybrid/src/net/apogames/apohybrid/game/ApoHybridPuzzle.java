@@ -59,14 +59,8 @@
 //@			this.onBackButtonPressed();
 //@		} else if (function.equals(ApoHybridPuzzle.PUZZLE)) {
 //@			this.getGame().setPuzzleChooser();
-//@		} else if (function.equals(ApoHybridPuzzle.EDITOR)) {
-			//#if Editor
-//@			this.getGame().setEditor(false);
-			//#endif
-//@		} else if (function.equals(ApoHybridPuzzle.USERLEVELS)) {
-//@			if ((ApoHybridLevel.editorLevels != null) && (ApoHybridLevel.editorLevels.length > 0)) {
-//@				this.getGame().setGame(0, null, true);
-//@			}
+//@		} else if (function.equals(ApoHybridMenu.ARCADE)) {
+//@			this.getGame().setAracardeHelp(-1, -1);
 //@		}
 //@	}
 //@	

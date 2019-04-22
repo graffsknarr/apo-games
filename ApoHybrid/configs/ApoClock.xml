@@ -19,8 +19,7 @@
     <feature manual="selected" name="Counter"/>
     <feature automatic="selected" name="LevelChooser"/>
     <feature manual="selected" name="LevelGrid"/>
-    <feature automatic="selected" manual="selected" name="Options"/>
-    <feature manual="selected" name="Nickname"/>
+    <feature manual="selected" name="Options"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature manual="selected" name="ClockGameLogic"/>
     <feature automatic="selected" name="Font"/>
