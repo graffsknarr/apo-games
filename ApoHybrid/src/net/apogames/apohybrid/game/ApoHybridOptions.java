@@ -59,7 +59,7 @@ public class ApoHybridOptions extends ApoHybridModel {
 	}
 
 	public void render(BitsGLGraphics g) {
-		//this.getGame().drawString(g, ApoHybridOptions.TITLE, 240, 2, ApoHybridPanel.title_font, new float[]{1, 1, 1, 1}, new float[]{0, 0, 0, 1});
+		this.getGame().drawString(g, ApoHybridOptions.TITLE, 240, 2, ApoHybridPanel.title_font, new float[]{1, 1, 1, 1}, new float[]{0, 0, 0, 1});
 		//this.getGame().drawString(g, ApoHybridConstants.OPTION_TITLE, (int)(240 - ApoHybridPanel.title_font.getLength(ApoHybridConstants.OPTION_TITLE)/2), 5 + 0, ApoHybridPanel.title_font);
 	}
 

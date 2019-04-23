@@ -147,7 +147,7 @@ public class ApoHybridButtons {
 //@			width = 300;
 //@			height = 70;
 //@			x = ApoHybridConstants.GAME_WIDTH/2 - width/2;
-//@			y = 100;
+//@			y = 150;
 //@			this.game.getButtons()[12] = new ApoButton(null, x, y, width, height, function);
 //@
 //@			function = ApoHybridEditor.BACK;

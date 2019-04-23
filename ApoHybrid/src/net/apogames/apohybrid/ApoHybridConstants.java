@@ -50,7 +50,7 @@ public class ApoHybridConstants {
 //@	public static final boolean[] BUTTON_PUZZLE = new boolean[] {false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_ARCARDE = new boolean[] {false, false, false, false, false, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_ARCARDE_GAME = new boolean[] {false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false};
-//@	public static final boolean[] BUTTON_PUZZLE_FIRST = new boolean[] {false, false, false, false, false, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false};
+//@	public static final boolean[] BUTTON_PUZZLE_FIRST = new boolean[] {false, false, false, false, false, true, false, false, false, false, false, true, true, false, false, false, false, false, false, false};
 //@	public static final boolean[] BUTTON_EDITOR = new boolean[] {false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, false};
 //@	public static final boolean[] BUTTON_OPTIONS = new boolean[] {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false};
 //@
