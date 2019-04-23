@@ -19,10 +19,10 @@ public class ApoHybridConstants {
 //@
 //@	public static final String PREFS_NAME = "ApoDicePref";
 //@
-//@	public static final boolean[] BUTTON_MENU = new boolean[] {true, true, true, true, false, false, false, false, false, false, false, true};
-//@	public static final boolean[] BUTTON_GAME = new boolean[] {false, false, false, false, false, true, false, false, false, false, false, false};
-//@	public static final boolean[] BUTTON_PUZZLE = new boolean[] {false, false, false, false, true, false, false, false, false, false, false, false};
-//@	public static final boolean[] BUTTON_EDITOR = new boolean[] {false, false, false, false, false, false, true, true, true, true, false, false};
+//@	public static final boolean[] BUTTON_MENU = new boolean[] {true, true, true, true, true, false, false, false, false, false, false, false};
+//@	public static final boolean[] BUTTON_GAME = new boolean[] {false, false, false, false, false, false, true, false, false, false, false, false};
+//@	public static final boolean[] BUTTON_PUZZLE = new boolean[] {false, false, false, false, false, true, false, false, false, false, false, false};
+//@	public static final boolean[] BUTTON_EDITOR = new boolean[] {false, false, false, false, false, false, false, true, true, true, true, false};
 //@
 	//#elif SnakeGameLogic
 //@	public final static String USERLEVELS_GETPHP = "http://www.apo-games.de/apoSn4ke/get_level.php";

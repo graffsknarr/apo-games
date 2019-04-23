@@ -47,7 +47,7 @@ package net.apogames.apohybrid.game;
 //@		this.getStringWidth().put(ApoHybridEditor.UPLOAD, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.UPLOAD)));
 //@		this.getStringWidth().put(ApoHybridEditor.SOLVE, (int)(ApoHybridMenu.game_font.getLength(ApoHybridEditor.SOLVE)));
 //@		
-//@		String s = "Hybrid - Editor";
+//@		String s = "ApoHybrid - Editor";
 //@		this.getStringWidth().put(s, (int) ApoHybridMenu.game_font.getLength(s));
 //@		
 //@		this.checkTestLevel();

@@ -612,7 +612,7 @@ public class ApoHybridButtons {
 //@				height = 40;
 //@				x = ApoHybridConstants.GAME_WIDTH - width - 5;
 //@				y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 10;
-//@				this.game.getButtons()[4] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[5] = new ApoButton(null, x, y, width, height, function);
 //@
 //@				function = ApoHybridGame.BACK;
 //@				width = 70;
@@ -623,14 +623,14 @@ public class ApoHybridButtons {
 			//#elif SnakeGameLogic
 //@				y = ApoHybridConstants.GAME_HEIGHT - 60 - 1 * height - 20;
 			//#endif
-//@				this.game.getButtons()[5] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[6] = new ApoButton(null, x, y, width, height, function);
 //@
 //@				function = ApoHybridEditor.BACK;
 //@				width = 70;
 //@				height = 40;
 //@				x = ApoHybridConstants.GAME_WIDTH - width - 5;
 //@				y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 10;
-//@				this.game.getButtons()[6] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[7] = new ApoButton(null, x, y, width, height, function);
 //@
 			//#if DiceGameLogic
 //@				function = ApoHybridEditor.NEW;
@@ -638,28 +638,28 @@ public class ApoHybridButtons {
 //@				height = 40;
 //@				x = ApoHybridConstants.GAME_WIDTH - 4 * width - 10 * 4;
 //@				y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 10;
-//@				this.game.getButtons()[7] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[8] = new ApoButton(null, x, y, width, height, function);
 //@
 //@				function = ApoHybridEditor.TEST;
 //@				width = 70;
 //@				height = 40;
 //@				x = ApoHybridConstants.GAME_WIDTH - 3 * width - 10 * 3;
 //@				y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 10;
-//@				this.game.getButtons()[8] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[9] = new ApoButton(null, x, y, width, height, function);
 //@
 //@				function = ApoHybridEditor.UPLOAD;
 //@				width = 70;
 //@				height = 40;
 //@				x = ApoHybridConstants.GAME_WIDTH - 2 * width - 10 * 2;
 //@				y = ApoHybridConstants.GAME_HEIGHT - 1 * height - 10;
-//@				this.game.getButtons()[9] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[10] = new ApoButton(null, x, y, width, height, function);
 //@
 //@				function = ApoHybridEditor.SOLVE;
 //@				width = 70;
 //@				height = 20;
 //@				x = ApoHybridConstants.GAME_WIDTH - width - 10;
 //@				y = 2;
-//@				this.game.getButtons()[10] = new ApoButton(null, x, y, width, height, function);
+//@				this.game.getButtons()[11] = new ApoButton(null, x, y, width, height, function);
 //@
 			//#elif SnakeGameLogic
 //@				function = ApoHybridEditor.TEST;

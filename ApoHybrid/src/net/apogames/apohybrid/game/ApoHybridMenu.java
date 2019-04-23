@@ -108,7 +108,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		this.getStringWidth().put(ApoHybridMenu.EDITOR, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.EDITOR)));
 //@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int) (ApoHybridMenu.title_font.getLength(ApoHybridMenu.TITLE)));
 //@		this.getStringWidth().put(ApoHybridMenu.QUIT, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.QUIT)));
-//@		this.getStringWidth().put(ApoHybridMenu.PUZZLE, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.PUZZLE)));
+//@		this.getStringWidth().put(ApoHybridMenu.PLAY, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.PLAY)));
 //@		this.getStringWidth().put(ApoHybridMenu.OPTIONS, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.OPTIONS)));
 //@
 //@
@@ -223,15 +223,14 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@        }
 //@
             //#else
-//@        } else if (function.equals(ApoHybridMenu.PUZZLE)) {
+//@        } else if (function.equals(ApoHybridMenu.PLAY)) {
 //@            this.getGame().setPuzzleChooser();
+//@            Log.d("TEST", "play pressed");
 //@        } else if (function.equals(ApoHybridMenu.EDITOR)) {
 //@            this.getGame().setEditor(false);
 //@        } else if (function.equals(ApoHybridMenu.USERLEVELS)) {
             //#if DiceGameLogic
-//@			this.getGame().setGame(0, "", true);
-            //#elif SnakeGameLogic
-//@			this.getGame().setGame(-1, "", true);
+//@			//this.getGame().setGame(0, "", true);
             //#elif MonoGameLogic
 //@			this.getGame().setGame(0, null, true);
             //#endif
@@ -282,7 +281,6 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@	public void render(final BitsGraphics g) {
 //@		this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 45, ApoHybridMenu.title_font, new float[]{1, 1, 1, 1}, new float[]{0, 0, 0, 1});
 //@
-//@		int number = 1;
 //@		if (this.getGame().getButtons() != null) {
 //@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 //@				if (this.getGame().getButtons()[i].isBVisible()) {
@@ -376,65 +374,6 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@}
 		//#endif
 //@
-	//#elif ClockMenu
-//@	@Override
-//@	public void render(final BitsGLGraphics g) {
-//@		this.getGame().drawBackgroundCircle(g, 100, 20, 100, (int)this.clockRotate);
-//@		this.getGame().drawBackgroundCircle(g, 380, 20, 100, (int)this.clockRotate);
-//@
-//@		this.getGame().drawString(g, ApoHybridMenu.TITLE, 180, 45, ApoHybridPanel.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@
-//@		if (this.getGame().getButtons() != null) {
-//@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
-				//#if !LevelGrid
-//@				if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
-				//#endif
-				//#if !Options
-//@				if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.OPTIONS) i++;
-				//#endif
-//@				if (this.getGame().getButtons()[i].isVisible()) {
-//@					int x = (int)(this.getGame().getButtons()[i].getX());
-//@					int y = (int)(this.getGame().getButtons()[i].getY());
-//@					int width = (int)(this.getGame().getButtons()[i].getWidth());
-//@					int height = (int)(this.getGame().getButtons()[i].getHeight());
-//@					String text = this.getGame().getButtons()[i].getFunction();
-//@
-//@					g.setColor(128, 128, 128, 255);
-//@					g.fillRect(x, y, width, height);
-//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-//@					g.drawRect(x, y, width, height);
-//@
-//@					this.getGame().drawString(g, this.getGame().getButtons()[i].getFunction(), x + width/2 - (int) ApoHybridPanel.font.getLength(text)/2, y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
-//@
-//@					for (int circle = 0; circle < 2; circle++) {
-//@						x += circle * width;
-//@
-//@						g.setColor(255, 255, 255, 255);
-//@						g.fillCircle(x, y + height/2, height/2, 120);
-//@
-//@						g.setLineSize(3.0f);
-//@						g.setColor(48, 48, 48);
-//@						g.drawCircle(x, y + height/2, height/2, 120);
-//@
-//@						g.setLineSize(5.0f);
-//@						for (int j = 0; j < 12; j++) {
-//@							g.drawLine(x + (int)((height/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + (int)((height/2) * Math.sin(Math.toRadians(j * 30))), y + height/2 + (int)(-(height/2) * Math.cos(Math.toRadians(j * 30))));
-//@						}
-//@
-//@						int angle = (int)(this.clockRotate + circle * 180) + i * 100;
-//@						while (angle > 360) {
-//@							angle -= 360;
-//@						}
-//@						g.drawLine(x, y + height/2, x + (int)((height/2 - 5) * Math.sin(Math.toRadians(angle))), y + height/2 + (int)(-(height/2 - 5) * Math.cos(Math.toRadians(angle))));
-//@
-//@						g.setLineSize(1.0f);
-//@					}
-//@				}
-//@			}
-//@		}
-//@	}
-//@
-//@}
 	//#elif MonoMenu
 //@	public void render(final BitsGLGraphics g) {
 //@		if (ApoHybridConstants.FREE_VERSION) {

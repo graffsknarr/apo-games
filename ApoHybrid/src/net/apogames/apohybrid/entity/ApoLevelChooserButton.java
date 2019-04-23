@@ -12,11 +12,12 @@ package net.apogames.apohybrid.entity;
 //@import net.gliblybits.bitsengine.core.BitsImage;
 //#else
 	//#if DiceGameLogic
-//@
+//@import net.gliblybits.bitsengine.core.BitsImage;
 	//#else
 	import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 	//#endif
 //#endif
+
 
 public class ApoLevelChooserButton extends ApoButton {
 	private boolean bSelected;
