@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
     <feature automatic="selected" name="ApoGames"/>
+    <feature automatic="selected" name="Menu"/>
+    <feature automatic="selected" name="GameLogic"/>
+    <feature automatic="selected" name="Font"/>
 </configuration>

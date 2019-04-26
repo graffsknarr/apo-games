@@ -7,9 +7,14 @@
     <feature automatic="unselected" name="TreasureMenu"/>
     <feature manual="selected" name="MonoMenu"/>
     <feature automatic="unselected" name="ClockMenu"/>
+    <feature automatic="unselected" name="ApoMenu"/>
     <feature manual="selected" name="Editor"/>
     <feature automatic="selected" name="GameLogic"/>
+    <feature automatic="unselected" name="SnakeGameLogic"/>
+    <feature automatic="unselected" name="DiceGameLogic"/>
+    <feature automatic="unselected" name="ClockGameLogic"/>
     <feature manual="selected" name="MonoGameLogic"/>
+    <feature automatic="unselected" name="TreasureGameLogic"/>
     <feature automatic="selected" name="Font"/>
     <feature automatic="unselected" name="ApoFont"/>
     <feature automatic="unselected" name="TreasureFont"/>
