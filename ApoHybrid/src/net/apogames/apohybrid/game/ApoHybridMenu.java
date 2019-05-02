@@ -34,8 +34,6 @@ public class ApoHybridMenu extends ApoHybridModel {
     public static final String EDITOR = "editor";
     public static final String TITLE = "ApoHybrid";
     public static final String ARCADE = "arcade";
-    public static final String SUB = "a game made by Dirk Aporius";
-    public static final String SUB_2 = "made with the bits-engine by Marc Wiedenhoeft";
     //#if TreasureGameLogic
 //@	public static final String CREDITS = "C";
 //@	public static final String OPTIONS = "O";
@@ -83,8 +81,6 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@
         //#elif MonoMenu
 //@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
-//@		this.getStringWidth().put(ApoHybridMenu.SUB, (int)(ApoHybridPanel.game_font.getLength(ApoHybridMenu.SUB)));
-//@		this.getStringWidth().put(ApoHybridMenu.SUB_2, (int)(ApoHybridPanel.game_font.getLength(ApoHybridMenu.SUB_2)));
 //@
         //#elif TreasureMenu
 //@		
@@ -112,7 +108,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		this.getStringWidth().put(ApoHybridMenu.OPTIONS, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.OPTIONS)));
 //@
 //@
-            //#else
+            //#elif ClockGameLogic
 //@        this.getStringWidth().put(ApoHybridMenu.USERLEVELS, (int) (ApoHybridPanel.font.getLength(ApoHybridMenu.USERLEVELS)));
 //@        this.getStringWidth().put(ApoHybridMenu.EDITOR, (int) (ApoHybridPanel.font.getLength(ApoHybridMenu.EDITOR)));
 //@        this.getStringWidth().put(ApoHybridMenu.TITLE, (int) (ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
@@ -170,15 +166,23 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		}
             //#elif MonoMenu
 //@		} else if (function.equals(ApoHybridMenu.PLAY)) {
+        	//#if LevelGrid
 //@			this.getGame().setLevelChooser();
+			//#endif
 //@		} else if (function.equals(ApoHybridMenu.EDITOR)) {
+        	//#if Editor
 //@			this.getGame().setEditor(false);
+			//#endif
 //@		} else if (function.equals(ApoHybridMenu.USERLEVELS)) {
+        	//#if Userlevels
 //@			this.getGame().setGame(0, null, true);
+			//#endif
 //@		} else if (function.equals(ApoHybridMenu.CREDITS)) {
 //@			this.getGame().setCredits();
+			//#if Options
 //@		} else if (function.equals(ApoHybridMenu.OPTIONS)) {
 //@			this.getGame().setOptions();
+			//#endif
 //@		}
 //@		this.getGame().playSound(ApoHybridSoundPlayer.SOUND_BUTTON);
             //#elif TreasureMenu
@@ -285,12 +289,14 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 //@				if (this.getGame().getButtons()[i].isBVisible()) {
     //#if !LevelGrid
-//@					if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
-    //#endif
-//@
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PUZZLE))
+//@							this.getGame().getButtons()[i].setVisible(false);
+	//#endif
     //#if !Editor
-//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR)) i++;
-    //#endif
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR))
+//@							this.getGame().getButtons()[i].setVisible(false);
+//@
+	//#endif
 //@
 //@					int x = (int) (this.getGame().getButtons()[i].getX());
 //@					int y = (int) (this.getGame().getButtons()[i].getY());
@@ -348,11 +354,15 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@        if (this.getGame().getButtons() != null) {
 //@            for (int i = 0; i < this.getGame().getButtons().length; i++) {
                 //#if !LevelGrid
-//@				if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
-                //#endif
-                //#if !Options
-//@				if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.OPTIONS) i++;
-                //#endif
+//@				if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PUZZLE))
+//@							this.getGame().getButtons()[i].setVisible(false);
+//@
+	//#endif
+				//#if !Options
+//@				if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.OPTIONS))
+//@							this.getGame().getButtons()[i].setVisible(false);
+//@
+	//#endif
 //@                if (this.getGame().getButtons()[i].isVisible()) {
 //@                    int x = (int) (this.getGame().getButtons()[i].getX());
 //@                    int y = (int) (this.getGame().getButtons()[i].getY());
@@ -380,13 +390,28 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@			this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 55, ApoHybridPanel.title_font);
 //@		} else {
 //@			this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 5, ApoHybridPanel.title_font);
-//@			this.getGame().drawString(g, ApoHybridMenu.SUB, 240, 50, ApoHybridPanel.game_font);
-//@			this.getGame().drawString(g, ApoHybridMenu.SUB_2, 240, 65, ApoHybridPanel.game_font);
 //@		}
 //@
 //@		if (this.getGame().getButtons() != null) {
 //@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 //@				if (this.getGame().getButtons()[i].isBVisible()) {
+					//#if !LevelGrid
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PLAY))
+//@						this.getGame().getButtons()[i].setVisible(false);
+					//#endif
+					//#if !Options
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.OPTIONS))
+//@						this.getGame().getButtons()[i].setVisible(false);
+					//#endif
+					//#if !Userlevels
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.USERLEVELS))
+//@						this.getGame().getButtons()[i].setVisible(false);
+					//#endif
+					//#if !Editor
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR))
+//@						this.getGame().getButtons()[i].setVisible(false);
+					//#endif
+//@
 //@					int x = (int)(this.getGame().getButtons()[i].getX());
 //@					int y = (int)(this.getGame().getButtons()[i].getY());
 //@					int width = (int)(this.getGame().getButtons()[i].getWidth());
@@ -406,9 +431,9 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@						s = ApoHybridConstants.MENU_PLAY;
 //@						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
 //@					} else if (s.equals(ApoHybridMenu.OPTIONS)) {
-//@//						s = "o";
-//@//						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridMenu.game_font.getLength(s)/2), y + height/2 - ApoHybridMenu.game_font.mCharCellHeight/2, ApoHybridMenu.game_font, ApoHybridConstants.BRIGHT);
+						//#if Options
 //@						this.drawOptions(g, x, y, width, height);
+						//#endif
 //@					} else if (s.equals(ApoHybridMenu.EDITOR)) {
 //@						s = ApoHybridConstants.MENU_EDITOR;
 //@						this.getGame().drawString(g, s,(int)(x + width/2 - ApoHybridPanel.font.getLength(s)/2), y + height/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, ApoHybridConstants.BRIGHT);
@@ -421,6 +446,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		}
 //@	}
 //@
+	//#if Options
 //@	private final void drawOptions(final BitsGLGraphics g, final int x, final int y, final int width, final int height) {
 //@		g.setColor(ApoHybridConstants.BRIGHT[0], ApoHybridConstants.BRIGHT[1], ApoHybridConstants.BRIGHT[2], 1f);
 //@		g.setLineSize(1 * ApoHybridConstants.MAX);
@@ -441,6 +467,7 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		}
 //@		g.setRotation(0);
 //@	}
+	//#endif
 //@
 //@}
 	//#elif TreasureMenu
@@ -487,11 +514,12 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
 //@				if (this.getGame().getButtons()[i].isBVisible()) {
 					//#if !LevelGrid
-//@					if (this.getGame().getButtons()[i].getFunction() == ApoHybridMenu.PUZZLE) i++;
-					//#endif
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PUZZLE))
+//@						this.getGame().getButtons()[i].setVisible(false);
 //@
+					//#endif
 					//#if !Editor
-//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR)) i++;
+//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR))
 					//#endif
 //@
 //@					int x = (int)(this.getGame().getButtons()[i].getX());

@@ -49,7 +49,7 @@
                 <feature mandatory="true" name="LevelGrid"/>
                 <feature name="NextLevel"/>
             </and>
-            <and abstract="true" name="Options">
+            <and name="Options">
                 <and abstract="true" name="Sound">
                     <alt abstract="true" name="Effects">
                         <feature name="TreasureEffect"/>
@@ -82,6 +82,7 @@
                 <feature name="TreasureFont"/>
                 <feature name="MonoFont"/>
             </alt>
+            <feature name="Userlevels"/>
         </and>
     </struct>
     <constraints/>

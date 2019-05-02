@@ -143,7 +143,6 @@
 //@
 //@}
 //#elif MonoGameLogic
-//@
 //@package net.apogames.apohybrid.game;
 //@
 //@import net.apogames.apohybrid.ApoHybridConstants;
@@ -152,7 +151,7 @@
 //@import net.apogames.apohybrid.entity.ApoLevelChooserButton;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
 //@
-//@public class ApoHybridOptions  extends ApoHybridModel {
+//@public class ApoHybridOptions extends ApoHybridModel {
 //@
 //@	public static final String BACK = "back";
 //@	public static final String LANGUAGE_GERMAN = "german";

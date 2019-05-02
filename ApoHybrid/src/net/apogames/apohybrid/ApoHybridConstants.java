@@ -64,7 +64,7 @@ public class ApoHybridConstants {
 //@
 //@	public static float MAX = 1f;
 //@
-//@	public static final boolean FREE_VERSION = true;
+//@	public static final boolean FREE_VERSION = false;
 //@
 //@	public static final String PREFS_NAME = "ApoHybridPref";
 //@

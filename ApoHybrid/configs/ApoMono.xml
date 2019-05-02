@@ -9,6 +9,9 @@
     <feature automatic="unselected" name="ClockMenu"/>
     <feature automatic="unselected" name="ApoMenu"/>
     <feature manual="selected" name="Editor"/>
+    <feature automatic="selected" name="LevelChooser"/>
+    <feature manual="selected" name="LevelGrid"/>
+    <feature manual="selected" name="Options"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature automatic="unselected" name="SnakeGameLogic"/>
     <feature automatic="unselected" name="DiceGameLogic"/>
@@ -19,4 +22,5 @@
     <feature automatic="unselected" name="ApoFont"/>
     <feature automatic="unselected" name="TreasureFont"/>
     <feature manual="selected" name="MonoFont"/>
+    <feature manual="selected" name="Userlevels"/>
 </configuration>

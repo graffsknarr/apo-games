@@ -106,7 +106,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@	public static BitsGLFont title_font;
 //@
 //@	private ApoHybridCredits credits;
+	//#if Options
 //@	private ApoHybridOptions options;
+	//#endif
 //@	private ApoHybridSave solvedLevels;
 //@
 //@	private boolean bSound, bMusic;
@@ -213,15 +215,21 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@			this.credits = new ApoHybridCredits(this);
 //@		}
 //@
+		//#if Options
 //@		if (this.options == null) {
 //@			this.options = new ApoHybridOptions(this);
 //@		}
+		//#endif
 //@
 //@		if (this.musicPlayer == null) {
+			//#if MonoMusic
 //@			this.musicPlayer = new ApoHybridMusicPlayer(this);
+			//#endif
 //@		}
 //@		if (this.soundPlayer == null) {
+			//#if MonoEffect
 //@			this.soundPlayer = new ApoHybridSoundPlayer();
+			//#endif
 //@		}
 		//#if MonoGameLogic
 //@		if (this.solvedLevels == null) {
@@ -346,12 +354,16 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@	}
 //@
 //@	public void playSound(BitsSound sound) {
+		//#if MonoEffect
+//@
 //@		if (this.bSound) {
 //@			this.soundPlayer.playSound(sound);
 //@		}
+		//#endif
 //@	}
 //@
 //@	public void setMusic(boolean bMusic) {
+	//#if MonoMusic
 //@		this.bMusic = bMusic;
 //@
 //@		if (this.bMusic) {
@@ -359,6 +371,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@		} else {
 //@			this.musicPlayer.stop();
 //@		}
+	//#endif
 //@	}
 //@
 //@	protected final void savePreferences() {
@@ -409,8 +422,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@		this.setButtonVisible(ApoHybridConstants.BUTTON_CREDITS);
 //@
 //@		super.getModel().init();
-//@
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(true);
+		//#endif
 //@	}
 //@
 //@	protected final void setLevelChooser() {
@@ -423,10 +437,12 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@		this.setButtonVisible(ApoHybridConstants.BUTTON_LEVELCHOOSER);
 //@
 //@		super.getModel().init();
-//@
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(true);
+		//#endif
 //@	}
 //@
+	//#if Options
 //@	protected final void setOptions() {
 //@		if (super.getModel() != null) {
 //@			super.getModel().close();
@@ -438,8 +454,11 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@
 //@		super.getModel().init();
 //@
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(true);
+		//#endif
 //@	}
+	//#endif
 //@
 //@	public ApoHybridSave getSolvedLevels() {
 //@		return this.solvedLevels;
@@ -532,7 +551,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@			this.getButtons()[8].setVisible(true);
 //@		}
 //@
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(true);
+		//#endif
 //@
 		//#elif TreasureGameLogic
 //@		this.setUserlevelsVisible();
@@ -567,7 +588,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 		//#if MonoGameLogic
 //@		this.editor.setUploadVisible(bUpload);
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(true);
+		//#endif
 //@
 		//#elif ClockGameLogic
 //@		this.textfield.setVisible(false);
@@ -736,8 +759,9 @@ public class ApoHybridPanel extends ApoHybridComponent {
 
 		//#if MonoGameLogic
 //@		this.game.loadLevel(level, bUserlevel, levelString);
+		//#if MonoMusic
 //@		this.musicPlayer.setMenu(false);
-//@
+		//#endif
 //@
 		//#elif ClockGameLogic
 //@			if (levelString != null) {
@@ -990,7 +1014,7 @@ public class ApoHybridPanel extends ApoHybridComponent {
 			//#endif
 		}
 
-		//#if MonoGameLogic
+		//#if MonoGameLogic && Music
 //@		if (this.musicPlayer != null) {
 //@			this.setMusic(this.bMusic);
 //@		}
