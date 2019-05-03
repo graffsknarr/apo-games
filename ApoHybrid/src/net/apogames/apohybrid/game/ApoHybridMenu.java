@@ -72,31 +72,13 @@ public class ApoHybridMenu extends ApoHybridModel {
 
     @Override
     public void init() {
-        //#if ClockMenu
-//@		this.getStringWidth().put(ApoHybridMenu.QUIT, (int)(ApoHybridPanel.font.getLength(ApoHybridMenu.QUIT)));
-//@		this.getStringWidth().put(ApoHybridMenu.PUZZLE, (int)(ApoHybridPanel.font.getLength(ApoHybridMenu.PUZZLE)));
-//@		this.getStringWidth().put(ApoHybridMenu.ARCADE, (int)(ApoHybridPanel.font.getLength(ApoHybridMenu.ARCADE)));
-//@		this.getStringWidth().put(ApoHybridMenu.OPTIONS, (int)(ApoHybridPanel.font.getLength(ApoHybridMenu.OPTIONS)));
-//@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
-//@
-        //#elif MonoMenu
+        //#if MonoMenu
 //@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int)(ApoHybridPanel.title_font.getLength(ApoHybridMenu.TITLE)));
 //@
         //#elif TreasureMenu
-//@		
-        //#elif DiceMenu || SnakeMenu
-//@		this.loadFonts();
+//@		// Yes this should be blank
 //@
-//@		this.getStringWidth().put(ApoHybridMenu.USERLEVELS, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.USERLEVELS)));
-//@		this.getStringWidth().put(ApoHybridMenu.EDITOR, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.EDITOR)));
-//@		this.getStringWidth().put(ApoHybridMenu.TITLE, (int) (ApoHybridMenu.title_font.getLength(ApoHybridMenu.TITLE)));
-//@		this.getStringWidth().put(ApoHybridMenu.QUIT, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.QUIT)));
-//@		this.getStringWidth().put(ApoHybridMenu.PUZZLE, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.PUZZLE)));
-//@		this.getStringWidth().put(ApoHybridMenu.OPTIONS, (int) (ApoHybridMenu.font.getLength(ApoHybridMenu.OPTIONS)));
-//@
-//@		this.setUserlevels();
-//@
-        //#elif ApoMenu
+		//#elif ApoMenu
             //#if DiceGameLogic
 //@		this.loadFonts();
 //@
@@ -156,15 +138,7 @@ public class ApoHybridMenu extends ApoHybridModel {
         if (function.equals(ApoHybridMenu.QUIT)) {
             this.onBackButtonPressed();
 
-            //#if ClockMenu
-//@		} else if (function.equals(ApoHybridMenu.PUZZLE)) {
-//@			this.getGame().setPuzzle();
-//@		} else if (function.equals(ApoHybridMenu.ARCADE)) {
-//@			this.getGame().setAracardeHelp(-1, -1);
-//@		} else if (function.equals(ApoHybridMenu.OPTIONS)) {
-//@			this.getGame().setOptions();
-//@		}
-            //#elif MonoMenu
+            //#if MonoMenu
 //@		} else if (function.equals(ApoHybridMenu.PLAY)) {
         	//#if LevelGrid
 //@			this.getGame().setLevelChooser();
@@ -243,7 +217,7 @@ public class ApoHybridMenu extends ApoHybridModel {
         //#endif
     }
 
-    //#if ClockMenu || MonoMenu || TreasureMenu
+    //#if MonoMenu || TreasureMenu
 //@	public void onBackButtonPressed() {
 //@		//BitsGame.getInstance().finishApp();
 //@	}
@@ -501,91 +475,6 @@ public class ApoHybridMenu extends ApoHybridModel {
 //@		}
 //@
 //@		g.setColor(1f, 1f, 1f, 1f);
-//@	}
-//@
-//@}
-	//#elif SnakeMenu || DiceMenu
-//@	public void render(final BitsGraphics g) {
-//@
-//@		this.getGame().drawString(g, ApoHybridMenu.TITLE, 240, 45, ApoHybridMenu.title_font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@
-//@		int number = 1;
-//@		if (this.getGame().getButtons() != null) {
-//@			for (int i = 0; i < this.getGame().getButtons().length; i++) {
-//@				if (this.getGame().getButtons()[i].isBVisible()) {
-					//#if !LevelGrid
-//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.PUZZLE))
-//@						this.getGame().getButtons()[i].setVisible(false);
-//@
-					//#endif
-					//#if !Editor
-//@					if (this.getGame().getButtons()[i].getFunction().equals(ApoHybridMenu.EDITOR))
-					//#endif
-//@
-//@					int x = (int)(this.getGame().getButtons()[i].getX());
-//@					int y = (int)(this.getGame().getButtons()[i].getY());
-//@					int width = (int)(this.getGame().getButtons()[i].getWidth());
-//@					int height = (int)(this.getGame().getButtons()[i].getHeight());
-//@
-//@					g.setColor(128, 128, 128, 255);
-//@					g.drawFilledRect(x, y, width, height);
-//@					g.setColor(48f/255f, 48f/255f, 48f/255f, 1.0f);
-//@					g.drawRect(x, y, width, height);
-//@
-//@					this.getGame().drawString(g, this.getGame().getButtons()[i].getFunction(), x + width/2, y + height/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
-//@
-//@					for (int hybrid = 0; hybrid < 2; hybrid++) {
-//@						x += hybrid * width;
-//@
-						//#if DiceMenu
-//@						g.setColor(255, 255, 255, 255);
-//@						g.drawFilledRoundRect(x - height/2, y, height, height, 6, 10);
-//@
-//@						g.setLineSize(3.0f);
-//@						g.setColor(48, 48, 48);
-//@						g.drawRoundRect(x - height/2, y, height, height, 6, 10);
-//@
-//@						g.setLineSize(1.0f);
-//@
-//@						if ((number == 1) || (number == 3) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 30, y + 30, 6, 40);
-//@						}
-//@						if ((number == 2) || (number == 3) || (number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 14, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 46, y + 46, 6, 40);
-//@						}
-//@						if ((number == 4) || (number == 5)) {
-//@							g.drawFilledCircle(x - height/2 + 46, y + 14, 6, 40);
-//@							g.drawFilledCircle(x - height/2 + 14, y + 46, 6, 40);
-//@						}
-//@
-						//#elif SnakeMenu
-//@						g.setColor(255, 0, 0, 255);
-//@						if (number == 2) {
-//@							g.setColor(0, 255, 0);
-//@						} else if (number == 3) {
-//@							g.setColor(0, 90, 200);
-//@						} else if (number == 4) {
-//@							g.setColor(255, 255, 0);
-//@						}
-//@						g.drawFilledCircle(x, y + height/2, height/2, height/2);
-//@
-//@						g.setLineSize(3.0f);
-//@						g.setColor(48, 48, 48);
-//@						g.drawCircle(x, y + height/2, height/2, height/2);
-//@
-//@						g.drawFilledRect(x - 5, y + 5, 4, 15);
-//@						g.drawFilledRect(x + 1, y + 5, 4, 15);
-//@
-//@						g.setLineSize(1.0f);
-						//#endif
-//@					}
-//@					number += 1;
-//@
-//@
-//@				}
-//@			}
-//@		}
 //@	}
 //@
 //@}

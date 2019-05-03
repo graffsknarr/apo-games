@@ -271,51 +271,8 @@ public class ApoHybridLevelChooser extends ApoHybridModel {
 				} else if (this.solved < i) {
 					g.setColor(128, 128, 128, 255);
 				}
-				//#if DiceMenu
-//@				g.drawFilledRoundRect(x, y, radius, radius, 6, 10);
-//@
-//@				g.setLineSize(2.5f);
-//@				g.setColor(48, 48, 48);
-//@				g.drawRoundRect(x, y, radius, radius, 6, 10);
-//@				
-//@				if (this.solved == i) {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@				} else {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
-//@				}
-//@
-				//#elif SnakeMenu
-//@				g.drawFilledCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@
-//@				g.setLineSize(2.5f);
-//@				g.setColor(48, 48, 48);
-//@				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@				g.drawFilledRect(x + radius/2 - 4, y + 10, 3, 6);
-//@				g.drawFilledRect(x + radius/2 + 1, y + 10, 3, 6);
-//@				
-//@				if (this.solved == i) {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@				} else {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridMenu.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridMenu.font.mCharCellHeight/2, ApoHybridMenu.font);
-//@				}
-//@
-				//#elif ClockMenu
-//@				g.fillCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@				
-//@				g.setLineSize(2.5f);
-//@				g.setColor(48, 48, 48);
-//@				g.drawCircle(x + radius/2, y + radius/2, radius/2, 120);
-//@				
-//@				for (int j = 0; j < 12; j++) {
-//@					g.drawLine(x + radius/2 + (int)((radius/2 - 5) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2 - 5) * Math.cos(Math.toRadians(j * 30))), x + radius/2 + (int)((radius/2) * Math.sin(Math.toRadians(j * 30))), y + radius/2 + (int)(-(radius/2) * Math.cos(Math.toRadians(j * 30))));
-//@				}
-//@				
-//@				if (this.solved == i) {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font, new float[] {1, 1, 1, 1}, new float[] {0, 0, 0, 1});
-//@				} else {
-//@					this.getGame().drawString(g, this.levels[i].getFunction(), x + radius/2 - (int)ApoHybridPanel.font.getLength(this.levels[i].getFunction())/2, y + radius/2 - ApoHybridPanel.font.mCharCellHeight/2, ApoHybridPanel.font);
-//@				}
-				//#elif ApoMenu
+
+				//#if ApoMenu
 				//#if DiceGameLogic
 //@				g.drawFilledRoundRect(x, y, radius, radius, 6, 10);
 //@

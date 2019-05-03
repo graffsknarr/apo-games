@@ -11,7 +11,14 @@
     <feature manual="selected" name="Editor"/>
     <feature automatic="selected" name="LevelChooser"/>
     <feature manual="selected" name="LevelGrid"/>
-    <feature manual="selected" name="Options"/>
+    <feature automatic="selected" manual="selected" name="Options"/>
+    <feature automatic="selected" name="Sound"/>
+    <feature automatic="selected" name="Effects"/>
+    <feature automatic="unselected" name="TreasureEffect"/>
+    <feature manual="selected" name="MonoEffect"/>
+    <feature automatic="selected" name="Music"/>
+    <feature automatic="unselected" name="TreasureMusic"/>
+    <feature manual="selected" name="MonoMusic"/>
     <feature automatic="selected" name="GameLogic"/>
     <feature automatic="unselected" name="SnakeGameLogic"/>
     <feature automatic="unselected" name="DiceGameLogic"/>

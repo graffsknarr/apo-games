@@ -355,7 +355,6 @@ public class ApoHybridPanel extends ApoHybridComponent {
 //@
 //@	public void playSound(BitsSound sound) {
 		//#if MonoEffect
-//@
 //@		if (this.bSound) {
 //@			this.soundPlayer.playSound(sound);
 //@		}

@@ -1,20 +1,16 @@
 //#if !TreasureGameLogic
 package net.apogames.apohybrid.entity;
 
-//#if ClockMenu
-//@import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
-//#elif MonoMenu
+//#if MonoMenu
 //@import net.apogames.apohybrid.ApoHybridConstants;
 //@import net.apogames.apohybrid.game.ApoHybridPanel;
 //@import net.apogames.apohybrid.game.ApoHybridGame;
 //@import net.gliblybits.bitsengine.graphics.opengl.BitsGLGraphics;
-//#elif DiceMenu || SnakeMenu
-//@import net.gliblybits.bitsengine.core.BitsImage;
-//#else
+//#elif ApoMenu
 	//#if DiceGameLogic
 //@import net.gliblybits.bitsengine.core.BitsImage;
 	//#else
-	import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
+//@	import net.gliblybits.bitsengine.graphics.opengl.BitsGLImage;
 	//#endif
 //#endif
 
@@ -23,12 +19,7 @@ public class ApoLevelChooserButton extends ApoButton {
 	private boolean bSelected;
 	private String text;
 	private boolean bSolved;
-	//#if ClockMenu
-//@	public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
-//@		super(iBackground, x, y, width, height, function);
-//@		
-//@		this.bSolved = false;
-	//#elif MonoMenu
+	//#if MonoMenu
 //@	public ApoLevelChooserButton(int x, int y, int width, int height, String function, String text) {
 //@		this(x, y, width, height, function, text, false);
 //@	}
@@ -39,24 +30,18 @@ public class ApoLevelChooserButton extends ApoButton {
 //@		this.bSelected = bSelected;
 //@		this.text = text;
 //@
-	//#elif SnakeMenu || DiceMenu
-//@	public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
-//@		super(iBackground, x, y, width, height, function);
-//@		
-//@		this.bSolved = false;
-//@
-	//#else
+	//#elif ApoMenu
 		//#if DiceGameLogic
 //@		public ApoLevelChooserButton(BitsImage iBackground, int x, int y, int width, int height, String function) {
 //@			super(iBackground, x, y, width, height, function);
 //@
 //@			this.bSolved = false;
 		//#else
-		public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
-		super(iBackground, x, y, width, height, function);
-
-		this.bSolved = false;
-
+//@		public ApoLevelChooserButton(BitsGLImage iBackground, int x, int y, int width, int height, String function) {
+//@		super(iBackground, x, y, width, height, function);
+//@
+//@		this.bSolved = false;
+//@
 				//#endif
 	//#endif
 
